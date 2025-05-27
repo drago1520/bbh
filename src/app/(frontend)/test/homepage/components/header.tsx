@@ -1,7 +1,7 @@
 'use client';
 
-import { forwardRef, useState } from 'react';
-import Link from 'next/link';
+import { ComponentProps, forwardRef, HTMLProps, useState } from 'react';
+import Link, { LinkProps } from 'next/link';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils/index';
@@ -186,16 +186,15 @@ export default function Header() {
   );
 }
 
-const ListItem = forwardRef<React.ElementRef<'a'>, React.ComponentPropsWithoutRef<'a'>>(({ className, title, children, ...props }, ref) => {
+const ListItem = (({ className, title, children, ...props }: LinkProps & HTMLProps<HTMLAnchorElement>) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a ref={ref} className={cn('hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none', className)} {...props}>
+        <Link className={cn('hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none', className)} {...props}>
           <div className="text-sm leading-none font-medium">{title}</div>
           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">{children}</p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );
 });
-ListItem.displayName = 'ListItem';
