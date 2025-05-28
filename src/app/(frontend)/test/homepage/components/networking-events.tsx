@@ -26,7 +26,7 @@ export default function NetworkingEvents() {
             <p className="text-muted-foreground mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base">
               Нетуъркинг събитията благодарение на бранд за създаване на доверие и лоялност между участниците.
             </p>
-            <Button className="w-full sm:w-auto">
+            <Button>
               ВИЖ КАЛЕНДАР <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </article>

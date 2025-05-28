@@ -36,7 +36,7 @@ export default function Conference() {
               Участниците в конференциите имат възможност да представят на експерти от различни области в България и
               чужбина в различни области.
             </p>
-            <Button className="w-full sm:w-auto">
+            <Button>
               НАУЧИ ПОВЕЧЕ <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </article>
