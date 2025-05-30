@@ -1,10 +1,10 @@
-'use client'
+'use client';
 import ServiceCards from './service-cards';
 import { FlipWords } from '@/components/ui/flip-words';
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[60vh] flex-col sm:min-h-[70vh] lg:min-h-[80vh]">
+    <section className="relative flex flex-col min-h-[60vh]  sm:min-h-[70vh] lg:min-h-[80vh]">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -26,10 +26,10 @@ export default function Hero() {
           {/* <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 leading-tight px-2 sm:px-4">
             Портал за бизнес решения, иновации и обучения, които ви помагат да развиете бизнеса си
           </h1> */}
-          <h1 className="mb-4 px-2 text-xl leading-tight font-bold sm:mb-6 sm:px-4 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl sm:text-center text-left">
-              Портал за <br className='min-[380px]:hidden' />
-              {/* prettier-ignore */}
-              <FlipWords className='text-brand-accent dark:text-foreground bg-foreground dark:bg-brand-accent rounded sm:mx-2 px-2 text-center sm:min-w-60' words={['бизнес решения', 'иновации', 'обучения']} /> <br />
+          <h1 className="mb-4 px-2 text-left text-xl leading-tight font-bold sm:mb-6 sm:px-4 sm:text-center sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+            Портал за <br className="min-[380px]:hidden" />
+            {/* prettier-ignore */}
+            <FlipWords className='text-brand-accent dark:text-foreground bg-foreground dark:bg-brand-accent rounded sm:mx-2 px-2 text-center sm:min-w-60' words={['бизнес решения', 'иновации', 'обучения']} /> <br />
             които ви помагат да развиете бизнеса си
           </h1>
           <p className="mb-6 text-sm sm:text-base lg:mb-8 lg:text-lg">ПРИ НАС ЩЕ ОТКРИЕТЕ</p>
