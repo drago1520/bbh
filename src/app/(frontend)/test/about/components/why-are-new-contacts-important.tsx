@@ -2,13 +2,17 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
-
-export default function WhyAreNewcontactImportant() {
+import { ComponentProps } from 'react';
+import { cn } from '@/lib/utils';
+/**
+ * @description Image is the right (dekstop) & up (mobile) by default. 
+ */
+export default function WhyAreNewcontactImportant({isImageLeft = false, className, ...props}: {isImageLeft?: boolean} & ComponentProps<'section'>) {
   return (
-    <section className="bg-teal-500/20 py-8 sm:py-12 lg:py-16" aria-labelledby="networking-heading">
+    <section className={cn("bg-teal-500/20 py-8 sm:py-12 lg:py-16", className)} aria-labelledby="networking-heading" {...props}>
       <div className="container">
         <div className="flex flex-col items-center gap-6 sm:gap-8 lg:grid-cols-2 xl:grid xl:gap-12">
-          <article className="order-2 xl:order-1">
+          <article className={cn( 'order-2' , isImageLeft && 'order-2')}>
             <Badge variant="brand" className="mb-4">
               Нетуъркинг
             </Badge>
@@ -21,7 +25,7 @@ export default function WhyAreNewcontactImportant() {
               ВИЖ КАЛЕНДАР <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </article>
-          <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none">
+          <div className={cn("relative mx-auto w-full max-w-md lg:max-w-none", 'order-1 lg:order-2' , isImageLeft && 'lg:order-1')}>
             <div className="relative aspect-[4/3]">
               <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" fill className="object-contain" />
             </div>
