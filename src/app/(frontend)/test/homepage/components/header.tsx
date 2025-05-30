@@ -59,7 +59,7 @@ export default function Header() {
       <div className="container py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="group flex items-center">
-            <Logo  />
+            <Logo />
           </Link>
 
           {/* Desktop Navigation */}
@@ -108,13 +108,15 @@ export default function Header() {
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <Link className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md" href="/">
+                        {/* <NavigationMenuLink asChild> */}
+                        <NavigationMenuLink asChild className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md">
+                          <Link href="/">
                             <Logo className="h-6 w-6" />
                             <div className="mt-4 mb-2 text-lg font-medium">shadcn/ui</div>
                             <p className="text-muted-foreground text-sm leading-tight">Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.</p>
                           </Link>
                         </NavigationMenuLink>
+                        {/* </NavigationMenuLink> */}
                       </li>
                       <ListItem href="/docs" title="Introduction">
                         Re-usable components built using Radix UI and Tailwind CSS.
@@ -129,9 +131,9 @@ export default function Header() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/docs" passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>ОБУЧЕНИЯ</NavigationMenuLink>
-                  </Link>
+                  <NavigationMenuLink asChild>
+                    <Link href='/docs'>ОБУЧЕНИЯ</Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -141,17 +143,17 @@ export default function Header() {
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="xl:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle mobile menu" aria-expanded={isMobileMenuOpen}>
-            {isMobileMenuOpen ? <X className="size-6" /> : <Menu className="!size-6" />}
-          </Button>
+                {isMobileMenuOpen ? <X className="size-6" /> : <Menu className="!size-6" />}
+              </Button>
             </SheetTrigger>
-            <SheetContent className='rounded-l-md'>
+            <SheetContent className="rounded-l-md">
               <SheetHeader>
                 <SheetTitle>Logo here</SheetTitle>
                 <SheetDescription>tuka e za slogan</SheetDescription>
               </SheetHeader>
-              <nav className='flex flex-col'>
+              <nav className="flex flex-col">
                 {navigationItems.map(item => (
-                  <Button className='w-full justify-start' key={item.label} asChild variant='link'>
+                  <Button className="w-full justify-start" key={item.label} asChild variant="link">
                     <Link href={item.href}>{item.label}</Link>
                   </Button>
                 ))}
@@ -186,7 +188,7 @@ export default function Header() {
   );
 }
 
-const ListItem = (({ className, title, children, ...props }: LinkProps & HTMLProps<HTMLAnchorElement>) => {
+const ListItem = ({ className, title, children, ...props }: LinkProps & HTMLProps<HTMLAnchorElement>) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -197,4 +199,4 @@ const ListItem = (({ className, title, children, ...props }: LinkProps & HTMLPro
       </NavigationMenuLink>
     </li>
   );
-});
+};

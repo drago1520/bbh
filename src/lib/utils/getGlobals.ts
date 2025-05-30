@@ -59,7 +59,7 @@ async function getGlobal(slug: Global, depth = 0) {
  *     <header>
  *       <nav>
  *         {navigation.links.map(link => (
- *           <a key={link.id} href={link.url}>{link.label}</a>
+ *           <Link key={link.id} href={link.url}>{link.label}</Link>
  *         ))}
  *       </nav>
  *     </header>

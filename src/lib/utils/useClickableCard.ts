@@ -64,9 +64,9 @@ interface Props {
  *     >
  *       <h3>{title}</h3>
  *       <p>{description}</p>
- *       <a ref={link.ref} href={href} className="sr-only">
+ *       <Link ref={link.ref} href={href} className="sr-only">
  *         Read more about {title}
- *       </a>
+ *       </Link>
  *       <button onClick={(e) => e.stopPropagation()}>Like</button>
  *     </div>
  *   );

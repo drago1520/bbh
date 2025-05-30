@@ -1,6 +1,7 @@
 import { Users, Briefcase, GraduationCap, Building, ArrowRight } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils/index"
+import Link from "next/link"
 
 const services = [
   {
@@ -49,7 +50,7 @@ export default function ServiceCards() {
               className="bg-background/95 backdrop-blur-sm border-0 hover:bg-background transition-all cursor-pointer group"
               
             >
-              <a
+              <Link
                 href={service.href}
                 className="p-3 sm:p-4 flex items-center space-x-2 sm:space-x-3"
                 aria-label={`Learn more about ${service.title}`}
@@ -71,7 +72,7 @@ export default function ServiceCards() {
                     service.textColorClass,
                   )}
                 />
-              </a>
+              </Link>
             </Card>
           )
         })}

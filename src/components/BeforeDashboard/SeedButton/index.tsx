@@ -2,15 +2,16 @@
 
 import React, { Fragment, useCallback, useState } from 'react';
 import { toast } from '@payloadcms/ui';
+import Link from 'next/link';
 
 import './index.scss';
 
 const SuccessMessage: React.FC = () => (
   <div>
-    Database seeded! You can now{' '}
-    <a target="_blank" href="/">
+    Database seeded! You can now
+    <Link target="_blank" href="/">
       visit your website
-    </a>
+    </Link>
   </div>
 );
 

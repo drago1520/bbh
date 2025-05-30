@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
 import { cn } from "@/lib/utils/index"
 import { ThemeSelector } from "@/components/ThemeProvider/Theme/ThemeSelector"
+import Link from "next/link"
 
 const socialLinks = [
   { icon: Facebook, href: "#", label: "Facebook" },
@@ -23,12 +24,12 @@ export default function TopBar() {
           <ul className="flex items-center space-x-3 sm:space-x-6">
             {navigationLinks.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   className={cn("hover:text-brand-accent transition-colors", !link.showOnMobile && "hidden sm:inline")}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -38,19 +39,19 @@ export default function TopBar() {
           {socialLinks.map((social) => {
             const IconComponent = social.icon
             return (
-              <a
+              <Link
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
                 className="hover:text-brand-accent transition-colors"
               >
                 <IconComponent className="w-3 h-3 sm:w-4 sm:h-4" />
-              </a>
+              </Link>
             )
           })}
-          <a href="#" aria-label="Additional social platform" className="hover:text-brand-accent transition-colors">
+          <Link href="#" aria-label="Additional social platform" className="hover:text-brand-accent transition-colors">
             <div className="w-3 h-3 sm:w-4 sm:h-4 bg-primary-foreground rounded-sm"></div>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
