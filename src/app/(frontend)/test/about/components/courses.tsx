@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Courses() {
   return (
-    <section className="bg-brand-purple/20 py-8 sm:py-12 lg:py-16" aria-labelledby="networking-heading">
+    <section className="bg-purple-500/20 py-8 sm:py-12 lg:py-16" aria-labelledby="networking-heading">
       <div className="container">
         <div className="flex flex-col items-center gap-6 sm:gap-8 lg:grid-cols-2 xl:grid xl:gap-12">
           <article className="order-2 xl:order-last">

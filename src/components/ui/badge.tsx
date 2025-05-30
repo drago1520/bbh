@@ -11,9 +11,9 @@ const badgeVariants = cva('inline-flex items-center justify-center rounded-md bo
       secondary: 'border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90',
       destructive: 'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
       outline: 'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
-      brand: 'border-transparent bg-brand-accent text-white hover:bg-brand-accent/80',
-      brandPurle: 'border-transparent bg-brand-purple text-white hover:bg-brand-purple/80',
-      brandOrange: 'border-transparent bg-brand-orange text-white hover:bg-brand-orange/80',
+      brand: 'border-transparent bg-teal-500 text-white [a&]:hover:bg-teal-500/80',
+      brandPurle: 'border-transparent bg-purple-400 text-white [a&]:hover:bg-purple-300/80',
+      brandOrange: 'border-transparent bg-orange-300 text-white dark:bg-orange-400 [a&]:hover:bg-orange-400/90',
     },
   },
   defaultVariants: {
