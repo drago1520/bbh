@@ -10,7 +10,7 @@ const services = [
     icon: Users,
     colorClass: 'bg-brand-accent',
     textColorClass: 'text-brand-accent',
-    href: '/networking',
+    href: '#',
   },
   {
     id: 'business-procurement',
@@ -18,7 +18,7 @@ const services = [
     icon: Briefcase,
     colorClass: 'bg-brand-accent',
     textColorClass: 'text-brand-accent',
-    href: '/business-procurement',
+    href: '#',
   },
   {
     id: 'training',
@@ -26,7 +26,7 @@ const services = [
     icon: GraduationCap,
     colorClass: 'bg-brand-purple',
     textColorClass: 'text-brand-purple',
-    href: '/training',
+    href: '#',
   },
   {
     id: 'conferences',
@@ -34,7 +34,7 @@ const services = [
     icon: Building,
     colorClass: 'bg-brand-orange',
     textColorClass: 'text-brand-orange',
-    href: '/conferences',
+    href: '#',
   },
 ];
 

@@ -11,7 +11,7 @@ export default function NotFound() {
         <p className="mb-4">This page could not be found.</p>
       </div>
       <Button asChild variant="default">
-        <Link href="/">Go home</Link>
+        <Link href="/test">Go home</Link>
       </Button>
     </div>
   );

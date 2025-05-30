@@ -48,7 +48,7 @@ export default function News() {
           {newsArticles.map(article => (
             <article key={article.id}>
               <Card className="group relative h-full cursor-pointer overflow-hidden transition-shadow hover:shadow-lg">
-                <Link href={`/news/${article.slug}`}>
+                <Link href='#'>
                   <div className="relative aspect-[3/2]">
                     <Image src="/card.avif?height=200&width=300" alt={`Featured image for ${article.title}`} fill className="object-cover transition-all duration-500 group-hover:scale-105" />
                     <div className="group-hover:bg-background/80 dark:bg-background/20 absolute top-0 left-0 h-full w-full transition-all duration-500 group-hover:scale-105"></div>
