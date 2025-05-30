@@ -12,12 +12,12 @@ import Logo from '@/components/Icons';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
 const navigationItems = [
   // { label: 'БИЗНЕС ЗАКУСКА', href: '#' },
-  { label: 'НЕТУЪРКИНГ', href: '#' },
+  { label: 'НЕТУЪРКИНГ', href: '/test/networking' },
   // { label: 'ОБУЧЕНИЯ', href: '#' },
   // { label: 'КОНФЕРЕНЦИИ', href: '#' },
 ];
 
-const components: { title: string; href: string; description: string }[] = [
+const networkingTabProps: { title: string; href: string; description: string }[] = [
   {
     title: 'Виж Страницата',
     href: '/test/networking',
@@ -94,7 +94,31 @@ export default function Header() {
                   <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {components.map(component => (
+                      {networkingTabProps.map(component => (
+                        <ListItem key={component.title} title={component.title} href={component.href}>
+                          {component.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {networkingTabProps.map(component => (
+                        <ListItem key={component.title} title={component.title} href={component.href}>
+                          {component.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {networkingTabProps.map(component => (
                         <ListItem key={component.title} title={component.title} href={component.href}>
                           {component.description}
                         </ListItem>
