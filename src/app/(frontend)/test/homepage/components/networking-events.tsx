@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function NetworkingEvents() {
   return (
@@ -17,8 +18,10 @@ export default function NetworkingEvents() {
             </h2>
             <p className="text-muted-foreground mb-4 text-sm leading-relaxed sm:text-base lg:mb-6">Нетуъркинг събитията са специално създадени за хора, които искат да създават нови връзки и да развиват бизнеса си. Нетуъркинг събитията са организирани около тема, за да предоставят възможност за професионалисти от различни области да се срещнат и да обменят идеи.</p>
             <p className="text-muted-foreground mb-6 text-sm leading-relaxed sm:text-base lg:mb-8">Нетуъркинг събитията благодарение на бранд за създаване на доверие и лоялност между участниците.</p>
-            <Button>
-              ВИЖ КАЛЕНДАР <ArrowRight className="ml-2 h-4 w-4" />
+            <Button asChild>
+              <Link href='#'>
+                ВИЖ КАЛЕНДАР <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </article>
           <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none">

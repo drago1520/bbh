@@ -9,7 +9,7 @@ import './index.scss';
 const SuccessMessage: React.FC = () => (
   <div>
     Database seeded! You can now
-    <Link target="_blank" href="/test">
+    <Link target="_blank" href="/test/homepage">
       visit your website
     </Link>
   </div>

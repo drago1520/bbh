@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Courses() {
   return (
@@ -17,8 +18,10 @@ export default function Courses() {
             </h2>
             <p className="text-muted-foreground mb-4 text-sm leading-relaxed sm:text-base lg:mb-6">Обученията са сърцето на всяка успешна организация. Те са ключови за развитието и успеха на всяка организация, защото предоставят нови знания и умения на служителите. Освен това, те насърчават професионалното развитие и повишават мотивацията и ангажираността на екипа.</p>
             <p className="text-muted-foreground mb-6 text-sm leading-relaxed sm:text-base lg:mb-8">Редовните обучения създават култура на непрекъснато усъвършенстване и иновации във фирмата. Те позволяват на служителите да се адаптират към нови технологии и методи на работа, което води до по-голяма ефективност и продуктивност. В дългосрочен план, инвестицията в обучения се отплаща чрез по-високи постижения и конкурентно предимство на пазара.</p>
-            <Button>
-              ВИЖ КАЛЕНДАРА <ArrowRight className="ml-2 h-4 w-4" />
+            <Button asChild>
+              <Link href='#'>
+                ВИЖ КАЛЕНДАРА <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </article>
           <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none">
