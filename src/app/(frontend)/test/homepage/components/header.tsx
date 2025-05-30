@@ -21,32 +21,32 @@ const components: { title: string; href: string; description: string }[] = [
   {
     title: 'Виж Страницата',
     href: '/test/networking',
-    description: 'Отиди на страницата за нетуъркинг. Ще откриеш всичко свързано за нетуъркинга там.',
+    description: 'Отиди на страницата за нетуъркинг. Всичко свързано за нетуъркинга.',
   },
   {
-    title: 'Hover Card',
-    href: '/test/networking',
-    description: 'For sighted users to preview content available behind a link.',
+    title: 'Предстоящи събития',
+    href: '#',
+    description: '<TODO Заглавие на събитието>',
   },
   {
-    title: 'Progress',
-    href: '/test/networking',
-    description: 'Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.',
+    title: 'Запиши се',
+    href: '#',
+    description: 'Ще ти изпраим имейл с покана за Google и Apple calendar.',
   },
   {
-    title: 'Scroll-area',
-    href: '/test/networking',
-    description: 'Visually or semantically separates content.',
+    title: 'Минали събития',
+    href: '#',
+    description: '<TODO заглавие на миналото събитие>',
   },
   {
-    title: 'Tabs',
-    href: '/test/networking',
-    description: 'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
+    title: 'Как ние нетуъркваме?',
+    href: '#',
+    description: 'Интересувай се от хората. Кого изобщо искаш да срещнеш? Давай стойност, която би струвала пари.',
   },
   {
-    title: 'Tooltip',
+    title: 'Не ти стига веднъж в месеца?',
     href: '/test/networking',
-    description: 'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
+    description: 'Пиши си, когато ти е удобно с хора, 2 нива над теб в нашия Discord.',
   },
 ];
 
