@@ -47,21 +47,21 @@ export default function News() {
         <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
           {newsArticles.map(article => (
             <article key={article.id}>
-              <Card className="group cursor-pointer relative h-full overflow-hidden transition-shadow hover:shadow-lg">
+              <Card className="group relative h-full cursor-pointer overflow-hidden transition-shadow hover:shadow-lg">
                 <Link href={`/news/${article.slug}`}>
                   <div className="relative aspect-[3/2]">
                     <Image src="/card.avif?height=200&width=300" alt={`Featured image for ${article.title}`} fill className="object-cover transition-all duration-500 group-hover:scale-105" />
-                  <div className="absolute w-full h-full top-0 left-0 transition-all duration-500 group-hover:bg-background/80 group-hover:scale-105 dark:bg-background/20"></div>
+                    <div className="group-hover:bg-background/80 dark:bg-background/20 absolute top-0 left-0 h-full w-full transition-all duration-500 group-hover:scale-105"></div>
                   </div>
                   <CardContent className="p-6">
                     <h3>
-                        <Button variant='link' className='whitespace-normal justify-start text-start text-foreground mb-8 text-sm  font-bold sm:text-base p-0'>
-                            {article.title}
-                        </Button>
+                      <Button variant="link" className="text-foreground mb-8 justify-start p-0 text-start text-sm font-bold whitespace-normal sm:text-base">
+                        {article.title}
+                      </Button>
                     </h3>
                     <p className="text-muted-foreground mb-4 text-xs">{article.excerpt}</p>
-                    <time dateTime={article.date} className="text-muted-foreground mb-2 text-xs flex items-center gap-2">
-                      <Calendar className='size-3.5'/> {article.dateDisplay}
+                    <time dateTime={article.date} className="text-muted-foreground mb-2 flex items-center gap-2 text-xs">
+                      <Calendar className="size-3.5" /> {article.dateDisplay}
                     </time>
                   </CardContent>
                 </Link>

@@ -24,7 +24,7 @@ export default function Footer() {
 
           <nav aria-label="Footer navigation">
             <h3 className="mb-4 text-sm font-semibold sm:text-base">МЕНЮ</h3>
-            <ul className="space-y-2 text-xs text-foreground/60 sm:text-sm">
+            <ul className="text-foreground/60 space-y-2 text-xs sm:text-sm">
               {menuLinks.map(link => (
                 <li key={link.href}>
                   <Link href={link.href} className="dark:hover:text-brand-accent hover:text-brand-primary transition-colors">
@@ -37,7 +37,7 @@ export default function Footer() {
 
           <address className="not-italic">
             <h3 className="mb-4 text-sm font-semibold sm:text-base">КОНТАКТИ</h3>
-            <div className="space-y-2 text-xs text-foreground/60 sm:text-sm">
+            <div className="text-foreground/60 space-y-2 text-xs sm:text-sm">
               <p>
                 <Link href="tel:+359878456939" className="dark:hover:text-brand-accent hover:text-brand-primary transition-colors">
                   +359 878 456 939
@@ -58,11 +58,11 @@ export default function Footer() {
 
           <div className="sm:col-span-2 xl:col-span-1">
             <h3 className="mb-1 text-sm font-semibold sm:text-base">ЗАПИШИ СЕ ЗА НАШИЯ ИМЕЙЛ БЮЛЕТИН</h3>
-            <p className="mb-4 text-xs text-foreground/60 sm:text-sm">Получавай първи новости за предстоящи събития и обучения</p>
+            <p className="text-foreground/60 mb-4 text-xs sm:text-sm">Получавай първи новости за предстоящи събития и обучения</p>
             <form aria-label="Newsletter signup">
               <Label className="text-foreground/80">Имейл</Label>
               <div className="mt-1 flex flex-col gap-2 sm:flex-row">
-                <Input type="email" placeholder="nanov@corp.bg" className="bg-brand-accent/12 text-sm placeholder:text-foreground/60" required aria-label="Email address" />
+                <Input type="email" placeholder="nanov@corp.bg" className="bg-brand-accent/12 placeholder:text-foreground/60 text-sm" required aria-label="Email address" />
                 <Button type="submit" variant="secondary">
                   ЗАПИШИ МЕ
                 </Button>

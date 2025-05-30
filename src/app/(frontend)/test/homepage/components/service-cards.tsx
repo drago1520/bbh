@@ -1,82 +1,62 @@
-import { Users, Briefcase, GraduationCap, Building, ArrowRight } from "lucide-react"
-import { Card } from "@/components/ui/card"
-import { cn } from "@/lib/utils/index"
-import Link from "next/link"
+import { Users, Briefcase, GraduationCap, Building, ArrowRight } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils/index';
+import Link from 'next/link';
 
 const services = [
   {
-    id: "networking",
-    title: "НЕТУЪРКИНГ",
+    id: 'networking',
+    title: 'НЕТУЪРКИНГ',
     icon: Users,
-    colorClass: "bg-brand-accent",
-    textColorClass: "text-brand-accent",
-    href: "/networking",
+    colorClass: 'bg-brand-accent',
+    textColorClass: 'text-brand-accent',
+    href: '/networking',
   },
   {
-    id: "business-procurement",
-    title: "БИЗНЕС ЗАКУПКА",
+    id: 'business-procurement',
+    title: 'БИЗНЕС ЗАКУПКА',
     icon: Briefcase,
-    colorClass: "bg-brand-accent",
-    textColorClass: "text-brand-accent",
-    href: "/business-procurement",
+    colorClass: 'bg-brand-accent',
+    textColorClass: 'text-brand-accent',
+    href: '/business-procurement',
   },
   {
-    id: "training",
-    title: "ОБУЧЕНИЯ",
+    id: 'training',
+    title: 'ОБУЧЕНИЯ',
     icon: GraduationCap,
-    colorClass: "bg-brand-purple",
-    textColorClass: "text-brand-purple",
-    href: "/training",
+    colorClass: 'bg-brand-purple',
+    textColorClass: 'text-brand-purple',
+    href: '/training',
   },
   {
-    id: "conferences",
-    title: "КОНФЕРЕНЦИИ",
+    id: 'conferences',
+    title: 'КОНФЕРЕНЦИИ',
     icon: Building,
-    colorClass: "bg-brand-orange",
-    textColorClass: "text-brand-orange",
-    href: "/conferences",
+    colorClass: 'bg-brand-orange',
+    textColorClass: 'text-brand-orange',
+    href: '/conferences',
   },
-]
+];
 
 export default function ServiceCards() {
   return (
     <div className="w-full max-w-6xl px-2 sm:px-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-3 xl:gap-4">
-        {services.map((service) => {
-          const IconComponent = service.icon
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 xl:grid-cols-4 xl:gap-4">
+        {services.map(service => {
+          const IconComponent = service.icon;
           return (
-            <Card
-              key={service.id}
-              className="bg-background/95 backdrop-blur-sm border-0 hover:bg-background transition-all cursor-pointer group"
-              
-            >
-              <Link
-                href={service.href}
-                className="p-3 sm:p-4 flex items-center space-x-2 sm:space-x-3"
-                aria-label={`Learn more about ${service.title}`}
-              >
-                <div
-                  className={cn(
-                    "aspect-square w-8 sm:w-10 rounded-full flex items-center justify-center flex-shrink-0",
-                    service.colorClass,
-                  )}
-                >
-                  <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
+            <Card key={service.id} className="bg-background/95 hover:bg-background group cursor-pointer border-0 backdrop-blur-sm transition-all">
+              <Link href={service.href} className="flex items-center space-x-2 p-3 sm:space-x-3 sm:p-4" aria-label={`Learn more about ${service.title}`}>
+                <div className={cn('flex aspect-square w-8 flex-shrink-0 items-center justify-center rounded-full sm:w-10', service.colorClass)}>
+                  <IconComponent className="text-primary-foreground h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
-                <span className="font-semibold text-foreground flex-1 text-xs sm:text-sm lg:text-base">
-                  {service.title}
-                </span>
-                <ArrowRight
-                  className={cn(
-                    "w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform",
-                    service.textColorClass,
-                  )}
-                />
+                <span className="text-foreground flex-1 text-xs font-semibold sm:text-sm lg:text-base">{service.title}</span>
+                <ArrowRight className={cn('h-4 w-4 flex-shrink-0 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5', service.textColorClass)} />
               </Link>
             </Card>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }

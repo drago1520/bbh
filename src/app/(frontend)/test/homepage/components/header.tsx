@@ -132,7 +132,7 @@ export default function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href='/docs'>ОБУЧЕНИЯ</Link>
+                    <Link href="/docs">ОБУЧЕНИЯ</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>

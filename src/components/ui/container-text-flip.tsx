@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useId } from "react";
+import React, { useState, useEffect, useId } from 'react';
 
-import { motion } from "motion/react";
-import { cn } from "@/lib/utils";
+import { motion } from 'motion/react';
+import { cn } from '@/lib/utils';
 
 export interface ContainerTextFlipProps {
   /** Array of words to cycle through in the animation */
@@ -18,13 +18,7 @@ export interface ContainerTextFlipProps {
   animationDuration?: number;
 }
 
-export function ContainerTextFlip({
-  words = ["better", "modern", "beautiful", "awesome"],
-  interval = 3000,
-  className,
-  textClassName,
-  animationDuration = 700,
-}: ContainerTextFlipProps) {
+export function ContainerTextFlip({ words = ['better', 'modern', 'beautiful', 'awesome'], interval = 3000, className, textClassName, animationDuration = 700 }: ContainerTextFlipProps) {
   const id = useId();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [width, setWidth] = useState(100);
@@ -46,7 +40,7 @@ export function ContainerTextFlip({
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+      setCurrentWordIndex(prevIndex => (prevIndex + 1) % words.length);
       // Width will be updated in the effect that depends on currentWordIndex
     }, interval);
 
@@ -54,41 +48,27 @@ export function ContainerTextFlip({
   }, [words, interval]);
 
   return (
-    <motion.p
-      layout
-      layoutId={`words-here-${id}`}
-      animate={{ width }}
-      transition={{ duration: animationDuration / 2000 }}
-      className={cn(
-        "relative inline-block rounded-lg text-center text-4xl font-bold text-black dark:text-white whitespace-nowrap",
-        "[background:linear-gradient(to_bottom,#f3f4f6,#e5e7eb)]",
-        "shadow-[inset_0_-1px_#d1d5db,inset_0_0_0_1px_#d1d5db,_0_4px_8px_#d1d5db]",
-        "dark:[background:linear-gradient(to_bottom,#374151,#1f2937)]",
-        "dark:shadow-[inset_0_-1px_#10171e,inset_0_0_0_1px_hsla(205,89%,46%,.24),_0_4px_8px_#00000052]",
-        className,
-      )}
-      key={words[currentWordIndex]}
-    >
+    <motion.p layout layoutId={`words-here-${id}`} animate={{ width }} transition={{ duration: animationDuration / 2000 }} className={cn('relative inline-block rounded-lg text-center text-4xl font-bold whitespace-nowrap text-black dark:text-white', '[background:linear-gradient(to_bottom,#f3f4f6,#e5e7eb)]', 'shadow-[inset_0_-1px_#d1d5db,inset_0_0_0_1px_#d1d5db,_0_4px_8px_#d1d5db]', 'dark:[background:linear-gradient(to_bottom,#374151,#1f2937)]', 'dark:shadow-[inset_0_-1px_#10171e,inset_0_0_0_1px_hsla(205,89%,46%,.24),_0_4px_8px_#00000052]', className)} key={words[currentWordIndex]}>
       <motion.div
         transition={{
           duration: animationDuration / 1000,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
-        className={cn("inline-block", textClassName)}
+        className={cn('inline-block', textClassName)}
         ref={textRef}
         layoutId={`word-div-${words[currentWordIndex]}-${id}`}
       >
         <motion.div className="inline-block">
-          {words[currentWordIndex].split("").map((letter, index) => (
+          {words[currentWordIndex].split('').map((letter, index) => (
             <motion.span
               key={index}
               initial={{
                 opacity: 0,
-                filter: "blur(10px)",
+                filter: 'blur(10px)',
               }}
               animate={{
                 opacity: 1,
-                filter: "blur(0px)",
+                filter: 'blur(0px)',
               }}
               transition={{
                 delay: index * 0.02,

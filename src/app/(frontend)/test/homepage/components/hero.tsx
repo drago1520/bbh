@@ -4,7 +4,7 @@ import { FlipWords } from '@/components/ui/flip-words';
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col min-h-[60vh]  sm:min-h-[70vh] lg:min-h-[80vh]">
+    <section className="relative flex min-h-[60vh] flex-col sm:min-h-[70vh] lg:min-h-[80vh]">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

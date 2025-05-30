@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 export default function AboutHero() {
   return (
-    <section className='my-12'>
-      <div className='flex flex-col items-center justify-center mb-8 xl:mb-16'>
-        <h1 className='text-2xl lg:text-4xl font-bold scroll-m-20'>За Нас</h1>
+    <section className="my-12">
+      <div className="mb-8 flex flex-col items-center justify-center xl:mb-16">
+        <h1 className="scroll-m-20 text-2xl font-bold lg:text-4xl">За Нас</h1>
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -14,7 +14,7 @@ export default function AboutHero() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href='/test/about'>За нас</BreadcrumbLink>
+              <BreadcrumbLink href="/test/about">За нас</BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -23,30 +23,30 @@ export default function AboutHero() {
         <div className="relative mx-auto aspect-[4/3] w-full max-w-md xl:max-w-none">
           <Image src="/about.avif" alt="BBH team photo" fill />
         </div>
-          <div className='h-full flex items-center '>
-            <div className='bg-muted p-12'>
-              <h2 className='text-foreground/80 text-lg tracking-tight scroll-m-20'>Нашата мисия</h2>
-              <h3 className='text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-4 lg:mb-6'>Създадохме Digital Sea защото...</h3>
-              <p className="text-muted-foreground leading-7 [&:not(:first-child)]:mt-6">Намираме се в морски Бургас – където алтернатива на пълноценния ни екип липсва. С WebTact бизнесът избира дигитална агенция, в която зад всеки един процес стои поне един съответен професионалист, който знае много добре какво прави.</p>
-              <p className="text-muted-foreground leading-7 [&:not(:first-child)]:mt-6">Работим ефективно дистанционно с клиенти от буквално цял свят. Заедно, ние сме дигитална сила, с която на своя страна получавате десетки дипломи, години опит, креативност, отдаденост – за вашата кауза и бизнес.</p>
-            </div>
+        <div className="flex h-full items-center">
+          <div className="bg-muted p-12">
+            <h2 className="text-foreground/80 scroll-m-20 text-lg tracking-tight">Нашата мисия</h2>
+            <h3 className="text-foreground mb-4 text-xl font-bold sm:text-2xl lg:mb-6 lg:text-3xl">Създадохме Digital Sea защото...</h3>
+            <p className="text-muted-foreground leading-7 [&:not(:first-child)]:mt-6">Намираме се в морски Бургас – където алтернатива на пълноценния ни екип липсва. С WebTact бизнесът избира дигитална агенция, в която зад всеки един процес стои поне един съответен професионалист, който знае много добре какво прави.</p>
+            <p className="text-muted-foreground leading-7 [&:not(:first-child)]:mt-6">Работим ефективно дистанционно с клиенти от буквално цял свят. Заедно, ние сме дигитална сила, с която на своя страна получавате десетки дипломи, години опит, креативност, отдаденост – за вашата кауза и бизнес.</p>
           </div>
+        </div>
       </div>
-      <div className='container grid lg:grid-cols-3 gap-16 mt-12 text-center justify-center min-[480px]:grid-cols-2 min-[480px]:gap-8'>
-        <div className='shadow-lg rounded max-w-80 w-full flex flex-col items-center justify-center p-8'>
-          <Fan className='mb-2'/>
-          <span className='text-xl sm:text-2xl lg:text-3xl font-bold text-foreground'>50+</span>
-          <span className='text-muted-foreground'>Нетуъркинг събития</span>
+      <div className="container mt-12 grid justify-center gap-16 text-center min-[480px]:grid-cols-2 min-[480px]:gap-8 lg:grid-cols-3">
+        <div className="flex w-full max-w-80 flex-col items-center justify-center rounded p-8 shadow-lg">
+          <Fan className="mb-2" />
+          <span className="text-foreground text-xl font-bold sm:text-2xl lg:text-3xl">50+</span>
+          <span className="text-muted-foreground">Нетуъркинг събития</span>
         </div>
-        <div className='shadow-lg rounded max-w-80 w-full flex flex-col items-center justify-center p-8'>
-          <Users className='mb-2'/>
-          <span className='text-xl sm:text-2xl lg:text-3xl font-bold text-foreground'>100+</span>
-          <span className='text-muted-foreground'>Души</span>
+        <div className="flex w-full max-w-80 flex-col items-center justify-center rounded p-8 shadow-lg">
+          <Users className="mb-2" />
+          <span className="text-foreground text-xl font-bold sm:text-2xl lg:text-3xl">100+</span>
+          <span className="text-muted-foreground">Души</span>
         </div>
-        <div className='shadow-lg rounded max-w-80 w-full flex flex-col items-center justify-center p-8 lg:col-span-1 min-[480px]:col-span-full lg:col-span min-[480px]:justify-self-center'>
-          <CalendarCheck2 className='mb-2'/>
-          <span className='text-xl sm:text-2xl lg:text-3xl font-bold text-foreground'>3</span>
-          <span className='text-muted-foreground'>Ежегодни конференции</span>
+        <div className="lg:col-span flex w-full max-w-80 flex-col items-center justify-center rounded p-8 shadow-lg min-[480px]:col-span-full min-[480px]:justify-self-center lg:col-span-1">
+          <CalendarCheck2 className="mb-2" />
+          <span className="text-foreground text-xl font-bold sm:text-2xl lg:text-3xl">3</span>
+          <span className="text-muted-foreground">Ежегодни конференции</span>
         </div>
       </div>
     </section>

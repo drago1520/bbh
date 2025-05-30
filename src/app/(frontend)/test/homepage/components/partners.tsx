@@ -75,10 +75,10 @@ export default function Partners() {
   return (
     <section className="bg-muted/50 py-6 sm:py-8 lg:py-12" aria-labelledby="partners-heading">
       <div className="container text-center">
-          <p className="text-brand-accent mb-2 text-sm font-semibold">СЕ ПОДКРЕПЯМЕ ВЗАИМНО</p>
-          <h2 id="partners-heading" className="text-foreground mb-6 text-lg font-bold sm:text-xl lg:mb-8 lg:text-2xl">
-            С подкрепата на
-          </h2>
+        <p className="text-brand-accent mb-2 text-sm font-semibold">СЕ ПОДКРЕПЯМЕ ВЗАИМНО</p>
+        <h2 id="partners-heading" className="text-foreground mb-6 text-lg font-bold sm:text-xl lg:mb-8 lg:text-2xl">
+          С подкрепата на
+        </h2>
         {/* <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 lg:gap-12 opacity-60">
           {partners.map((partner) => (
             <div
@@ -90,19 +90,19 @@ export default function Partners() {
           ))}
         </div> */}
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-              <Marquee pauseOnHover className="[--duration:60s]">
-                {firstRow.map((review) => (
-                  <ReviewCard key={review.username} {...review} />
-                ))}
-              </Marquee>
-              <Marquee reverse pauseOnHover className="[--duration:60s]">
-                {secondRow.map((review) => (
-                  <ReviewCard key={review.username} {...review} />
-                ))}
-              </Marquee>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-muted dark:from-transparent"></div>
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-muted dark:from-transparent"></div>
-            </div>
+          <Marquee pauseOnHover className="[--duration:60s]">
+            {firstRow.map(review => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:60s]">
+            {secondRow.map(review => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+          <div className="from-muted pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r dark:from-transparent"></div>
+          <div className="from-muted pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l dark:from-transparent"></div>
+        </div>
       </div>
     </section>
   );
