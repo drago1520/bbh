@@ -10,7 +10,7 @@ const socialLinks = [
 ];
 
 const navigationLinks = [
-  { label: 'ЗА НАС', href: '#', showOnMobile: false },
+  { label: 'ЗА НАС', href: '/test/about', showOnMobile: false },
   { label: 'НОВИНИ', href: '#', showOnMobile: false },
   { label: 'КОНТАКТИ', href: '#', showOnMobile: true },
 ];
