@@ -11,10 +11,10 @@ import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHe
 import Logo from '@/components/Icons';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
 const navigationItems = [
-  { label: 'БИЗНЕС ЗАКУПКА', href: '#' },
+  // { label: 'БИЗНЕС ЗАКУСКА', href: '#' },
   { label: 'НЕТУЪРКИНГ', href: '#' },
-  { label: 'ОБУЧЕНИЯ', href: '#' },
-  { label: 'КОНФЕРЕНЦИИ', href: '#' },
+  // { label: 'ОБУЧЕНИЯ', href: '#' },
+  // { label: 'КОНФЕРЕНЦИИ', href: '#' },
 ];
 
 const components: { title: string; href: string; description: string }[] = [
@@ -145,8 +145,12 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent className="rounded-l-md">
               <SheetHeader>
-                <SheetTitle>Logo here</SheetTitle>
-                <SheetDescription>tuka e za slogan</SheetDescription>
+                <SheetTitle>
+                  <Link href="/test/homepage" className="group flex items-center">
+                    <Logo />
+                  </Link>
+                </SheetTitle>
+                <SheetDescription>1 + 1 = 5</SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col">
                 {navigationItems.map(item => (
