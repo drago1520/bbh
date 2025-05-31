@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, MapPin, Plus } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Plus } from 'lucide-react';
 import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -15,9 +15,10 @@ export default function LatestNetworking({ isImageLeft = false, className, ...pr
   return (
     <section className={cn('py-24', className)} aria-labelledby="networking-heading" {...props}>
       <div className="container">
-        <Badge className="mb-16" variant="secondary">
-          Минал Неутъркинг с лектор
+        <Badge className="mb-16 mr-2" variant="secondary">
+          Предстоящ нетуъркинг
         </Badge>
+        <Badge variant='secondary'>С Лектор</Badge>
         <div className="grid items-center justify-start gap-6 sm:gap-8 xl:grid xl:grid-cols-2 xl:gap-12">
           <article className={cn('order-2 mt-4', isImageLeft && 'order-2')}>
             <h2 id="networking-heading" className="text-foreground mb-2 text-xl font-bold sm:text-2xl lg:mb-4 lg:text-3xl">
@@ -51,6 +52,11 @@ export default function LatestNetworking({ isImageLeft = false, className, ...pr
             <Button asChild>
               <Link href="#">
                 ЗАПИШИ СЕ <Plus />
+              </Link>
+            </Button>
+            <Button className='ml-4' variant='secondary' asChild>
+              <Link href="#">
+                ПРОЧЕТИ ПОВЕЧЕ <ArrowRight />
               </Link>
             </Button>
           </article>
