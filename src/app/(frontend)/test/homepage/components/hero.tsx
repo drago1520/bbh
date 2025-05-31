@@ -1,6 +1,6 @@
 'use client';
 import ServiceCards from './service-cards';
-import { FlipWords } from '@/components/ui/flip-words';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -9,7 +9,7 @@ export default function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/hero-bg.avif')",
+          backgroundImage: "url('/hero-bg.avif')", //! Снимка на Бургас
           filter: 'blur(2px)',
         }}
         aria-hidden="true"
@@ -27,10 +27,9 @@ export default function Hero() {
             Портал за бизнес решения, иновации и обучения, които ви помагат да развиете бизнеса си
           </h1> */}
           <h1 className="mb-4 px-2 text-left text-xl leading-tight font-bold sm:mb-6 sm:px-4 sm:text-center sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-            Портал за <br className="min-[380px]:hidden" />
-            {/* prettier-ignore */}
-            <FlipWords className='text-brand-accent dark:text-foreground bg-foreground dark:bg-brand-accent rounded sm:mx-2 px-2 text-center sm:min-w-60' words={['бизнес решения', 'иновации', 'обучения']} /> <br />
-            които ви помагат да развиете бизнеса си
+            Бизнес общостта на <span className="relative text-brand-accent bg-white rounded px-1 inline-block [transform:perspective(500px)_rotateY(-15deg)]">
+            Бургас
+          </span>
           </h1>
           <p className="mb-6 text-sm sm:text-base lg:mb-8 lg:text-lg">ПРИ НАС ЩЕ ОТКРИЕТЕ</p>
         </div>
