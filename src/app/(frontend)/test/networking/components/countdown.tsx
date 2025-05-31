@@ -2,20 +2,20 @@
 import Countdown from 'react-countdown';
 
 function UI({ days, hours, minutes, seconds }: { days: number; hours: number; minutes: number; seconds: number }) {
-  const format = (time: number) => time.toString().padStart(2, '0')
+  const format = (time: number) => time.toString().padStart(2, '0');
   return (
-    <time className="text-foreground flex w-fit rounded-md dark:border dark:bg-transparent shadow-lg bg-accent xl:text-7xl text-xl sm:text-3xl">
-      <div className='py-8 px-4 border-r'>
-        <span className="xl:w-24 sm:w-9.5 w-8 flex justify-center items-center">{format(days)}</span>
+    <time className="text-foreground bg-accent flex w-fit rounded-md text-xl shadow-lg sm:text-3xl xl:text-7xl dark:border dark:bg-transparent">
+      <div className="border-r px-4 py-8">
+        <span className="flex w-8 items-center justify-center sm:w-9.5 xl:w-24">{format(days)}</span>
       </div>
-      <div className='py-8 px-4 border-r'>
-        <span className="xl:w-24 sm:w-9.5 w-8 flex justify-center items-center">{format(hours)}</span>
+      <div className="border-r px-4 py-8">
+        <span className="flex w-8 items-center justify-center sm:w-9.5 xl:w-24">{format(hours)}</span>
       </div>
-      <div className='py-8 px-4 border-r'>
-        <span className="xl:w-24 sm:w-9.5 w-8 flex justify-center items-center">{format(minutes)}</span>
+      <div className="border-r px-4 py-8">
+        <span className="flex w-8 items-center justify-center sm:w-9.5 xl:w-24">{format(minutes)}</span>
       </div>
-      <div className='py-8 px-4'>
-        <span className="xl:w-24 sm:w-9.5 w-8 flex justify-center items-center">{format(seconds)}</span>
+      <div className="px-4 py-8">
+        <span className="flex w-8 items-center justify-center sm:w-9.5 xl:w-24">{format(seconds)}</span>
       </div>
     </time>
   );

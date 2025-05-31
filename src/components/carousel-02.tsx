@@ -1,18 +1,12 @@
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import React from "react";
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import React from 'react';
 
 export default function CarouselWithMultipleSlides() {
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: 'start',
       }}
       className="w-full max-w-sm"
     >

@@ -104,9 +104,9 @@ export default function Header() {
                   </NavigationMenuContent>
                 </NavigationMenuItem> */}
                 <NavigationMenuItem>
-                    <NavigationMenuLink asChild>
-                      <Link href="#">БИЗНЕС ЗАКУСКА</Link>
-                    </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link href="#">БИЗНЕС ЗАКУСКА</Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>КОНФЕРЕНЦИИ</NavigationMenuTrigger>

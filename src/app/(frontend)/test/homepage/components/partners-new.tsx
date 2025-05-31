@@ -1,5 +1,5 @@
-import Marquee from "react-fast-marquee";
-import Image from "next/image";
+import Marquee from 'react-fast-marquee';
+import Image from 'next/image';
 
 export default function PartnersMarquee() {
   return (
@@ -10,9 +10,9 @@ export default function PartnersMarquee() {
           С подкрепата на
         </h2>
       </div>
-    <Marquee pauseOnHover pauseOnClick autoFill speed={10} className="mt-12">
-      <Image src='/cvetita-herbal.png' alt="cvetita-herbal" width={60} height={60} className="mx-12" />
-    </Marquee>
+      <Marquee pauseOnHover pauseOnClick autoFill speed={10} className="mt-12">
+        <Image src="/cvetita-herbal.png" alt="cvetita-herbal" width={60} height={60} className="mx-12" />
+      </Marquee>
     </section>
   );
 }

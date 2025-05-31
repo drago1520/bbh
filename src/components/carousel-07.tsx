@@ -1,17 +1,10 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import { cn } from "@/lib/utils/index";
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
+import { cn } from '@/lib/utils/index';
 
 export default function CarouselWithFooter() {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -26,7 +19,7 @@ export default function CarouselWithFooter() {
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
+    api.on('select', () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
@@ -45,16 +38,16 @@ export default function CarouselWithFooter() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="top-[calc(100%+0.5rem)] translate-y-0 left-0" />
-        <CarouselNext className="top-[calc(100%+0.5rem)] translate-y-0 left-2 translate-x-full" />
+        <CarouselPrevious className="top-[calc(100%+0.5rem)] left-0 translate-y-0" />
+        <CarouselNext className="top-[calc(100%+0.5rem)] left-2 translate-x-full translate-y-0" />
       </Carousel>
       <div className="mt-4 flex items-center justify-end gap-2">
         {Array.from({ length: count }).map((_, index) => (
           <button
             key={index}
             onClick={() => api?.scrollTo(index)}
-            className={cn("h-3.5 w-3.5 rounded-full border-2", {
-              "border-primary": current === index + 1,
+            className={cn('h-3.5 w-3.5 rounded-full border-2', {
+              'border-primary': current === index + 1,
             })}
           />
         ))}

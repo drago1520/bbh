@@ -10,12 +10,12 @@ import LatestNetworking from './components/latest-networking';
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-    <Header />
+      <Header />
       <main>
-        <NetworkingHeader/>
-        <LatestNetworking className='bg-teal-500/20' />
+        <NetworkingHeader />
+        <LatestNetworking className="bg-teal-500/20" />
         {/* <AboutHero /> */}
-        <Section2Paragraphs className='bg-background' />
+        <Section2Paragraphs className="bg-background" />
         <PartnersMarquee />
         <Courses />
         <Confrences />

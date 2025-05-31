@@ -15,7 +15,7 @@ const menuLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-teal-100/70 dark:bg-teal-950 text-foreground/80 py-6 sm:py-8 lg:py-12">
+    <footer className="text-foreground/80 bg-teal-100/70 py-6 sm:py-8 lg:py-12 dark:bg-teal-950">
       <div className="container">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8 xl:grid-cols-4">
           <div className="sm:col-span-2 xl:col-span-1">
@@ -29,7 +29,7 @@ export default function Footer() {
             <ul className="text-muted-foreground space-y-2 text-xs sm:text-sm">
               {menuLinks.map(link => (
                 <li key={link.href + link.label}>
-                  <Link href={link.href} className="dark:hover:text-brand-accent hover:underline hover:text-brand-primary transition-colors">
+                  <Link href={link.href} className="dark:hover:text-brand-accent hover:text-brand-primary transition-colors hover:underline">
                     {link.label}
                   </Link>
                 </li>
@@ -41,17 +41,17 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-semibold sm:text-base">КОНТАКТИ</h3>
             <div className="text-muted-foreground space-y-2 text-xs sm:text-sm">
               <p>
-                <Link href="tel:+359878456939" className="dark:hover:text-brand-accent hover:underline hover:text-brand-primary transition-colors">
+                <Link href="tel:+359878456939" className="dark:hover:text-brand-accent hover:text-brand-primary transition-colors hover:underline">
                   +359 878 456 939
                 </Link>
               </p>
               <p>
-                <Link href="mailto:contact@burgasbh.com" className="dark:hover:text-brand-accent hover:underline hover:text-brand-primary transition-colors">
+                <Link href="mailto:contact@burgasbh.com" className="dark:hover:text-brand-accent hover:text-brand-primary transition-colors hover:underline">
                   contact@burgasbh.com
                 </Link>
               </p>
               <p>
-                <Link href="mailto:support@burgasbh.com" className="dark:hover:text-brand-accent hover:underline hover:text-brand-primary transition-colors">
+                <Link href="mailto:support@burgasbh.com" className="dark:hover:text-brand-accent hover:text-brand-primary transition-colors hover:underline">
                   support@burgasbh.com
                 </Link>
               </p>
@@ -64,10 +64,8 @@ export default function Footer() {
             <form aria-label="Newsletter signup">
               <Label className="text-muted-foreground">Имейл</Label>
               <div className="mt-1 flex flex-col gap-2 sm:flex-row">
-                <Input type="email" placeholder="nanov@corp.bg" className="inset-shadow-sm placeholder:text-muted-foreground text-sm" required aria-label="Email address" />
-                <Button type="submit">
-                  ЗАПИШИ МЕ
-                </Button>
+                <Input type="email" placeholder="nanov@corp.bg" className="placeholder:text-muted-foreground text-sm inset-shadow-sm" required aria-label="Email address" />
+                <Button type="submit">ЗАПИШИ МЕ</Button>
               </div>
             </form>
           </div>

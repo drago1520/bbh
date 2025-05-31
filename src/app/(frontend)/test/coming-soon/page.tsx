@@ -7,7 +7,7 @@ export default function Page() {
     <div className="min-h-screen">
       <Header />
       <main>
-        <ComingSoonHero/>
+        <ComingSoonHero />
       </main>
       <Footer />
     </div>

@@ -15,7 +15,9 @@ export default function LatestNetworking({ isImageLeft = false, className, ...pr
   return (
     <section className={cn('py-24', className)} aria-labelledby="networking-heading" {...props}>
       <div className="container">
-        <Badge className='mb-16' variant='secondary'>Минал Неутъркинг с лектор</Badge>
+        <Badge className="mb-16" variant="secondary">
+          Минал Неутъркинг с лектор
+        </Badge>
         <div className="grid items-center justify-start gap-6 sm:gap-8 xl:grid xl:grid-cols-2 xl:gap-12">
           <article className={cn('order-2 mt-4', isImageLeft && 'order-2')}>
             <h2 id="networking-heading" className="text-foreground mb-2 text-xl font-bold sm:text-2xl lg:mb-4 lg:text-3xl">

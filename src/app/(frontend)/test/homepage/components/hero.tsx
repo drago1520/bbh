@@ -26,9 +26,7 @@ export default function Hero() {
             Портал за бизнес решения, иновации и обучения, които ви помагат да развиете бизнеса си
           </h1> */}
           <h1 className="mb-4 px-2 text-left text-xl leading-tight font-bold sm:mb-6 sm:px-4 sm:text-center sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-            Бизнес общостта на <span className="relative text-brand-accent bg-white rounded px-1 inline-block [transform:perspective(500px)_rotateY(-15deg)] hover:[transform:perspective(500px)_rotateY(0deg)] transition-all duration-500">
-            Бургас
-          </span>
+            Бизнес общостта на <span className="text-brand-accent relative inline-block [transform:perspective(500px)_rotateY(-15deg)] rounded bg-white px-1 transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)]">Бургас</span>
           </h1>
           <p className="mb-6 text-sm sm:text-base lg:mb-8 lg:text-lg">ПРИ НАС ЩЕ ОТКРИЕТЕ</p>
         </div>
