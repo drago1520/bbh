@@ -66,6 +66,9 @@ const ReviewCard = ({ img, name, username, body }: { img: string; name: string; 
     </figure>
   );
 };
+/**
+ * @deprecated use PartnersMarquee. This one is too heavy for a marketing page because of framer motion.
+ */
 export default function Partners() {
   const partners = Array.from({ length: 6 }, (_, i) => ({
     id: i + 1,

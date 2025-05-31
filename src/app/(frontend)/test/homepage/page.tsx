@@ -2,10 +2,10 @@ import TopBar from '@/app/(frontend)/test/homepage/components/top-bar';
 import Header from '@/app/(frontend)/test/homepage/components/header';
 import Hero from '@/app/(frontend)/test/homepage/components/hero';
 import NetworkingEvents from '@/app/(frontend)/test/homepage/components/networking-events';
-import Partners from '@/app/(frontend)/test/homepage/components/partners';
 import Conference from '@/app/(frontend)/test/homepage/components/conference';
 import News from '@/app/(frontend)/test/homepage/components/news';
 import Footer from '@/app/(frontend)/test/homepage/components/footer';
+import PartnersCarousel from './components/partners-new';
 
 export default function HomePage() {
   return (
@@ -15,7 +15,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <NetworkingEvents />
-        <Partners />
+        <PartnersCarousel />
         <Conference />
         <News />
       </main>
