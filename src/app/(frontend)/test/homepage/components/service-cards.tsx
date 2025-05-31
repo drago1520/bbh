@@ -41,7 +41,7 @@ const services = [
 export default function ServiceCards() {
   return (
     <div className="w-full max-w-6xl px-2 sm:px-4">
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 xl:grid-cols-4 xl:gap-4">
+      <div className="grid grid-cols-1 gap-2 min-[420px]:grid-cols-2 sm:gap-3 xl:grid-cols-4 xl:gap-4">
         {services.map(service => {
           const IconComponent = service.icon;
           return (
