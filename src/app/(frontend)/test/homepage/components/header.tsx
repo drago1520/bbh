@@ -10,6 +10,7 @@ import { ThemeSelector } from '@/components/ThemeProvider/Theme/ThemeSelector';
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Logo from '@/components/Icons';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
+import NoWebpageYetAlertDialogWrapper from '../../coming-soon/components/no-webpage-yet-modal';
 const navigationItems = [
   // { label: 'БИЗНЕС ЗАКУСКА', href: '#' },
   { label: 'НЕТУЪРКИНГ', href: '/test/networking' },
@@ -65,68 +66,49 @@ export default function Header() {
           <nav className="hidden items-center space-x-6 xl:flex xl:space-x-8" aria-label="Main navigation">
             <NavigationMenu>
               <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {networkingTabProps.map(component => (
+                        <ListItem key={component.title} title={component.title} href={component.href}>
+                          {component.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
                 {/* <NavigationMenuItem>
-                  <NavigationMenuTrigger>БИЗНЕС ЗАКУПКА</NavigationMenuTrigger>
+                  <NavigationMenuTrigger>БИЗНЕС ЗАКУСКА</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
-                          <Link className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md" href="/test/homepage">
-                            <Logo className="h-6 w-6" />
-                            <div className="mt-4 mb-2 text-lg font-medium">shadcn/ui</div>
-                            <p className="text-muted-foreground text-sm leading-tight">Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.</p>
+                          <Link className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md" href="#">
+                            <Logo className='size-full' />
+                            <div className="mb-2 text-lg font-medium">Главна страница</div>
+                            <p className="text-muted-foreground text-sm leading-tight">Открий нови клиенти и партньори на следващата ни бизнес закуска.</p>
                           </Link>
                         </NavigationMenuLink>
                       </li>
-                      <ListItem href="#" title="Introduction">
-                        Re-usable components built using Radix UI and Tailwind CSS.
+                      <ListItem href="#" title="Запиши се">
+                        TODO детайли за следващата закуска
                       </ListItem>
-                      <ListItem href="#" title="Installation">
+                      <ListItem href="#" title="Какво е Бизнес Закуската?">
                         How to install dependencies and structure your app.
                       </ListItem>
-                      <ListItem href="#" title="Typography">
-                        Styles for headings, paragraphs, lists...etc
+                      <ListItem href="#" title="Минали събития">
+                        Разгледай участници, мнения и какво се е случило.
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem> */}
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {networkingTabProps.map(component => (
-                        <ListItem key={component.title} title={component.title} href={component.href}>
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
+                    <NavigationMenuLink asChild>
+                      <Link href="#">БИЗНЕС ЗАКУСКА</Link>
+                    </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {networkingTabProps.map(component => (
-                        <ListItem key={component.title} title={component.title} href={component.href}>
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {networkingTabProps.map(component => (
-                        <ListItem key={component.title} title={component.title} href={component.href}>
-                          {component.description}
-                        </ListItem>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>КОНФЕРЕНЦИИ</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -150,12 +132,12 @@ export default function Header() {
                       </ListItem>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem> */}
-                {/* <NavigationMenuItem>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/#">ОБУЧЕНИЯ</Link>
+                    <Link href="#">ОБУЧЕНИЯ</Link>
                   </NavigationMenuLink>
-                </NavigationMenuItem> */}
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
             <ThemeSelector />

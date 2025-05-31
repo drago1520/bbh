@@ -14,7 +14,7 @@ const services = [
   },
   {
     id: 'business-procurement',
-    title: 'БИЗНЕС ЗАКУПКА',
+    title: 'БИЗНЕС ЗАКУСКА',
     icon: Briefcase,
     colorClass: 'bg-brand-accent',
     textColorClass: 'text-brand-accent',

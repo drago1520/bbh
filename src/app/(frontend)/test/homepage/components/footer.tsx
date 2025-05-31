@@ -28,7 +28,7 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-semibold sm:text-base">МЕНЮ</h3>
             <ul className="text-muted-foreground space-y-2 text-xs sm:text-sm">
               {menuLinks.map(link => (
-                <li key={link.href}>
+                <li key={link.href + link.label}>
                   <Link href={link.href} className="dark:hover:text-brand-accent hover:underline hover:text-brand-primary transition-colors">
                     {link.label}
                   </Link>
