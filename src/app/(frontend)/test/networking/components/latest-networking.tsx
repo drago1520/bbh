@@ -11,16 +11,26 @@ import CountDownTimer from './countdown';
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
  */
-export default function LatestNetworking({ isImageLeft = false, className, ...props }: { isImageLeft?: boolean } & ComponentProps<'section'>) {
+export default function LatestNetworking({ isImageRight = false, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
     <section className={cn('py-24', className)} aria-labelledby="networking-heading" {...props}>
       <div className="container">
-        <Badge className="mb-16 mr-2" variant="secondary">
-          Предстоящ нетуъркинг
-        </Badge>
-        <Badge variant='secondary'>С Лектор</Badge>
         <div className="grid items-center justify-start gap-6 sm:gap-8 xl:grid xl:grid-cols-2 xl:gap-12">
-          <article className={cn('order-2 mt-4', isImageLeft && 'order-2')}>
+          <div className={cn('relative w-full max-w-md rounded-md xl:mx-auto xl:max-w-none', isImageRight && 'xl:order-2')}>
+            <Badges className='xl:hidden' />
+            <div className="relative size-fit rounded-full border-4 border-dashed shadow-2xl xl:mx-auto">
+              <Image src="/joro.png" alt="Networking illustration showing people collaborating" width={288} height={288} className="bg-muted size-52 rounded-full object-cover saturate-80 xl:size-72" />
+              <div className="absolute -bottom-2 left-0 flex w-full items-end justify-between">
+                <span className="grow [transform:perspective(500px)_rotateY(15deg)] rounded bg-teal-200 px-4 py-1 text-sm font-semibold text-nowrap shadow-lg transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)] dark:bg-teal-800">
+                  Георги <br />
+                  Петров
+                </span>
+                <Image src="/cvetita-herbal.png" className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg saturate-25" alt="cvetita herbal" width={80} height={80} />
+              </div>
+            </div>
+          </div>
+          <article className={cn('mt-4')}>
+            <Badges className='hidden xl:block' />
             <h2 id="networking-heading" className="text-foreground mb-2 text-xl font-bold sm:text-2xl lg:mb-4 lg:text-3xl">
               От 0 до 15 милиона лева
             </h2>
@@ -49,31 +59,28 @@ export default function LatestNetworking({ isImageLeft = false, className, ...pr
             <span className="text-destructive mt-2 mb-8 block italic">
               Местата за събитието са ограничени до <span className="font-semibold">60</span>
             </span>
-            <Button asChild>
-              <Link href="#">
-                ЗАПИШИ СЕ <Plus />
-              </Link>
+            <Button>
+              ЗАПИШИ СЕ <Plus />
             </Button>
-            <Button className='ml-4' variant='secondary' asChild>
+            <Button className="ml-4" variant="secondary" asChild>
               <Link href="#">
                 ПРОЧЕТИ ПОВЕЧЕ <ArrowRight />
               </Link>
             </Button>
           </article>
-          <div className={cn('relative w-full max-w-md rounded-md xl:mx-auto xl:max-w-none', 'order-1 xl:order-2', isImageLeft && 'xl:order-1')}>
-            <div className="relative size-fit rounded-full border-4 border-dashed shadow-2xl xl:mx-auto">
-              <Image src="/joro.png" alt="Networking illustration showing people collaborating" width={288} height={288} className="bg-muted size-52 rounded-full object-cover saturate-80 xl:size-72" />
-              <div className="absolute -bottom-2 left-0 flex w-full items-end justify-between">
-                <span className="grow [transform:perspective(500px)_rotateY(15deg)] rounded bg-teal-200 px-4 py-1 text-sm font-semibold text-nowrap shadow-lg transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)] dark:bg-teal-800">
-                  Георги <br />
-                  Петров
-                </span>
-                <Image src="/cvetita-herbal.png" className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg saturate-25" alt="cvetita herbal" width={80} height={80} />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function Badges({className}: ComponentProps<typeof Badge>) {
+  return (
+    <div className={cn("mb-16 space-x-2", className)}>
+      <Badge variant="secondary">
+        Предстоящ нетуъркинг
+      </Badge>
+      <Badge variant="secondary">С Лектор</Badge>
+    </div>
   );
 }
