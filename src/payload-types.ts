@@ -73,6 +73,7 @@ export interface Config {
     posts: Post;
     categories: Category;
     attendees: Attendee;
+    events: Event;
     redirects: Redirect;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -87,6 +88,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     attendees: AttendeesSelect<false> | AttendeesSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -635,6 +637,20 @@ export interface Attendee {
   id: string;
   email: string;
   name?: string | null;
+  event: string | Event;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  title?: string | null;
+  type: 'networking' | 'businessBreakfast';
+  date: string;
+  active: 'false' | 'true';
   updatedAt: string;
   createdAt: string;
 }
@@ -786,6 +802,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'attendees';
         value: string | Attendee;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1173,6 +1193,19 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface AttendeesSelect<T extends boolean = true> {
   email?: T;
   name?: T;
+  event?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  type?: T;
+  date?: T;
+  active?: T;
   updatedAt?: T;
   createdAt?: T;
 }

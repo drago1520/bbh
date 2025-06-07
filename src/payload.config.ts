@@ -5,9 +5,9 @@ import sharp from 'sharp';
 
 import { Categories } from '@/payload/collections/Categories';
 import { Media } from '@/payload/collections/Media';
-import { Pages } from '@/payload/collections/Pages';
-import { Posts } from '@/payload/collections/Posts';
-import { Users } from '@/payload/collections/Users';
+import { Pages } from '@/payload/collections/Pages/pages-collection';
+import { Posts } from '@/payload/collections/Posts/posts-collection';
+import { Users } from '@/payload/collections/Users/users-collection';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
 import { Footer } from '@/payload/globals/Footer/config';
 import { Header } from '@/payload/globals/Header/config';
@@ -15,7 +15,8 @@ import { Header } from '@/payload/globals/Header/config';
 import { getServerSideURL } from '@/lib/utils/getURL';
 import { plugins } from './payload/plugins';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
-import { Attendees } from './payload/collections/Attendees';
+import { Attendees } from './payload/collections/Attendees/attendees-collection';
+import { Events } from './payload/collections/Events/events-collection';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -31,6 +32,9 @@ export default buildConfig({
     },
   }),
   admin: {
+    timezones: {
+      defaultTimezone: 'Europe/Sofia',
+    },
     components: {
       beforeLogin: ['@/components/BeforeLogin'],
       beforeDashboard: ['@/components/BeforeDashboard'],
@@ -67,7 +71,7 @@ export default buildConfig({
     },
     idType: 'uuid',
   }),
-  collections: [Users, Media, Pages, Posts, Categories, Attendees],
+  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events], //onChange => npm run db:schema
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   secret: process.env.PAYLOAD_SECRET,

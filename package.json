@@ -10,6 +10,7 @@
 		"start": "next start",
 		"format": "npx prettier src/ --write",
 		"db:types": "payload generate:types",
+		"db:schema": "npx payload generate:db-schema",
 		"db:importmap": "payload generate:importmap",
 		"lint": "next lint",
 		"payload": "payload",

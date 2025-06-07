@@ -39,6 +39,8 @@ export const enum__pages_v_blocks_archive_relation_to = pgEnum('enum__pages_v_bl
 export const enum__pages_v_version_status = pgEnum('enum__pages_v_version_status', ['draft', 'published']);
 export const enum_posts_status = pgEnum('enum_posts_status', ['draft', 'published']);
 export const enum__posts_v_version_status = pgEnum('enum__posts_v_version_status', ['draft', 'published']);
+export const enum_events_type = pgEnum('enum_events_type', ['networking', 'businessBreakfast']);
+export const enum_events_active = pgEnum('enum_events_actFive', ['false', 'true']);
 export const enum_redirects_to_type = pgEnum('enum_redirects_to_type', ['reference', 'custom']);
 export const enum_payload_jobs_log_task_slug = pgEnum('enum_payload_jobs_log_task_slug', ['inline', 'schedulePublish']);
 export const enum_payload_jobs_log_state = pgEnum('enum_payload_jobs_log_state', ['failed', 'succeeded']);
@@ -1088,14 +1090,41 @@ export const attendees = pgTable(
     id: uuid('id').defaultRandom().primaryKey(),
     email: varchar('email').notNull(),
     name: varchar('name'),
+    event: uuid('event_id')
+      .notNull()
+      .references(() => events.id, {
+        onDelete: 'set null',
+      }),
     updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
   columns => ({
-    attendees_email_idx: uniqueIndex('attendees_email_idx').on(columns.email),
-    attendees_name_idx: uniqueIndex('attendees_name_idx').on(columns.name),
+    attendees_email_idx: index('attendees_email_idx').on(columns.email),
+    attendees_name_idx: index('attendees_name_idx').on(columns.name),
+    attendees_event_idx: index('attendees_event_idx').on(columns.event),
     attendees_updated_at_idx: index('attendees_updated_at_idx').on(columns.updatedAt),
     attendees_created_at_idx: index('attendees_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const events = pgTable(
+  'events',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    title: varchar('title'),
+    type: enum_events_type('type').notNull(),
+    date: timestamp('date', { mode: 'string', withTimezone: true, precision: 3 }).notNull(),
+    active: enum_events_active('active').notNull().default('true'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  columns => ({
+    events_title_idx: uniqueIndex('events_title_idx').on(columns.title),
+    events_type_idx: index('events_type_idx').on(columns.type),
+    events_date_idx: index('events_date_idx').on(columns.date),
+    events_active_idx: index('events_active_idx').on(columns.active),
+    events_updated_at_idx: index('events_updated_at_idx').on(columns.updatedAt),
+    events_created_at_idx: index('events_created_at_idx').on(columns.createdAt),
   }),
 );
 
@@ -1233,6 +1262,7 @@ export const payload_locked_documents_rels = pgTable(
     postsID: uuid('posts_id'),
     categoriesID: uuid('categories_id'),
     attendeesID: uuid('attendees_id'),
+    eventsID: uuid('events_id'),
     redirectsID: uuid('redirects_id'),
     'payload-jobsID': uuid('payload_jobs_id'),
   },
@@ -1246,6 +1276,7 @@ export const payload_locked_documents_rels = pgTable(
     payload_locked_documents_rels_posts_id_idx: index('payload_locked_documents_rels_posts_id_idx').on(columns.postsID),
     payload_locked_documents_rels_categories_id_idx: index('payload_locked_documents_rels_categories_id_idx').on(columns.categoriesID),
     payload_locked_documents_rels_attendees_id_idx: index('payload_locked_documents_rels_attendees_id_idx').on(columns.attendeesID),
+    payload_locked_documents_rels_events_id_idx: index('payload_locked_documents_rels_events_id_idx').on(columns.eventsID),
     payload_locked_documents_rels_redirects_id_idx: index('payload_locked_documents_rels_redirects_id_idx').on(columns.redirectsID),
     payload_locked_documents_rels_payload_jobs_id_idx: index('payload_locked_documents_rels_payload_jobs_id_idx').on(columns['payload-jobsID']),
     parentFk: foreignKey({
@@ -1282,6 +1313,11 @@ export const payload_locked_documents_rels = pgTable(
       columns: [columns['attendeesID']],
       foreignColumns: [attendees.id],
       name: 'payload_locked_documents_rels_attendees_fk',
+    }).onDelete('cascade'),
+    eventsIdFk: foreignKey({
+      columns: [columns['eventsID']],
+      foreignColumns: [events.id],
+      name: 'payload_locked_documents_rels_events_fk',
     }).onDelete('cascade'),
     redirectsIdFk: foreignKey({
       columns: [columns['redirectsID']],
@@ -1919,7 +1955,14 @@ export const relations__posts_v = relations(_posts_v, ({ one, many }) => ({
   }),
 }));
 export const relations_categories = relations(categories, () => ({}));
-export const relations_attendees = relations(attendees, () => ({}));
+export const relations_attendees = relations(attendees, ({ one }) => ({
+  event: one(events, {
+    fields: [attendees.event],
+    references: [events.id],
+    relationName: 'event',
+  }),
+}));
+export const relations_events = relations(events, () => ({}));
 export const relations_redirects_rels = relations(redirects_rels, ({ one }) => ({
   parent: one(redirects, {
     fields: [redirects_rels.parent],
@@ -1989,6 +2032,11 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
     fields: [payload_locked_documents_rels.attendeesID],
     references: [attendees.id],
     relationName: 'attendees',
+  }),
+  eventsID: one(events, {
+    fields: [payload_locked_documents_rels.eventsID],
+    references: [events.id],
+    relationName: 'events',
   }),
   redirectsID: one(redirects, {
     fields: [payload_locked_documents_rels.redirectsID],
@@ -2120,6 +2168,8 @@ type DatabaseSchema = {
   enum__pages_v_version_status: typeof enum__pages_v_version_status;
   enum_posts_status: typeof enum_posts_status;
   enum__posts_v_version_status: typeof enum__posts_v_version_status;
+  enum_events_type: typeof enum_events_type;
+  enum_events_active: typeof enum_events_active;
   enum_redirects_to_type: typeof enum_redirects_to_type;
   enum_payload_jobs_log_task_slug: typeof enum_payload_jobs_log_task_slug;
   enum_payload_jobs_log_state: typeof enum_payload_jobs_log_state;
@@ -2164,6 +2214,7 @@ type DatabaseSchema = {
   _posts_v_rels: typeof _posts_v_rels;
   categories: typeof categories;
   attendees: typeof attendees;
+  events: typeof events;
   redirects: typeof redirects;
   redirects_rels: typeof redirects_rels;
   payload_jobs_log: typeof payload_jobs_log;
@@ -2217,6 +2268,7 @@ type DatabaseSchema = {
   relations__posts_v: typeof relations__posts_v;
   relations_categories: typeof relations_categories;
   relations_attendees: typeof relations_attendees;
+  relations_events: typeof relations_events;
   relations_redirects_rels: typeof relations_redirects_rels;
   relations_redirects: typeof relations_redirects;
   relations_payload_jobs_log: typeof relations_payload_jobs_log;

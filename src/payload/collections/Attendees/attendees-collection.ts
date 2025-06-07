@@ -22,6 +22,12 @@ export const Attendees: CollectionConfig = {
       type: 'text',
       index: true,
     },
+    {
+      name: 'event',
+      type: 'relationship',
+      relationTo: 'events',
+      required: true,
+    },
   ],
   timestamps: true,
   admin: {

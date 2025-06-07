@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload';
-
 import { authenticated } from '@/payload/auth/authenticated';
 
 export const Users: CollectionConfig = {

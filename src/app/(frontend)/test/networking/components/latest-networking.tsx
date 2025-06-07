@@ -9,11 +9,12 @@ import Link from 'next/link';
 import CountDownTimer from './countdown';
 import SignUpDialog from './sign-up-modal';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
+import { Event } from '@/payload-types';
 
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
  */
-export default function LatestNetworking({ isImageRight = false, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
+export default function LatestNetworking({ isImageRight = false, className, latestEvent, ...props }: { isImageRight?: boolean; latestEvent: Event | undefined } & ComponentProps<'section'>) {
   return (
     <section className={cn('mb-24', className)} aria-labelledby="networking-heading" {...props}>
       <div className="container pt-12">
@@ -34,7 +35,7 @@ export default function LatestNetworking({ isImageRight = false, className, ...p
           <article className={cn('mt-4')}>
             <Badges className="hidden xl:block" />
             <h2 id="networking-heading" className="text-foreground mb-2 text-xl font-bold sm:text-2xl lg:mb-4 lg:text-3xl">
-              От 0 до 15 милиона лева
+              {latestEvent?.title}
             </h2>
             <div className="text-muted-foreground mb-12 flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
               <Link href="#" className="flex items-center gap-1">
@@ -57,7 +58,7 @@ export default function LatestNetworking({ isImageRight = false, className, ...p
               <li>Човек на 3-те С-та: Спорт, Семейство, Самоусъвършенстване</li>
               <li>Вдъхновяващ пример за устойчиво предприемачество.</li>
             </ol>
-            <CountDownTimer />
+            <CountDownTimer endDate={latestEvent?.date} />
             <span className="text-destructive mt-2 mb-12 block text-sm italic">
               Местата за събитието са ограничени до <span className="font-semibold">60</span>
             </span>
