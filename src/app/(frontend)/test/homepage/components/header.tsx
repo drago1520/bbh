@@ -156,7 +156,7 @@ export default function Header() {
                     <Logo />
                   </Link>
                 </SheetTitle>
-                <SheetDescription>1 + 1 = 5</SheetDescription>
+                <SheetDescription>Бизнес общонстта на Бургас</SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col">
                 {navigationItems.map(item => (

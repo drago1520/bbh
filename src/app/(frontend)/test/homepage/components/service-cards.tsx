@@ -10,7 +10,7 @@ const services = [
     icon: Users,
     colorClass: 'bg-brand-accent',
     textColorClass: 'text-brand-accent',
-    href: '#',
+    href: '/test/networking',
   },
   {
     id: 'business-procurement',
