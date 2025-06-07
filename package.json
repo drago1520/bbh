@@ -12,6 +12,8 @@
 		"db:types": "payload generate:types",
 		"db:schema": "npx payload generate:db-schema",
 		"db:importmap": "payload generate:importmap",
+		"db:create": "payload migrate:create",
+		"db:migrate": "payload migrate",
 		"lint": "next lint",
 		"payload": "payload",
 		"setup": "node -e \"process.env.VERCEL_ENV || process.env.CI ? console.log('Skipping setup in CI environment') : require('child_process').execSync('node src/lib/scripts/setup.js', {stdio: 'inherit'})\"",
