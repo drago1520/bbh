@@ -15,6 +15,7 @@ import { Header } from '@/payload/globals/Header/config';
 import { getServerSideURL } from '@/lib/utils/getURL';
 import { plugins } from './payload/plugins';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
+import { Attendees } from './payload/collections/Attendees';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -66,7 +67,7 @@ export default buildConfig({
     },
     idType: 'uuid',
   }),
-  collections: [Users, Media, Pages, Posts, Categories],
+  collections: [Users, Media, Pages, Posts, Categories, Attendees],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   secret: process.env.PAYLOAD_SECRET,
