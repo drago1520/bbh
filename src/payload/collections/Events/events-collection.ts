@@ -9,6 +9,10 @@ export const Events: CollectionConfig = {
       type: 'text',
       unique: true,
       index: true,
+      required: true,
+      admin: {
+        placeholder: 'От 0 до 15 милиона лева',
+      },
     },
     {
       name: 'type',
@@ -55,6 +59,17 @@ export const Events: CollectionConfig = {
       defaultValue: 'true',
       required: true,
       index: true,
+    },
+    {
+      name: 'location',
+      type: 'text',
+      index: true,
+      required: true,
+      admin: {
+        description: 'Важно: Провери дали излиза в Google maps като пръв резултат.',
+        placeholder: 'Ресторант Dock 5',
+      },
+      defaultValue: 'Gravity Ruin Bar, ет.2, Бургас',
     },
   ],
   access: {

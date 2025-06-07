@@ -647,10 +647,14 @@ export interface Attendee {
  */
 export interface Event {
   id: string;
-  title?: string | null;
+  title: string;
   type: 'networking' | 'businessBreakfast';
   date: string;
   active: 'false' | 'true';
+  /**
+   * Важно: Провери дали излиза в Google maps като пръв резултат.
+   */
+  location: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -1206,6 +1210,7 @@ export interface EventsSelect<T extends boolean = true> {
   type?: T;
   date?: T;
   active?: T;
+  location?: T;
   updatedAt?: T;
   createdAt?: T;
 }
