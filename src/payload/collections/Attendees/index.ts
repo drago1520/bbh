@@ -14,12 +14,10 @@ export const Attendees: CollectionConfig = {
     {
       name: 'email',
       type: 'email',
-      unique: true,
       required: true,
       index: true,
     },
     {
-      unique: true,
       name: 'name',
       type: 'text',
       index: true,

@@ -36,7 +36,7 @@ export default function LatestNetworking({ isImageRight = false, className, ...p
             <h2 id="networking-heading" className="text-foreground mb-2 text-xl font-bold sm:text-2xl lg:mb-4 lg:text-3xl">
               От 0 до 15 милиона лева
             </h2>
-            <div className="text-muted-foreground mb-12 flex flex-col justify-start gap-4 sm:flex-row sm:items-center">
+            <div className="text-muted-foreground mb-12 flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
               <Link href="#" className="flex items-center gap-1">
                 <Calendar className="size-4" /> 15 май, 19 часа
               </Link>
@@ -44,7 +44,7 @@ export default function LatestNetworking({ isImageRight = false, className, ...p
                 <MapPin className="size-4" /> Gravity Ruin Bar, ет.2, Бургас
               </Link>
             </div>
-            <blockquote className="text-muted-foreground mb-3 border-l-4 border-teal-500 pl-4 text-sm leading-relaxed font-semibold italic sm:text-base">"TODO Любим цитат на лектора." - Георги Петров</blockquote>
+            <blockquote className="text-muted-foreground mb-3 border-l-4 border-teal-500 pl-4 text-sm leading-relaxed italic sm:text-base">"TODO Любим цитат на лектора." - Георги Петров</blockquote>
             <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">За Георги Петров:</p>
             <ol className="text-muted-foreground mb-8 ml-6 list-decimal text-sm leading-relaxed sm:text-base [&>li]:mt-2">
               <li>
@@ -61,7 +61,7 @@ export default function LatestNetworking({ isImageRight = false, className, ...p
             <span className="text-destructive mt-2 mb-12 block text-sm italic">
               Местата за събитието са ограничени до <span className="font-semibold">60</span>
             </span>
-            <SignUpDialog />
+            <SignUpDialog eventId="fwefwefwefwegfwefw" />
             <Button className="ml-4" variant="secondary" asChild>
               <Link href="#">
                 ПРОЧЕТИ ПОВЕЧЕ <ArrowRight />
