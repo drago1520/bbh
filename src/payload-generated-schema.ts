@@ -40,7 +40,7 @@ export const enum__pages_v_version_status = pgEnum('enum__pages_v_version_status
 export const enum_posts_status = pgEnum('enum_posts_status', ['draft', 'published']);
 export const enum__posts_v_version_status = pgEnum('enum__posts_v_version_status', ['draft', 'published']);
 export const enum_events_type = pgEnum('enum_events_type', ['networking', 'businessBreakfast']);
-export const enum_events_active = pgEnum('enum_events_actFive', ['false', 'true']);
+export const enum_events_active = pgEnum('enum_events_active', ['false', 'true']);
 export const enum_redirects_to_type = pgEnum('enum_redirects_to_type', ['reference', 'custom']);
 export const enum_payload_jobs_log_task_slug = pgEnum('enum_payload_jobs_log_task_slug', ['inline', 'schedulePublish']);
 export const enum_payload_jobs_log_state = pgEnum('enum_payload_jobs_log_state', ['failed', 'succeeded']);
@@ -1111,10 +1111,11 @@ export const events = pgTable(
   'events',
   {
     id: uuid('id').defaultRandom().primaryKey(),
-    title: varchar('title'),
+    title: varchar('title').notNull(),
     type: enum_events_type('type').notNull(),
     date: timestamp('date', { mode: 'string', withTimezone: true, precision: 3 }).notNull(),
     active: enum_events_active('active').notNull().default('true'),
+    location: varchar('location').notNull().default('Gravity Ruin Bar, ет.2, Бургас'),
     updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
@@ -1123,6 +1124,7 @@ export const events = pgTable(
     events_type_idx: index('events_type_idx').on(columns.type),
     events_date_idx: index('events_date_idx').on(columns.date),
     events_active_idx: index('events_active_idx').on(columns.active),
+    events_location_idx: index('events_location_idx').on(columns.location),
     events_updated_at_idx: index('events_updated_at_idx').on(columns.updatedAt),
     events_created_at_idx: index('events_created_at_idx').on(columns.createdAt),
   }),
