@@ -12,7 +12,7 @@ export async function addAttendee({ email, name, eventId }: z.infer<typeof signU
     const config = await payloadConfig;
     const payload = await getPayload({ config: config });
 
-    const { rowCount } = await payload.db.drizzle.insert(attendees).values({ email, name });
+    const { rowCount } = await payload.db.drizzle.insert(attendees).values({ email, name, event: eventId });
     if (!rowCount) throw new Error('Грешка: Няма записан ред в базата данни.');
     return { success: true };
   } catch (e) {

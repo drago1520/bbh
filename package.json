@@ -15,6 +15,7 @@
 		"db:create": "dotenv -e .env.production payload migrate:create",
 		"db:migrate": "dotenv -e .env.production payload migrate",
 		"lint": "next lint",
+		"ci": "npm run db:create && db:migrate && npm run build",
 		"payload": "payload",
 		"setup": "node -e \"process.env.VERCEL_ENV || process.env.CI ? console.log('Skipping setup in CI environment') : require('child_process').execSync('node src/lib/scripts/setup.js', {stdio: 'inherit'})\"",
 		"prepare": "husky"
