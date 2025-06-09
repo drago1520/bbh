@@ -18,6 +18,12 @@ export default async function HomePage() {
     orderBy: [asc(events.date)],
     where: eq(events.active, enum_events_active.enumValues[1]),
   });
+  const { docs } = await payload.find({
+    collection: 'events',
+    sort: 'date',
+    depth: 40,
+    where: {},
+  });
   if (!latestEvent) console.error('Няма намерено предстоящо събитие');
   else if (new Date() > new Date(latestEvent.date)) console.error(`Старо събитие се показва с id: ${latestEvent.id}`);
   return (
@@ -25,7 +31,7 @@ export default async function HomePage() {
       <Header />
       <main>
         <NetworkingHeader />
-        <LatestNetworking latestEvent={latestEvent} className="dark:bg-background bg-teal-500/20" />
+        <LatestNetworking latestEvent={docs[0]} className="dark:bg-background bg-teal-500/20" />
         {/* <AboutHero /> */}
         <Section2Paragraphs className="bg-background" />
         <PartnersMarquee />

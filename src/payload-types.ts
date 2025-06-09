@@ -655,6 +655,26 @@ export interface Event {
    * Важно: Провери дали излиза в Google maps като пръв резултат.
    */
   location: string;
+  /**
+   * 2 имена на лектора
+   */
+  speakerName: string;
+  /**
+   * Не задължително
+   */
+  speakerQuote?: string | null;
+  /**
+   * поражда Недостиг у хората.
+   */
+  maxGuests?: string | null;
+  /**
+   * Препоръчително 1:1 съотношение. Например: 300x300px най-добре. Thumbnail или снимка на лектор. За сега е кръгла.
+   */
+  thumbnail: string | Media;
+  /**
+   * Препоръчително 1:1 съотношение. Например: 64x64px.
+   */
+  speakerCompanyLogo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -1211,6 +1231,11 @@ export interface EventsSelect<T extends boolean = true> {
   date?: T;
   active?: T;
   location?: T;
+  speakerName?: T;
+  speakerQuote?: T;
+  maxGuests?: T;
+  thumbnail?: T;
+  speakerCompanyLogo?: T;
   updatedAt?: T;
   createdAt?: T;
 }

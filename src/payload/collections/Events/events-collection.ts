@@ -6,6 +6,7 @@ export const Events: CollectionConfig = {
   fields: [
     {
       name: 'title',
+      label: 'Заглавие',
       type: 'text',
       unique: true,
       index: true,
@@ -16,6 +17,7 @@ export const Events: CollectionConfig = {
     },
     {
       name: 'type',
+      label: 'Тип',
       type: 'radio',
       options: [
         {
@@ -32,6 +34,7 @@ export const Events: CollectionConfig = {
     },
     {
       name: 'date',
+      label: 'Дата',
       type: 'date',
       required: true,
       index: true,
@@ -45,6 +48,7 @@ export const Events: CollectionConfig = {
     },
     {
       name: 'active',
+      label: 'Активно?',
       type: 'radio',
       options: [
         {
@@ -62,6 +66,7 @@ export const Events: CollectionConfig = {
     },
     {
       name: 'location',
+      label: 'Локация',
       type: 'text',
       index: true,
       required: true,
@@ -70,6 +75,56 @@ export const Events: CollectionConfig = {
         placeholder: 'Ресторант Dock 5',
       },
       defaultValue: 'Gravity Ruin Bar, ет.2, Бургас',
+    },
+    {
+      name: 'speakerName',
+      label: 'Име на лектора',
+      type: 'text',
+      required: true,
+      index: true,
+      admin: {
+        description: '2 имена на лектора',
+        placeholder: 'Георги Петров',
+      },
+    },
+    {
+      name: 'speakerQuote',
+      label: 'Любим цитат на лектора',
+      type: 'text',
+      admin: {
+        placeholder: 'Колко ти струва да НЕ правиш 1 милион на година?',
+        description: 'Не задължително',
+      },
+    },
+    {
+      name: 'maxGuests',
+      label: 'Макс хора',
+      type: 'text',
+      admin: {
+        description: 'поражда Недостиг у хората.',
+        placeholder: '60 за Gravity Bar',
+      },
+      defaultValue: 60,
+    },
+    {
+      name: 'thumbnail',
+      label: 'Thumbnail',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Препоръчително 1:1 съотношение. Например: 300x300px най-добре. Thumbnail или снимка на лектор. За сега е кръгла.',
+      },
+      required: true,
+    },
+    {
+      name: 'speakerCompanyLogo',
+      label: 'Лого на компанията на лектора',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Препоръчително 1:1 съотношение. Например: 64x64px.',
+      },
+      // required: true
     },
   ],
   access: {
