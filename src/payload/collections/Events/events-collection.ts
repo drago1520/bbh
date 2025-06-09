@@ -104,7 +104,7 @@ export const Events: CollectionConfig = {
         description: 'поражда Недостиг у хората.',
         placeholder: '60 за Gravity Bar',
       },
-      defaultValue: 60,
+      defaultValue: '60',
     },
     {
       name: 'thumbnail',

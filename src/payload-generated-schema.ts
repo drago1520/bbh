@@ -1118,7 +1118,7 @@ export const events = pgTable(
     location: varchar('location').notNull().default('Gravity Ruin Bar, ет.2, Бургас'),
     speakerName: varchar('speaker_name').notNull(),
     speakerQuote: varchar('speaker_quote'),
-    maxGuests: varchar('max_guests').default(60),
+    maxGuests: varchar('max_guests').default('60'),
     thumbnail: uuid('thumbnail_id')
       .notNull()
       .references(() => media.id, {

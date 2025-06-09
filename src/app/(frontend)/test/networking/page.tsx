@@ -8,22 +8,22 @@ import Section2Paragraphs from '@/components/section';
 import LatestNetworking from './components/latest-networking';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
-import { asc, eq } from '@payloadcms/db-postgres/drizzle';
-import { enum_events_active, events } from '@/payload-generated-schema';
+import { enum_events_active } from '@/payload-generated-schema';
 
 export default async function HomePage() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });
-  const latestEvent = await payload.db.drizzle.query.events.findFirst({
-    orderBy: [asc(events.date)],
-    where: eq(events.active, enum_events_active.enumValues[1]),
-  });
   const { docs } = await payload.find({
     collection: 'events',
     sort: 'date',
     depth: 40,
-    where: {},
+    where: {
+      active: {
+        equals: enum_events_active.enumValues[1],
+      },
+    },
   });
+  const [latestEvent] = docs;
   if (!latestEvent) console.error('Няма намерено предстоящо събитие');
   else if (new Date() > new Date(latestEvent.date)) console.error(`Старо събитие се показва с id: ${latestEvent.id}`);
   return (
@@ -31,7 +31,7 @@ export default async function HomePage() {
       <Header />
       <main>
         <NetworkingHeader />
-        <LatestNetworking latestEvent={docs[0]} className="dark:bg-background bg-teal-500/20" />
+        <LatestNetworking latestEvent={latestEvent} className="dark:bg-background bg-teal-500/20" />
         {/* <AboutHero /> */}
         <Section2Paragraphs className="bg-background" />
         <PartnersMarquee />
