@@ -1112,6 +1112,7 @@ export const events = pgTable(
   {
     id: uuid('id').defaultRandom().primaryKey(),
     title: varchar('title').notNull(),
+    description: jsonb('description').notNull(),
     type: enum_events_type('type').notNull(),
     date: timestamp('date', { mode: 'string', withTimezone: true, precision: 3 }).notNull(),
     active: enum_events_active('active').notNull().default('true'),

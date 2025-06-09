@@ -16,6 +16,12 @@ export const Events: CollectionConfig = {
       },
     },
     {
+      name: 'description',
+      label: 'Описание',
+      type: 'richText',
+      required: true,
+    },
+    {
       name: 'type',
       label: 'Тип',
       type: 'radio',

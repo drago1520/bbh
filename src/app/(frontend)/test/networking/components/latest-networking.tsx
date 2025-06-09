@@ -12,6 +12,8 @@ import SignUpDialog from './sign-up-modal';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { Event } from '@/payload-types';
 import { formatToBulgarianDate } from '@/utils/format-bulgarian-datetime';
+import RichTextCustom from '@/components/RichText';
+import { RichText } from '@payloadcms/richtext-lexical/react';
 
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
@@ -19,7 +21,7 @@ import { formatToBulgarianDate } from '@/utils/format-bulgarian-datetime';
 export default function LatestNetworking({ isImageRight = false, className, latestEvent, ...props }: { isImageRight?: boolean; latestEvent: Event | undefined } & ComponentProps<'section'>) {
   if (!latestEvent) return;
 
-  const { location, speakerName, title, date, speakerQuote, maxGuests, thumbnail } = latestEvent;
+  const { location, speakerName, title, date, speakerQuote, maxGuests, thumbnail, description } = latestEvent;
   if (typeof thumbnail === 'string') throw new Error('Няма банер или снимка на лектор');
   return (
     <section className={cn('mb-24', className)} aria-labelledby="networking-heading" {...props}>
@@ -43,7 +45,7 @@ export default function LatestNetworking({ isImageRight = false, className, late
             <h2 id="networking-heading" className="text-foreground mb-2 text-xl font-bold sm:text-2xl lg:mb-4 lg:text-3xl">
               {title}
             </h2>
-            <div className="text-muted-foreground mb-10 flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
+            <div className="text-muted-foreground flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
               <Link href="#" className="flex items-center gap-1">
                 <Calendar className="size-4" /> {formatToBulgarianDate(date)}
               </Link>
@@ -51,20 +53,12 @@ export default function LatestNetworking({ isImageRight = false, className, late
                 <MapPin className="size-4" /> {location}
               </Link>
             </div>
-            {speakerQuote && <blockquote className="text-muted-foreground mb-3 border-l-4 border-teal-500 pl-4 text-sm leading-relaxed italic sm:text-base">"{speakerQuote}"</blockquote>}
-            <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">За Георги Петров:</p>
-            <ol className="text-muted-foreground mb-8 ml-6 list-decimal text-sm leading-relaxed sm:text-base [&>li]:mt-2">
-              <li>
-                Създател на фирмата за производство на добавки
-                <Link href="#" className="ml-1 font-semibold italic underline underline-offset-2">
-                  Cvetita Herbal
-                </Link>
-                , която е над 12 години на пазара.
-              </li>
-              <li>Човек на 3-те С-та: Спорт, Семейство, Самоусъвършенстване</li>
-              <li>Вдъхновяващ пример за устойчиво предприемачество.</li>
-            </ol>
-            <CountDownTimer endDate={date} />
+            <div className="text-muted-foreground mt-8">
+              <RichTextCustom data={description} />
+            </div>
+            <div className="mt-8">
+              <CountDownTimer endDate={date} />
+            </div>
             {maxGuests && (
               <span className="text-destructive mt-2 block text-sm italic">
                 Местата за събитието са ограничени до <span className="font-semibold">{maxGuests}</span>

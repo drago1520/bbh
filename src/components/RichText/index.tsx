@@ -2,7 +2,6 @@ import { MediaBlock } from '@/payload/blocks/MediaBlock/Component';
 import { DefaultNodeTypes, SerializedBlockNode, SerializedLinkNode } from '@payloadcms/richtext-lexical';
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import { JSXConvertersFunction, LinkJSXConverter, RichText as RichTextWithoutBlocks } from '@payloadcms/richtext-lexical/react';
-
 import { CodeBlock, CodeBlockProps } from '@/payload/blocks/Code/Component';
 
 import type { BannerBlock as BannerBlockProps, CallToActionBlock as CTABlockProps, MediaBlock as MediaBlockProps } from '@/payload-types';
@@ -48,15 +47,17 @@ type Props = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function RichText(props: Props) {
-  const { className, enableProse = true, enableGutter = true, ...rest } = props;
+  const { className, enableProse = true, enableGutter = false, ...rest } = props;
   return (
     <RichTextWithoutBlocks
       converters={jsxConverters}
       className={cn(
         {
           container: enableGutter,
-          'max-w-none': !enableGutter,
-          'prose md:prose-md dark:prose-invert mx-auto': enableProse,
+          // 'max-w-none': !enableGutter,
+          'prose dark:prose-invert max-w-full': enableProse,
+          // fix: bolded text was always black. Added the same css in globals.css also in any case.
+          'underline-offset-2 [&_a:not(.not-prose)]:!text-inherit [&_a:not(:has(.not-prose))]:!text-inherit [&_blockquote]:border-l-teal-500': true,
         },
         className,
       )}
