@@ -24,7 +24,7 @@ export default function LatestNetworking({ isImageRight = false, className, late
   const { location, speakerName, title, date, speakerQuote, maxGuests, thumbnail, description } = latestEvent;
   if (typeof thumbnail === 'string') throw new Error('Няма банер или снимка на лектор');
   return (
-    <section className={cn('mb-24', className)} aria-labelledby="networking-heading" {...props}>
+    <section className={cn('mb-16', className)} aria-labelledby="networking-heading" {...props}>
       <div className="container pt-12">
         <div className="grid items-center justify-start gap-6 sm:gap-8 xl:grid xl:grid-cols-2 xl:gap-12">
           <div className={cn('relative w-full max-w-md rounded-md xl:mx-auto xl:max-w-none', isImageRight && 'xl:order-2')}>
@@ -75,8 +75,8 @@ export default function LatestNetworking({ isImageRight = false, className, late
           </article>
         </div>
       </div>
-      <Link href="#" className="text-background dark:text-foreground relative mt-16 block h-52 w-full">
-        <Image src="/location-bg-2.jpg" className="absolute top-0 left-0 h-full object-cover" width={1920} height={208} alt="Локация следващо бизнес събитие за нетуъркинг" />
+      <Link href="#" className="text-background dark:text-foreground relative mt-16 block h-40 w-full">
+        <Image src="/location-bg-2.jpg" className="absolute top-0 left-0 h-full object-cover" width={1920} height={160} alt="Локация следващо бизнес събитие за нетуъркинг" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
           <h4 className="text-xl font-semibold">Локация</h4>
           <address className="flex items-center gap-1 text-sm">
@@ -85,7 +85,7 @@ export default function LatestNetworking({ isImageRight = false, className, late
         </div>
       </Link>
       {/* Unauthorized bug fix: #https://www.perplexity.ai/search/i-am-running-localhost-with-go-4._UjgRMQTKQ4SlfyA2pXg */}
-      <GoogleMapsEmbed apiKey={'AIzaSyBqcwYbGqE3Uc6xg7scMXeWoeKzItrlWmw'} mode="place" width="100%" height={400} zoom="14" q={location} />
+      <GoogleMapsEmbed apiKey={'AIzaSyBqcwYbGqE3Uc6xg7scMXeWoeKzItrlWmw'} mode="place" width="100%" height={208} zoom="14" q={location} />
     </section>
   );
 }
