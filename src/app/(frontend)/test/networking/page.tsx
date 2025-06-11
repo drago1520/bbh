@@ -32,11 +32,11 @@ export default async function HomePage() {
       <Header />
       <main>
         <NetworkingHeader />
-        <LatestNetworking latestEvent={latestEvent} className="dark:bg-background bg-teal-500/20" />
+        <LatestNetworking event={latestEvent} className="dark:bg-background bg-teal-500/20" />
         {/* <AboutHero /> */}
         <Section2Paragraphs className="bg-background" />
         <PartnersMarquee />
-        <Courses isImageLeft={false} />
+        <Courses isImageRight={false} />
         <Confrences />
       </main>
       <Footer />

@@ -3,34 +3,32 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { ComponentProps } from 'react';
+import { ContentSection, MediaSection, SectionWrapper } from '@/components/Sections/content-with-media-and-button';
 
-export default function NetworkingEvents() {
+export default function NetworkingEvents({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
-    <section className="bg-background py-8 sm:py-12 lg:py-16" aria-labelledby="networking-heading">
-      <div className="container">
-        <div className="flex flex-col items-center gap-6 sm:gap-8 lg:grid lg:grid-cols-2 lg:gap-12">
-          <article className="order-2 lg:order-1">
-            <Badge variant="brand" className="mb-4">
-              ПРЕДСТОЯЩИ
-            </Badge>
-            <h2 id="networking-heading" className="text-foreground mb-4 text-xl font-bold sm:text-2xl lg:mb-6 lg:text-3xl">
-              Нетуъркинг събития
-            </h2>
-            <p className="text-muted-foreground mb-4 text-sm leading-relaxed sm:text-base lg:mb-6">Нетуъркинг събитията са специално създадени за хора, които искат да създават нови връзки и да развиват бизнеса си. Нетуъркинг събитията са организирани около тема, за да предоставят възможност за професионалисти от различни области да се срещнат и да обменят идеи.</p>
-            <p className="text-muted-foreground mb-6 text-sm leading-relaxed sm:text-base lg:mb-8">Нетуъркинг събитията благодарение на бранд за създаване на доверие и лоялност между участниците.</p>
-            <Button asChild>
-              <Link href="/test/networking">
-                ВИЖ КАЛЕНДАРА <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </article>
-          <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none">
-            <div className="relative aspect-[4/3]">
-              <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" fill className="object-contain" />
-            </div>
-          </div>
+    <SectionWrapper className={className} {...props}>
+      <MediaSection isImageRight={isImageRight}>
+        <div className="relative aspect-[4/3]">
+          <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" fill className="object-contain" />
         </div>
+      </MediaSection>
+      <div>
+        <ContentSection>
+          <Badge variant="brand">ПРЕДСТОЯЩИ</Badge>
+          <h3 id="networking-heading" className="mt-8 text-xl font-bold lg:text-3xl">
+            Нетуъркинг събития
+          </h3>
+          <p>Нетуъркинг събитията са специално създадени за хора, които искат да създават нови връзки и да развиват бизнеса си. Нетуъркинг събитията са организирани около тема, за да предоставят възможност за професионалисти от различни области да се срещнат и да обменят идеи.</p>
+          <p>Нетуъркинг събитията благодарение на бранд за създаване на доверие и лоялност между участниците.</p>
+        </ContentSection>
+        <Button className="mt-8" asChild>
+          <Link href="/test/networking">
+            ВИЖ КАЛЕНДАРА <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

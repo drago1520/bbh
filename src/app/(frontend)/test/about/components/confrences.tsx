@@ -6,10 +6,10 @@ import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 import { ContentSection, MediaSection, SectionWrapper } from '@/components/Sections/content-with-media-and-button';
 
-export default function Confrences({ isImageLeft = true, className, ...props }: { isImageLeft?: boolean } & ComponentProps<'section'>) {
+export default function Confrences({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
     <SectionWrapper className={cn('dark:bg-background bg-red-100', className)} {...props}>
-      <MediaSection isImageLeft={isImageLeft}>
+      <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="confrences illustration showing people collaborating" fill className="object-contain" />
         </div>

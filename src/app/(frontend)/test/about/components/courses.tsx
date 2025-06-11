@@ -7,10 +7,10 @@ import { ContentSection, MediaSection, SectionWrapper } from '@/components/Secti
 import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 
-export default function Courses({ isImageLeft = true, className, ...props }: { isImageLeft?: boolean } & ComponentProps<'section'>) {
+export default function Courses({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
     <SectionWrapper className={cn('bg-purple-500/20', className)} {...props}>
-      <MediaSection isImageLeft={isImageLeft}>
+      <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" fill className="object-contain" />
         </div>

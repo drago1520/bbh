@@ -11,21 +11,22 @@ import SignUpDialog from './sign-up-modal';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { Event } from '@/payload-types';
 import { formatToBulgarianDate } from '@/utils/format-bulgarian-datetime';
-import RichTextCustom from '@/components/RichText';
+import RichText from '@/components/RichText';
+import { MediaSection } from '@/components/Sections/content-with-media-and-button';
 
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
  */
-export default function LatestNetworking({ isImageRight = false, className, latestEvent, ...props }: { isImageRight?: boolean; latestEvent: Event | undefined } & ComponentProps<'section'>) {
-  if (!latestEvent) return;
+export default function LatestNetworking({ isImageRight = false, className, event, ...props }: { isImageRight?: boolean; event: Event | undefined } & ComponentProps<'section'>) {
+  if (!event) return;
 
-  const { location, speakerName, title, date, maxGuests, thumbnail, description } = latestEvent;
+  const { location, speakerName, title, date, maxGuests, thumbnail, description } = event;
   if (typeof thumbnail === 'string') throw new Error('Няма банер или снимка на лектор');
   return (
     <section className={className} aria-labelledby="networking-heading" {...props}>
-      <div className="container pt-12">
-        <div className="grid items-center justify-start gap-6 sm:gap-8 xl:grid xl:grid-cols-2 xl:gap-12">
-          <div className={cn('relative w-full max-w-md rounded-md xl:mx-auto xl:max-w-none', isImageRight && 'xl:order-2')}>
+      <div className="container py-20">
+        <div className="grid items-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
+          <MediaSection isImageRight={isImageRight}>
             <Badges className="xl:hidden" />
             <div className="relative size-fit rounded-full border-4 border-dashed shadow-2xl xl:mx-auto">
               <Image src={thumbnail.url || ''} alt={thumbnail.alt || 'Снимка на лектора'} width={288} height={288} className="bg-muted size-52 rounded-full object-cover saturate-80 xl:size-72" />
@@ -37,22 +38,22 @@ export default function LatestNetworking({ isImageRight = false, className, late
                 <Image src="/cvetita-herbal.png" className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg saturate-25" alt="cvetita herbal" width={80} height={80} />
               </div>
             </div>
-          </div>
-          <article className={cn('mt-4')}>
+          </MediaSection>
+          <article>
             <Badges className="hidden xl:block" />
-            <h2 id="networking-heading" className="text-foreground mb-2 text-xl font-bold sm:text-2xl lg:mb-4 lg:text-3xl">
+            <h3 id="networking-heading" className="mb-2 text-xl font-bold lg:text-3xl">
               {title}
-            </h2>
-            <div className="text-muted-foreground flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
-              <Link href="#" className="flex items-center gap-1">
+            </h3>
+            <div className="flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
+              <Link href="#" className="prose flex items-center gap-1">
                 <Calendar className="size-4" /> {formatToBulgarianDate(date)}
               </Link>
-              <Link href="#" className="flex items-center gap-1">
+              <Link href="#" className="prose flex items-center gap-1">
                 <MapPin className="size-4" /> {location}
               </Link>
             </div>
-            <div className="text-muted-foreground mt-8">
-              <RichTextCustom data={description} />
+            <div className="mt-8">
+              <RichText data={description} />
             </div>
             <div className="mt-8">
               <CountDownTimer endDate={date} />
@@ -63,7 +64,7 @@ export default function LatestNetworking({ isImageRight = false, className, late
               </span>
             )}
             <div className="mt-12">
-              <SignUpDialog eventId="fwefwefwefwegfwefw" />
+              <SignUpDialog eventId={event.id} />
               <Button className="ml-4" variant="secondary" asChild>
                 <Link href="#">
                   ПРОЧЕТИ ПОВЕЧЕ <ArrowRight />
@@ -73,7 +74,7 @@ export default function LatestNetworking({ isImageRight = false, className, late
           </article>
         </div>
       </div>
-      <Link href="#" className="text-background dark:text-foreground relative mt-16 block h-40 w-full">
+      <Link href="#" className="text-background dark:text-foreground relative block h-40 w-full">
         <Image src="/location-bg-2.jpg" className="absolute top-0 left-0 h-full object-cover" width={1920} height={160} alt="Локация следващо бизнес събитие за нетуъркинг" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
           <h4 className="text-xl font-semibold">Локация</h4>
@@ -90,7 +91,7 @@ export default function LatestNetworking({ isImageRight = false, className, late
 
 function Badges({ className }: ComponentProps<typeof Badge>) {
   return (
-    <div className={cn('mb-12 space-x-2', className)}>
+    <div className={cn('mb-8 space-x-2', className)}>
       <Badge variant="secondary">Предстоящ нетуъркинг</Badge>
       <Badge variant="secondary">С Лектор</Badge>
     </div>

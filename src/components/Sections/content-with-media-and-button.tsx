@@ -9,10 +9,10 @@ import Link from 'next/link';
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
  */
-export default function ContentWithMediaAndButtonExample({ isImageLeft = true, className, ...props }: { isImageLeft?: boolean } & ComponentProps<'section'>) {
+export default function ContentWithMediaAndButtonExample({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
     <SectionWrapper className={cn(className)} {...props}>
-      <MediaSection isImageLeft={isImageLeft}>
+      <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" width={800} height={600} className="object-contain" />
         </div>
@@ -48,9 +48,9 @@ export function SectionWrapper({ className, children, containerProps, ...props }
 }
 
 ////Image is the right (dekstop) & up (mobile) by default.
-export function MediaSection({ isImageLeft = false, children, className, ...props }: { isImageLeft: boolean } & ComponentProps<'div'>) {
+export function MediaSection({ isImageRight = false, children, className, ...props }: { isImageRight: boolean } & ComponentProps<'div'>) {
   return (
-    <div className={cn('w-full', isImageLeft && 'xl:order-2', className)} {...props}>
+    <div className={cn('w-full', isImageRight && 'xl:order-2', className)} {...props}>
       {children}
     </div>
   );
