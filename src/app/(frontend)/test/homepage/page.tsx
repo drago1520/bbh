@@ -16,7 +16,7 @@ export default function HomePage() {
         <Hero />
         <NetworkingEvents />
         <PartnersCarousel />
-        <Conference />
+        <Conference isImageRight={false} />
         <News />
       </main>
       <Footer />
