@@ -9,9 +9,9 @@ import Link from 'next/link';
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
  */
-export default function ContentWithMediaAndButtonExample({ isImageLeft = true, ...props }: { isImageLeft?: boolean } & ComponentProps<'section'>) {
+export default function ContentWithMediaAndButtonExample({ isImageLeft = true, className, ...props }: { isImageLeft?: boolean } & ComponentProps<'section'>) {
   return (
-    <SectionWrapper {...props}>
+    <SectionWrapper className={cn(className)} {...props}>
       <MediaSection isImageLeft={isImageLeft}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" width={800} height={600} className="object-contain" />

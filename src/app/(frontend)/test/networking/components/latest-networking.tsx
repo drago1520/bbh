@@ -1,5 +1,4 @@
 'use client';
-/* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +12,6 @@ import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { Event } from '@/payload-types';
 import { formatToBulgarianDate } from '@/utils/format-bulgarian-datetime';
 import RichTextCustom from '@/components/RichText';
-import { RichText } from '@payloadcms/richtext-lexical/react';
 
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
@@ -21,10 +19,10 @@ import { RichText } from '@payloadcms/richtext-lexical/react';
 export default function LatestNetworking({ isImageRight = false, className, latestEvent, ...props }: { isImageRight?: boolean; latestEvent: Event | undefined } & ComponentProps<'section'>) {
   if (!latestEvent) return;
 
-  const { location, speakerName, title, date, speakerQuote, maxGuests, thumbnail, description } = latestEvent;
+  const { location, speakerName, title, date, maxGuests, thumbnail, description } = latestEvent;
   if (typeof thumbnail === 'string') throw new Error('Няма банер или снимка на лектор');
   return (
-    <section className={cn('mb-16', className)} aria-labelledby="networking-heading" {...props}>
+    <section className={className} aria-labelledby="networking-heading" {...props}>
       <div className="container pt-12">
         <div className="grid items-center justify-start gap-6 sm:gap-8 xl:grid xl:grid-cols-2 xl:gap-12">
           <div className={cn('relative w-full max-w-md rounded-md xl:mx-auto xl:max-w-none', isImageRight && 'xl:order-2')}>
