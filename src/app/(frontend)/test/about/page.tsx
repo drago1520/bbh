@@ -14,7 +14,7 @@ export default function HomePage() {
         <AboutHero />
         <WhyAreNewcontactImportant />
         <PartnersMarquee />
-        <Courses />
+        <Courses isImageLeft={false} />
         <Confrences />
       </main>
       <Footer />

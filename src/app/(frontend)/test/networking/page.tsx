@@ -36,7 +36,7 @@ export default async function HomePage() {
         {/* <AboutHero /> */}
         <Section2Paragraphs className="bg-background" />
         <PartnersMarquee />
-        <Courses />
+        <Courses isImageLeft={false} />
         <Confrences />
       </main>
       <Footer />
