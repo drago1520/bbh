@@ -59,7 +59,7 @@ export function MediaSection({ isImageRight = false, children, className, ...pro
 //// Wrap this in a <div> you if you want other Components below the content.
 export function ContentSection({ className, children, ...props }: ComponentProps<'article'>) {
   return (
-    <article className={cn('prose', className)} {...props}>
+    <article className={cn('prose dark:prose-invert', className)} {...props}>
       {children}
     </article>
   );
