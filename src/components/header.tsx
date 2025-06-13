@@ -1,24 +1,41 @@
-'use client';
-
-import { HTMLProps, useState } from 'react';
+import { HTMLProps } from 'react';
 import Link, { LinkProps } from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils/index';
 
 import { ThemeSelector } from '@/components/ThemeProvider/Theme/ThemeSelector';
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Logo from '@/components/Icons';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
-import NoWebpageYetAlertDialogWrapper from '../../coming-soon/components/no-webpage-yet-modal';
-const navigationItems = [
-  // { label: 'БИЗНЕС ЗАКУСКА', href: '#' },
-  { label: 'НЕТУЪРКИНГ', href: '/networking' },
-  // { label: 'ОБУЧЕНИЯ', href: '#' },
-  // { label: 'КОНФЕРЕНЦИИ', href: '#' },
-];
+import NoWebpageYetAlertDialogWrapper from '../app/(frontend)/coming-soon/components/no-webpage-yet-modal';
+import MobileNavMenu from './mobile-nav-menu';
 
-const networkingTabProps: { title: string; href: string; description: string }[] = [
+export type NavProps = { title: string; href: string; description: string; className?: string };
+const navigationItems: NavProps[] = [
+  {
+    title: 'БИЗНЕС ЗАКУСКА',
+    href: '#',
+    description: 'Закуска с малка група предприемачи от Бургас',
+    className: 'border-brand-accent',
+  },
+  {
+    title: 'НЕТУЪРКИНГ',
+    href: '#',
+    description: 'Разшири контактите си. Спечели нови партньори, клиенти и служители',
+    className: 'border-brand-accent',
+  },
+  {
+    title: 'ОБУЧЕНИЯ',
+    href: '#',
+    description: 'Скалирай бизнеса си и придобии десетилетия опит за 3 месеца',
+    className: 'border-brand-purple',
+  },
+  {
+    title: 'КОНФЕРЕНЦИЙ',
+    href: '#',
+    description: 'Участвай в уъркшоп за скалиране и чуй какво имат да кажат лекторите за резултата ти',
+    className: 'border-brand-orange',
+  },
+];
+const networkingTabs: NavProps[] = [
   {
     title: 'Виж Страницата',
     href: '/networking',
@@ -52,8 +69,6 @@ const networkingTabProps: { title: string; href: string; description: string }[]
 ];
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   return (
     <header className="bg-background relative border-b shadow-sm">
       <div className="container py-3 sm:py-4">
@@ -70,7 +85,7 @@ export default function Header() {
                   <NavigationMenuTrigger>НЕТУЪРКИНГ</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {networkingTabProps.map(component => (
+                      {networkingTabs.map(component => (
                         <ListItem key={component.title} title={component.title} href={component.href}>
                           {component.description}
                         </ListItem>
@@ -143,53 +158,8 @@ export default function Header() {
             <ThemeSelector />
           </nav>
 
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" className="xl:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle mobile menu" aria-expanded={isMobileMenuOpen}>
-                {isMobileMenuOpen ? <X className="size-6" /> : <Menu className="!size-6" />}
-              </Button>
-            </SheetTrigger>
-            <SheetContent className="rounded-l-md">
-              <SheetHeader>
-                <SheetTitle>
-                  <Link href="/" className="group flex items-center">
-                    <Logo />
-                  </Link>
-                </SheetTitle>
-                <SheetDescription>Бизнес общонстта на Бургас</SheetDescription>
-              </SheetHeader>
-              <nav className="flex flex-col">
-                {navigationItems.map(item => (
-                  <Button className="w-full justify-start" key={item.label} asChild variant="link">
-                    <Link href={item.href}>{item.label}</Link>
-                  </Button>
-                ))}
-              </nav>
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button type="submit">Затвори</Button>
-                </SheetClose>
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
+          <MobileNavMenu navigationItems={navigationItems} />
         </div>
-
-        {/* Mobile Navigation */}
-        {/* {isMobileMenuOpen && (
-          <nav className="bg-background absolute top-full right-0 left-0 z-50 border-t shadow-lg xl:hidden" aria-label="Mobile navigation">
-            <ul className="flex flex-col space-y-4 p-4">
-              {navigationItems.map((item, index) => (
-                <li key={item.href}>
-                  <Link href={item.href} className={cn('hover:text-brand-accent flex cursor-pointer items-center justify-between py-3 transition-colors', index < navigationItems.length - 1 && 'border-border border-b')} onClick={() => setIsMobileMenuOpen(false)}>
-                    <span className="text-foreground font-medium">{item.label}</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )} */}
-        {/* Mobile Navigation */}
       </div>
     </header>
   );

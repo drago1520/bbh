@@ -1,5 +1,5 @@
-import Header from '@/app/(frontend)/(homepage)/components/header';
-import Footer from '@/app/(frontend)/(homepage)/components/footer';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 import NetworkingHeader from './components/networking-header';
 import PartnersMarquee from '../(homepage)/components/partners-new';
 import Section2Paragraphs from '@/components/section';

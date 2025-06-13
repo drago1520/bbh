@@ -1,5 +1,5 @@
-import Header from '@/app/(frontend)/(homepage)/components/header';
-import Footer from '@/app/(frontend)/(homepage)/components/footer';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 import AboutHero from './components/about-hero';
 import WhyAreNewcontactImportant from './components/why-are-new-contacts-important';
 import Courses from './components/courses';
