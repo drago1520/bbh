@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Calendar, MapPin } from 'lucide-react';
+import { ArrowRight, Calendar, MapPin, Plus } from 'lucide-react';
 import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -64,7 +64,11 @@ export default function LatestNetworking({ isImageRight = false, className, even
               </span>
             )}
             <div className="mt-12">
-              <SignUpDialog eventId={event.id} />
+              <SignUpDialog eventId={event.id}>
+                <Button>
+                  ЗАПИШИ СЕ <Plus />
+                </Button>
+              </SignUpDialog>
               <Button className="ml-4" variant="secondary" asChild>
                 <Link href="#">
                   ПРОЧЕТИ ПОВЕЧЕ <ArrowRight />

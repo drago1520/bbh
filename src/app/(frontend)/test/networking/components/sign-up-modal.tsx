@@ -10,10 +10,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { signUpSchema } from '../types';
 import { FloatingLabelInput } from '@/components/ui/floating-label';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { addAttendee } from '../actions/add-attendee';
 
-export default function SignUpDialog({ eventId }: { eventId: string }) {
+export default function SignUpDialog({ eventId, children }: { eventId: string; children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -24,11 +24,7 @@ export default function SignUpDialog({ eventId }: { eventId: string }) {
   });
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>
-          ЗАПИШИ СЕ <Plus />
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <Form {...form}>
           <form
