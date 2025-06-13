@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="container">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8 xl:grid-cols-4">
           <div className="sm:col-span-2 xl:col-span-1">
-            <Link href="/test/homepage" className="group mb-4 flex items-center">
+            <Link href="/" className="group mb-4 flex items-center">
               <Logo className="fill-foreground/80" />
             </Link>
           </div>

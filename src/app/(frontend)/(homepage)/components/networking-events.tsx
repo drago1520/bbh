@@ -24,7 +24,7 @@ export default function NetworkingEvents({ isImageRight = true, className, ...pr
           <p>Нетуъркинг събитията благодарение на бранд за създаване на доверие и лоялност между участниците.</p>
         </ContentSection>
         <Button className="mt-8" asChild>
-          <Link href="/test/networking">
+          <Link href="/networking">
             ВИЖ КАЛЕНДАРА <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

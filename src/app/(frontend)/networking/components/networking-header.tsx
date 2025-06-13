@@ -10,11 +10,11 @@ export default function NetworkingHeader() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/test/homepage">BBH</BreadcrumbLink>
+              <BreadcrumbLink href="/">BBH</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/test/networking">Нетуъркинг</BreadcrumbLink>
+              <BreadcrumbLink href="/networking">Нетуъркинг</BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

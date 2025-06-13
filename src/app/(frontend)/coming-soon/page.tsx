@@ -1,5 +1,5 @@
-import Header from '@/app/(frontend)/test/homepage/components/header';
-import Footer from '@/app/(frontend)/test/homepage/components/footer';
+import Header from '@/app/(frontend)/(homepage)/components/header';
+import Footer from '@/app/(frontend)/(homepage)/components/footer';
 import ComingSoonHero from './components/coming-soon';
 
 export default function Page() {

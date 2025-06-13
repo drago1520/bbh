@@ -13,7 +13,7 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import NoWebpageYetAlertDialogWrapper from '../../coming-soon/components/no-webpage-yet-modal';
 const navigationItems = [
   // { label: 'БИЗНЕС ЗАКУСКА', href: '#' },
-  { label: 'НЕТУЪРКИНГ', href: '/test/networking' },
+  { label: 'НЕТУЪРКИНГ', href: '/networking' },
   // { label: 'ОБУЧЕНИЯ', href: '#' },
   // { label: 'КОНФЕРЕНЦИИ', href: '#' },
 ];
@@ -21,7 +21,7 @@ const navigationItems = [
 const networkingTabProps: { title: string; href: string; description: string }[] = [
   {
     title: 'Виж Страницата',
-    href: '/test/networking',
+    href: '/networking',
     description: 'Отиди на страницата за нетуъркинг. Всичко свързано за нетуъркинга.',
   },
   {
@@ -46,7 +46,7 @@ const networkingTabProps: { title: string; href: string; description: string }[]
   },
   {
     title: 'Не ти стига веднъж в месеца?',
-    href: '/test/networking',
+    href: '/networking',
     description: 'Пиши си, когато ти е удобно с хора, 2 нива над теб в нашия Discord.',
   },
 ];
@@ -58,7 +58,7 @@ export default function Header() {
     <header className="bg-background relative border-b shadow-sm">
       <div className="container py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <Link href="/test/homepage" className="group flex items-center">
+          <Link href="/" className="group flex items-center">
             <Logo />
           </Link>
 
@@ -114,7 +114,7 @@ export default function Header() {
                     <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
                         <NavigationMenuLink asChild className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none select-none focus:shadow-md">
-                          <Link href="/test/homepage">
+                          <Link href="/">
                             <Logo className="h-6 w-6" />
                             <div className="mt-4 mb-2 text-lg font-medium">shadcn/ui</div>
                             <p className="text-muted-foreground text-sm leading-tight">Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.</p>
@@ -152,7 +152,7 @@ export default function Header() {
             <SheetContent className="rounded-l-md">
               <SheetHeader>
                 <SheetTitle>
-                  <Link href="/test/homepage" className="group flex items-center">
+                  <Link href="/" className="group flex items-center">
                     <Logo />
                   </Link>
                 </SheetTitle>

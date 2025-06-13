@@ -10,11 +10,11 @@ export default function AboutHero() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/test/homepage">BBH</BreadcrumbLink>
+              <BreadcrumbLink href="/">BBH</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/test/about">За нас</BreadcrumbLink>
+              <BreadcrumbLink href="/about">За нас</BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
