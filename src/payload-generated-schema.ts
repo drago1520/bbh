@@ -39,6 +39,7 @@ export const enum__pages_v_blocks_archive_relation_to = pgEnum('enum__pages_v_bl
 export const enum__pages_v_version_status = pgEnum('enum__pages_v_version_status', ['draft', 'published']);
 export const enum_posts_status = pgEnum('enum_posts_status', ['draft', 'published']);
 export const enum__posts_v_version_status = pgEnum('enum__posts_v_version_status', ['draft', 'published']);
+export const enum_events_blocks_content_with_media_text_position = pgEnum('enum_events_blocks_content_with_media_text_position', ['Left', 'Right']);
 export const enum_events_type = pgEnum('enum_events_type', ['networking', 'businessBreakfast']);
 export const enum_events_active = pgEnum('enum_events_active', ['false', 'true']);
 export const enum_redirects_to_type = pgEnum('enum_redirects_to_type', ['reference', 'custom']);
@@ -1107,6 +1108,33 @@ export const attendees = pgTable(
   }),
 );
 
+export const events_blocks_content_with_media = pgTable(
+  'events_blocks_content_with_media',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    content: jsonb('content'),
+    image: uuid('image_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    textPosition: enum_events_blocks_content_with_media_text_position('text_position'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('events_blocks_content_with_media_order_idx').on(columns._order),
+    _parentIDIdx: index('events_blocks_content_with_media_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('events_blocks_content_with_media_path_idx').on(columns._path),
+    events_blocks_content_with_media_image_idx: index('events_blocks_content_with_media_image_idx').on(columns.image),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [events.id],
+      name: 'events_blocks_content_with_media_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const events = pgTable(
   'events',
   {
@@ -1979,7 +2007,19 @@ export const relations_attendees = relations(attendees, ({ one }) => ({
     relationName: 'event',
   }),
 }));
-export const relations_events = relations(events, ({ one }) => ({
+export const relations_events_blocks_content_with_media = relations(events_blocks_content_with_media, ({ one }) => ({
+  _parentID: one(events, {
+    fields: [events_blocks_content_with_media._parentID],
+    references: [events.id],
+    relationName: '_blocks_contentWithMedia',
+  }),
+  image: one(media, {
+    fields: [events_blocks_content_with_media.image],
+    references: [media.id],
+    relationName: 'image',
+  }),
+}));
+export const relations_events = relations(events, ({ one, many }) => ({
   thumbnail: one(media, {
     fields: [events.thumbnail],
     references: [media.id],
@@ -1989,6 +2029,9 @@ export const relations_events = relations(events, ({ one }) => ({
     fields: [events.speakerCompanyLogo],
     references: [media.id],
     relationName: 'speakerCompanyLogo',
+  }),
+  _blocks_contentWithMedia: many(events_blocks_content_with_media, {
+    relationName: '_blocks_contentWithMedia',
   }),
 }));
 export const relations_redirects_rels = relations(redirects_rels, ({ one }) => ({
@@ -2196,6 +2239,7 @@ type DatabaseSchema = {
   enum__pages_v_version_status: typeof enum__pages_v_version_status;
   enum_posts_status: typeof enum_posts_status;
   enum__posts_v_version_status: typeof enum__posts_v_version_status;
+  enum_events_blocks_content_with_media_text_position: typeof enum_events_blocks_content_with_media_text_position;
   enum_events_type: typeof enum_events_type;
   enum_events_active: typeof enum_events_active;
   enum_redirects_to_type: typeof enum_redirects_to_type;
@@ -2242,6 +2286,7 @@ type DatabaseSchema = {
   _posts_v_rels: typeof _posts_v_rels;
   categories: typeof categories;
   attendees: typeof attendees;
+  events_blocks_content_with_media: typeof events_blocks_content_with_media;
   events: typeof events;
   redirects: typeof redirects;
   redirects_rels: typeof redirects_rels;
@@ -2296,6 +2341,7 @@ type DatabaseSchema = {
   relations__posts_v: typeof relations__posts_v;
   relations_categories: typeof relations_categories;
   relations_attendees: typeof relations_attendees;
+  relations_events_blocks_content_with_media: typeof relations_events_blocks_content_with_media;
   relations_events: typeof relations_events;
   relations_redirects_rels: typeof relations_redirects_rels;
   relations_redirects: typeof relations_redirects;

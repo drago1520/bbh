@@ -690,6 +690,30 @@ export interface Event {
    * Препоръчително 1:1 съотношение. Например: 64x64px.
    */
   speakerCompanyLogo?: (string | null) | Media;
+  'Block content with media'?:
+    | {
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        image?: (string | null) | Media;
+        textPosition?: ('Left' | 'Right') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contentWithMedia';
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1252,6 +1276,19 @@ export interface EventsSelect<T extends boolean = true> {
   maxGuests?: T;
   thumbnail?: T;
   speakerCompanyLogo?: T;
+  'Block content with media'?:
+    | T
+    | {
+        contentWithMedia?:
+          | T
+          | {
+              content?: T;
+              image?: T;
+              textPosition?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }
