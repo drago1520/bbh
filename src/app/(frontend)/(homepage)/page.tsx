@@ -33,7 +33,7 @@ export default async function HomePage() {
         <NetworkingEvents />
         <PartnersCarousel />
         <Conference isImageRight={false} />
-        <FAQsThree homepageBlocks={homePage.blocks} />
+        <FAQsThree homepageBlocks={homePage?.blocks} />
         <News />
       </main>
       <Footer />
