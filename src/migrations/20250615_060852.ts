@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
@@ -29,11 +29,11 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "events_blocks_content_with_media_order_idx" ON "events_blocks_content_with_media" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "events_blocks_content_with_media_parent_id_idx" ON "events_blocks_content_with_media" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "events_blocks_content_with_media_path_idx" ON "events_blocks_content_with_media" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "events_blocks_content_with_media_image_idx" ON "events_blocks_content_with_media" USING btree ("image_id");`)
+  CREATE INDEX IF NOT EXISTS "events_blocks_content_with_media_image_idx" ON "events_blocks_content_with_media" USING btree ("image_id");`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
   await db.execute(sql`
    DROP TABLE "events_blocks_content_with_media" CASCADE;
-  DROP TYPE "public"."enum_events_blocks_content_with_media_text_position";`)
+  DROP TYPE "public"."enum_events_blocks_content_with_media_text_position";`);
 }

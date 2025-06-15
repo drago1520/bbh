@@ -4,12 +4,21 @@ import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import { JSXConvertersFunction, LinkJSXConverter, RichText as RichTextWithoutBlocks } from '@payloadcms/richtext-lexical/react';
 import { CodeBlock, CodeBlockProps } from '@/payload/blocks/Code/Component';
 
-import type { BannerBlock as BannerBlockProps, CallToActionBlock as CTABlockProps, MediaBlock as MediaBlockProps } from '@/payload-types';
+import type {
+  BannerBlock as BannerBlockProps,
+  // CallToActionBlock as CTABlockProps,
+  MediaBlock as MediaBlockProps,
+} from '@/payload-types';
 import { BannerBlock } from '@/payload/blocks/Banner/Component';
 import { CallToActionBlock } from '@/payload/blocks/CallToAction/Component';
 import { cn } from '@/lib/utils';
 
-type NodeTypes = DefaultNodeTypes | SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps>;
+type NodeTypes =
+  | DefaultNodeTypes
+  | SerializedBlockNode<
+      // CTABlockProps |
+      MediaBlockProps | BannerBlockProps | CodeBlockProps
+    >;
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const { value, relationTo } = linkNode.fields.doc!;
@@ -36,7 +45,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
       />
     ),
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
-    cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+    // cta: ({ node }) => <CallToActionBlock {...node.fields} />,
   },
 });
 
@@ -57,7 +66,7 @@ export default function RichText(props: Props) {
           // 'max-w-none': !enableGutter,
           'prose dark:prose-invert max-w-full': enableProse,
           // fix: bolded text was always black. Added the same css in globals.css also in any case.
-          'underline-offset-2 [&_a:not(.not-prose)]:!text-inherit [&_a:not(:has(.not-prose))]:!text-inherit [&_blockquote]:border-l-teal-500': true,
+          'underline-offset-3 [&_a:not(.not-prose)]:!text-inherit [&_a:not(:has(.not-prose))]:!text-inherit [&_blockquote]:border-l-teal-500': true,
         },
         className,
       )}

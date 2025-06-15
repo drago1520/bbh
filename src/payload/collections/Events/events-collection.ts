@@ -1,5 +1,6 @@
 import { authenticated } from '@/payload/auth/authenticated';
 import { ContentWithMedia } from '@/payload/blocks/content-with-media/content-with-media';
+import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right';
 import { CollectionConfig } from 'payload';
 
 export const Events: CollectionConfig = {
@@ -95,15 +96,6 @@ export const Events: CollectionConfig = {
       },
     },
     {
-      name: 'speakerQuote',
-      label: 'Любим цитат на лектора',
-      type: 'text',
-      admin: {
-        placeholder: 'Колко ти струва да НЕ правиш 1 милион на година?',
-        description: 'Не задължително',
-      },
-    },
-    {
       name: 'maxGuests',
       label: 'Макс хора',
       type: 'text',
@@ -136,8 +128,7 @@ export const Events: CollectionConfig = {
     {
       type: 'blocks',
       name: 'Block content with media',
-      blocks: [ContentWithMedia],
-      hidden: true,
+      blocks: [FaqLeftRightBlock],
     },
   ],
   access: {
