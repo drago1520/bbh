@@ -3,7 +3,7 @@ import { defaultValueHelperText } from '../default-helper-text';
 import { QABlock } from './q-a-block';
 
 export const FaqLeftRightBlock: Block = {
-  slug: 'faqLeftRight',
+  slug: 'faqChessMate',
   fields: [
     {
       type: 'row',

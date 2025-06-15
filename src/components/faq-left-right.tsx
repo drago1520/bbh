@@ -7,7 +7,7 @@ import RichText from './RichText';
 
 export default function FAQsThree({ homepageBlocks }: { homepageBlocks: Page['blocks'] }) {
   if (!homepageBlocks) return;
-  const faqBlock = homepageBlocks.find(({ blockType }) => blockType == 'faqLeftRight');
+  const faqBlock = homepageBlocks.find(({ blockType }) => blockType == 'faqChessMate');
   if (!faqBlock?.QABlock) return;
 
   return (

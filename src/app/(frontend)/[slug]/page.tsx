@@ -8,7 +8,7 @@ import { cache } from 'react';
 
 import type { Page as PageType } from '@/payload-types';
 
-import { homeStatic } from '@/app/(payload)/next/seed/seedData/home-static';
+// import { homeStatic } from '@/app/(payload)/next/seed/seedData/home-static';
 import { LivePreviewListener } from '@/components/LivePreviewListener';
 import { generateMeta } from '@/lib/utils/generateMeta';
 import { RenderBlocks } from '@/payload/blocks/RenderBlocks';
@@ -57,7 +57,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   // Remove this code once your website is seeded
   if (!page && slug === 'home') {
-    page = homeStatic as PageType;
+    // page = homeStatic as PageType;
+    page = null;
   }
 
   if (!page) {

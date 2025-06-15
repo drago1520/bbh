@@ -1,6 +1,6 @@
 import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from 'payload';
 
-import { home } from './home';
+// import { home } from './home';
 import { image1 } from './image-1';
 import { image2 } from './image-2';
 import { imageHero1 } from './image-hero-1';
@@ -201,15 +201,15 @@ export const seed = async ({ payload, req }: { payload: Payload; req: PayloadReq
     },
   });
 
-  payload.logger.info(`Seeding pages...`);
+  // payload.logger.info(`Seeding pages...`);
 
-  await Promise.all([
-    payload.create({
-      collection: 'pages',
-      depth: 0,
-      data: home({ heroImage: imageHomeDoc, metaImage: image2Doc }),
-    }),
-  ]);
+  // await Promise.all([
+  //   payload.create({
+  //     collection: 'pages',
+  //     depth: 0,
+  //     data: home({ heroImage: imageHomeDoc, metaImage: image2Doc }),
+  //   }),
+  // ]);
 
   payload.logger.info(`Seeding globals...`);
 

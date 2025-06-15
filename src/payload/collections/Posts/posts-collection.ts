@@ -13,6 +13,13 @@ import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
 import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
 import { slugField } from '@/payload/fields/slug';
+import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right';
+import { Archive } from '@/payload/blocks/ArchiveBlock/config';
+import { CallToAction } from '@/payload/blocks/CallToAction/config';
+import { Content } from '@/payload/blocks/Content/config';
+import { HighImpactHero } from '@/payload/blocks/HighImpact/config';
+import { MediumImpactHero } from '@/payload/blocks/MediumImpact/config';
+import { LowImpactHero } from '@/payload/blocks/LowImpact/config';
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
@@ -196,6 +203,19 @@ export const Posts: CollectionConfig<'posts'> = {
           type: 'text',
         },
       ],
+    },
+    {
+      type: 'blocks',
+      name: 'blocks',
+      label: false,
+      labels: {
+        singular: 'block',
+        plural: 'blocks',
+      },
+      blocks: [HighImpactHero, MediumImpactHero, LowImpactHero, CallToAction, Content, MediaBlock, Archive, FaqLeftRightBlock],
+      admin: {
+        initCollapsed: true,
+      },
     },
     ...slugField(),
   ],
