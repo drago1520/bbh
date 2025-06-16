@@ -9,6 +9,7 @@ import PartnersCarousel from './components/partners-new';
 import FAQsThree from '@/components/faq-left-right';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
+import Gallery7 from '@/components/Sections/gallery-7-shadcnblocks';
 
 export default async function HomePage() {
   const config = await payloadConfig;
@@ -23,6 +24,8 @@ export default async function HomePage() {
     limit: 1,
   });
   const [homePage] = docs;
+  const faqBlockProps = homePage.blocks.find(block => block.blockType === 'faqChessMate');
+  const gallery7Props = homePage.blocks.find(block => block.blockType === 'gallery7');
 
   return (
     <div className="min-h-screen">
@@ -33,7 +36,8 @@ export default async function HomePage() {
         <NetworkingEvents />
         <PartnersCarousel />
         <Conference isImageRight={false} />
-        <FAQsThree homepageBlocks={homePage?.blocks} />
+        {faqBlockProps && <FAQsThree {...faqBlockProps} />}
+        {gallery7Props && <Gallery7 {...gallery7Props} />}
         <News />
       </main>
       <Footer />

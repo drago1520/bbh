@@ -2,6 +2,7 @@ import { Block } from 'payload';
 
 export const ContentWithMedia: Block = {
   slug: 'contentWithMedia',
+  interfaceName: 'ContentWithMediaProps',
   fields: [
     {
       type: 'richText',

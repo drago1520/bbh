@@ -2,6 +2,7 @@ import { Block } from 'payload';
 
 export const QABlock: Block = {
   slug: 'qABlock',
+  interfaceName: 'QABlockProps',
   labels: {
     plural: 'Q&A Блокове',
     singular: 'Q&A Блок',

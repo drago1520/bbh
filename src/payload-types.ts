@@ -256,48 +256,7 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
-  blocks: {
-    title: string;
-    helperText: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-    QABlock: {
-      question: string;
-      answer: {
-        root: {
-          type: string;
-          children: {
-            type: string;
-            version: number;
-            [k: string]: unknown;
-          }[];
-          direction: ('ltr' | 'rtl') | null;
-          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-          indent: number;
-          version: number;
-        };
-        [k: string]: unknown;
-      };
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'qABlock';
-    }[];
-    id?: string | null;
-    blockName?: string | null;
-    blockType: 'faqChessMate';
-  }[];
+  blocks: (FaqLeftRightBlockProps | Gallery7Props)[];
   meta?: {
     title?: string | null;
     /**
@@ -312,6 +271,86 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqLeftRightBlockProps".
+ */
+export interface FaqLeftRightBlockProps {
+  title: string;
+  helperText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  QABlock: QABlockProps[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqChessMate';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QABlockProps".
+ */
+export interface QABlockProps {
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'qABlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery7Props".
+ */
+export interface Gallery7Props {
+  heading: string;
+  images: (string | Media)[];
+  descr?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  rotateSpeed?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery7';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -363,48 +402,7 @@ export interface Post {
         | ContentBlock
         | MediaBlock
         | ArchiveBlock
-        | {
-            title: string;
-            helperText: {
-              root: {
-                type: string;
-                children: {
-                  type: string;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            QABlock: {
-              question: string;
-              answer: {
-                root: {
-                  type: string;
-                  children: {
-                    type: string;
-                    version: number;
-                    [k: string]: unknown;
-                  }[];
-                  direction: ('ltr' | 'rtl') | null;
-                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                  indent: number;
-                  version: number;
-                };
-                [k: string]: unknown;
-              };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'qABlock';
-            }[];
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'faqChessMate';
-          }
+        | FaqLeftRightBlockProps
       )[]
     | null;
   slug?: string | null;
@@ -770,50 +768,7 @@ export interface Event {
    * Препоръчително 1:1 съотношение. Например: 64x64px.
    */
   speakerCompanyLogo?: (string | null) | Media;
-  'Block content with media'?:
-    | {
-        title: string;
-        helperText: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        QABlock: {
-          question: string;
-          answer: {
-            root: {
-              type: string;
-              children: {
-                type: string;
-                version: number;
-                [k: string]: unknown;
-              }[];
-              direction: ('ltr' | 'rtl') | null;
-              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-              indent: number;
-              version: number;
-            };
-            [k: string]: unknown;
-          };
-          id?: string | null;
-          blockName?: string | null;
-          blockType: 'qABlock';
-        }[];
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'faqChessMate';
-      }[]
-    | null;
+  'Block content with media'?: FaqLeftRightBlockProps[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1138,26 +1093,8 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        faqChessMate?:
-          | T
-          | {
-              title?: T;
-              helperText?: T;
-              QABlock?:
-                | T
-                | {
-                    qABlock?:
-                      | T
-                      | {
-                          question?: T;
-                          answer?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        faqChessMate?: T | FaqLeftRightBlockPropsSelect<T>;
+        gallery7?: T | Gallery7PropsSelect<T>;
       };
   meta?:
     | T
@@ -1172,6 +1109,45 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqLeftRightBlockProps_select".
+ */
+export interface FaqLeftRightBlockPropsSelect<T extends boolean = true> {
+  title?: T;
+  helperText?: T;
+  QABlock?:
+    | T
+    | {
+        qABlock?: T | QABlockPropsSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QABlockProps_select".
+ */
+export interface QABlockPropsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Gallery7Props_select".
+ */
+export interface Gallery7PropsSelect<T extends boolean = true> {
+  heading?: T;
+  images?: T;
+  descr?: T;
+  ctaText?: T;
+  ctaHref?: T;
+  rotateSpeed?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1208,26 +1184,7 @@ export interface PostsSelect<T extends boolean = true> {
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
-        faqChessMate?:
-          | T
-          | {
-              title?: T;
-              helperText?: T;
-              QABlock?:
-                | T
-                | {
-                    qABlock?:
-                      | T
-                      | {
-                          question?: T;
-                          answer?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        faqChessMate?: T | FaqLeftRightBlockPropsSelect<T>;
       };
   slug?: T;
   slugLock?: T;
@@ -1422,26 +1379,7 @@ export interface EventsSelect<T extends boolean = true> {
   'Block content with media'?:
     | T
     | {
-        faqChessMate?:
-          | T
-          | {
-              title?: T;
-              helperText?: T;
-              QABlock?:
-                | T
-                | {
-                    qABlock?:
-                      | T
-                      | {
-                          question?: T;
-                          answer?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        faqChessMate?: T | FaqLeftRightBlockPropsSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;

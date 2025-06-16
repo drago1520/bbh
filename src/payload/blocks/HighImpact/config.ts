@@ -1,4 +1,4 @@
-import type { Block, Field } from 'payload';
+import type { Block } from 'payload';
 
 import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 

@@ -16,6 +16,7 @@ import { HighImpactHero } from '@/payload/blocks/HighImpact/config';
 import { MediumImpactHero } from '@/payload/blocks/MediumImpact/config';
 import { LowImpactHero } from '@/payload/blocks/LowImpact/config';
 import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right';
+import { Gallery7Block } from '@/payload/blocks/Gallery/gallery-7';
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -74,12 +75,11 @@ export const Pages: CollectionConfig<'pages'> = {
                 plural: 'blocks',
               },
               // blocks: [HighImpactHero, MediumImpactHero, LowImpactHero, CallToAction, Content, MediaBlock, Archive],
-              blocks: [FaqLeftRightBlock],
+              blocks: [FaqLeftRightBlock, Gallery7Block],
               required: true,
               admin: {
                 initCollapsed: true,
               },
-              maxRows: 1,
             },
           ],
         },

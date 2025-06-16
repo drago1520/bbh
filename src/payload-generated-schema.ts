@@ -190,6 +190,32 @@ export const pages_blocks_faq_chess_mate = pgTable(
   }),
 );
 
+export const pages_blocks_gallery7 = pgTable(
+  'pages_blocks_gallery7',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    heading: varchar('heading'),
+    descr: jsonb('descr'),
+    ctaText: varchar('cta_text'),
+    ctaHref: varchar('cta_href'),
+    rotateSpeed: numeric('rotate_speed'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_gallery7_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_gallery7_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('pages_blocks_gallery7_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_gallery7_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const pages = pgTable(
   'pages',
   {
@@ -213,6 +239,33 @@ export const pages = pgTable(
     pages_updated_at_idx: index('pages_updated_at_idx').on(columns.updatedAt),
     pages_created_at_idx: index('pages_created_at_idx').on(columns.createdAt),
     pages__status_idx: index('pages__status_idx').on(columns._status),
+  }),
+);
+
+export const pages_rels = pgTable(
+  'pages_rels',
+  {
+    id: serial('id').primaryKey(),
+    order: integer('order'),
+    parent: uuid('parent_id').notNull(),
+    path: varchar('path').notNull(),
+    mediaID: uuid('media_id'),
+  },
+  columns => ({
+    order: index('pages_rels_order_idx').on(columns.order),
+    parentIdx: index('pages_rels_parent_idx').on(columns.parent),
+    pathIdx: index('pages_rels_path_idx').on(columns.path),
+    pages_rels_media_id_idx: index('pages_rels_media_id_idx').on(columns.mediaID),
+    parentFk: foreignKey({
+      columns: [columns['parent']],
+      foreignColumns: [pages.id],
+      name: 'pages_rels_parent_fk',
+    }).onDelete('cascade'),
+    mediaIdFk: foreignKey({
+      columns: [columns['mediaID']],
+      foreignColumns: [media.id],
+      name: 'pages_rels_media_fk',
+    }).onDelete('cascade'),
   }),
 );
 
@@ -264,6 +317,33 @@ export const _pages_v_blocks_faq_chess_mate = pgTable(
   }),
 );
 
+export const _pages_v_blocks_gallery7 = pgTable(
+  '_pages_v_blocks_gallery7',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    heading: varchar('heading'),
+    descr: jsonb('descr'),
+    ctaText: varchar('cta_text'),
+    ctaHref: varchar('cta_href'),
+    rotateSpeed: numeric('rotate_speed'),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_gallery7_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_gallery7_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_pages_v_blocks_gallery7_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_gallery7_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const _pages_v = pgTable(
   '_pages_v',
   {
@@ -299,6 +379,33 @@ export const _pages_v = pgTable(
     _pages_v_updated_at_idx: index('_pages_v_updated_at_idx').on(columns.updatedAt),
     _pages_v_latest_idx: index('_pages_v_latest_idx').on(columns.latest),
     _pages_v_autosave_idx: index('_pages_v_autosave_idx').on(columns.autosave),
+  }),
+);
+
+export const _pages_v_rels = pgTable(
+  '_pages_v_rels',
+  {
+    id: serial('id').primaryKey(),
+    order: integer('order'),
+    parent: uuid('parent_id').notNull(),
+    path: varchar('path').notNull(),
+    mediaID: uuid('media_id'),
+  },
+  columns => ({
+    order: index('_pages_v_rels_order_idx').on(columns.order),
+    parentIdx: index('_pages_v_rels_parent_idx').on(columns.parent),
+    pathIdx: index('_pages_v_rels_path_idx').on(columns.path),
+    _pages_v_rels_media_id_idx: index('_pages_v_rels_media_id_idx').on(columns.mediaID),
+    parentFk: foreignKey({
+      columns: [columns['parent']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_rels_parent_fk',
+    }).onDelete('cascade'),
+    mediaIdFk: foreignKey({
+      columns: [columns['mediaID']],
+      foreignColumns: [media.id],
+      name: '_pages_v_rels_media_fk',
+    }).onDelete('cascade'),
   }),
 );
 
@@ -1714,6 +1821,25 @@ export const relations_pages_blocks_faq_chess_mate = relations(pages_blocks_faq_
     relationName: '_blocks_faqChessMate',
   }),
 }));
+export const relations_pages_blocks_gallery7 = relations(pages_blocks_gallery7, ({ one }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_gallery7._parentID],
+    references: [pages.id],
+    relationName: '_blocks_gallery7',
+  }),
+}));
+export const relations_pages_rels = relations(pages_rels, ({ one }) => ({
+  parent: one(pages, {
+    fields: [pages_rels.parent],
+    references: [pages.id],
+    relationName: '_rels',
+  }),
+  mediaID: one(media, {
+    fields: [pages_rels.mediaID],
+    references: [media.id],
+    relationName: 'media',
+  }),
+}));
 export const relations_pages = relations(pages, ({ one, many }) => ({
   _blocks_qABlock: many(pages_blocks_q_a_block, {
     relationName: '_blocks_qABlock',
@@ -1721,10 +1847,16 @@ export const relations_pages = relations(pages, ({ one, many }) => ({
   _blocks_faqChessMate: many(pages_blocks_faq_chess_mate, {
     relationName: '_blocks_faqChessMate',
   }),
+  _blocks_gallery7: many(pages_blocks_gallery7, {
+    relationName: '_blocks_gallery7',
+  }),
   meta_image: one(media, {
     fields: [pages.meta_image],
     references: [media.id],
     relationName: 'meta_image',
+  }),
+  _rels: many(pages_rels, {
+    relationName: '_rels',
   }),
 }));
 export const relations__pages_v_blocks_q_a_block = relations(_pages_v_blocks_q_a_block, ({ one }) => ({
@@ -1741,6 +1873,25 @@ export const relations__pages_v_blocks_faq_chess_mate = relations(_pages_v_block
     relationName: '_blocks_faqChessMate',
   }),
 }));
+export const relations__pages_v_blocks_gallery7 = relations(_pages_v_blocks_gallery7, ({ one }) => ({
+  _parentID: one(_pages_v, {
+    fields: [_pages_v_blocks_gallery7._parentID],
+    references: [_pages_v.id],
+    relationName: '_blocks_gallery7',
+  }),
+}));
+export const relations__pages_v_rels = relations(_pages_v_rels, ({ one }) => ({
+  parent: one(_pages_v, {
+    fields: [_pages_v_rels.parent],
+    references: [_pages_v.id],
+    relationName: '_rels',
+  }),
+  mediaID: one(media, {
+    fields: [_pages_v_rels.mediaID],
+    references: [media.id],
+    relationName: 'media',
+  }),
+}));
 export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   parent: one(pages, {
     fields: [_pages_v.parent],
@@ -1753,10 +1904,16 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   _blocks_faqChessMate: many(_pages_v_blocks_faq_chess_mate, {
     relationName: '_blocks_faqChessMate',
   }),
+  _blocks_gallery7: many(_pages_v_blocks_gallery7, {
+    relationName: '_blocks_gallery7',
+  }),
   version_meta_image: one(media, {
     fields: [_pages_v.version_meta_image],
     references: [media.id],
     relationName: 'version_meta_image',
+  }),
+  _rels: many(_pages_v_rels, {
+    relationName: '_rels',
   }),
 }));
 export const relations_posts_populated_authors = relations(posts_populated_authors, ({ one }) => ({
@@ -2435,10 +2592,14 @@ type DatabaseSchema = {
   media: typeof media;
   pages_blocks_q_a_block: typeof pages_blocks_q_a_block;
   pages_blocks_faq_chess_mate: typeof pages_blocks_faq_chess_mate;
+  pages_blocks_gallery7: typeof pages_blocks_gallery7;
   pages: typeof pages;
+  pages_rels: typeof pages_rels;
   _pages_v_blocks_q_a_block: typeof _pages_v_blocks_q_a_block;
   _pages_v_blocks_faq_chess_mate: typeof _pages_v_blocks_faq_chess_mate;
+  _pages_v_blocks_gallery7: typeof _pages_v_blocks_gallery7;
   _pages_v: typeof _pages_v;
+  _pages_v_rels: typeof _pages_v_rels;
   posts_populated_authors: typeof posts_populated_authors;
   posts_blocks_high_impact_hero_links: typeof posts_blocks_high_impact_hero_links;
   posts_blocks_high_impact_hero: typeof posts_blocks_high_impact_hero;
@@ -2497,9 +2658,13 @@ type DatabaseSchema = {
   relations_media: typeof relations_media;
   relations_pages_blocks_q_a_block: typeof relations_pages_blocks_q_a_block;
   relations_pages_blocks_faq_chess_mate: typeof relations_pages_blocks_faq_chess_mate;
+  relations_pages_blocks_gallery7: typeof relations_pages_blocks_gallery7;
+  relations_pages_rels: typeof relations_pages_rels;
   relations_pages: typeof relations_pages;
   relations__pages_v_blocks_q_a_block: typeof relations__pages_v_blocks_q_a_block;
   relations__pages_v_blocks_faq_chess_mate: typeof relations__pages_v_blocks_faq_chess_mate;
+  relations__pages_v_blocks_gallery7: typeof relations__pages_v_blocks_gallery7;
+  relations__pages_v_rels: typeof relations__pages_v_rels;
   relations__pages_v: typeof relations__pages_v;
   relations_posts_populated_authors: typeof relations_posts_populated_authors;
   relations_posts_blocks_high_impact_hero_links: typeof relations_posts_blocks_high_impact_hero_links;
