@@ -2,6 +2,7 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { Plugin } from 'payload';
+import { s3Storage } from '@payloadcms/storage-s3';
 
 import { getServerSideURL } from '@/lib/utils/getURL';
 import { Page, Post } from '@/payload-types';
@@ -44,4 +45,18 @@ export const plugins: Plugin[] = [
   }),
 
   payloadCloudPlugin(),
+  s3Storage({
+    collections: {
+      media: true,
+    },
+    bucket: process.env.R2_BUCKET!,
+    config: {
+      credentials: {
+        accessKeyId: process.env.R2_ACCESS_KEY_ID!,
+        secretAccessKey: process.env.R2_Secret_ACCESS_KEY!,
+      },
+      region: 'auto',
+      endpoint: process.env.R2_ENDPOINT!,
+    },
+  }),
 ];
