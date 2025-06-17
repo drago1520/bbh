@@ -25,6 +25,8 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   redirects,
+  // This is required to support PostHog trailing slash API requests
+  skipTrailingSlashRedirect: true,
 };
 
 export default withPayload(nextConfig);
