@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import React from 'react';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import { Footer } from '@/payload/globals/Footer/Component';
 import { Header } from '@/payload/globals/Header/Component';
@@ -29,6 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {/* <Footer /> */}
         </Providers>
       </body>
+      <GoogleAnalytics gaId="G-T0E763GTQM" />
     </html>
   );
 }
