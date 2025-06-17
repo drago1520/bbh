@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
@@ -52,7 +52,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "media" DROP COLUMN "sizes_og_height";
   ALTER TABLE "media" DROP COLUMN "sizes_og_mime_type";
   ALTER TABLE "media" DROP COLUMN "sizes_og_filesize";
-  ALTER TABLE "media" DROP COLUMN "sizes_og_filename";`)
+  ALTER TABLE "media" DROP COLUMN "sizes_og_filename";`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
@@ -107,5 +107,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   CREATE INDEX "media_sizes_medium_sizes_medium_filename_idx" ON "media" USING btree ("sizes_medium_filename");
   CREATE INDEX "media_sizes_large_sizes_large_filename_idx" ON "media" USING btree ("sizes_large_filename");
   CREATE INDEX "media_sizes_xlarge_sizes_xlarge_filename_idx" ON "media" USING btree ("sizes_xlarge_filename");
-  CREATE INDEX "media_sizes_og_sizes_og_filename_idx" ON "media" USING btree ("sizes_og_filename");`)
+  CREATE INDEX "media_sizes_og_sizes_og_filename_idx" ON "media" USING btree ("sizes_og_filename");`);
 }

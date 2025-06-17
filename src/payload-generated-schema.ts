@@ -86,11 +86,18 @@ export const media = pgTable(
     height: numeric('height'),
     focalX: numeric('focal_x'),
     focalY: numeric('focal_y'),
+    sizes_og_url: varchar('sizes_og_url'),
+    sizes_og_width: numeric('sizes_og_width'),
+    sizes_og_height: numeric('sizes_og_height'),
+    sizes_og_mimeType: varchar('sizes_og_mime_type'),
+    sizes_og_filesize: numeric('sizes_og_filesize'),
+    sizes_og_filename: varchar('sizes_og_filename'),
   },
   columns => ({
     media_updated_at_idx: index('media_updated_at_idx').on(columns.updatedAt),
     media_created_at_idx: index('media_created_at_idx').on(columns.createdAt),
     media_filename_idx: uniqueIndex('media_filename_idx').on(columns.filename),
+    media_sizes_og_sizes_og_filename_idx: index('media_sizes_og_sizes_og_filename_idx').on(columns.sizes_og_filename),
   }),
 );
 

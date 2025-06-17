@@ -30,6 +30,13 @@ export const Media: CollectionConfig = {
     staticDir: path.resolve(dirname, '/public/media'),
     adminThumbnail: 'thumbnail',
     focalPoint: true,
-    // imageSizes: [],
+    imageSizes: [
+      {
+        name: 'og',
+        width: 1200,
+        height: 630,
+        crop: 'center',
+      },
+    ],
   },
 };

@@ -45,10 +45,10 @@ export default function LatestNetworking({ isImageRight = false, className, even
               {title}
             </h3>
             <div className="flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
-              <Link href="#" className="prose flex items-center gap-1">
+              <Link href="#" className="prose dark:prose-invert flex items-center gap-1">
                 <Calendar className="size-4" /> {formatToBulgarianDate(date)}
               </Link>
-              <Link href="#" className="prose flex items-center gap-1">
+              <Link href="#" className="prose dark:prose-invert flex items-center gap-1">
                 <MapPin className="size-4" /> {location}
               </Link>
             </div>

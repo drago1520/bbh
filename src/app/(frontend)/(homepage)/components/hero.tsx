@@ -20,7 +20,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/16 dark:bg-black/40" aria-hidden="true"></div>
 
       <div className="relative z-10 container flex flex-1 flex-col items-center justify-center py-8 text-center sm:py-12 lg:py-16">
-        <div className="prose max-w-4xl">
+        <div className="prose dark:prose-invert max-w-4xl">
           {/* <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 leading-tight px-2 sm:px-4">
             Портал за бизнес решения, иновации и обучения, които ви помагат да развиете бизнеса си
           </h1> */}
