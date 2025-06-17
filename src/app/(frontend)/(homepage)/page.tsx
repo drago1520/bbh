@@ -36,8 +36,8 @@ export default async function HomePage() {
         <NetworkingEvents />
         <PartnersCarousel />
         <Conference isImageRight={false} />
-        {faqBlockProps && <FAQsThree {...faqBlockProps} />}
         {gallery7Props && <Gallery7 {...gallery7Props} />}
+        {faqBlockProps && <FAQsThree {...faqBlockProps} />}
         <News />
       </main>
       <Footer />

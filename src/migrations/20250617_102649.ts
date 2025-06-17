@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
@@ -8,7 +8,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "media" ADD COLUMN "sizes_og_mime_type" varchar;
   ALTER TABLE "media" ADD COLUMN "sizes_og_filesize" numeric;
   ALTER TABLE "media" ADD COLUMN "sizes_og_filename" varchar;
-  CREATE INDEX "media_sizes_og_sizes_og_filename_idx" ON "media" USING btree ("sizes_og_filename");`)
+  CREATE INDEX "media_sizes_og_sizes_og_filename_idx" ON "media" USING btree ("sizes_og_filename");`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
@@ -19,5 +19,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   ALTER TABLE "media" DROP COLUMN "sizes_og_height";
   ALTER TABLE "media" DROP COLUMN "sizes_og_mime_type";
   ALTER TABLE "media" DROP COLUMN "sizes_og_filesize";
-  ALTER TABLE "media" DROP COLUMN "sizes_og_filename";`)
+  ALTER TABLE "media" DROP COLUMN "sizes_og_filename";`);
 }

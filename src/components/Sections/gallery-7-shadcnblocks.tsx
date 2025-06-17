@@ -27,8 +27,8 @@ export default function Gallery7({ ctaText, ctaHref, heading, descr, images, rot
     <section className="py-32">
       <div className="container">
         <div className="mb-12 grid grid-cols-1 gap-x-12 gap-y-6 md:mb-16 md:grid-cols-2 md:gap-x-24">
-          <div className="flex flex-col gap-8 md:gap-12">
-            <h1 className="text-3xl font-bold md:text-4xl">{heading}</h1>
+          <div className="prose dark:prose-invert flex flex-col gap-8 md:gap-12">
+            <h3 className="text-xl font-bold lg:text-3xl">{heading}</h3>
           </div>
           {descr && <RichText data={descr} />}
           {ctaHref && ctaText && (
