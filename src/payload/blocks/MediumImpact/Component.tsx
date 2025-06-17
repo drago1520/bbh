@@ -27,11 +27,6 @@ export const MediumImpactHero = ({ links, media, richText }: MediumImpactHeroBlo
         {media && typeof media === 'object' && (
           <div>
             <Media className="-mx-4 md:-mx-8 2xl:-mx-16" imgClassName="" priority resource={media} />
-            {media?.caption && (
-              <div className="mt-3">
-                <RichText data={media.caption} enableGutter={false} />
-              </div>
-            )}
           </div>
         )}
       </div>
