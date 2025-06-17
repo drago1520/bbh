@@ -193,7 +193,7 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
-  blocks: (FaqLeftRightBlockProps | Gallery7Props)[];
+  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props)[];
   meta?: {
     title?: string | null;
     /**
@@ -288,6 +288,37 @@ export interface Gallery7Props {
   id?: string | null;
   blockName?: string | null;
   blockType: 'gallery7';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25Props".
+ */
+export interface Testimonial25Props {
+  title: string;
+  helperText: string;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  /**
+   * Отделните ревюта на клиенти с цитат от тях и къде работят
+   */
+  blocks: Testimonial25CardProps[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial25Block';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25CardProps".
+ */
+export interface Testimonial25CardProps {
+  image: string | Media;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial25CardBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -971,6 +1002,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         faqChessMate?: T | FaqLeftRightBlockPropsSelect<T>;
         gallery7?: T | Gallery7PropsSelect<T>;
+        testimonial25Block?: T | Testimonial25PropsSelect<T>;
       };
   meta?:
     | T
@@ -1022,6 +1054,36 @@ export interface Gallery7PropsSelect<T extends boolean = true> {
   ctaText?: T;
   ctaHref?: T;
   rotateSpeed?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25Props_select".
+ */
+export interface Testimonial25PropsSelect<T extends boolean = true> {
+  title?: T;
+  helperText?: T;
+  ctaText?: T;
+  ctaHref?: T;
+  blocks?:
+    | T
+    | {
+        testimonial25CardBlock?: T | Testimonial25CardPropsSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25CardProps_select".
+ */
+export interface Testimonial25CardPropsSelect<T extends boolean = true> {
+  image?: T;
+  quote?: T;
+  author?: T;
+  role?: T;
+  company?: T;
   id?: T;
   blockName?: T;
 }

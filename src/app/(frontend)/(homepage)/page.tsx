@@ -10,6 +10,7 @@ import FAQsThree from '@/components/faq-left-right';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
 import Gallery7 from '@/components/Sections/gallery-7-shadcnblocks';
+import { Testimonial25 } from '@/components/testimonial25';
 
 export default async function HomePage() {
   const config = await payloadConfig;
@@ -26,6 +27,7 @@ export default async function HomePage() {
   const [homePage] = docs;
   const faqBlockProps = homePage.blocks.find(block => block.blockType === 'faqChessMate');
   const gallery7Props = homePage.blocks.find(block => block.blockType === 'gallery7');
+  const testimonials25Props = homePage.blocks.find(block => block.blockType === 'testimonial25Block');
 
   return (
     <div className="min-h-screen">
@@ -38,6 +40,7 @@ export default async function HomePage() {
         <Conference isImageRight={false} />
         {gallery7Props && <Gallery7 {...gallery7Props} />}
         {faqBlockProps && <FAQsThree {...faqBlockProps} />}
+        {testimonials25Props && <Testimonial25 {...testimonials25Props} />}
         <News />
       </main>
       <Footer />

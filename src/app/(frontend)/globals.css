@@ -214,3 +214,7 @@ html[data-theme='light'] {
 .prose:where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
   color: inherit !important;
 }
+
+@utility quote-teal {
+  @apply border-l-2 border-l-teal-500 pl-3;
+}
