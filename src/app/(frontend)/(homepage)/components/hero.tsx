@@ -25,7 +25,7 @@ export default function Hero() {
             Портал за бизнес решения, иновации и обучения, които ви помагат да развиете бизнеса си
           </h1> */}
           <h1 className="px-2 text-center text-5xl leading-normal sm:px-4">
-            Бизнес общостта на <span className="text-brand-accent relative inline-block [transform:perspective(500px)_rotateY(-15deg)] rounded bg-white px-1 py-2 text-6xl transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)]">Бургас</span>
+            Бизнес общостта на <span className="text-brand-accent relative mt-4 inline-block [transform:perspective(500px)_rotateY(-15deg)] rounded bg-white px-1 py-2 text-6xl transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)]">Бургас</span>
           </h1>
         </div>
         <div className="mt-24">

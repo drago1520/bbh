@@ -11,6 +11,7 @@ import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
 import Gallery7 from '@/components/Sections/gallery-7-shadcnblocks';
 import { Testimonial25 } from '@/components/testimonial25';
+import UpcomingEvents from 'upcoming-events';
 
 export default async function HomePage() {
   const config = await payloadConfig;
@@ -35,6 +36,7 @@ export default async function HomePage() {
       <Header />
       <main>
         <Hero />
+        <UpcomingEvents />
         <NetworkingEvents />
         <PartnersCarousel />
         <Conference isImageRight={false} />
