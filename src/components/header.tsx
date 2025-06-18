@@ -155,7 +155,7 @@ export default function Header() {
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-            <ThemeSelector />
+            {process.env.NODE_ENV === 'development' && <ThemeSelector />}
           </nav>
 
           <MobileNavMenu navigationItems={navigationItems} />

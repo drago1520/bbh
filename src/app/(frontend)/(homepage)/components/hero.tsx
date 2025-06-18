@@ -2,7 +2,7 @@ import ServiceCards from './service-cards';
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[60vh] flex-col sm:min-h-[70vh] lg:min-h-[80vh]">
+    <section className="relative flex flex-col">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -24,12 +24,11 @@ export default function Hero() {
           {/* <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 leading-tight px-2 sm:px-4">
             Портал за бизнес решения, иновации и обучения, които ви помагат да развиете бизнеса си
           </h1> */}
-          <h1 className="px-2 text-center leading-normal sm:px-4">
-            Бизнес общостта на <span className="text-brand-accent relative inline-block [transform:perspective(500px)_rotateY(-15deg)] rounded bg-white px-1 transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)]">Бургас</span>
+          <h1 className="px-2 text-center text-5xl leading-normal sm:px-4">
+            Бизнес общостта на <span className="text-brand-accent relative inline-block [transform:perspective(500px)_rotateY(-15deg)] rounded bg-white px-1 py-2 text-6xl transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)]">Бургас</span>
           </h1>
-          <p className="font-semibold text-black">При Нас Ще Откриете:</p>
         </div>
-        <div className="mt-4">
+        <div className="mt-24">
           <ServiceCards />
         </div>
       </div>
