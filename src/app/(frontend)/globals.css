@@ -218,3 +218,7 @@ html[data-theme='light'] {
 @utility quote-teal {
   @apply border-l-2 border-l-teal-500 pl-3;
 }
+
+@utility text-h3-size {
+  @apply text-xl font-bold lg:text-3xl;
+}
