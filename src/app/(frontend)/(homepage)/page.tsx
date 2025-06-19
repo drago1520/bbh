@@ -11,7 +11,7 @@ import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
 import Gallery7 from '@/components/Sections/gallery-7-shadcnblocks';
 import { Testimonial25 } from '@/components/testimonial25';
-import { UpcomingEvents } from '@/components/gallery15';
+import { UpcomingEvents } from '@/components/upcoming-event-gallery';
 
 export default async function HomePage() {
   const config = await payloadConfig;

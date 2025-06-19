@@ -129,15 +129,15 @@ const UpcomingEvents = () => {
           >
             <CarouselContent className="-ml-1 pb-10 xl:-ml-15">
               {DATA.map(({ id, hoverImage, title, tag }) => (
-                <CarouselItem key={id} className={cn('h-full min-w-[334px] flex-1 sm:min-w-[400px] xl:min-w-[680px] xl:pl-16')}>
+                <CarouselItem key={id} className={cn('h-full min-w-[334px] flex-1 sm:min-w-[400px] xl:min-w-[420px] xl:pl-16')}>
                   <div className="bg-background/50 rounded-md border border-b-6 border-b-teal-500 p-4 shadow-md backdrop-blur-xs">
                     <div className="relative flex h-full flex-col items-start justify-start gap-2">
                       <div className="w-full">
                         <div className="group relative z-10 overflow-hidden rounded-2xl">
                           <Link href={`/services/${id}`}>
-                            <Image width={800} height={450} src={hoverImage} alt={title} className="group-hover:opacity-0-OLD aspect-video h-full w-full object-cover transition-opacity duration-500" />
+                            <Image width={800} height={800} src={hoverImage} alt={title} className="group-hover:opacity-0-OLD aspect-square h-full w-full object-cover transition-opacity duration-500" />
                           </Link>
-                          {/* <Image width={800} height={450} src={image} alt={title} className="absolute top-0 left-0 z-10 aspect-video h-full w-full rounded-2xl object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> */}
+                          {/* <Image width={800} height={800} src={image} alt={title} className="absolute top-0 left-0 z-10 aspect-square h-full w-full rounded-2xl object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> */}
 
                           <Badge className="bg-background absolute top-4 left-4 px-4 py-1" variant="outline">
                             {tag}
