@@ -4,10 +4,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { FaqLeftRightBlockProps } from '@/payload-types';
 import { DynamicIcon, type IconName } from 'lucide-react/dynamic';
 import RichText from '../RichText';
+import { ComponentProps } from 'react';
+import { cn } from '@/lib/utils';
 
-export default function FAQsThree({ QABlock, helperText, title }: FaqLeftRightBlockProps) {
+export default function FAQsThree({ data, className, ...props }: ComponentProps<'section'> & { data: FaqLeftRightBlockProps }) {
+  const { QABlock, helperText, title } = data;
   return (
-    <section className="py-12">
+    <section className={cn('py-32', className)} {...props}>
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:gap-16">
           <div className="md:w-1/3">

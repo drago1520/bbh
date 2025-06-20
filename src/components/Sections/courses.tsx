@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 export default function Courses({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
-    <SectionWrapper className={cn('bg-purple-500/20', className)} {...props}>
+    <SectionWrapper className={cn('bg-purple-500/20 py-32', className)} {...props}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" fill className="object-contain" />

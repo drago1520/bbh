@@ -64,6 +64,6 @@ export const migrations = [
   {
     up: migration_20250620_131336.up,
     down: migration_20250620_131336.down,
-    name: '20250620_131336'
+    name: '20250620_131336',
   },
 ];

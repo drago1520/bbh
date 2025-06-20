@@ -1,9 +1,9 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    DROP TABLE "events_blocks_q_a_block" CASCADE;
-  DROP TABLE "events_blocks_faq_chess_mate" CASCADE;`)
+  DROP TABLE "events_blocks_faq_chess_mate" CASCADE;`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
@@ -35,5 +35,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   CREATE INDEX "events_blocks_q_a_block_path_idx" ON "events_blocks_q_a_block" USING btree ("_path");
   CREATE INDEX "events_blocks_faq_chess_mate_order_idx" ON "events_blocks_faq_chess_mate" USING btree ("_order");
   CREATE INDEX "events_blocks_faq_chess_mate_parent_id_idx" ON "events_blocks_faq_chess_mate" USING btree ("_parent_id");
-  CREATE INDEX "events_blocks_faq_chess_mate_path_idx" ON "events_blocks_faq_chess_mate" USING btree ("_path");`)
+  CREATE INDEX "events_blocks_faq_chess_mate_path_idx" ON "events_blocks_faq_chess_mate" USING btree ("_path");`);
 }

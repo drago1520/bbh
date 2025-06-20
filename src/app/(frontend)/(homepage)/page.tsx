@@ -40,13 +40,13 @@ export default async function HomePage() {
         <Hero />
         <UpcomingEvents className="bg-background" />
         <NetworkingEvents />
-        <Statistics />
+        <Statistics className="bg-muted/40" />
         <Courses className="bg-background" />
-        <PartnersCarousel />
+        <PartnersCarousel className="bg-muted/40" />
         <Conference isImageRight={false} />
-        {testimonials25Props && <Testimonial25 {...testimonials25Props} />}
-        {gallery7Props && <Gallery7 {...gallery7Props} />}
-        {faqBlockProps && <FAQsThree {...faqBlockProps} />}
+        {testimonials25Props && <Testimonial25 className="bg-muted/40" data={{ ...testimonials25Props }} />}
+        {gallery7Props && <Gallery7 data={{ ...gallery7Props }} />}
+        {faqBlockProps && <FAQsThree className="bg-muted/40" data={{ ...faqBlockProps }} />}
         <News />
       </main>
       <Footer />

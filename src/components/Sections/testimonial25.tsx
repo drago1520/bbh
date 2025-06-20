@@ -5,10 +5,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Testimonial25CardProps, Testimonial25Props } from '@/payload-types';
 import Link from 'next/link';
+import { ComponentProps } from 'react';
+import { cn } from '@/lib/utils';
 
-const Testimonial25 = ({ title, helperText, ctaText, ctaHref, blocks }: Testimonial25Props) => {
+const Testimonial25 = ({ data, className, ...props }: ComponentProps<'section'> & { data: Testimonial25Props }) => {
+  const { title, helperText, ctaText, ctaHref, blocks } = data;
   return (
-    <section className="py-12">
+    <section className={cn('py-32', className)} {...props}>
       <div className="container">
         <div className="space-y-4">
           <div className="prose dark:prose-invert">

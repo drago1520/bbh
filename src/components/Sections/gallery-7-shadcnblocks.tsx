@@ -11,6 +11,7 @@ import { Button } from '../ui/button';
 import Image from 'next/image';
 import RichText from '../RichText';
 import { Gallery7Props } from '@/payload-types';
+import { ComponentProps } from 'react';
 
 // export type Gallery7Props = {
 //   heading: string;
@@ -22,9 +23,11 @@ import { Gallery7Props } from '@/payload-types';
 //   images: Media[] | string[];
 //   rotateSpeed?: number
 // };
-export default function Gallery7({ ctaText, ctaHref, heading, descr, images, rotateSpeed }: Gallery7Props) {
+export default function Gallery7({ data, className, ...props }: ComponentProps<'section'> & { data: Gallery7Props }) {
+  const { ctaText, ctaHref, heading, descr, images, rotateSpeed } = data;
   return (
-    <section className="py-12">
+    //py е по-голям заради заместените карти
+    <section className={cn('py-46', className)} {...props}>
       <div className="container">
         <div className="mb-12 grid grid-cols-1 gap-x-12 gap-y-6 md:mb-16 md:grid-cols-2 md:gap-x-24">
           <div className="prose dark:prose-invert flex flex-col gap-8 md:gap-12">

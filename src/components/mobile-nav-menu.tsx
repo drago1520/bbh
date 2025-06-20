@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { NavProps } from './header';
 import { cn } from '@/lib/utils';
+import { ThemeSelector } from './ThemeProvider/Theme/ThemeSelector';
 
 export default function MobileNavMenu({ navigationItems }: { navigationItems: NavProps[] }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -36,6 +37,7 @@ export default function MobileNavMenu({ navigationItems }: { navigationItems: Na
             </nav>
           ))}
         </div>
+        {process.env.NODE_ENV === 'development' && <ThemeSelector />}
         <SheetFooter>
           <SheetClose asChild>
             <Button type="submit">Затвори</Button>

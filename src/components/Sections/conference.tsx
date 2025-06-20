@@ -5,10 +5,11 @@ import { ArrowRight } from 'lucide-react';
 import { ComponentProps } from 'react';
 import { ContentSection, MediaSection, SectionWrapper } from '@/components/Sections/content-with-media-and-button';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export default function Conference({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
-    <SectionWrapper aria-labelledby="conference-heading" {...props} className={className}>
+    <SectionWrapper aria-labelledby="conference-heading" {...props} className={cn('py-32', className)}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif" alt="Conference illustration showing digital innovation" fill className="object-contain" />

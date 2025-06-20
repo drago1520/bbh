@@ -34,7 +34,7 @@ const newsArticles = [
 
 export default function News() {
   return (
-    <section className="py-12" aria-labelledby="news-heading">
+    <section className="py-32" aria-labelledby="news-heading">
       <div className="container">
         <header className="mb-8 text-center sm:mb-12">
           <Badge variant="brand" className="mb-4">
