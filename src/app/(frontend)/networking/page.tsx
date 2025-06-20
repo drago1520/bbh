@@ -32,7 +32,7 @@ export default async function HomePage() {
       <Header />
       <main>
         <NetworkingHeader />
-        <LatestNetworking event={latestEvent} className="dark:bg-background bg-teal-500/20" />
+        <LatestNetworking event={latestEvent} />
         {/* <AboutHero /> */}
         <Section2Paragraphs className="bg-background" />
         <PartnersMarquee className="bg-muted/40" />

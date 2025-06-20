@@ -29,14 +29,14 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
         <div className="grid justify-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
           <MediaSection isImageRight={isImageRight}>
             <Badges className="xl:hidden" />
-            <div className="relative size-fit rounded-full border-4 border-dashed shadow-2xl xl:mx-auto">
-              <Image src={thumbnail.url || ''} alt={thumbnail.alt || 'Снимка на лектора'} width={288} height={288} className="bg-muted size-52 rounded-full object-cover xl:size-72" />
-              <div className="absolute -bottom-2 left-0 flex w-full items-end justify-between">
-                <span className="grow [transform:perspective(500px)_rotateY(15deg)] rounded bg-teal-200 px-4 py-1 text-sm font-semibold text-nowrap shadow-lg transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)] dark:bg-teal-800">
+            <div className="relative size-fit rounded-full xl:mx-auto">
+              <Image src={thumbnail.url || ''} alt={thumbnail.alt || 'Снимка на лектора'} width={288} height={288} className="bg-muted border-background dark:border-accent size-60 rounded-full border-8 object-cover shadow-xl xl:size-72" />
+              <div className="absolute -bottom-4 left-0 flex w-full items-end justify-between">
+                <span className="dark:bg-muted/20 z-10 grow [transform:perspective(500px)_rotateY(15deg)] rounded border border-neutral-600/10 bg-neutral-50/20 px-4 py-2 text-sm font-semibold text-nowrap shadow-lg backdrop-blur-sm transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)] dark:border-neutral-100/10">
                   {speakerName.split(' ')[0]} <br />
                   {speakerName.split(' ')[1]}
                 </span>
-                <Image src={speakerCompanyLogo?.url || ''} className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg" alt={speakerCompanyLogo?.alt || 'Бизнес на лектора'} width={80} height={80} />
+                <Image src={speakerCompanyLogo?.url || ''} className="border-background dark:border-accent absolute -top-2.5 -right-2 z-20 aspect-square size-18 rounded-full border-2 object-contain shadow-lg" alt={speakerCompanyLogo?.alt || 'Бизнес на лектора'} width={80} height={80} />
               </div>
             </div>
           </MediaSection>
@@ -56,11 +56,11 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
             <div className="mt-8">
               <RichText data={description} />
             </div>
-            <div className="mt-8">
+            <div className="mt-24">
               <CountDownTimer endDate={date} />
             </div>
             {maxGuests && (
-              <span className="text-destructive mt-2 block text-sm italic">
+              <span className="text-destructive mt-2 block text-sm italic sm:mt-4">
                 Местата за събитието са ограничени до <span className="font-semibold">{maxGuests}</span>
               </span>
             )}
@@ -102,7 +102,7 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
 
 function Badges({ className }: ComponentProps<typeof Badge>) {
   return (
-    <div className={cn('mb-8 space-x-2', className)}>
+    <div className={cn('mb-12 space-x-2', className)}>
       <Badge variant="secondary">Предстоящ нетуъркинг</Badge>
       <Badge variant="secondary">С Лектор</Badge>
     </div>
