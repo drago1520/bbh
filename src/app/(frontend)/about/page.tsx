@@ -12,7 +12,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Header />
       <main>
-        <AboutHero />
+        <AboutHero className="pb-8" />
         <Statistics withTitle={false} className="pt-0" />
         <WhyAreNewcontactImportant />
         <PartnersMarquee />
