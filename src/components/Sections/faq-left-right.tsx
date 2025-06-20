@@ -12,7 +12,7 @@ export default function FAQsThree({ QABlock, helperText, title }: FaqLeftRightBl
         <div className="flex flex-col gap-10 md:flex-row md:gap-16">
           <div className="md:w-1/3">
             <div className="prose dark:prose-invert sticky top-20">
-              <h3 className="mt-4 text-xl font-bold lg:text-3xl">{title}</h3>
+              <h3 className="text-h3-size mt-0">{title}</h3>
               <RichText className="text-muted-foreground" data={helperText} />
             </div>
           </div>

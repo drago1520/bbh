@@ -17,15 +17,15 @@ import { MediaSection } from '@/components/Sections/content-with-media-and-butto
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
  */
-export default function LatestNetworking({ isImageRight = false, className, event, ...props }: { isImageRight?: boolean; event: Event | undefined } & ComponentProps<'section'>) {
+export default function LatestNetworking({ isImageRight = false, event, ...props }: { isImageRight?: boolean; event: Event | undefined } & ComponentProps<'section'>) {
   if (!event) return;
 
-  const { location, speakerName, title, date, maxGuests, thumbnail, description } = event;
-  if (typeof thumbnail === 'string') throw new Error('Няма банер или снимка на лектор');
+  const { location, speakerName, title, date, maxGuests, thumbnail, description, speakerCompanyLogo } = event;
+  if (typeof thumbnail === 'string' || typeof speakerCompanyLogo === 'string') throw new Error('Няма банер или снимка на лектор');
   return (
-    <section className={cn('py-20', className)} aria-labelledby="networking-heading" {...props}>
-      <div className="container">
-        <div className="grid items-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
+    <section aria-labelledby="networking-heading" {...props}>
+      <div className="container py-20">
+        <div className="grid gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
           <MediaSection isImageRight={isImageRight}>
             <Badges className="xl:hidden" />
             <div className="relative size-fit rounded-full border-4 border-dashed shadow-2xl xl:mx-auto">
@@ -35,13 +35,13 @@ export default function LatestNetworking({ isImageRight = false, className, even
                   {speakerName.split(' ')[0]} <br />
                   {speakerName.split(' ')[1]}
                 </span>
-                <Image src="/cvetita-herbal.png" className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg saturate-25" alt="cvetita herbal" width={80} height={80} />
+                <Image src={speakerCompanyLogo?.url || ''} className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg saturate-25" alt={speakerCompanyLogo?.alt || 'Бизнес на лектора'} width={80} height={80} />
               </div>
             </div>
           </MediaSection>
           <article>
             <Badges className="hidden xl:block" />
-            <h3 id="networking-heading" className="mb-2 text-xl font-bold lg:text-3xl">
+            <h3 id="networking-heading" className="text-h3-size mb-2">
               {title}
             </h3>
             <div className="flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">

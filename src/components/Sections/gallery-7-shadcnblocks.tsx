@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import Image from 'next/image';
 import RichText from '../RichText';
-import { Gallery7Props, Media } from '@/payload-types';
+import { Gallery7Props } from '@/payload-types';
 
 // export type Gallery7Props = {
 //   heading: string;
@@ -28,7 +28,7 @@ export default function Gallery7({ ctaText, ctaHref, heading, descr, images, rot
       <div className="container">
         <div className="mb-12 grid grid-cols-1 gap-x-12 gap-y-6 md:mb-16 md:grid-cols-2 md:gap-x-24">
           <div className="prose dark:prose-invert flex flex-col gap-8 md:gap-12">
-            <h3 className="text-xl font-bold lg:text-3xl">{heading}</h3>
+            <h3 className="text-h3-size">{heading}</h3>
           </div>
           {descr && <RichText data={descr} />}
           {ctaHref && ctaText && (

@@ -20,7 +20,7 @@ export default function ContentWithMediaAndButtonExample({ isImageRight = true, 
       <div>
         <ContentSection>
           <Badge variant="brand">Нетуъркинг</Badge>
-          <h3 id="networking-heading" className="mt-8 text-xl font-bold lg:text-3xl">
+          <h3 id="networking-heading" className="text-h3-size mt-4">
             Защото новите контакти са важни
           </h3>
           <p>Ефективният нетуъркинг през 2025 г. се основава на правилната нагласа. Да бъдеш любопитен. На готовността да задаваш въпроси. Да слушаш внимателно, защото знаеш, че това е най-бързия начин да се интересуват от теб.</p>

@@ -736,7 +736,6 @@ export interface Event {
    * Препоръчително 1:1 съотношение. Например: 64x64px.
    */
   speakerCompanyLogo?: (string | null) | Media;
-  'Block content with media'?: FaqLeftRightBlockProps[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1314,11 +1313,6 @@ export interface EventsSelect<T extends boolean = true> {
   maxGuests?: T;
   thumbnail?: T;
   speakerCompanyLogo?: T;
-  'Block content with media'?:
-    | T
-    | {
-        faqChessMate?: T | FaqLeftRightBlockPropsSelect<T>;
-      };
   updatedAt?: T;
   createdAt?: T;
 }

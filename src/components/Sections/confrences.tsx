@@ -17,7 +17,7 @@ export default function Confrences({ isImageRight = true, className, ...props }:
       <div>
         <ContentSection>
           <Badge variant="brandOrange">Конференции</Badge>
-          <h3 id="confrences-heading" className="mt-8 text-xl font-bold lg:text-3xl">
+          <h3 id="confrences-heading" className="text-h3-size mt-4">
             Развитие и нови възможности
           </h3>
           <p>Нашата ежегодна конференция съчетава най-доброто от света на нетуъркинга и обученията, предоставяйки уникална възможност за развитие на вашия бизнес. Събитието е специално проектирано да обедини професионалисти от различни сектори, които да обменят идеи и опит, като същевременно разширяват своите мрежи от контакти.</p>

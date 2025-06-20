@@ -2,13 +2,13 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import NetworkingHeader from './components/networking-header';
 import PartnersMarquee from '../../../components/Sections/partners-new';
-import Section2Paragraphs from '@/components/section';
 import LatestNetworking from './components/latest-networking';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
 import { enum_events_active } from '@/payload-generated-schema';
 import Courses from '../../../components/Sections/courses';
 import Confrences from '../../../components/Sections/confrences';
+import Section2Paragraphs from '@/components/Sections/section';
 // import ContentWithMediaAndButtonExample from '@/components/Sections/content-with-media-and-button';
 
 export default async function HomePage() {

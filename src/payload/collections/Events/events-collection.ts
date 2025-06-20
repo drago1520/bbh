@@ -1,6 +1,4 @@
 import { authenticated } from '@/payload/auth/authenticated';
-import { ContentWithMedia } from '@/payload/blocks/content-with-media/content-with-media';
-import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right';
 import { CollectionConfig } from 'payload';
 
 export const Events: CollectionConfig = {
@@ -124,11 +122,6 @@ export const Events: CollectionConfig = {
         description: 'Препоръчително 1:1 съотношение. Например: 64x64px.',
       },
       // required: true
-    },
-    {
-      type: 'blocks',
-      name: 'Block content with media',
-      blocks: [FaqLeftRightBlock],
     },
   ],
   access: {

@@ -12,7 +12,7 @@ const Testimonial25 = ({ title, helperText, ctaText, ctaHref, blocks }: Testimon
       <div className="container">
         <div className="space-y-4">
           <div className="prose dark:prose-invert">
-            <h3 className="text-xl font-bold lg:text-3xl">{title}</h3>
+            <h3 className="text-h3-size">{title}</h3>
             <p className="text-muted-foreground">{helperText}</p>
           </div>
           <Button asChild variant="outline">

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
@@ -40,9 +40,9 @@ export default function News() {
           <Badge variant="brand" className="mb-4">
             НОВИНИ
           </Badge>
-          <h2 id="news-heading" className="text-foreground px-4 text-xl font-bold sm:text-2xl lg:text-3xl">
+          <h3 id="news-heading" className="text-h3-size px-4">
             Най-актуалните дигитални теми и тенденции
-          </h2>
+          </h3>
         </header>
         <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
           {newsArticles.map(article => (
@@ -51,16 +51,22 @@ export default function News() {
                 <Link href="#">
                   <div className="relative aspect-[3/2]">
                     <Image src="/card.avif?height=200&width=300" alt={`Featured image for ${article.title}`} fill className="object-cover transition-all duration-500 group-hover:scale-105" />
-                    <div className="group-hover:bg-background/80 dark:bg-background/20 absolute top-0 left-0 h-full w-full transition-all duration-500 group-hover:scale-105"></div>
+                    <div className="dark:bg-background/20 absolute top-0 left-0 h-full w-full transition-all duration-500 group-hover:scale-105"></div>
                   </div>
-                  <CardContent className="p-6">
-                    <h3>
-                      <Button variant="link" className="text-foreground mb-8 justify-start p-0 text-start text-sm font-bold whitespace-normal sm:text-base">
-                        {article.title}
-                      </Button>
-                    </h3>
-                    <p className="text-muted-foreground mb-4 text-xs">{article.excerpt}</p>
-                    <time dateTime={article.date} className="text-muted-foreground mb-2 flex items-center gap-2 text-xs">
+                  <CardHeader>
+                    <CardTitle>
+                      <h4>
+                        <Button variant="link" className="mb-4 justify-start p-0 text-start text-lg font-bold whitespace-normal">
+                          {article.title}
+                        </Button>
+                      </h4>
+                    </CardTitle>
+                    <CardDescription className="text-xs">
+                      <p>{article.excerpt}</p>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="mt-8 flex items-center justify-between">
+                    <time dateTime={article.date} className="text-muted-foreground flex items-center gap-2 text-xs">
                       <Calendar className="size-3.5" /> {article.dateDisplay}
                     </time>
                   </CardContent>

@@ -1401,54 +1401,6 @@ export const attendees = pgTable(
   }),
 );
 
-export const events_blocks_q_a_block = pgTable(
-  'events_blocks_q_a_block',
-  {
-    _order: integer('_order').notNull(),
-    _parentID: uuid('_parent_id').notNull(),
-    _path: text('_path').notNull(),
-    id: varchar('id').primaryKey(),
-    question: varchar('question').notNull(),
-    answer: jsonb('answer').notNull(),
-    blockName: varchar('block_name'),
-  },
-  columns => ({
-    _orderIdx: index('events_blocks_q_a_block_order_idx').on(columns._order),
-    _parentIDIdx: index('events_blocks_q_a_block_parent_id_idx').on(columns._parentID),
-    _pathIdx: index('events_blocks_q_a_block_path_idx').on(columns._path),
-    _parentIdFk: foreignKey({
-      columns: [columns['_parentID']],
-      foreignColumns: [events.id],
-      name: 'events_blocks_q_a_block_parent_id_fk',
-    }).onDelete('cascade'),
-  }),
-);
-
-export const events_blocks_faq_chess_mate = pgTable(
-  'events_blocks_faq_chess_mate',
-  {
-    _order: integer('_order').notNull(),
-    _parentID: uuid('_parent_id').notNull(),
-    _path: text('_path').notNull(),
-    id: varchar('id').primaryKey(),
-    title: varchar('title').notNull().default('Често Задавани Въпроси'),
-    helperText: jsonb('helper_text')
-      .notNull()
-      .default(sql`'{"root":{"children":[{"type":"paragraph","children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Не откри твоя въпрос? ","type":"text","version":1},{"type":"link","url":"https://your-link-url.com","children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Свържи се с нас","type":"text","version":1}],"version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":" и ще го добавим!","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'::jsonb`),
-    blockName: varchar('block_name'),
-  },
-  columns => ({
-    _orderIdx: index('events_blocks_faq_chess_mate_order_idx').on(columns._order),
-    _parentIDIdx: index('events_blocks_faq_chess_mate_parent_id_idx').on(columns._parentID),
-    _pathIdx: index('events_blocks_faq_chess_mate_path_idx').on(columns._path),
-    _parentIdFk: foreignKey({
-      columns: [columns['_parentID']],
-      foreignColumns: [events.id],
-      name: 'events_blocks_faq_chess_mate_parent_id_fk',
-    }).onDelete('cascade'),
-  }),
-);
-
 export const events = pgTable(
   'events',
   {
@@ -2460,21 +2412,7 @@ export const relations_attendees = relations(attendees, ({ one }) => ({
     relationName: 'event',
   }),
 }));
-export const relations_events_blocks_q_a_block = relations(events_blocks_q_a_block, ({ one }) => ({
-  _parentID: one(events, {
-    fields: [events_blocks_q_a_block._parentID],
-    references: [events.id],
-    relationName: '_blocks_qABlock',
-  }),
-}));
-export const relations_events_blocks_faq_chess_mate = relations(events_blocks_faq_chess_mate, ({ one }) => ({
-  _parentID: one(events, {
-    fields: [events_blocks_faq_chess_mate._parentID],
-    references: [events.id],
-    relationName: '_blocks_faqChessMate',
-  }),
-}));
-export const relations_events = relations(events, ({ one, many }) => ({
+export const relations_events = relations(events, ({ one }) => ({
   thumbnail: one(media, {
     fields: [events.thumbnail],
     references: [media.id],
@@ -2484,12 +2422,6 @@ export const relations_events = relations(events, ({ one, many }) => ({
     fields: [events.speakerCompanyLogo],
     references: [media.id],
     relationName: 'speakerCompanyLogo',
-  }),
-  _blocks_qABlock: many(events_blocks_q_a_block, {
-    relationName: '_blocks_qABlock',
-  }),
-  _blocks_faqChessMate: many(events_blocks_faq_chess_mate, {
-    relationName: '_blocks_faqChessMate',
   }),
 }));
 export const relations_redirects_rels = relations(redirects_rels, ({ one }) => ({
@@ -2757,8 +2689,6 @@ type DatabaseSchema = {
   _posts_v_rels: typeof _posts_v_rels;
   categories: typeof categories;
   attendees: typeof attendees;
-  events_blocks_q_a_block: typeof events_blocks_q_a_block;
-  events_blocks_faq_chess_mate: typeof events_blocks_faq_chess_mate;
   events: typeof events;
   redirects: typeof redirects;
   redirects_rels: typeof redirects_rels;
@@ -2827,8 +2757,6 @@ type DatabaseSchema = {
   relations__posts_v: typeof relations__posts_v;
   relations_categories: typeof relations_categories;
   relations_attendees: typeof relations_attendees;
-  relations_events_blocks_q_a_block: typeof relations_events_blocks_q_a_block;
-  relations_events_blocks_faq_chess_mate: typeof relations_events_blocks_faq_chess_mate;
   relations_events: typeof relations_events;
   relations_redirects_rels: typeof relations_redirects_rels;
   relations_redirects: typeof relations_redirects;

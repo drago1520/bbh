@@ -17,7 +17,7 @@ export default function Conference({ isImageRight = true, className, ...props }:
       <div>
         <ContentSection>
           <Badge variant="brandOrange">ДИГИТАЛНИ КОНФЕРЕНЦИИ</Badge>
-          <h3 id="conference-heading" className="mt-8 text-xl font-bold lg:text-3xl">
+          <h3 id="conference-heading" className="text-h3-size mt-4">
             Развитие и нови възможности
           </h3>
           <p>Нашите конференции събитията са създадени най-добро от света на нетуъркинга и обучението, предоставяйки уникална възможност за развитие на вашия бизнес.</p>

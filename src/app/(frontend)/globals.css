@@ -220,5 +220,5 @@ html[data-theme='light'] {
 }
 
 @utility text-h3-size {
-  @apply text-xl font-bold lg:text-3xl;
+  @apply mb-4 text-3xl font-bold lg:text-3xl;
 }

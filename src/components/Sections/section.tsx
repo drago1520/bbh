@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { ContentSection, MediaSection, SectionWrapper } from './Sections/content-with-media-and-button';
+import { SectionWrapper, MediaSection, ContentSection } from './content-with-media-and-button';
 
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
@@ -21,7 +21,7 @@ export default function Section2Paragraphs({ isImageRight = false, className, ..
       <div>
         <ContentSection>
           <Badge variant="brand">Нетуъркинг</Badge>
-          <h3 id="networking-heading" className="mt-8 text-xl font-bold lg:text-3xl">
+          <h3 id="networking-heading" className="mt-4 text-xl font-bold lg:text-3xl">
             Защото новите контакти са важни
           </h3>
           <p className="pl-4 leading-relaxed italic">

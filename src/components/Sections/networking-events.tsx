@@ -17,7 +17,7 @@ export default function NetworkingEvents({ isImageRight = true, className, ...pr
       <div>
         <ContentSection>
           <Badge variant="brand">ПРЕДСТОЯЩИ</Badge>
-          <h3 id="networking-heading" className="mt-8 text-xl font-bold lg:text-3xl">
+          <h3 id="networking-heading" className="text-h3-size mt-4">
             Нетуъркинг събития
           </h3>
           <p>Нетуъркинг събитията са специално създадени за хора, които искат да създават нови връзки и да развиват бизнеса си. Нетуъркинг събитията са организирани около тема, за да предоставят възможност за професионалисти от различни области да се срещнат и да обменят идеи.</p>

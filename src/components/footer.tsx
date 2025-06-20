@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
 
           <nav aria-label="Footer navigation">
-            <h3 className="mb-4 text-sm font-semibold sm:text-base">МЕНЮ</h3>
+            <h5 className="mb-4 text-sm font-semibold sm:text-base">МЕНЮ</h5>
             <ul className="text-muted-foreground space-y-2 text-xs sm:text-sm">
               {menuLinks.map(link => (
                 <li key={link.href + link.label}>
@@ -38,7 +38,7 @@ export default function Footer() {
           </nav>
 
           <address className="not-italic">
-            <h3 className="mb-4 text-sm font-semibold sm:text-base">КОНТАКТИ</h3>
+            <h5 className="mb-4 text-sm font-semibold sm:text-base">КОНТАКТИ</h5>
             <div className="text-muted-foreground space-y-2 text-xs sm:text-sm">
               <p>
                 <Link href="tel:+359878456939" className="dark:hover:text-brand-accent hover:text-brand-primary transition-colors hover:underline">

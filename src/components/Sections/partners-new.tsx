@@ -11,7 +11,7 @@ export default function PartnersMarquee() {
         </h2>
       </div>
       <Marquee pauseOnHover pauseOnClick autoFill speed={10} className="mt-12">
-        <Image src="/cvetita-herbal.png" alt="cvetita-herbal" width={60} height={60} className="mx-12" />
+        <Image src="/cvetita-herbal.png" alt="cvetita-herbal" width={80} height={80} className="mx-12" />
       </Marquee>
     </section>
   );
