@@ -1,7 +1,7 @@
 'use client';
 //TODO add border color based on the event
 import { ArrowLeft, ArrowRight, Calendar, Clock, MapPin } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ComponentProps, useEffect, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -71,7 +71,7 @@ const DATA: DatItem[] = [
   },
 ];
 
-const UpcomingEvents = () => {
+const UpcomingEvents = ({ className, ...props }: ComponentProps<'section'>) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
@@ -102,7 +102,7 @@ const UpcomingEvents = () => {
   const progressOffset = currentIndex * progressIndicatorWidth;
 
   return (
-    <section className="relative py-20">
+    <section className={cn('relative py-20', className)} {...props}>
       <div className="relative container">
         <div className="mb-6 flex flex-col justify-between md:flex-row md:items-end">
           <div className="prose dark:prose-invert">
@@ -177,9 +177,9 @@ const UpcomingEvents = () => {
           </Carousel>
 
           {/* Progress Indicator */}
-          <div className="absolute -bottom-6 left-1/2 h-[2px] w-[240px] -translate-x-1/2 rounded bg-gray-200">
+          <div className="bg-muted absolute -bottom-6 left-1/2 h-[2px] w-[240px] -translate-x-1/2 rounded dark:top-0">
             <div
-              className="h-[2px] rounded bg-black transition-transform duration-300 ease-out"
+              className="bg-foreground h-[2px] rounded transition-transform duration-300 ease-out"
               style={{
                 width: `${progressIndicatorWidth}px`,
                 transform: `translateX(${progressOffset}px)`,

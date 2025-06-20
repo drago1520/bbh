@@ -12,6 +12,8 @@ import { getPayload } from 'payload';
 import Gallery7 from '@/components/Sections/gallery-7-shadcnblocks';
 import { Testimonial25 } from '@/components/testimonial25';
 import { UpcomingEvents } from '@/components/upcoming-event-gallery';
+import Statistics from '@/components/statistics';
+import Courses from '../about/components/courses';
 
 export default async function HomePage() {
   const config = await payloadConfig;
@@ -36,13 +38,15 @@ export default async function HomePage() {
       <Header />
       <main>
         <Hero />
-        <UpcomingEvents />
+        <UpcomingEvents className="bg-background" />
         <NetworkingEvents />
+        <Statistics />
+        <Courses className="bg-background" />
         <PartnersCarousel />
         <Conference isImageRight={false} />
+        {testimonials25Props && <Testimonial25 {...testimonials25Props} />}
         {gallery7Props && <Gallery7 {...gallery7Props} />}
         {faqBlockProps && <FAQsThree {...faqBlockProps} />}
-        {testimonials25Props && <Testimonial25 {...testimonials25Props} />}
         <News />
       </main>
       <Footer />

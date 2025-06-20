@@ -7,7 +7,7 @@ export default function Statistics({ className, withTitle = true, ...props }: Co
     <section className={cn('py-12', className)} aria-labelledby="statistics-heading" {...props}>
       <div className="container text-7xl sm:text-6xl">
         {withTitle && (
-          <h3 id="statistics-heading" className="text-h3-size text-center">
+          <h3 id="statistics-heading" className="text-h3-size mb-12 text-center">
             Статистики за компанията
           </h3>
         )}

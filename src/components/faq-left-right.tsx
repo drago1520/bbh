@@ -7,7 +7,7 @@ import RichText from './RichText';
 
 export default function FAQsThree({ QABlock, helperText, title }: FaqLeftRightBlockProps) {
   return (
-    <section className="bg-muted dark:bg-background py-20">
+    <section className="py-20">
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:gap-16">
           <div className="md:w-1/3">
