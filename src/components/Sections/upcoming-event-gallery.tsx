@@ -102,7 +102,7 @@ const UpcomingEvents = ({ className, ...props }: ComponentProps<'section'>) => {
   const progressOffset = currentIndex * progressIndicatorWidth;
 
   return (
-    <section className={cn('relative py-20', className)} {...props}>
+    <section className={cn('relative py-12', className)} {...props}>
       <div className="relative container">
         <div className="mb-6 flex flex-col justify-between md:flex-row md:items-end">
           <div className="prose dark:prose-invert">

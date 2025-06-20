@@ -23,8 +23,8 @@ export default function LatestNetworking({ isImageRight = false, className, even
   const { location, speakerName, title, date, maxGuests, thumbnail, description } = event;
   if (typeof thumbnail === 'string') throw new Error('Няма банер или снимка на лектор');
   return (
-    <section className={className} aria-labelledby="networking-heading" {...props}>
-      <div className="container py-20">
+    <section className={cn('py-20', className)} aria-labelledby="networking-heading" {...props}>
+      <div className="container">
         <div className="grid items-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
           <MediaSection isImageRight={isImageRight}>
             <Badges className="xl:hidden" />

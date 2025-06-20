@@ -1,4 +1,4 @@
-import ServiceCards from './service-cards';
+import ServiceCards from './service-cards-hero';
 
 export default function Hero() {
   return (

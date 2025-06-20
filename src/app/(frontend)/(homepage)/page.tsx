@@ -2,17 +2,17 @@ import TopBar from '@/components/top-bar';
 import Header from '@/components/header';
 import Hero from '@/app/(frontend)/(homepage)/components/hero';
 import NetworkingEvents from '@/app/(frontend)/(homepage)/components/networking-events';
-import Conference from '@/app/(frontend)/(homepage)/components/conference';
-import News from '@/app/(frontend)/(homepage)/components/news';
+import Conference from '@/components/Sections/conference';
+import News from '@/components/Sections/news';
 import Footer from '@/components/footer';
-import PartnersCarousel from './components/partners-new';
-import FAQsThree from '@/components/faq-left-right';
+import PartnersCarousel from '../../../components/Sections/partners-new';
+import FAQsThree from '@/components/Sections/faq-left-right';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
 import Gallery7 from '@/components/Sections/gallery-7-shadcnblocks';
-import { Testimonial25 } from '@/components/testimonial25';
-import { UpcomingEvents } from '@/components/upcoming-event-gallery';
-import Statistics from '@/components/statistics';
+import { Testimonial25 } from '@/components/Sections/testimonial25';
+import { UpcomingEvents } from '@/components/Sections/upcoming-event-gallery';
+import Statistics from '@/components/Sections/statistics';
 import Courses from '../about/components/courses';
 
 export default async function HomePage() {

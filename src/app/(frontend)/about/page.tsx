@@ -4,8 +4,8 @@ import AboutHero from './components/about-hero';
 import WhyAreNewcontactImportant from './components/why-are-new-contacts-important';
 import Courses from './components/courses';
 import Confrences from './components/confrences';
-import PartnersMarquee from '../(homepage)/components/partners-new';
-import Statistics from '@/components/statistics';
+import PartnersMarquee from '../../../components/Sections/partners-new';
+import Statistics from '@/components/Sections/statistics';
 
 export default function HomePage() {
   return (

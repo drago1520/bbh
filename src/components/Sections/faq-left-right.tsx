@@ -3,11 +3,11 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FaqLeftRightBlockProps } from '@/payload-types';
 import { DynamicIcon, type IconName } from 'lucide-react/dynamic';
-import RichText from './RichText';
+import RichText from '../RichText';
 
 export default function FAQsThree({ QABlock, helperText, title }: FaqLeftRightBlockProps) {
   return (
-    <section className="py-20">
+    <section className="py-12">
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:gap-16">
           <div className="md:w-1/3">

@@ -39,7 +39,7 @@ export default function ContentWithMediaAndButtonExample({ isImageRight = true, 
 
 export function SectionWrapper({ className, children, containerProps, ...props }: ComponentProps<'section'> & { containerProps?: ComponentProps<'div'> }) {
   return (
-    <section className={cn('py-8 sm:py-12', className)} aria-labelledby="networking-heading" {...props}>
+    <section className={cn('py-12', className)} aria-labelledby="networking-heading" {...props}>
       <div className={cn('container', containerProps?.className)} {...containerProps}>
         <div className="grid items-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">{children}</div>
       </div>

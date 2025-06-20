@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Testimonial25 = ({ title, helperText, ctaText, ctaHref, blocks }: Testimonial25Props) => {
   return (
-    <section className="py-32">
+    <section className="py-12">
       <div className="container">
         <div className="space-y-4">
           <div className="prose dark:prose-invert">

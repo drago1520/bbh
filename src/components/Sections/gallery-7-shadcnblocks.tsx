@@ -24,7 +24,7 @@ import { Gallery7Props, Media } from '@/payload-types';
 // };
 export default function Gallery7({ ctaText, ctaHref, heading, descr, images, rotateSpeed }: Gallery7Props) {
   return (
-    <section className="py-32">
+    <section className="py-12">
       <div className="container">
         <div className="mb-12 grid grid-cols-1 gap-x-12 gap-y-6 md:mb-16 md:grid-cols-2 md:gap-x-24">
           <div className="prose dark:prose-invert flex flex-col gap-8 md:gap-12">

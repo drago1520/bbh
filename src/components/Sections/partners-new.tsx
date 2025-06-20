@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function PartnersMarquee() {
   return (
-    <section className="py-8 lg:py-12" aria-labelledby="partners-heading">
+    <section className="py-12" aria-labelledby="partners-heading">
       <div className="container text-center">
         <p className="text-brand-accent mb-2 text-sm font-semibold">СЕ ПОДКРЕПЯМЕ ВЗАИМНО</p>
         <h2 id="partners-heading" className="text-foreground mb-6 text-lg font-bold sm:text-xl lg:mb-8 lg:text-2xl">
