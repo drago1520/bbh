@@ -35,7 +35,7 @@ export default async function HomePage() {
         <LatestNetworking event={latestEvent} className="dark:bg-background bg-teal-500/20" />
         {/* <AboutHero /> */}
         <Section2Paragraphs className="bg-background" />
-        <PartnersMarquee />
+        <PartnersMarquee className="bg-muted/40" />
         <Courses isImageRight={false} />
         <Confrences />
       </main>

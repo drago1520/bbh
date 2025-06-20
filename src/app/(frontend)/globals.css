@@ -222,3 +222,11 @@ html[data-theme='light'] {
 @utility text-h3-size {
   @apply mb-4 text-3xl font-bold lg:text-3xl;
 }
+
+@utility text-stroke-md {
+  -webkit-text-stroke: 0.4px black;
+}
+
+@utility text-stroke-sm {
+  -webkit-text-stroke: 0.2px black;
+}

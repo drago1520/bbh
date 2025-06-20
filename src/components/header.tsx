@@ -19,7 +19,7 @@ const navigationItems: NavProps[] = [
   },
   {
     title: 'НЕТУЪРКИНГ',
-    href: '#',
+    href: '/networking',
     description: 'Мястото, където ще срещнете предприемачи като вас',
     className: 'border-brand-accent',
   },

@@ -17,31 +17,31 @@ import { MediaSection } from '@/components/Sections/content-with-media-and-butto
 /**
  * @description Image is the right (dekstop) & up (mobile) by default.
  */
-export default function LatestNetworking({ isImageRight = false, event, ...props }: { isImageRight?: boolean; event: Event | undefined } & ComponentProps<'section'>) {
+export default function LatestNetworking({ isImageRight = false, event, className, ...props }: { isImageRight?: boolean; event: Event | undefined } & ComponentProps<'section'>) {
   if (!event) return;
 
   const { location, speakerName, title, date, maxGuests, thumbnail, description, speakerCompanyLogo } = event;
   if (typeof thumbnail === 'string' || typeof speakerCompanyLogo === 'string') throw new Error('Няма банер или снимка на лектор');
   return (
-    <section aria-labelledby="networking-heading" {...props}>
-      <div className="container py-20">
-        <div className="grid gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
+    <section aria-labelledby="networking-heading" className={cn('pb-32', className)} {...props}>
+      <div className="container py-32">
+        <div className="grid justify-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
           <MediaSection isImageRight={isImageRight}>
             <Badges className="xl:hidden" />
             <div className="relative size-fit rounded-full border-4 border-dashed shadow-2xl xl:mx-auto">
-              <Image src={thumbnail.url || ''} alt={thumbnail.alt || 'Снимка на лектора'} width={288} height={288} className="bg-muted size-52 rounded-full object-cover saturate-80 xl:size-72" />
+              <Image src={thumbnail.url || ''} alt={thumbnail.alt || 'Снимка на лектора'} width={288} height={288} className="bg-muted size-52 rounded-full object-cover xl:size-72" />
               <div className="absolute -bottom-2 left-0 flex w-full items-end justify-between">
                 <span className="grow [transform:perspective(500px)_rotateY(15deg)] rounded bg-teal-200 px-4 py-1 text-sm font-semibold text-nowrap shadow-lg transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)] dark:bg-teal-800">
                   {speakerName.split(' ')[0]} <br />
                   {speakerName.split(' ')[1]}
                 </span>
-                <Image src={speakerCompanyLogo?.url || ''} className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg saturate-25" alt={speakerCompanyLogo?.alt || 'Бизнес на лектора'} width={80} height={80} />
+                <Image src={speakerCompanyLogo?.url || ''} className="absolute -top-2.5 right-0 aspect-square size-16 rounded-full border-1 border-dashed bg-white object-contain shadow-lg" alt={speakerCompanyLogo?.alt || 'Бизнес на лектора'} width={80} height={80} />
               </div>
             </div>
           </MediaSection>
           <article>
             <Badges className="hidden xl:block" />
-            <h3 id="networking-heading" className="text-h3-size mb-2">
+            <h3 id="networking-heading" className="text-h3-size mt-6 mb-2">
               {title}
             </h3>
             <div className="flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
@@ -78,17 +78,21 @@ export default function LatestNetworking({ isImageRight = false, event, ...props
           </article>
         </div>
       </div>
-      <Link href="#" className="text-background dark:text-foreground relative block h-40 w-full">
-        <Image src="/location-bg-2.jpg" className="absolute top-0 left-0 h-full object-cover" width={1920} height={160} alt="Локация следващо бизнес събитие за нетуъркинг" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
-          <h4 className="text-xl font-semibold">Локация</h4>
-          <address className="flex items-center gap-1 text-sm">
-            <MapPin className="size-4" /> {location}
-          </address>
+      <div className="container grid gap-16 xl:grid-cols-2">
+        <Link href="#" className="text-background dark:text-foreground relative block h-96 w-full">
+          <Image src="/gravity-bar.jpg" className="absolute top-0 left-0 h-full rounded-md object-cover" width={1920} height={160} alt="Локация следващо бизнес събитие за нетуъркинг" />
+          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
+            <h4 className="text-stroke-md text-xl font-semibold">Локация</h4>
+            <address className="text-stroke-sm flex items-center gap-1 text-sm">
+              <MapPin className="size-4" /> {location}
+            </address>
+          </div>
+        </Link>
+        {/* Unauthorized bug fix: #https://www.perplexity.ai/search/i-am-running-localhost-with-go-4._UjgRMQTKQ4SlfyA2pXg */}
+        <div className="overflow-hidden rounded-md grayscale-75">
+          <GoogleMapsEmbed apiKey={'AIzaSyBqcwYbGqE3Uc6xg7scMXeWoeKzItrlWmw'} mode="place" width="100%" height={384} zoom="14" q={location} />
         </div>
-      </Link>
-      {/* Unauthorized bug fix: #https://www.perplexity.ai/search/i-am-running-localhost-with-go-4._UjgRMQTKQ4SlfyA2pXg */}
-      <GoogleMapsEmbed apiKey={'AIzaSyBqcwYbGqE3Uc6xg7scMXeWoeKzItrlWmw'} mode="place" width="100%" height={208} zoom="14" q={location} />
+      </div>
     </section>
   );
 }

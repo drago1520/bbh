@@ -12,7 +12,7 @@ import { SectionWrapper, MediaSection, ContentSection } from './content-with-med
  */
 export default function Section2Paragraphs({ isImageRight = false, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
-    <SectionWrapper className={cn('bg-teal-500/20', className)} {...props}>
+    <SectionWrapper className={cn('bg-teal-500/20 py-32', className)} {...props}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" width={800} height={600} className="object-contain" />
