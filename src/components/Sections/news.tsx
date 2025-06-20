@@ -44,7 +44,7 @@ export default function News() {
             Най-актуалните дигитални теми и тенденции
           </h3>
         </header>
-        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-3">
           {newsArticles.map(article => (
             <article key={article.id}>
               <Card className="group relative h-full cursor-pointer overflow-hidden transition-shadow hover:shadow-lg">

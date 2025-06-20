@@ -14,6 +14,7 @@ import { Testimonial25 } from '@/components/Sections/testimonial25';
 import { UpcomingEvents } from '@/components/Sections/upcoming-event-gallery';
 import Statistics from '@/components/Sections/statistics';
 import Courses from '../../../components/Sections/courses';
+import BusinessBreakfast from '@/components/Sections/business-breakfast';
 
 export default async function HomePage() {
   const config = await payloadConfig;
@@ -42,9 +43,10 @@ export default async function HomePage() {
         <NetworkingEvents />
         <Statistics className="bg-muted/40" />
         <Courses className="bg-background" />
-        <PartnersCarousel className="bg-muted/40" />
-        <Conference isImageRight={false} />
         {testimonials25Props && <Testimonial25 className="bg-muted/40" data={{ ...testimonials25Props }} />}
+        <Conference isImageRight={false} />
+        <PartnersCarousel className="bg-muted/40" />
+        <BusinessBreakfast className="bg-muted/40" />
         {gallery7Props && <Gallery7 data={{ ...gallery7Props }} />}
         {faqBlockProps && <FAQsThree className="bg-muted/40" data={{ ...faqBlockProps }} />}
         <News />
