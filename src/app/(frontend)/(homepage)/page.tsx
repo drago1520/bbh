@@ -1,7 +1,7 @@
 import TopBar from '@/components/top-bar';
 import Header from '@/components/header';
 import Hero from '@/app/(frontend)/(homepage)/components/hero';
-import NetworkingEvents from '@/app/(frontend)/(homepage)/components/networking-events';
+import NetworkingEvents from '@/components/Sections/networking-events';
 import Conference from '@/components/Sections/conference';
 import News from '@/components/Sections/news';
 import Footer from '@/components/footer';
@@ -13,7 +13,7 @@ import Gallery7 from '@/components/Sections/gallery-7-shadcnblocks';
 import { Testimonial25 } from '@/components/Sections/testimonial25';
 import { UpcomingEvents } from '@/components/Sections/upcoming-event-gallery';
 import Statistics from '@/components/Sections/statistics';
-import Courses from '../about/components/courses';
+import Courses from '../../../components/Sections/courses';
 
 export default async function HomePage() {
   const config = await payloadConfig;

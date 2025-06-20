@@ -1,9 +1,9 @@
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import AboutHero from './components/about-hero';
-import WhyAreNewcontactImportant from './components/why-are-new-contacts-important';
-import Courses from './components/courses';
-import Confrences from './components/confrences';
+import WhyAreNewcontactImportant from '../../../components/Sections/why-are-new-contacts-important';
+import Courses from '../../../components/Sections/courses';
+import Confrences from '../../../components/Sections/confrences';
 import PartnersMarquee from '../../../components/Sections/partners-new';
 import Statistics from '@/components/Sections/statistics';
 
