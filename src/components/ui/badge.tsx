@@ -13,7 +13,7 @@ const badgeVariants = cva('inline-flex items-center justify-center rounded-md bo
       outline: 'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
       brand: 'border-transparent bg-teal-500 text-white [a&]:hover:bg-teal-500/80',
       brandPurle: 'border-transparent bg-purple-400 text-white [a&]:hover:bg-purple-300/80',
-      brandOrange: 'border-transparent bg-orange-300 text-white dark:bg-orange-400 [a&]:hover:bg-orange-400/90',
+      brandOrange: 'border-transparent bg-brand-orange text-white dark:bg-orange-400 [a&]:hover:bg-orange-400/90',
     },
   },
   defaultVariants: {

@@ -5,6 +5,7 @@ import WhyAreNewcontactImportant from './components/why-are-new-contacts-importa
 import Courses from './components/courses';
 import Confrences from './components/confrences';
 import PartnersMarquee from '../(homepage)/components/partners-new';
+import Statistics from '@/components/statistics';
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Header />
       <main>
         <AboutHero />
+        <Statistics withTitle={false} className="pt-0" />
         <WhyAreNewcontactImportant />
         <PartnersMarquee />
         <Courses isImageRight={false} />
