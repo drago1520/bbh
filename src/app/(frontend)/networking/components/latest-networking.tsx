@@ -20,8 +20,9 @@ import { MediaSection } from '@/components/Sections/content-with-media-and-butto
 export default function LatestNetworking({ isImageRight = false, event, className, ...props }: { isImageRight?: boolean; event: Event | undefined } & ComponentProps<'section'>) {
   if (!event) return;
 
-  const { location, speakerName, title, date, maxGuests, thumbnail, description, speakerCompanyLogo } = event;
-  if (typeof thumbnail === 'string' || typeof speakerCompanyLogo === 'string') throw new Error('Няма банер или снимка на лектор');
+  const { speakerName, title, date, maxGuests, thumbnail, description, speakerCompanyLogo, location, locationImg } = event;
+  if (typeof thumbnail === 'string' || typeof speakerCompanyLogo === 'string' || typeof locationImg === 'string') throw new Error('Няма банер или снимка');
+  const showLocation = location && (locationImg || location.toLowerCase().includes('gravity'));
   return (
     <section aria-labelledby="networking-heading" className={cn('pb-32', className)} {...props}>
       <div className="container py-32">
@@ -78,21 +79,23 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
           </article>
         </div>
       </div>
-      <div className="container grid gap-16 xl:grid-cols-2">
-        <Link href="#" className="text-background dark:text-foreground relative block h-96 w-full">
-          <Image src="/gravity-bar.jpg" className="absolute top-0 left-0 h-full rounded-md object-cover" width={1920} height={160} alt="Локация следващо бизнес събитие за нетуъркинг" />
-          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
-            <h4 className="text-stroke-md text-xl font-semibold">Локация</h4>
-            <address className="text-stroke-sm flex items-center gap-1 text-sm">
-              <MapPin className="size-4" /> {location}
-            </address>
+      {showLocation && (
+        <div className="container grid gap-16 xl:grid-cols-2">
+          <Link href="#" className="text-background dark:text-foreground relative block h-96 w-full">
+            <Image src={locationImg?.url || '/gravity-bar.jpg'} className="absolute top-0 left-0 h-full rounded-md object-cover" width={1920} height={160} alt={locationImg?.alt || 'Локация следващо бизнес събитие за нетуъркинг'} />
+            <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
+              <h4 className="text-stroke-md text-xl font-semibold">Локация</h4>
+              <address className="text-stroke-sm flex items-center gap-1 text-sm">
+                <MapPin className="size-4" /> {location}
+              </address>
+            </div>
+          </Link>
+          {/* Unauthorized bug fix: #https://www.perplexity.ai/search/i-am-running-localhost-with-go-4._UjgRMQTKQ4SlfyA2pXg */}
+          <div className="overflow-hidden rounded-md grayscale-75">
+            <GoogleMapsEmbed apiKey={'AIzaSyBqcwYbGqE3Uc6xg7scMXeWoeKzItrlWmw'} mode="place" width="100%" height={384} zoom="14" q={location} />
           </div>
-        </Link>
-        {/* Unauthorized bug fix: #https://www.perplexity.ai/search/i-am-running-localhost-with-go-4._UjgRMQTKQ4SlfyA2pXg */}
-        <div className="overflow-hidden rounded-md grayscale-75">
-          <GoogleMapsEmbed apiKey={'AIzaSyBqcwYbGqE3Uc6xg7scMXeWoeKzItrlWmw'} mode="place" width="100%" height={384} zoom="14" q={location} />
         </div>
-      </div>
+      )}
     </section>
   );
 }

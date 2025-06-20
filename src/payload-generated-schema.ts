@@ -1410,7 +1410,6 @@ export const events = pgTable(
     type: enum_events_type('type').notNull(),
     date: timestamp('date', { mode: 'string', withTimezone: true, precision: 3 }).notNull(),
     active: enum_events_active('active').notNull().default('true'),
-    location: varchar('location').notNull().default('Gravity Ruin Bar, ет.2, Бургас'),
     speakerName: varchar('speaker_name').notNull(),
     maxGuests: varchar('max_guests').default('60'),
     thumbnail: uuid('thumbnail_id')
@@ -1421,6 +1420,10 @@ export const events = pgTable(
     speakerCompanyLogo: uuid('speaker_company_logo_id').references(() => media.id, {
       onDelete: 'set null',
     }),
+    location: varchar('location').default('Gravity Ruin Bar, ет.2, Бургас'),
+    locationImg: uuid('location_img_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
     updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
@@ -1429,10 +1432,11 @@ export const events = pgTable(
     events_type_idx: index('events_type_idx').on(columns.type),
     events_date_idx: index('events_date_idx').on(columns.date),
     events_active_idx: index('events_active_idx').on(columns.active),
-    events_location_idx: index('events_location_idx').on(columns.location),
     events_speaker_name_idx: index('events_speaker_name_idx').on(columns.speakerName),
     events_thumbnail_idx: index('events_thumbnail_idx').on(columns.thumbnail),
     events_speaker_company_logo_idx: index('events_speaker_company_logo_idx').on(columns.speakerCompanyLogo),
+    events_location_idx: index('events_location_idx').on(columns.location),
+    events_location_img_idx: index('events_location_img_idx').on(columns.locationImg),
     events_updated_at_idx: index('events_updated_at_idx').on(columns.updatedAt),
     events_created_at_idx: index('events_created_at_idx').on(columns.createdAt),
   }),
@@ -2422,6 +2426,11 @@ export const relations_events = relations(events, ({ one }) => ({
     fields: [events.speakerCompanyLogo],
     references: [media.id],
     relationName: 'speakerCompanyLogo',
+  }),
+  locationImg: one(media, {
+    fields: [events.locationImg],
+    references: [media.id],
+    relationName: 'locationImg',
   }),
 }));
 export const relations_redirects_rels = relations(redirects_rels, ({ one }) => ({

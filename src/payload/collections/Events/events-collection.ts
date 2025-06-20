@@ -71,18 +71,6 @@ export const Events: CollectionConfig = {
       index: true,
     },
     {
-      name: 'location',
-      label: 'Локация',
-      type: 'text',
-      index: true,
-      required: true,
-      admin: {
-        description: 'Важно: Провери дали излиза в Google maps като пръв резултат.',
-        placeholder: 'Ресторант Dock 5',
-      },
-      defaultValue: 'Gravity Ruin Bar, ет.2, Бургас',
-    },
-    {
       name: 'speakerName',
       label: 'Име на лектора',
       type: 'text',
@@ -122,6 +110,26 @@ export const Events: CollectionConfig = {
         description: 'Препоръчително 1:1 съотношение. Например: 64x64px.',
       },
       // required: true
+    },
+    {
+      name: 'location',
+      label: 'Локация',
+      type: 'text',
+      index: true,
+      admin: {
+        description: 'Важно: Провери дали излиза в Google maps като пръв резултат.',
+        placeholder: 'Ресторант Dock 5',
+      },
+      defaultValue: 'Gravity Ruin Bar, ет.2, Бургас',
+    },
+    {
+      name: 'locationImg',
+      label: 'Снимка на локацията отвън',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Gravity bar по подразбиране',
+      },
     },
   ],
   access: {
