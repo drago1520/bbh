@@ -725,17 +725,17 @@ export interface Event {
    */
   maxGuests?: string | null;
   /**
-   * Препоръчително 1:1 съотношение. Например: 300x300px най-добре. Thumbnail или снимка на лектор. За сега е кръгла.
+   * Препоръчително 1920x1005px (Facebook event banner).
    */
   thumbnail: string | Media;
-  /**
-   * Препоръчително 1:1 съотношение. Например: 64x64px.
-   */
-  speakerCompanyLogo?: (string | null) | Media;
   /**
    * Важно: Провери дали излиза в Google maps като пръв резултат.
    */
   location?: string | null;
+  /**
+   * По подразбиране е Gravity Ruin Bar. Може да генерирате url от Google maps > потърси мястото > Бутон "Share".
+   */
+  locationUrl?: string | null;
   /**
    * Gravity bar по подразбиране
    */
@@ -1315,8 +1315,8 @@ export interface EventsSelect<T extends boolean = true> {
   speakerName?: T;
   maxGuests?: T;
   thumbnail?: T;
-  speakerCompanyLogo?: T;
   location?: T;
+  locationUrl?: T;
   locationImg?: T;
   updatedAt?: T;
   createdAt?: T;

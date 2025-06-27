@@ -1417,10 +1417,8 @@ export const events = pgTable(
       .references(() => media.id, {
         onDelete: 'set null',
       }),
-    speakerCompanyLogo: uuid('speaker_company_logo_id').references(() => media.id, {
-      onDelete: 'set null',
-    }),
     location: varchar('location').default('Gravity Ruin Bar, ет.2, Бургас'),
+    locationUrl: varchar('location_url').default('https://maps.app.goo.gl/FSebWqtrExL7ZdfFA'),
     locationImg: uuid('location_img_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -1434,8 +1432,8 @@ export const events = pgTable(
     events_active_idx: index('events_active_idx').on(columns.active),
     events_speaker_name_idx: index('events_speaker_name_idx').on(columns.speakerName),
     events_thumbnail_idx: index('events_thumbnail_idx').on(columns.thumbnail),
-    events_speaker_company_logo_idx: index('events_speaker_company_logo_idx').on(columns.speakerCompanyLogo),
     events_location_idx: index('events_location_idx').on(columns.location),
+    events_location_url_idx: index('events_location_url_idx').on(columns.locationUrl),
     events_location_img_idx: index('events_location_img_idx').on(columns.locationImg),
     events_updated_at_idx: index('events_updated_at_idx').on(columns.updatedAt),
     events_created_at_idx: index('events_created_at_idx').on(columns.createdAt),
@@ -2421,11 +2419,6 @@ export const relations_events = relations(events, ({ one }) => ({
     fields: [events.thumbnail],
     references: [media.id],
     relationName: 'thumbnail',
-  }),
-  speakerCompanyLogo: one(media, {
-    fields: [events.speakerCompanyLogo],
-    references: [media.id],
-    relationName: 'speakerCompanyLogo',
   }),
   locationImg: one(media, {
     fields: [events.locationImg],

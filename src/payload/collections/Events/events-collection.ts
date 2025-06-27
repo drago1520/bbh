@@ -97,19 +97,9 @@ export const Events: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Препоръчително 1:1 съотношение. Например: 300x300px най-добре. Thumbnail или снимка на лектор. За сега е кръгла.',
+        description: 'Препоръчително 1920x1005px (Facebook event banner).',
       },
       required: true,
-    },
-    {
-      name: 'speakerCompanyLogo',
-      label: 'Лого на компанията на лектора',
-      type: 'upload',
-      relationTo: 'media',
-      admin: {
-        description: 'Препоръчително 1:1 съотношение. Например: 64x64px.',
-      },
-      // required: true
     },
     {
       name: 'location',
@@ -121,6 +111,17 @@ export const Events: CollectionConfig = {
         placeholder: 'Ресторант Dock 5',
       },
       defaultValue: 'Gravity Ruin Bar, ет.2, Бургас',
+    },
+    {
+      name: 'locationUrl',
+      label: 'URL на локацията в Google maps',
+      type: 'text',
+      index: true,
+      admin: {
+        description: 'По подразбиране е Gravity Ruin Bar. Може да генерирате url от Google maps > потърси мястото > Бутон "Share".',
+        placeholder: 'https://maps.app.goo.gl/FSebWqtrExL7ZdfFA',
+      },
+      defaultValue: 'https://maps.app.goo.gl/FSebWqtrExL7ZdfFA',
     },
     {
       name: 'locationImg',
