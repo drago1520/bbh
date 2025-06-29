@@ -21,6 +21,9 @@ export default async function HomePage() {
       active: {
         equals: true,
       },
+      date: {
+        greater_than: new Date().toISOString(),
+      },
     },
   });
   const [latestEvent] = docs;
