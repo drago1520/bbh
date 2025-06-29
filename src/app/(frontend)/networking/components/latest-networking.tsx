@@ -31,7 +31,7 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
           <Image src={thumbnail.url || ''} alt={thumbnail.alt} width={thumbnail?.width || 1920} height={thumbnail.height || 1005} className="rounded-md object-contain shadow-xl" />
         </div>
         <div className="grid justify-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
-          <MediaSection isImageRight={isImageRight} className="hidden space-y-16 rounded-md xl:block xl:bg-teal-50 xl:p-8">
+          <MediaSection isImageRight={isImageRight} className="hidden space-y-16 rounded-md xl:block xl:bg-gray-50 xl:p-8">
             {showLocation && (
               <div className="grid h-60 grid-cols-2 justify-between gap-16">
                 <Link target="_blank" href={locationUrl || '#'} className="relative w-full rounded-md text-gray-50 shadow-md">
@@ -77,11 +77,11 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
               )}
               <div className="mt-3">
                 <SignUpDialog eventId={event.id}>
-                  <Button>
+                  <Button size="lg">
                     ЗАПИШИ СЕ <Plus />
                   </Button>
                 </SignUpDialog>
-                <Button className="ml-4" variant="secondary" asChild>
+                <Button className="ml-4" variant="secondary" size="lg" asChild>
                   <Link href="#">
                     ПРОЧЕТИ ПОВЕЧЕ <ArrowRight />
                   </Link>

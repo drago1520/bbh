@@ -33,9 +33,8 @@ export default async function HomePage() {
       <main>
         <NetworkingHeader />
         <LatestNetworking event={latestEvent} />
-        {/* <AboutHero /> */}
-        <Section2Paragraphs className="bg-background" />
-        <PartnersMarquee className="bg-muted/40" />
+        <Section2Paragraphs className="bg-muted/40" />
+        <PartnersMarquee className="" />
         <Courses isImageRight={false} />
         <Confrences />
       </main>
