@@ -16,11 +16,11 @@ export default async function HomePage() {
   const payload = await getPayload({ config: config });
   const { docs } = await payload.find({
     collection: 'events',
-    sort: 'date',
+    sort: '-date',
     depth: 40,
     where: {
       active: {
-        equals: enum_events_active.enumValues[1],
+        equals: true,
       },
     },
   });

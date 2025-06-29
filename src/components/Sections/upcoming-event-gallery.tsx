@@ -1,5 +1,4 @@
 'use client';
-//TODO add border color based on the event
 import { ArrowLeft, ArrowRight, Calendar, Clock, MapPin } from 'lucide-react';
 import { ComponentProps, useEffect, useState } from 'react';
 
@@ -10,6 +9,9 @@ import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carouse
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { Event } from '@/payload-types';
+import { errorMsgs } from '@/utils/error';
+import { formatToBulgarianDate } from '@/utils/format-bulgarian-datetime';
 
 interface DatItem {
   id: string;
@@ -71,7 +73,11 @@ const DATA: DatItem[] = [
   },
 ];
 
-const UpcomingEvents = ({ className, ...props }: ComponentProps<'section'>) => {
+const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section'> & { events: Event[] }) => {
+  events = events.map(event => {
+    if (typeof event.thumbnail === 'string') throw new Error(errorMsgs.imgIsString);
+    return event;
+  });
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
@@ -128,43 +134,39 @@ const UpcomingEvents = ({ className, ...props }: ComponentProps<'section'>) => {
             }}
           >
             <CarouselContent className="-ml-1 pb-10 xl:-ml-15">
-              {DATA.map(({ id, hoverImage, title, tag }) => (
-                <CarouselItem key={id} className={cn('h-full min-w-[334px] flex-1 sm:min-w-[400px] xl:min-w-[420px] xl:pl-16')}>
+              {events.map(({ id, thumbnail, title, type, date, locationUrl, location }) => (
+                <CarouselItem key={id} className={cn('h-full max-w-[650px] min-w-[334px] flex-1 sm:min-w-[400px] xl:min-w-[420px] xl:pl-16')}>
                   <div className="bg-background/50 rounded-md border border-b-6 border-b-teal-500 p-4 shadow-md backdrop-blur-xs">
                     <div className="relative flex h-full flex-col items-start justify-start gap-2">
                       <div className="w-full">
                         <div className="group relative z-10 overflow-hidden rounded-2xl">
                           <Link href={`/services/${id}`}>
-                            <Image width={800} height={800} src={hoverImage} alt={title} className="group-hover:opacity-0-OLD aspect-square h-full w-full object-cover transition-opacity duration-500" />
+                            <Image width={500} height={260} src={(typeof thumbnail !== 'string' && thumbnail.url) || ''} alt={title} className="group-hover:opacity-0-OLD aspect-[1.91/1] h-full w-full object-cover transition-opacity duration-500" />
                           </Link>
                           {/* <Image width={800} height={800} src={image} alt={title} className="absolute top-0 left-0 z-10 aspect-square h-full w-full rounded-2xl object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> */}
 
                           <Badge className="bg-background absolute top-4 left-4 px-4 py-1" variant="outline">
-                            {tag}
+                            {type}
                           </Badge>
                         </div>
                       </div>
-                      <div className="prose dark:prose-invert flex flex-col gap-1">
-                        <h4 className="mt-2">{title}</h4>
+                      <div className="prose dark:prose-invert">
+                        <h4 className="mt-2 text-xl">{title}</h4>
                         <div className="flex flex-wrap gap-2 space-x-2">
                           <div className="flex items-center gap-2">
                             <Calendar className="text-brand-accent h-4 w-4" />
-                            <span className="font-medium">19.06.2025</span>
+                            <span className="text-muted-foreground font-medium">{formatToBulgarianDate(date)}</span>
                           </div>
-
-                          <div className="flex items-center gap-2">
-                            <Clock className="text-brand-accent h-4 w-4" />
-                            <span className="font-medium">19:00 ч.</span>
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            <MapPin className="text-brand-accent h-4 w-4" />
-                            <span className="font-medium">Burgas Gravity Bar</span>
-                          </div>
+                          <Button variant={'link'} asChild>
+                            <Link href={locationUrl || '#'} className="flex items-center gap-2">
+                              <MapPin className="text-brand-accent h-4 w-4" />
+                              <span className="text-muted-foreground font-medium">{location}</span>
+                            </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
-                    <div className="mt-8 flex w-full flex-col gap-4 xl:flex-row">
+                    <div className="mt-8 flex w-full flex-col gap-4 pb-2 xl:flex-row">
                       <Button size="lg">Запиши се</Button>
                       <Button size="lg" variant="secondary">
                         Разгледай

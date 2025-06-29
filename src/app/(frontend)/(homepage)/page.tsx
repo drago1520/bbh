@@ -15,6 +15,7 @@ import { UpcomingEvents } from '@/components/Sections/upcoming-event-gallery';
 import Statistics from '@/components/Sections/statistics';
 import Courses from '../../../components/Sections/courses';
 import BusinessBreakfast from '@/components/Sections/business-breakfast';
+import { enum_events_active } from '@/payload-generated-schema';
 
 export default async function HomePage() {
   const config = await payloadConfig;
@@ -33,19 +34,37 @@ export default async function HomePage() {
   const gallery7Props = homePage.blocks.find(block => block.blockType === 'gallery7');
   const testimonials25Props = homePage.blocks.find(block => block.blockType === 'testimonial25Block');
 
+  const { docs: events } = await payload.find({
+    collection: 'events',
+    sort: '-date',
+    where: {
+      and: [
+        {
+          active: {
+            equals: true,
+          },
+        },
+        {
+          date: {
+            greater_than: new Date().toISOString(),
+          },
+        },
+      ],
+    },
+  });
   return (
     <div className="min-h-screen">
       <TopBar />
       <Header />
       <main>
         <Hero heroImg={homePage.heroImg} />
-        <UpcomingEvents className="bg-background" />
-        <NetworkingEvents />
-        <Statistics className="bg-muted/40" />
-        <Courses className="bg-background" />
-        {testimonials25Props && <Testimonial25 className="bg-muted/40" data={{ ...testimonials25Props }} />}
-        <Conference isImageRight={false} />
-        <PartnersCarousel className="bg-muted/40" />
+        <UpcomingEvents events={events} />
+        <NetworkingEvents className="bg-muted/40" />
+        <Statistics />
+        <Courses className="bg-muted/40" />
+        {testimonials25Props && <Testimonial25 className="" data={{ ...testimonials25Props }} />}
+        <Conference className="bg-muted/40" isImageRight={false} />
+        <PartnersCarousel />
         <BusinessBreakfast className="bg-muted/40" />
         {gallery7Props && <Gallery7 data={{ ...gallery7Props }} />}
         {faqBlockProps && <FAQsThree className="bg-muted/40" data={{ ...faqBlockProps }} />}

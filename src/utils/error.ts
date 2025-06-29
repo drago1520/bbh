@@ -20,3 +20,7 @@ export function errorLogger(e: unknown, consoleErrorMsg: unknown = e, withToast 
 }
 
 export type ErrorLogger = ReturnType<typeof errorLogger>;
+
+export const errorMsgs = {
+  imgIsString: 'Image type is NOT Media. Probably provided wrong depth to Payload Local API',
+};

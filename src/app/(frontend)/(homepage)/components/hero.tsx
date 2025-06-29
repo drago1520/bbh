@@ -1,8 +1,9 @@
 import { Page } from '@/payload-types';
 import ServiceCards from './service-cards-hero';
+import { errorMsgs } from '@/utils/error';
 
 export default function Hero({ heroImg }: { heroImg: Page['heroImg'] }) {
-  if (typeof heroImg === 'string') throw new Error('Image type is NOT Media. Probably provided wrong depth to Payload Local API');
+  if (typeof heroImg === 'string') throw new Error(errorMsgs.imgIsString);
 
   return (
     <section className="relative flex flex-col">

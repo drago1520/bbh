@@ -56,12 +56,16 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
               {title}
             </h3>
             <div className="flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
-              <Link href="#" className="prose dark:prose-invert decoration-muted-foreground flex items-center gap-1 underline underline-offset-4">
-                <Calendar className="size-4" /> {formatToBulgarianDate(date)}
-              </Link>
-              <Link href="#" className="prose dark:prose-invert decoration-muted-foreground flex items-center gap-1 underline underline-offset-4">
-                <MapPin className="size-4" /> <span>{location}</span>
-              </Link>
+              <Button variant={'link'} asChild className="pl-0">
+                <Link href="#" className="prose dark:prose-invert flex items-center gap-1">
+                  <Calendar className="size-4" /> {formatToBulgarianDate(date)}
+                </Link>
+              </Button>
+              <Button variant={'link'} asChild>
+                <Link href="#" className="prose dark:prose-invert flex items-center gap-1">
+                  <MapPin className="size-4" /> <span>{location}</span>
+                </Link>
+              </Button>
             </div>
             <div className="mt-6">
               <RichText data={description} />
