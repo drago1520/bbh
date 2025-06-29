@@ -9,7 +9,7 @@ import Courses from '../../../components/Sections/courses';
 import Confrences from '../../../components/Sections/confrences';
 import Section2Paragraphs from '@/components/Sections/section';
 // import ContentWithMediaAndButtonExample from '@/components/Sections/content-with-media-and-button';
-
+export const dynamic = 'force-dynamic';
 export default async function HomePage() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });

@@ -15,6 +15,7 @@ import { UpcomingEvents } from '@/components/Sections/upcoming-event-gallery';
 import Statistics from '@/components/Sections/statistics';
 import Courses from '../../../components/Sections/courses';
 import BusinessBreakfast from '@/components/Sections/business-breakfast';
+export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   const config = await payloadConfig;

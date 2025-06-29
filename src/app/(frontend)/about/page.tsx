@@ -9,6 +9,7 @@ import Statistics from '@/components/Sections/statistics';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
 
+export const dynamic = 'force-dynamic';
 export default async function HomePage() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });

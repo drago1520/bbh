@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Contact Us',
   description: 'Get in touch with our team',
 };
-
+export const dynamic = 'force-dynamic';
 // Form submission handlers
 async function handleContactSubmit(formData: FormData) {
   'use server';
