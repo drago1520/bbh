@@ -6,14 +6,34 @@ import Courses from '../../../components/Sections/courses';
 import Confrences from '../../../components/Sections/confrences';
 import PartnersMarquee from '../../../components/Sections/partners-new';
 import Statistics from '@/components/Sections/statistics';
+import payloadConfig from '@payload-config';
+import { getPayload } from 'payload';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const config = await payloadConfig;
+  const payload = await getPayload({ config: config });
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'about',
+      },
+    },
+    limit: 1,
+  });
+  if (docs.length < 1) {
+    console.error('No data for /about. Check if exists or the slug.');
+    return;
+  }
+  const [aboutPage] = docs;
+  const statisticsProps = aboutPage.blocks.find(block => block.blockType === 'statistics');
+
   return (
     <div className="min-h-screen">
       <Header />
       <main>
         <AboutHero className="pb-8" />
-        <Statistics withTitle={false} className="pt-0" />
+        {statisticsProps && <Statistics data={statisticsProps} withTitle={false} className="pt-0" />}
         <WhyAreNewcontactImportant />
         <PartnersMarquee />
         <Courses isImageRight={false} />

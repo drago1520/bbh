@@ -15,7 +15,6 @@ import { UpcomingEvents } from '@/components/Sections/upcoming-event-gallery';
 import Statistics from '@/components/Sections/statistics';
 import Courses from '../../../components/Sections/courses';
 import BusinessBreakfast from '@/components/Sections/business-breakfast';
-import { enum_events_active } from '@/payload-generated-schema';
 
 export default async function HomePage() {
   const config = await payloadConfig;
@@ -29,10 +28,12 @@ export default async function HomePage() {
     },
     limit: 1,
   });
+  if (docs.length < 1) throw new Error('No data found for the homepage. Check the slug.');
   const [homePage] = docs;
   const faqBlockProps = homePage.blocks.find(block => block.blockType === 'faqChessMate');
   const gallery7Props = homePage.blocks.find(block => block.blockType === 'gallery7');
   const testimonials25Props = homePage.blocks.find(block => block.blockType === 'testimonial25Block');
+  const statisticsProps = homePage.blocks.find(block => block.blockType === 'statistics');
 
   const { docs: events } = await payload.find({
     collection: 'events',
@@ -60,14 +61,14 @@ export default async function HomePage() {
         <Hero heroImg={homePage.heroImg} />
         <UpcomingEvents events={events} />
         <NetworkingEvents className="bg-muted/40" />
-        <Statistics />
+        {statisticsProps && <Statistics data={statisticsProps} />}
         <Courses className="bg-muted/40" />
-        {testimonials25Props && <Testimonial25 className="" data={{ ...testimonials25Props }} />}
+        {testimonials25Props && <Testimonial25 className="" data={testimonials25Props} />}
         <Conference className="bg-muted/40" isImageRight={false} />
         <PartnersCarousel />
         <BusinessBreakfast className="bg-muted/40" />
-        {gallery7Props && <Gallery7 data={{ ...gallery7Props }} />}
-        {faqBlockProps && <FAQsThree className="bg-muted/40" data={{ ...faqBlockProps }} />}
+        {gallery7Props && <Gallery7 data={gallery7Props} />}
+        {faqBlockProps && <FAQsThree className="bg-muted/40" data={faqBlockProps} />}
         <News />
       </main>
       <Footer />

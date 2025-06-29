@@ -5,7 +5,6 @@ import PartnersMarquee from '../../../components/Sections/partners-new';
 import LatestNetworking from './components/latest-networking';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
-import { enum_events_active } from '@/payload-generated-schema';
 import Courses from '../../../components/Sections/courses';
 import Confrences from '../../../components/Sections/confrences';
 import Section2Paragraphs from '@/components/Sections/section';

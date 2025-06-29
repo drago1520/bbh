@@ -197,7 +197,7 @@ export interface Page {
    * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
    */
   heroImg?: (string | null) | Media;
-  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props)[];
+  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props | StatisticsProps)[];
   meta?: {
     title?: string | null;
     /**
@@ -323,6 +323,34 @@ export interface Testimonial25CardProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'testimonial25CardBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatisticsProps".
+ */
+export interface StatisticsProps {
+  /**
+   * само понякога се показва
+   */
+  title?: string | null;
+  statisticsData: {
+    /**
+     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
+     */
+    icon?: (string | null) | Media;
+    value: number;
+    /**
+     * Показва се точно до числото, а НЕ на нов ред като описанието.
+     */
+    suffix?: string | null;
+    description: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'statistic';
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'statistics';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1011,6 +1039,7 @@ export interface PagesSelect<T extends boolean = true> {
         faqChessMate?: T | FaqLeftRightBlockPropsSelect<T>;
         gallery7?: T | Gallery7PropsSelect<T>;
         testimonial25Block?: T | Testimonial25PropsSelect<T>;
+        statistics?: T | StatisticsPropsSelect<T>;
       };
   meta?:
     | T
@@ -1092,6 +1121,29 @@ export interface Testimonial25CardPropsSelect<T extends boolean = true> {
   author?: T;
   role?: T;
   company?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatisticsProps_select".
+ */
+export interface StatisticsPropsSelect<T extends boolean = true> {
+  title?: T;
+  statisticsData?:
+    | T
+    | {
+        statistic?:
+          | T
+          | {
+              icon?: T;
+              value?: T;
+              suffix?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   id?: T;
   blockName?: T;
 }

@@ -227,6 +227,56 @@ export const pages_blocks_testimonial25_block = pgTable(
   }),
 );
 
+export const pages_blocks_statistic = pgTable(
+  'pages_blocks_statistic',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    icon: uuid('icon_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    value: numeric('value'),
+    suffix: varchar('suffix'),
+    description: varchar('description'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_statistic_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_statistic_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('pages_blocks_statistic_path_idx').on(columns._path),
+    pages_blocks_statistic_icon_idx: index('pages_blocks_statistic_icon_idx').on(columns.icon),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_statistic_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const pages_blocks_statistics = pgTable(
+  'pages_blocks_statistics',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_statistics_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_statistics_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('pages_blocks_statistics_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_statistics_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const pages = pgTable(
   'pages',
   {
@@ -411,6 +461,58 @@ export const _pages_v_blocks_testimonial25_block = pgTable(
       columns: [columns['_parentID']],
       foreignColumns: [_pages_v.id],
       name: '_pages_v_blocks_testimonial25_block_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_statistic = pgTable(
+  '_pages_v_blocks_statistic',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    icon: uuid('icon_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    value: numeric('value'),
+    suffix: varchar('suffix'),
+    description: varchar('description'),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_statistic_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_statistic_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_pages_v_blocks_statistic_path_idx').on(columns._path),
+    _pages_v_blocks_statistic_icon_idx: index('_pages_v_blocks_statistic_icon_idx').on(columns.icon),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_statistic_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_statistics = pgTable(
+  '_pages_v_blocks_statistics',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    title: varchar('title'),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_statistics_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_statistics_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_pages_v_blocks_statistics_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_statistics_parent_id_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -1876,6 +1978,25 @@ export const relations_pages_blocks_testimonial25_block = relations(pages_blocks
     relationName: '_blocks_testimonial25Block',
   }),
 }));
+export const relations_pages_blocks_statistic = relations(pages_blocks_statistic, ({ one }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_statistic._parentID],
+    references: [pages.id],
+    relationName: '_blocks_statistic',
+  }),
+  icon: one(media, {
+    fields: [pages_blocks_statistic.icon],
+    references: [media.id],
+    relationName: 'icon',
+  }),
+}));
+export const relations_pages_blocks_statistics = relations(pages_blocks_statistics, ({ one }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_statistics._parentID],
+    references: [pages.id],
+    relationName: '_blocks_statistics',
+  }),
+}));
 export const relations_pages_rels = relations(pages_rels, ({ one }) => ({
   parent: one(pages, {
     fields: [pages_rels.parent],
@@ -1908,6 +2029,12 @@ export const relations_pages = relations(pages, ({ one, many }) => ({
   }),
   _blocks_testimonial25Block: many(pages_blocks_testimonial25_block, {
     relationName: '_blocks_testimonial25Block',
+  }),
+  _blocks_statistic: many(pages_blocks_statistic, {
+    relationName: '_blocks_statistic',
+  }),
+  _blocks_statistics: many(pages_blocks_statistics, {
+    relationName: '_blocks_statistics',
   }),
   meta_image: one(media, {
     fields: [pages.meta_image],
@@ -1958,6 +2085,25 @@ export const relations__pages_v_blocks_testimonial25_block = relations(_pages_v_
     relationName: '_blocks_testimonial25Block',
   }),
 }));
+export const relations__pages_v_blocks_statistic = relations(_pages_v_blocks_statistic, ({ one }) => ({
+  _parentID: one(_pages_v, {
+    fields: [_pages_v_blocks_statistic._parentID],
+    references: [_pages_v.id],
+    relationName: '_blocks_statistic',
+  }),
+  icon: one(media, {
+    fields: [_pages_v_blocks_statistic.icon],
+    references: [media.id],
+    relationName: 'icon',
+  }),
+}));
+export const relations__pages_v_blocks_statistics = relations(_pages_v_blocks_statistics, ({ one }) => ({
+  _parentID: one(_pages_v, {
+    fields: [_pages_v_blocks_statistics._parentID],
+    references: [_pages_v.id],
+    relationName: '_blocks_statistics',
+  }),
+}));
 export const relations__pages_v_rels = relations(_pages_v_rels, ({ one }) => ({
   parent: one(_pages_v, {
     fields: [_pages_v_rels.parent],
@@ -1995,6 +2141,12 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   }),
   _blocks_testimonial25Block: many(_pages_v_blocks_testimonial25_block, {
     relationName: '_blocks_testimonial25Block',
+  }),
+  _blocks_statistic: many(_pages_v_blocks_statistic, {
+    relationName: '_blocks_statistic',
+  }),
+  _blocks_statistics: many(_pages_v_blocks_statistics, {
+    relationName: '_blocks_statistics',
   }),
   version_meta_image: one(media, {
     fields: [_pages_v.version_meta_image],
@@ -2664,6 +2816,8 @@ type DatabaseSchema = {
   pages_blocks_gallery7: typeof pages_blocks_gallery7;
   pages_blocks_testimonial25_card_block: typeof pages_blocks_testimonial25_card_block;
   pages_blocks_testimonial25_block: typeof pages_blocks_testimonial25_block;
+  pages_blocks_statistic: typeof pages_blocks_statistic;
+  pages_blocks_statistics: typeof pages_blocks_statistics;
   pages: typeof pages;
   pages_rels: typeof pages_rels;
   _pages_v_blocks_q_a_block: typeof _pages_v_blocks_q_a_block;
@@ -2671,6 +2825,8 @@ type DatabaseSchema = {
   _pages_v_blocks_gallery7: typeof _pages_v_blocks_gallery7;
   _pages_v_blocks_testimonial25_card_block: typeof _pages_v_blocks_testimonial25_card_block;
   _pages_v_blocks_testimonial25_block: typeof _pages_v_blocks_testimonial25_block;
+  _pages_v_blocks_statistic: typeof _pages_v_blocks_statistic;
+  _pages_v_blocks_statistics: typeof _pages_v_blocks_statistics;
   _pages_v: typeof _pages_v;
   _pages_v_rels: typeof _pages_v_rels;
   posts_populated_authors: typeof posts_populated_authors;
@@ -2732,6 +2888,8 @@ type DatabaseSchema = {
   relations_pages_blocks_gallery7: typeof relations_pages_blocks_gallery7;
   relations_pages_blocks_testimonial25_card_block: typeof relations_pages_blocks_testimonial25_card_block;
   relations_pages_blocks_testimonial25_block: typeof relations_pages_blocks_testimonial25_block;
+  relations_pages_blocks_statistic: typeof relations_pages_blocks_statistic;
+  relations_pages_blocks_statistics: typeof relations_pages_blocks_statistics;
   relations_pages_rels: typeof relations_pages_rels;
   relations_pages: typeof relations_pages;
   relations__pages_v_blocks_q_a_block: typeof relations__pages_v_blocks_q_a_block;
@@ -2739,6 +2897,8 @@ type DatabaseSchema = {
   relations__pages_v_blocks_gallery7: typeof relations__pages_v_blocks_gallery7;
   relations__pages_v_blocks_testimonial25_card_block: typeof relations__pages_v_blocks_testimonial25_card_block;
   relations__pages_v_blocks_testimonial25_block: typeof relations__pages_v_blocks_testimonial25_block;
+  relations__pages_v_blocks_statistic: typeof relations__pages_v_blocks_statistic;
+  relations__pages_v_blocks_statistics: typeof relations__pages_v_blocks_statistics;
   relations__pages_v_rels: typeof relations__pages_v_rels;
   relations__pages_v: typeof relations__pages_v;
   relations_posts_populated_authors: typeof relations_posts_populated_authors;
