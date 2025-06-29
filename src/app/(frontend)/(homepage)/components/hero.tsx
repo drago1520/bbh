@@ -1,13 +1,16 @@
+import { Page } from '@/payload-types';
 import ServiceCards from './service-cards-hero';
 
-export default function Hero() {
+export default function Hero({ heroImg }: { heroImg: Page['heroImg'] }) {
+  if (typeof heroImg === 'string') throw new Error('Image type is NOT Media. Probably provided wrong depth to Payload Local API');
+
   return (
     <section className="relative flex flex-col">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/hero-bg.avif')", //! Снимка на Бургас
+          backgroundImage: `url('${heroImg ? heroImg.url : '/hero-bg.avif'}')`, //! Снимка на Бургас
           filter: 'blur(2px)',
         }}
         aria-hidden="true"

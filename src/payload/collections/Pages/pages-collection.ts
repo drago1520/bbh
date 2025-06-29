@@ -61,6 +61,15 @@ export const Pages: CollectionConfig<'pages'> = {
           label: 'Content',
           fields: [
             {
+              type: 'upload',
+              relationTo: 'media',
+              name: 'heroImg',
+              label: 'Hero снимка',
+              admin: {
+                description: '100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.',
+              },
+            },
+            {
               type: 'blocks',
               name: 'blocks',
               label: false,

@@ -38,7 +38,7 @@ export default async function HomePage() {
       <TopBar />
       <Header />
       <main>
-        <Hero />
+        <Hero heroImg={homePage.heroImg} />
         <UpcomingEvents className="bg-background" />
         <NetworkingEvents />
         <Statistics className="bg-muted/40" />

@@ -232,6 +232,9 @@ export const pages = pgTable(
   {
     id: uuid('id').defaultRandom().primaryKey(),
     title: varchar('title'),
+    heroImg: uuid('hero_img_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
     meta_title: varchar('meta_title'),
     meta_image: uuid('meta_image_id').references(() => media.id, {
       onDelete: 'set null',
@@ -245,6 +248,7 @@ export const pages = pgTable(
     _status: enum_pages_status('_status').default('draft'),
   },
   columns => ({
+    pages_hero_img_idx: index('pages_hero_img_idx').on(columns.heroImg),
     pages_meta_meta_image_idx: index('pages_meta_meta_image_idx').on(columns.meta_image),
     pages_slug_idx: index('pages_slug_idx').on(columns.slug),
     pages_updated_at_idx: index('pages_updated_at_idx').on(columns.updatedAt),
@@ -419,6 +423,9 @@ export const _pages_v = pgTable(
       onDelete: 'set null',
     }),
     version_title: varchar('version_title'),
+    version_heroImg: uuid('version_hero_img_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
     version_meta_title: varchar('version_meta_title'),
     version_meta_image: uuid('version_meta_image_id').references(() => media.id, {
       onDelete: 'set null',
@@ -437,6 +444,7 @@ export const _pages_v = pgTable(
   },
   columns => ({
     _pages_v_parent_idx: index('_pages_v_parent_idx').on(columns.parent),
+    _pages_v_version_version_hero_img_idx: index('_pages_v_version_version_hero_img_idx').on(columns.version_heroImg),
     _pages_v_version_meta_version_meta_image_idx: index('_pages_v_version_meta_version_meta_image_idx').on(columns.version_meta_image),
     _pages_v_version_version_slug_idx: index('_pages_v_version_version_slug_idx').on(columns.version_slug),
     _pages_v_version_version_updated_at_idx: index('_pages_v_version_version_updated_at_idx').on(columns.version_updatedAt),
@@ -1881,6 +1889,11 @@ export const relations_pages_rels = relations(pages_rels, ({ one }) => ({
   }),
 }));
 export const relations_pages = relations(pages, ({ one, many }) => ({
+  heroImg: one(media, {
+    fields: [pages.heroImg],
+    references: [media.id],
+    relationName: 'heroImg',
+  }),
   _blocks_qABlock: many(pages_blocks_q_a_block, {
     relationName: '_blocks_qABlock',
   }),
@@ -1962,6 +1975,11 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
     fields: [_pages_v.parent],
     references: [pages.id],
     relationName: 'parent',
+  }),
+  version_heroImg: one(media, {
+    fields: [_pages_v.version_heroImg],
+    references: [media.id],
+    relationName: 'version_heroImg',
   }),
   _blocks_qABlock: many(_pages_v_blocks_q_a_block, {
     relationName: '_blocks_qABlock',
