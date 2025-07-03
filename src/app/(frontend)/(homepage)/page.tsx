@@ -69,9 +69,9 @@ export default async function HomePage() {
         <PartnersCarousel />
         <BusinessBreakfast className="bg-muted/40" />
         {gallery7Props && <Gallery7 data={gallery7Props} />}
-        {faqBlockProps && <FAQsThree className="bg-muted/40" data={faqBlockProps} />}
         <News />
       </main>
+      {faqBlockProps && <FAQsThree className="bg-muted/40" data={faqBlockProps} />}
       <Footer />
     </div>
   );

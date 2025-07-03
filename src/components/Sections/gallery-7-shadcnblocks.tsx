@@ -23,6 +23,9 @@ import { ComponentProps } from 'react';
 //   images: Media[] | string[];
 //   rotateSpeed?: number
 // };
+/**
+ * @description Минали събития
+ */
 export default function Gallery7({ data, className, ...props }: ComponentProps<'section'> & { data: Gallery7Props }) {
   const { ctaText, ctaHref, heading, descr, images, rotateSpeed } = data;
   return (
