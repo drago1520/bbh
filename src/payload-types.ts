@@ -745,6 +745,24 @@ export interface Event {
     };
     [k: string]: unknown;
   };
+  /**
+   * Най-много 1-2 параграфа НЕ повече
+   */
+  shortDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   type: 'networking' | 'businessBreakfast';
   date: string;
   active: 'false' | 'true';
@@ -1366,6 +1384,7 @@ export interface AttendeesSelect<T extends boolean = true> {
 export interface EventsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  shortDescription?: T;
   type?: T;
   date?: T;
   active?: T;

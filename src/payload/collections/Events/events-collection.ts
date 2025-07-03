@@ -22,6 +22,14 @@ export const Events: CollectionConfig = {
       required: true,
     },
     {
+      name: 'shortDescription',
+      label: 'Кратко описание',
+      type: 'richText',
+      admin: {
+        description: 'Най-много 1-2 параграфа НЕ повече',
+      },
+    },
+    {
       name: 'type',
       label: 'Тип',
       type: 'radio',

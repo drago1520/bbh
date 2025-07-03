@@ -105,28 +105,38 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
   // Calculate the progress bar width and position
   const progressWidth = 240;
   const progressIndicatorWidth = progressWidth / DATA.length;
-  const progressOffset = currentIndex * progressIndicatorWidth;
+  const _progressOffset = currentIndex * progressIndicatorWidth;
 
   return (
     <section className={cn('relative py-32', className)} {...props}>
       <div className="relative container">
-        <div className="mb-6 flex flex-col justify-between md:flex-row md:items-end">
-          <div className="prose dark:prose-invert">
+        <div className="mb-12 flex max-w-[600px] flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
             <Link href="#" className="no-underline underline-offset-4 hover:underline">
-              <h3 className="text-h3-size">Предстоящи събития</h3>
+              <h3 className="text-h3-size mt-0 mb-0">Предстоящи събития</h3>
             </Link>
           </div>
-          <div className="mt-8 flex shrink-0 items-center justify-start gap-2">
+        </div>
+        {/* <div className="absolute flex shrink-0 items-center justify-start gap-2">
             <Button size="icon" variant="outline" onClick={() => carouselApi?.scrollPrev()} disabled={!canScrollPrev} className="rounded-full">
               <ArrowLeft className="size-5" />
             </Button>
             <Button size="icon" variant="outline" onClick={() => carouselApi?.scrollNext()} disabled={!canScrollNext} className="rounded-full">
               <ArrowRight className="size-5" />
             </Button>
-          </div>
-        </div>
+          </div> */}
 
         <div className="relative w-full">
+          <div className="absolute top-[50%] -left-2 z-10 md:-left-20">
+            <Button size="icon" onClick={() => carouselApi?.scrollPrev()} disabled={!canScrollPrev} variant={'outline'}>
+              <ArrowLeft />
+            </Button>
+          </div>
+          <div className="absolute top-[50%] -right-4 z-10 md:-right-20">
+            <Button onClick={() => carouselApi?.scrollNext()} disabled={!canScrollNext} size="icon" variant={'outline'}>
+              <ArrowRight />
+            </Button>
+          </div>
           <Carousel
             setApi={setCarouselApi}
             opts={{
@@ -135,8 +145,8 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
           >
             <CarouselContent className="-ml-1 pb-10 xl:-ml-15">
               {events.map(({ id, thumbnail, title, type, date, locationUrl, location }) => (
-                <CarouselItem key={id} className={cn('h-full max-w-[650px] min-w-[334px] flex-1 sm:min-w-[400px] xl:min-w-[420px] xl:pl-16')}>
-                  <div className="bg-background/50 rounded-md border border-b-6 border-b-teal-500 p-4 shadow-md backdrop-blur-xs">
+                <CarouselItem key={id} className={cn('h-full max-w-[650px] min-w-[350px] flex-1 pl-8 sm:min-w-[416px] xl:min-w-[420px] xl:pl-16')}>
+                  <div className="bg-background/50 flex min-h-[480px] flex-col justify-between rounded-md border border-b-6 border-b-teal-500 p-4 shadow-md backdrop-blur-xs">
                     <div className="relative flex h-full flex-col items-start justify-start gap-2">
                       <div className="w-full">
                         <div className="group relative z-10 overflow-hidden rounded-2xl">
@@ -157,8 +167,8 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
                             <Calendar className="text-brand-accent h-4 w-4" />
                             <span className="text-muted-foreground font-medium">{formatToBulgarianDate(date)}</span>
                           </div>
-                          <Button variant={'link'} asChild>
-                            <Link href={locationUrl || '#'} className="flex items-center gap-2">
+                          <Button variant={'link'} asChild className="px-0">
+                            <Link href={locationUrl || '#'} className="flex items-center gap-2 px-0">
                               <MapPin className="text-brand-accent h-4 w-4" />
                               <span className="text-muted-foreground font-medium">{location}</span>
                             </Link>
@@ -179,7 +189,7 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
           </Carousel>
 
           {/* Progress Indicator */}
-          <div className="bg-muted absolute -bottom-6 left-1/2 h-[2px] w-[240px] -translate-x-1/2 rounded dark:top-0">
+          {/* <div className="bg-muted absolute -bottom-6 left-1/2 h-[2px] w-[240px] -translate-x-1/2 rounded dark:top-0">
             <div
               className="bg-foreground h-[2px] rounded transition-transform duration-300 ease-out"
               style={{
@@ -187,7 +197,7 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
                 transform: `translateX(${progressOffset}px)`,
               }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
