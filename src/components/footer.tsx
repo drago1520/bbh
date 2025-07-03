@@ -15,7 +15,7 @@ const menuLinks = [
 
 export default function Footer() {
   return (
-    <footer className="text-foreground/80 bg-teal-100/70 pt-16 pb-8 dark:bg-teal-950">
+    <footer className="text-foreground/80 bg-muted/80 pt-16 pb-8">
       <div className="container">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8 xl:grid-cols-4">
           <div className="sm:col-span-2 xl:col-span-1">

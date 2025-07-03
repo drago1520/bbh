@@ -11,18 +11,20 @@ import { cn } from '@/lib/utils';
 const Testimonial25 = ({ data, className, ...props }: ComponentProps<'section'> & { data: Testimonial25Props }) => {
   const { title, helperText, ctaText, ctaHref, blocks } = data;
   return (
-    <section className={cn('py-32', className)} {...props}>
+    <section className={cn('py-16', className)} {...props}>
       <div className="container">
         <div className="space-y-4">
           <div className="prose dark:prose-invert">
             <h3 className="text-h3-size">{title}</h3>
             <p className="text-muted-foreground">{helperText}</p>
           </div>
-          <Button asChild variant="outline">
-            <Link href={ctaHref || ''}>
-              {ctaText} <ArrowRight className="size-4" />
-            </Link>
-          </Button>
+          {ctaHref && ctaText && (
+            <Button asChild variant="outline">
+              <Link href={ctaHref || ''}>
+                {ctaText} <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+          )}
         </div>
 
         <div className="relative mt-8 md:mt-12 lg:mt-20">
@@ -33,15 +35,17 @@ const Testimonial25 = ({ data, className, ...props }: ComponentProps<'section'> 
             }}
             className="w-full"
           >
+            {/* <div className="mt-8 flex gap-3">
+              <CarouselPrevious className="static size-10 translate-x-0 translate-y-0" />
+              <CarouselNext className="static size-10 translate-x-0 translate-y-0" />
+            </div> */}
+            <CarouselPrevious className="top-[50%] -left-2 z-10 size-10 md:-left-12" />
+            <CarouselNext className="top-[50%] -right-2 z-10 size-10 md:-right-12" />
             <CarouselContent>
               {blocks.map((testimonialBlock, index) => (
                 <Testimonial25Card {...testimonialBlock} key={index} />
               ))}
             </CarouselContent>
-            <div className="mt-8 flex gap-3">
-              <CarouselPrevious className="static size-10 translate-x-0 translate-y-0" />
-              <CarouselNext className="static size-10 translate-x-0 translate-y-0" />
-            </div>
           </Carousel>
         </div>
       </div>

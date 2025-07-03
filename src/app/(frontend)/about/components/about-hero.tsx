@@ -5,7 +5,7 @@ import { ComponentProps } from 'react';
 
 export default function AboutHero({ className, ...props }: ComponentProps<'section'>) {
   return (
-    <section className={cn('py-32', className)}>
+    <section className={cn('py-16', className)}>
       <div className="mb-8 flex flex-col items-center justify-center xl:mb-16">
         <h1 className="scroll-m-20 text-2xl font-bold lg:text-4xl">За Нас</h1>
         <Breadcrumb>

@@ -21,14 +21,14 @@ import CountdownTimer from './countdown';
 export default function LatestNetworking({ isImageRight = false, event, className, ...props }: { isImageRight?: boolean; event: Event | undefined } & ComponentProps<'section'>) {
   if (!event) return;
 
-  const { speakerName, title, date, maxGuests, thumbnail, description, location, locationImg, locationUrl } = event;
+  const { title, date, maxGuests, thumbnail, description, location, locationImg, locationUrl } = event;
   if (typeof thumbnail === 'string' || typeof locationImg === 'string') throw new Error('Няма банер или снимка');
   const showLocation = location && (locationImg || location.toLowerCase().includes('gravity'));
   return (
-    <section aria-labelledby="networking-heading" className={cn('pb-32', className)} {...props}>
-      <div className="container space-y-8 py-32 sm:space-y-16 xl:space-y-20">
-        <div className="relative aspect-[1920/1005]">
-          <Image src={thumbnail.url || ''} alt={thumbnail.alt} width={thumbnail?.width || 1920} height={thumbnail.height || 1005} className="rounded-md object-contain shadow-xl" />
+    <section aria-labelledby="networking-heading" className={cn('pb-16', className)} {...props}>
+      <div className="container space-y-8 py-16 sm:space-y-16 xl:space-y-20">
+        <div className="relative aspect-square sm:aspect-video">
+          <Image src={thumbnail.url || ''} alt={thumbnail.alt} fill priority className="size-full rounded-md object-cover shadow-xl" />
         </div>
         <div className="grid justify-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
           <MediaSection isImageRight={isImageRight} className="hidden space-y-16 rounded-md xl:block xl:bg-gray-50 xl:p-8">
@@ -57,12 +57,12 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
             </h3>
             <div className="flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
               <Button variant={'link'} asChild className="pl-0">
-                <Link href="#" className="prose dark:prose-invert flex items-center gap-1">
+                <Link href="#" className="prose dark:prose-invert flex items-center justify-start gap-1">
                   <Calendar className="size-4" /> {formatToBulgarianDate(date)}
                 </Link>
               </Button>
               <Button variant={'link'} asChild>
-                <Link href="#" className="prose dark:prose-invert flex items-center gap-1">
+                <Link href="#" className="prose dark:prose-invert flex items-center justify-start gap-1 pl-0">
                   <MapPin className="size-4" /> <span>{location}</span>
                 </Link>
               </Button>
@@ -79,13 +79,13 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
                   Местата за събитието са ограничени до <span className="font-semibold">{maxGuests}</span>
                 </span>
               )}
-              <div className="mt-3">
+              <div className="mt-3 flex flex-col gap-4">
                 <SignUpDialog eventId={event.id}>
                   <Button size="lg">
                     ЗАПИШИ СЕ <Plus />
                   </Button>
                 </SignUpDialog>
-                <Button className="ml-4" variant="secondary" size="lg" asChild>
+                <Button variant="secondary" size="lg" asChild>
                   <Link href="#">
                     ПРОЧЕТИ ПОВЕЧЕ <ArrowRight />
                   </Link>

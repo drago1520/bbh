@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 export default function FAQsThree({ data, className, ...props }: ComponentProps<'section'> & { data: FaqLeftRightBlockProps }) {
   const { QABlock, helperText, title } = data;
   return (
-    <section className={cn('py-32', className)} {...props}>
+    <section className={cn('py-16', className)} {...props}>
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:gap-16">
           <div className="md:w-1/3">

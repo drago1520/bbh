@@ -4,6 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
+import { ComponentProps } from 'react';
+import { cn } from '@/lib/utils';
 
 const newsArticles = [
   {
@@ -32,9 +34,9 @@ const newsArticles = [
   },
 ];
 
-export default function News() {
+export default function News({ className, ...props }: ComponentProps<'section'>) {
   return (
-    <section className="py-32" aria-labelledby="news-heading">
+    <section className={cn('py-16', className)} aria-labelledby="news-heading" {...props}>
       <div className="container">
         <header className="mb-8 text-center sm:mb-12">
           <Badge variant="brand" className="mb-4">

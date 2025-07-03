@@ -5,7 +5,7 @@ import { ComponentProps, useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import type { CarouselApi } from '@/components/ui/carousel';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -108,11 +108,11 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
   const _progressOffset = currentIndex * progressIndicatorWidth;
 
   return (
-    <section className={cn('relative py-32', className)} {...props}>
+    <section className={cn('relative py-16', className)} {...props}>
       <div className="relative container">
         <div className="mb-12 flex max-w-[600px] flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
-            <Link href="#" className="no-underline underline-offset-4 hover:underline">
+            <Link href="#" className="no-underline underline-offset-8 hover:underline">
               <h3 className="text-h3-size mt-0 mb-0">Предстоящи събития</h3>
             </Link>
           </div>
@@ -127,7 +127,7 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
           </div> */}
 
         <div className="relative w-full">
-          <div className="absolute top-[50%] -left-2 z-10 md:-left-20">
+          {/* <div className="absolute top-[50%] -left-2 z-10 md:-left-20">
             <Button size="icon" onClick={() => carouselApi?.scrollPrev()} disabled={!canScrollPrev} variant={'outline'}>
               <ArrowLeft />
             </Button>
@@ -136,13 +136,15 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
             <Button onClick={() => carouselApi?.scrollNext()} disabled={!canScrollNext} size="icon" variant={'outline'}>
               <ArrowRight />
             </Button>
-          </div>
+          </div> */}
           <Carousel
             setApi={setCarouselApi}
             opts={{
               align: 'start',
             }}
           >
+            <CarouselPrevious className="top-[50%] -left-2 z-10 size-10 md:-left-12" />
+            <CarouselNext className="top-[50%] -right-2 z-10 size-10 md:-right-12" />
             <CarouselContent className="-ml-1 pb-10 xl:-ml-15">
               {events.map(({ id, thumbnail, title, type, date, locationUrl, location }) => (
                 <CarouselItem key={id} className={cn('h-full max-w-[650px] min-w-[350px] flex-1 pl-8 sm:min-w-[416px] xl:min-w-[420px] xl:pl-16')}>
@@ -156,7 +158,7 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
                           {/* <Image width={800} height={800} src={image} alt={title} className="absolute top-0 left-0 z-10 aspect-square h-full w-full rounded-2xl object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> */}
 
                           <Badge className="bg-background absolute top-4 left-4 px-4 py-1" variant="outline">
-                            {type}
+                            {type == 'businessBreakfast' ? 'Бизнес закуска' : type == 'networking' ? 'Нетуъркинг' : null}
                           </Badge>
                         </div>
                       </div>

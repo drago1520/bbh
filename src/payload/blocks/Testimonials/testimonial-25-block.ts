@@ -18,7 +18,6 @@ export const Testimonial25Block: Block = {
       name: 'helperText',
       type: 'text',
       label: 'Подзаглавие',
-      required: true,
       admin: {
         placeholder: 'Mainline is built on the habits that make the best product teams successful: staying focused, moving quickly, and always aiming for high-quality work.',
       },

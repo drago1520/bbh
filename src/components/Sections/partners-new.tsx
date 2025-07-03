@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 export default function PartnersMarquee({ className, ...props }: ComponentProps<'section'>) {
   return (
-    <section className={cn('py-32', className)} aria-labelledby="partners-heading" {...props}>
+    <section className={cn('py-16', className)} aria-labelledby="partners-heading" {...props}>
       <div className="container text-center">
         <p className="text-brand-accent mb-2 text-sm font-semibold">СЕ ПОДКРЕПЯМЕ ВЗАИМНО</p>
         <h2 id="partners-heading" className="text-foreground mb-6 text-lg font-bold sm:text-xl lg:mb-8 lg:text-2xl">

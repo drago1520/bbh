@@ -17,7 +17,7 @@ export default function Statistics({ className, withTitle = true, data, ...props
     if (typeof statistic.icon === 'string') throw new Error(errorMsgs.imgIsString);
   });
   return (
-    <section className={cn('py-32', className)} aria-labelledby="statistics-heading" {...props}>
+    <section className={cn('py-16', className)} aria-labelledby="statistics-heading" {...props}>
       <div className="container text-7xl sm:text-6xl">
         {withTitle && (
           <h3 id="statistics-heading" className="text-h3-size mb-12 text-center">

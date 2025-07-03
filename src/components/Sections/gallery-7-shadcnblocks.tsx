@@ -30,7 +30,7 @@ export default function Gallery7({ data, className, ...props }: ComponentProps<'
   const { ctaText, ctaHref, heading, descr, images, rotateSpeed } = data;
   return (
     //py е по-голям заради заместените карти
-    <section className={cn('py-46', className)} {...props}>
+    <section className={cn('py-20', className)} {...props}>
       <div className="container">
         <div className="mb-12 grid grid-cols-1 gap-x-12 gap-y-6 md:mb-16 md:grid-cols-2 md:gap-x-24">
           <div className="prose dark:prose-invert flex flex-col gap-8 md:gap-12">

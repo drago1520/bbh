@@ -8,7 +8,7 @@ import { ContentSection, MediaSection, SectionWrapper } from '@/components/Secti
 
 export default function Confrences({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
-    <SectionWrapper className={cn('dark:bg-background bg-red-100 py-32', className)} {...props}>
+    <SectionWrapper className={cn('dark:bg-background bg-red-100 py-16', className)} {...props}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="confrences illustration showing people collaborating" fill className="object-contain" />

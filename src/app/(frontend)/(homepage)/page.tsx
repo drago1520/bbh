@@ -61,17 +61,17 @@ export default async function HomePage() {
       <main>
         <Hero heroImg={homePage.heroImg} />
         <UpcomingEvents events={events} />
-        <NetworkingEvents className="bg-muted/40" />
+        <NetworkingEvents className="bg-muted/70" />
         {statisticsProps && <Statistics data={statisticsProps} />}
-        <Courses className="bg-muted/40" />
-        {testimonials25Props && <Testimonial25 className="" data={testimonials25Props} />}
-        <Conference className="bg-muted/40" isImageRight={false} />
+        <Courses className="bg-muted/70" />
+        {testimonials25Props && <Testimonial25 data={testimonials25Props} />}
+        <Conference className="bg-muted/70" isImageRight={false} />
         <PartnersCarousel />
-        <BusinessBreakfast className="bg-muted/40" />
+        <BusinessBreakfast className="bg-muted/70" />
         {gallery7Props && <Gallery7 data={gallery7Props} />}
-        <News />
+        <News className="bg-muted/70" />
       </main>
-      {faqBlockProps && <FAQsThree className="bg-muted/40" data={faqBlockProps} />}
+      {faqBlockProps && <FAQsThree data={faqBlockProps} />}
       <Footer />
     </div>
   );

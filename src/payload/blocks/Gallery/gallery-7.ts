@@ -43,7 +43,7 @@ export const Gallery7Block: Block = {
         {
           type: 'number',
           name: 'rotateSpeed',
-          label: 'Скорост',
+          label: 'Скорост на въртене',
           min: 0,
           admin: {
             width: '15%',

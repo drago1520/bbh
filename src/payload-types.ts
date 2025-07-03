@@ -299,7 +299,7 @@ export interface Gallery7Props {
  */
 export interface Testimonial25Props {
   title: string;
-  helperText: string;
+  helperText?: string | null;
   ctaText?: string | null;
   ctaHref?: string | null;
   /**

@@ -41,7 +41,7 @@ export function SectionWrapper({ className, children, containerProps, ...props }
   return (
     <section className={cn('py-12', className)} aria-labelledby="networking-heading" {...props}>
       <div className={cn('container', containerProps?.className)} {...containerProps}>
-        <div className="grid items-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">{children}</div>
+        <div className="grid items-start gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">{children}</div>
       </div>
     </section>
   );

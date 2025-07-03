@@ -8,7 +8,7 @@ import { Button } from '../ui/button';
 
 export default function BusinessBreakfast({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
-    <SectionWrapper className={cn('py-32', className)} {...props}>
+    <SectionWrapper className={cn('py-16', className)} {...props}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="business breakfast illustration showing people collaborating" fill className="object-contain" />

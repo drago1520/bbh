@@ -9,7 +9,7 @@ import { ContentSection, MediaSection, SectionWrapper } from '@/components/Secti
 
 export default function WhyAreNewcontactImportant({ isImageRight = true, className, ...props }: { isImageRight?: boolean } & ComponentProps<'section'>) {
   return (
-    <SectionWrapper className={cn('bg-teal-500/20 py-32', className)} aria-labelledby="networking-heading" {...props}>
+    <SectionWrapper className={cn('bg-teal-500/20 py-16', className)} aria-labelledby="networking-heading" {...props}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
           <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" fill className="object-contain" />
