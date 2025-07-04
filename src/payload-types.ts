@@ -773,7 +773,7 @@ export interface Event {
     };
     [k: string]: unknown;
   } | null;
-  type: 'networking' | 'businessBreakfast';
+  type: 'networking' | 'businessBreakfast' | 'conference' | 'courses';
   date: string;
   active: 'false' | 'true';
   /**

@@ -47,6 +47,7 @@
   --color-brand-accent: var(--brand-accent);
   --color-brand-orange: var(--brand-orange);
   --color-brand-purple: var(--brand-purple);
+  --color-brand-accent-light: var(--brand-accent-light);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -132,6 +133,7 @@
     /* #efa088 */
     --brand-purple: oklch(0.6056 0.2189 292.72);
     /* #8b5cf6 */
+    --brand-accent-light: oklch(91.19% 0.01116 347.931);
   }
 
   [data-theme='dark'] {
@@ -178,6 +180,7 @@
     /* #efa088 */
     --brand-purple: oklch(0.6056 0.2189 292.72);
     /* #8b5cf6 */
+    --brand-accent-light: oklch(91.19% 0.01116 347.931);
   }
 }
 

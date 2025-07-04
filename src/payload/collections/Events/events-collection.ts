@@ -42,6 +42,14 @@ export const Events: CollectionConfig = {
           label: 'Business breakfast',
           value: 'businessBreakfast',
         },
+        {
+          label: 'Конференция',
+          value: 'conference',
+        },
+        {
+          label: 'Обучения',
+          value: 'courses',
+        },
       ],
       required: true,
       index: true,

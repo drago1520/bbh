@@ -148,7 +148,14 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
             <CarouselContent className="-ml-1 pb-10 xl:-ml-15">
               {events.map(({ id, thumbnail, title, type, date, locationUrl, location }) => (
                 <CarouselItem key={id} className={cn('h-full max-w-[650px] min-w-[350px] flex-1 pl-8 sm:min-w-[416px] xl:min-w-[420px] xl:pl-16')}>
-                  <div className="bg-background/50 flex min-h-[480px] flex-col justify-between rounded-md border border-b-6 border-b-teal-500 p-4 shadow-md backdrop-blur-xs">
+                  {/* prettier-ignore */}
+                  <div className={
+                    cn("bg-background/50 flex min-h-[480px] flex-col justify-between rounded-md border border-b-6 border-b-teal-500 p-4 shadow-md backdrop-blur-xs",
+                      type == 'businessBreakfast' && 'border-b-brand-accent-light',
+                      type == 'conference' && 'border-b-brand-orange',
+                      type == 'courses' && 'border-b-brand-purple',
+                      type == 'networking' && 'border-b-brand-accent' //courses - lila, conf - orange, networking - green
+                  )}>
                     <div className="relative flex h-full flex-col items-start justify-start gap-2">
                       <div className="w-full">
                         <div className="group relative z-10 overflow-hidden rounded-2xl">
