@@ -57,6 +57,10 @@ export const Pages: CollectionConfig<'pages'> = {
       required: true,
     },
     {
+      name: 'subheading',
+      type: 'text',
+    },
+    {
       type: 'tabs',
       tabs: [
         {

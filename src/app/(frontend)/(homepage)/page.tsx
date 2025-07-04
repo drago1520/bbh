@@ -60,7 +60,7 @@ export default async function HomePage() {
       <TopBar />
       <Header />
       <main>
-        <Hero heroImg={homePage.heroImg} />
+        <Hero subheading={homePage.subheading} heroImg={homePage.heroImg} />
         <UpcomingEvents events={events} />
         <NetworkingEvents className="bg-muted/70" />
         {statisticsProps && <Statistics data={statisticsProps} />}

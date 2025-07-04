@@ -303,6 +303,7 @@ export const pages = pgTable(
   {
     id: uuid('id').defaultRandom().primaryKey(),
     title: varchar('title'),
+    subheading: varchar('subheading'),
     heroImg: uuid('hero_img_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -568,6 +569,7 @@ export const _pages_v = pgTable(
       onDelete: 'set null',
     }),
     version_title: varchar('version_title'),
+    version_subheading: varchar('version_subheading'),
     version_heroImg: uuid('version_hero_img_id').references(() => media.id, {
       onDelete: 'set null',
     }),

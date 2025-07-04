@@ -193,6 +193,7 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
+  subheading?: string | null;
   /**
    * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
    */
@@ -1060,6 +1061,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  subheading?: T;
   heroImg?: T;
   blocks?:
     | T
