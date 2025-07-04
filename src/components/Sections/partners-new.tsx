@@ -2,8 +2,10 @@ import Marquee from 'react-fast-marquee';
 import Image from 'next/image';
 import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
+import { PartnersProps } from '@/payload-types';
+import { errorMsgs } from '@/utils/error';
 
-export default function PartnersMarquee({ className, ...props }: ComponentProps<'section'>) {
+export default function PartnersMarquee({ className, partners, ...props }: ComponentProps<'section'> & { partners: PartnersProps }) {
   return (
     <section className={cn('py-16', className)} aria-labelledby="partners-heading" {...props}>
       <div className="container text-center">
@@ -13,7 +15,11 @@ export default function PartnersMarquee({ className, ...props }: ComponentProps<
         </h2>
       </div>
       <Marquee pauseOnHover pauseOnClick autoFill speed={10} className="mt-12">
-        <Image src="/cvetita-herbal.png" alt="cvetita-herbal" width={80} height={80} className="mx-12" />
+        {partners.images.map((partner, i) => {
+          if (typeof partner === 'string') throw new Error(errorMsgs.imgIsString);
+          if (!partner.url) throw new Error(`Липсва url на снимка за партньорите:  ${partner.id}`);
+          return <Image key={i} src={partner.url} alt={partner.alt || 'cvetita-herbal'} width={partner.width || 80} height={partner.height || 80} className="mx-12" />;
+        })}
       </Marquee>
     </section>
   );

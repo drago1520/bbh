@@ -28,6 +28,7 @@ export default async function HomePage() {
   }
   const [aboutPage] = docs;
   const statisticsProps = aboutPage.blocks.find(block => block.blockType === 'statistics');
+  const partnersProps = aboutPage.blocks.find(block => block.blockType === 'partners');
 
   return (
     <div className="min-h-screen">
@@ -36,7 +37,7 @@ export default async function HomePage() {
         <AboutHero className="pb-8" />
         {statisticsProps && <Statistics data={statisticsProps} withTitle={false} className="pt-0" />}
         <WhyAreNewcontactImportant />
-        <PartnersMarquee />
+        {partnersProps && <PartnersMarquee partners={partnersProps} />}
         <Courses isImageRight={false} />
         <Confrences />
       </main>

@@ -197,7 +197,7 @@ export interface Page {
    * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
    */
   heroImg?: (string | null) | Media;
-  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props | StatisticsProps)[];
+  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props | StatisticsProps | PartnersProps)[];
   meta?: {
     title?: string | null;
     /**
@@ -351,6 +351,16 @@ export interface StatisticsProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'statistics';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersProps".
+ */
+export interface PartnersProps {
+  images: (string | Media)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partners';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1058,6 +1068,7 @@ export interface PagesSelect<T extends boolean = true> {
         gallery7?: T | Gallery7PropsSelect<T>;
         testimonial25Block?: T | Testimonial25PropsSelect<T>;
         statistics?: T | StatisticsPropsSelect<T>;
+        partners?: T | PartnersPropsSelect<T>;
       };
   meta?:
     | T
@@ -1162,6 +1173,15 @@ export interface StatisticsPropsSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersProps_select".
+ */
+export interface PartnersPropsSelect<T extends boolean = true> {
+  images?: T;
   id?: T;
   blockName?: T;
 }

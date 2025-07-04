@@ -35,6 +35,7 @@ export default async function HomePage() {
   const gallery7Props = homePage.blocks.find(block => block.blockType === 'gallery7');
   const testimonials25Props = homePage.blocks.find(block => block.blockType === 'testimonial25Block');
   const statisticsProps = homePage.blocks.find(block => block.blockType === 'statistics');
+  const partnersProps = homePage.blocks.find(block => block.blockType === 'partners');
 
   const { docs: events } = await payload.find({
     collection: 'events',
@@ -66,7 +67,7 @@ export default async function HomePage() {
         <Courses className="bg-muted/70" />
         {testimonials25Props && <Testimonial25 data={testimonials25Props} />}
         <Conference className="bg-muted/70" isImageRight={false} />
-        <PartnersCarousel />
+        {partnersProps && <PartnersCarousel partners={partnersProps} />}
         <BusinessBreakfast className="bg-muted/70" />
         {gallery7Props && <Gallery7 data={gallery7Props} />}
         <News className="bg-muted/70" />
