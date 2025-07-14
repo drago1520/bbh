@@ -29,13 +29,17 @@ export default async function HomePage() {
     },
     limit: 1,
   });
+  const { docs: marketingSections } = await payload.find({
+    collection: 'marketing-sections',
+    depth: 400,
+  });
+  const partnersProps = marketingSections.map(section => section.Partners?.partners?.find(blocks => blocks.blockType === 'partners'))?.[0];
   if (docs.length < 1) throw new Error('No data found for the homepage. Check the slug.');
   const [homePage] = docs;
   const faqBlockProps = homePage.blocks.find(block => block.blockType === 'faqChessMate');
   const gallery7Props = homePage.blocks.find(block => block.blockType === 'gallery7');
   const testimonials25Props = homePage.blocks.find(block => block.blockType === 'testimonial25Block');
   const statisticsProps = homePage.blocks.find(block => block.blockType === 'statistics');
-  const partnersProps = homePage.blocks.find(block => block.blockType === 'partners');
 
   const { docs: events } = await payload.find({
     collection: 'events',

@@ -12,7 +12,6 @@ import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-r
 import { Gallery7Block } from '@/payload/blocks/Gallery/gallery-7';
 import { Testimonial25Block } from '@/payload/blocks/Testimonials/testimonial-25-block';
 import { StatisticsBlock } from '@/payload/blocks/Statistics/statistics-block';
-import { PartnersBlock } from '@/payload/blocks/Partners/partners-block';
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -84,7 +83,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 plural: 'blocks',
               },
               // blocks: [HighImpactHero, MediumImpactHero, LowImpactHero, CallToAction, Content, MediaBlock, Archive],
-              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock, PartnersBlock],
+              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock],
               required: true,
               admin: {
                 initCollapsed: true,

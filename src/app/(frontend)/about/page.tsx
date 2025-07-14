@@ -28,8 +28,11 @@ export default async function HomePage() {
   }
   const [aboutPage] = docs;
   const statisticsProps = aboutPage.blocks.find(block => block.blockType === 'statistics');
-  const partnersProps = aboutPage.blocks.find(block => block.blockType === 'partners');
-
+  const { docs: marketingSections } = await payload.find({
+    collection: 'marketing-sections',
+    depth: 400,
+  });
+  const partnersProps = marketingSections.map(section => section.Partners?.partners?.find(blocks => blocks.blockType === 'partners'))?.[0];
   return (
     <div className="min-h-screen">
       <Header />

@@ -9,14 +9,13 @@ import { Pages } from '@/payload/collections/Pages/pages-collection';
 import { Posts } from '@/payload/collections/Posts/posts-collection';
 import { Users } from '@/payload/collections/Users/users-collection';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
-import { Footer } from '@/payload/globals/Footer/config';
-import { Header } from '@/payload/globals/Header/config';
 
 import { getServerSideURL } from '@/lib/utils/getURL';
 import { plugins } from './payload/plugins';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { Attendees } from './payload/collections/Attendees/attendees-collection';
 import { Events } from './payload/collections/Events/events-collection';
+import { MarketingSectionsCollection } from './payload/collections/Marketing-sections/partners';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -71,9 +70,8 @@ export default buildConfig({
     },
     idType: 'uuid',
   }),
-  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events], //onChange => npm run db:schema
+  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection], //onChange => npm run db:schema
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {

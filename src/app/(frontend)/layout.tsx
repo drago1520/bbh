@@ -6,8 +6,7 @@ import { GeistSans } from 'geist/font/sans';
 import React from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
-import { Footer } from '@/payload/globals/Footer/Component';
-import { Header } from '@/payload/globals/Header/Component';
+// import { Footer } from '@/payload/globals/Footer/Component';
 import { InitTheme } from '@/components/ThemeProvider/Theme/InitTheme';
 import { mergeOpenGraph } from '@/lib/utils/mergeOpenGraph';
 
