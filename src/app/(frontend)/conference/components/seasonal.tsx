@@ -87,14 +87,14 @@ export default function PricingWithCountdown() {
 
   return (
     <section className="from-primary/5 to-background w-full bg-gradient-to-b py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-6 2xl:max-w-[1400px]">
+      <div className="container">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <Badge variant="outline" className="px-3 py-1 text-sm">
             Limited Time Offer
           </Badge>
           <div className="space-y-2">
             <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Summer Sale: 20% Off All Plans</h3>
-            <p className="text-muted-foreground mx-auto max-w-[700px] md:text-xl/relaxed">Upgrade now and save big on all our plans. Offer ends soon!</p>
+            <p className="text-muted-foreground mx-auto max-w-2xl md:text-xl/relaxed">Upgrade now and save big on all our plans. Offer ends soon!</p>
           </div>
 
           <div className="mt-4 w-full max-w-md">

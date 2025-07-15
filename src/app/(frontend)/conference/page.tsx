@@ -11,6 +11,7 @@ import Timeline from './components/timeline-06';
 import Logos07Page from './components/logos-07/logos-07';
 import PricingWithCountdown from './components/seasonal';
 import Testimonials from './components/testimonials';
+import MapWithContactInfo from './components/map-with-contact-info';
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
@@ -39,6 +40,7 @@ export default async function HomePage() {
         <Logos07Page />
         <PricingWithCountdown />
         <Testimonials />
+        <MapWithContactInfo />
       </main>
       <Footer />
     </div>

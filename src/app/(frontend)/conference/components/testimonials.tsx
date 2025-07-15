@@ -36,7 +36,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="mt-16 space-y-28">
+        <div className="mt-16 space-y-20">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
               <div className={`order-2 ${index % 2 !== 0 ? 'lg:order-1' : 'lg:order-2'}`}>

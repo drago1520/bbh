@@ -6,8 +6,8 @@ export default function WhoIsTheConfFor() {
       <div className="container mx-auto">
         {/* Mission Statement Header */}
         <div className="mb-16 text-center">
-          <h2 className="text-h2-size mb-4 text-center">Our Mission</h2>
-          <p className="text-muted-foreground mx-auto max-w-3xl text-lg md:text-xl">We strive to create meaningful digital experiences that transform businesses and enrich lives through innovative design and technology solutions.</p>
+          <h2 className="text-h3-size mb-2 text-center">Our Mission</h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl">We strive to create meaningful digital experiences that transform businesses and enrich lives through innovative design and technology solutions.</p>
         </div>
 
         {/* Three Pillars */}

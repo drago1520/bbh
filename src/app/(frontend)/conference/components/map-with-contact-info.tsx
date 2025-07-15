@@ -8,9 +8,9 @@ import Link from 'next/link';
 
 export default function MapWithContactInfo() {
   return (
-    <section className="container mx-auto px-4 py-12 md:px-6 md:py-24 lg:py-32 2xl:max-w-[1400px]">
-      <div className="mb-10 text-center">
-        <h2 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">Find Me</h2>
+    <section className="container py-16">
+      <div className="mb-8 text-center">
+        <h2 className="text-h3-size mb-2">Find Me</h2>
         <p className="text-muted-foreground mx-auto max-w-2xl">Located in the heart of San Francisco. Feel free to visit or get in touch through any channel.</p>
       </div>
 
@@ -24,7 +24,7 @@ export default function MapWithContactInfo() {
         <div className="lg:col-span-2">
           <Card className="h-full">
             <CardContent>
-              <h3 className="mb-6 text-xl font-semibold">Contact Information</h3>
+              <h3 className="my-6 text-xl font-semibold">Contact Information</h3>
 
               <div className="mb-8 space-y-4">
                 <div className="flex items-start">
