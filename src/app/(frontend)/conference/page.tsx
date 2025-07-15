@@ -26,7 +26,7 @@ export default async function HomePage() {
     },
     limit: 1,
   });
-  // if (docs.length < 1) console.error('No data found for the homepage. Check the slug.');
+  // if (docs.length < 1) console.error('No data found for the homepage. Check the slug.'); тест деплой
 
   return (
     <div className="min-h-screen">
