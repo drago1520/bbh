@@ -34,7 +34,7 @@ const services = [
     icon: Building,
     colorClass: 'bg-brand-orange',
     textColorClass: 'text-brand-orange',
-    href: '#',
+    href: '/conference',
   },
 ];
 

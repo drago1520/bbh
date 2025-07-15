@@ -1,13 +1,11 @@
-import { HTMLProps } from 'react';
-import Link, { LinkProps } from 'next/link';
-import { cn } from '@/lib/utils/index';
+import Link from 'next/link';
 
 import { ThemeSelector } from '@/components/ThemeProvider/Theme/ThemeSelector';
 import Logo from '@/components/Icons';
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
-import NoWebpageYetAlertDialogWrapper from '../app/(frontend)/coming-soon/components/no-webpage-yet-modal';
+// import NoWebpageYetAlertDialogWrapper from '../app/(frontend)/coming-soon/components/no-webpage-yet-modal';
 import MobileNavMenu from './mobile-nav-menu';
 import { Button } from './ui/button';
+import { ReactNode } from 'react';
 
 export type NavProps = { title: string; href: string; description: string; className?: string };
 const navigationItems: NavProps[] = [
@@ -30,14 +28,14 @@ const navigationItems: NavProps[] = [
     className: 'border-brand-purple',
   },
   {
-    title: 'КОНФЕРЕНЦИЙ',
-    href: '#',
+    title: 'КОНФЕРЕНЦИИ',
+    href: '/conference',
     description: 'Актуални знания от предприемачи за предприемачи',
     className: 'border-brand-orange',
   },
 ];
 
-export default function Header() {
+export default function Header({ cta }: { cta?: ReactNode }) {
   return (
     <header className="bg-background relative border-b shadow-sm">
       <div className="container py-3 sm:py-4">
@@ -55,22 +53,12 @@ export default function Header() {
             {process.env.NODE_ENV === 'development' && <ThemeSelector />}
           </nav>
 
-          <MobileNavMenu navigationItems={navigationItems} />
+          <div className="flex items-center gap-4">
+            {cta}
+            <MobileNavMenu navigationItems={navigationItems} />
+          </div>
         </div>
       </div>
     </header>
   );
 }
-
-const ListItem = ({ className, title, children, ...props }: LinkProps & HTMLProps<HTMLAnchorElement>) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link className={cn('hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none', className)} {...props}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">{children}</p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-};

@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 
 const menuLinks = [
   // { label: 'Бизнес закуска', href: '#' },
-  // { label: 'Конференции', href: '#' },
+  { label: 'Конференции', href: '/conference' },
   // { label: 'Обучения', href: '#' },
   { label: 'Нетуъркинг', href: '#' },
   { label: 'Политика за поверителност', href: '#' },
