@@ -3,7 +3,7 @@ import Marquee from './marquee';
 
 const Logos07Page = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center px-6">
+    <div className="flex items-center justify-center py-16">
       <div className="overflow-hidden">
         <p className="text-center text-xl font-medium">More than 2.2 million companies worldwide already trust us</p>
 

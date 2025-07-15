@@ -226,6 +226,10 @@ html[data-theme='light'] {
   @apply mb-4 text-3xl font-bold lg:text-3xl;
 }
 
+@utility text-h2-size {
+  @apply mb-4 text-4xl font-bold lg:text-4xl;
+}
+
 @utility text-stroke-md {
   -webkit-text-stroke: 0.4px black;
 }

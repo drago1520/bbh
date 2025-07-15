@@ -25,18 +25,18 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="w-full py-16">
+      <div className="container">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h3 className="text-h3-size mb-2 text-center">
               Client Success <span className="text-primary">Stories</span>
-            </h2>
-            <p className="text-muted-foreground mx-auto max-w-[700px] md:text-xl/relaxed">Real feedback from real clients on real projects</p>
+            </h3>
+            <p className="text-muted-foreground text-lg">Real feedback from real clients on real projects</p>
           </div>
         </div>
 
-        <div className="mt-16 space-y-16">
+        <div className="mt-16 space-y-28">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
               <div className={`order-2 ${index % 2 !== 0 ? 'lg:order-1' : 'lg:order-2'}`}>

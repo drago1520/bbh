@@ -32,11 +32,11 @@ const team = [
 
 export default function LecturersGrid() {
   return (
-    <div className="container mx-auto px-4 py-24 md:px-6 lg:py-32 2xl:max-w-[1400px]">
+    <div className="container py-16">
       {/* Title */}
-      <div className="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
-        <h2 className="text-3xl font-bold md:text-4xl md:leading-tight">Meet our team</h2>
-        <p className="text-muted-foreground mt-1 text-lg">The amazing people behind the scenes</p>
+      <div className="mx-auto mb-8 max-w-2xl text-center lg:mb-14">
+        <h3 className="text-h3-size mb-2 text-center">Meet our team</h3>
+        <p className="text-muted-foreground text-lg">The amazing people behind the scenes</p>
       </div>
       {/* End Title */}
 

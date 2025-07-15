@@ -38,6 +38,9 @@ const steps = [
 export default function Timeline() {
   return (
     <div className="mx-auto max-w-screen-sm px-6 py-12 md:py-20">
+      <div className="mb-12">
+        <h3 className="text-h3-size text-center">Заглавие</h3>
+      </div>
       <div className="relative ml-6">
         {/* Timeline line */}
         <div className="absolute inset-y-0 left-0 border-l-2" />
