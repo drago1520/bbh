@@ -1,7 +1,7 @@
 import { Logo01, Logo02, Logo03, Logo04, Logo05, Logo06, Logo07, Logo08 } from './logos';
 import Marquee from './marquee';
 
-const Logos07Page = () => {
+const Partners = () => {
   return (
     <div className="flex items-center justify-center py-16">
       <div className="overflow-hidden">
@@ -34,4 +34,4 @@ const Logos07Page = () => {
   );
 };
 
-export default Logos07Page;
+export default Partners;

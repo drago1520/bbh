@@ -8,7 +8,7 @@ import WhoIsTheConfFor from './components/who-is-the-conf-for';
 import Agenda from './components/agenda';
 import LecturersGrid from './components/lecturers-grid';
 import Timeline from './components/timeline-06';
-import Logos07Page from './components/logos-07/logos-07';
+import Partners from './components/logos-07/partners';
 import PricingWithCountdown from './components/seasonal';
 import Testimonials from './components/testimonials';
 import MapWithContactInfo from './components/map-with-contact-info';
@@ -37,7 +37,7 @@ export default async function HomePage() {
         <Agenda />
         <LecturersGrid />
         <Timeline />
-        <Logos07Page />
+        <Partners />
         <PricingWithCountdown />
         <Testimonials />
         <MapWithContactInfo />
