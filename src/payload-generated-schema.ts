@@ -317,6 +317,54 @@ export const pages_blocks_agenda = pgTable(
   }),
 );
 
+export const pages_blocks_lecturers_lecturers = pgTable(
+  'pages_blocks_lecturers_lecturers',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    name: varchar('name'),
+    role: varchar('role'),
+    bio: varchar('bio'),
+    image: uuid('image_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_lecturers_lecturers_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_lecturers_lecturers_parent_id_idx').on(columns._parentID),
+    pages_blocks_lecturers_lecturers_image_idx: index('pages_blocks_lecturers_lecturers_image_idx').on(columns.image),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages_blocks_lecturers.id],
+      name: 'pages_blocks_lecturers_lecturers_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const pages_blocks_lecturers = pgTable(
+  'pages_blocks_lecturers',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+    subheading: varchar('subheading'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_lecturers_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_lecturers_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('pages_blocks_lecturers_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_lecturers_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const pages = pgTable(
   'pages',
   {
@@ -599,6 +647,56 @@ export const _pages_v_blocks_agenda = pgTable(
       columns: [columns['_parentID']],
       foreignColumns: [_pages_v.id],
       name: '_pages_v_blocks_agenda_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_lecturers_lecturers = pgTable(
+  '_pages_v_blocks_lecturers_lecturers',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    name: varchar('name'),
+    role: varchar('role'),
+    bio: varchar('bio'),
+    image: uuid('image_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    _uuid: varchar('_uuid'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_lecturers_lecturers_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_lecturers_lecturers_parent_id_idx').on(columns._parentID),
+    _pages_v_blocks_lecturers_lecturers_image_idx: index('_pages_v_blocks_lecturers_lecturers_image_idx').on(columns.image),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v_blocks_lecturers.id],
+      name: '_pages_v_blocks_lecturers_lecturers_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_lecturers = pgTable(
+  '_pages_v_blocks_lecturers',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    title: varchar('title'),
+    subheading: varchar('subheading'),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_lecturers_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_lecturers_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_pages_v_blocks_lecturers_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_lecturers_parent_id_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -2047,6 +2145,28 @@ export const relations_pages_blocks_agenda = relations(pages_blocks_agenda, ({ o
     relationName: 'items',
   }),
 }));
+export const relations_pages_blocks_lecturers_lecturers = relations(pages_blocks_lecturers_lecturers, ({ one }) => ({
+  _parentID: one(pages_blocks_lecturers, {
+    fields: [pages_blocks_lecturers_lecturers._parentID],
+    references: [pages_blocks_lecturers.id],
+    relationName: 'lecturers',
+  }),
+  image: one(media, {
+    fields: [pages_blocks_lecturers_lecturers.image],
+    references: [media.id],
+    relationName: 'image',
+  }),
+}));
+export const relations_pages_blocks_lecturers = relations(pages_blocks_lecturers, ({ one, many }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_lecturers._parentID],
+    references: [pages.id],
+    relationName: '_blocks_lecturers',
+  }),
+  lecturers: many(pages_blocks_lecturers_lecturers, {
+    relationName: 'lecturers',
+  }),
+}));
 export const relations_pages_rels = relations(pages_rels, ({ one }) => ({
   parent: one(pages, {
     fields: [pages_rels.parent],
@@ -2088,6 +2208,9 @@ export const relations_pages = relations(pages, ({ one, many }) => ({
   }),
   _blocks_agenda: many(pages_blocks_agenda, {
     relationName: '_blocks_agenda',
+  }),
+  _blocks_lecturers: many(pages_blocks_lecturers, {
+    relationName: '_blocks_lecturers',
   }),
   meta_image: one(media, {
     fields: [pages.meta_image],
@@ -2174,6 +2297,28 @@ export const relations__pages_v_blocks_agenda = relations(_pages_v_blocks_agenda
     relationName: 'items',
   }),
 }));
+export const relations__pages_v_blocks_lecturers_lecturers = relations(_pages_v_blocks_lecturers_lecturers, ({ one }) => ({
+  _parentID: one(_pages_v_blocks_lecturers, {
+    fields: [_pages_v_blocks_lecturers_lecturers._parentID],
+    references: [_pages_v_blocks_lecturers.id],
+    relationName: 'lecturers',
+  }),
+  image: one(media, {
+    fields: [_pages_v_blocks_lecturers_lecturers.image],
+    references: [media.id],
+    relationName: 'image',
+  }),
+}));
+export const relations__pages_v_blocks_lecturers = relations(_pages_v_blocks_lecturers, ({ one, many }) => ({
+  _parentID: one(_pages_v, {
+    fields: [_pages_v_blocks_lecturers._parentID],
+    references: [_pages_v.id],
+    relationName: '_blocks_lecturers',
+  }),
+  lecturers: many(_pages_v_blocks_lecturers_lecturers, {
+    relationName: 'lecturers',
+  }),
+}));
 export const relations__pages_v_rels = relations(_pages_v_rels, ({ one }) => ({
   parent: one(_pages_v, {
     fields: [_pages_v_rels.parent],
@@ -2220,6 +2365,9 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   }),
   _blocks_agenda: many(_pages_v_blocks_agenda, {
     relationName: '_blocks_agenda',
+  }),
+  _blocks_lecturers: many(_pages_v_blocks_lecturers, {
+    relationName: '_blocks_lecturers',
   }),
   version_meta_image: one(media, {
     fields: [_pages_v.version_meta_image],
@@ -2859,6 +3007,8 @@ type DatabaseSchema = {
   pages_blocks_statistics: typeof pages_blocks_statistics;
   pages_blocks_agenda_items: typeof pages_blocks_agenda_items;
   pages_blocks_agenda: typeof pages_blocks_agenda;
+  pages_blocks_lecturers_lecturers: typeof pages_blocks_lecturers_lecturers;
+  pages_blocks_lecturers: typeof pages_blocks_lecturers;
   pages: typeof pages;
   pages_rels: typeof pages_rels;
   _pages_v_blocks_q_a_block: typeof _pages_v_blocks_q_a_block;
@@ -2870,6 +3020,8 @@ type DatabaseSchema = {
   _pages_v_blocks_statistics: typeof _pages_v_blocks_statistics;
   _pages_v_blocks_agenda_items: typeof _pages_v_blocks_agenda_items;
   _pages_v_blocks_agenda: typeof _pages_v_blocks_agenda;
+  _pages_v_blocks_lecturers_lecturers: typeof _pages_v_blocks_lecturers_lecturers;
+  _pages_v_blocks_lecturers: typeof _pages_v_blocks_lecturers;
   _pages_v: typeof _pages_v;
   _pages_v_rels: typeof _pages_v_rels;
   posts_populated_authors: typeof posts_populated_authors;
@@ -2932,6 +3084,8 @@ type DatabaseSchema = {
   relations_pages_blocks_statistics: typeof relations_pages_blocks_statistics;
   relations_pages_blocks_agenda_items: typeof relations_pages_blocks_agenda_items;
   relations_pages_blocks_agenda: typeof relations_pages_blocks_agenda;
+  relations_pages_blocks_lecturers_lecturers: typeof relations_pages_blocks_lecturers_lecturers;
+  relations_pages_blocks_lecturers: typeof relations_pages_blocks_lecturers;
   relations_pages_rels: typeof relations_pages_rels;
   relations_pages: typeof relations_pages;
   relations__pages_v_blocks_q_a_block: typeof relations__pages_v_blocks_q_a_block;
@@ -2943,6 +3097,8 @@ type DatabaseSchema = {
   relations__pages_v_blocks_statistics: typeof relations__pages_v_blocks_statistics;
   relations__pages_v_blocks_agenda_items: typeof relations__pages_v_blocks_agenda_items;
   relations__pages_v_blocks_agenda: typeof relations__pages_v_blocks_agenda;
+  relations__pages_v_blocks_lecturers_lecturers: typeof relations__pages_v_blocks_lecturers_lecturers;
+  relations__pages_v_blocks_lecturers: typeof relations__pages_v_blocks_lecturers;
   relations__pages_v_rels: typeof relations__pages_v_rels;
   relations__pages_v: typeof relations__pages_v;
   relations_posts_populated_authors: typeof relations_posts_populated_authors;

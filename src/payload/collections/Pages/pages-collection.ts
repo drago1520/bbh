@@ -13,6 +13,7 @@ import { Gallery7Block } from '@/payload/blocks/Gallery/gallery-7';
 import { Testimonial25Block } from '@/payload/blocks/Testimonials/testimonial-25-block';
 import { StatisticsBlock } from '@/payload/blocks/Statistics/statistics-block';
 import { AgendaBlock } from '@/payload/blocks/Info/agenda';
+import { LecturersBlock } from '@/payload/blocks/Info/lecturers';
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -94,7 +95,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 plural: 'blocks',
               },
               // blocks: [HighImpactHero, MediumImpactHero, LowImpactHero, CallToAction, Content, MediaBlock, Archive],
-              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock, AgendaBlock],
+              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock, AgendaBlock, LecturersBlock],
               required: true,
               admin: {
                 initCollapsed: true,

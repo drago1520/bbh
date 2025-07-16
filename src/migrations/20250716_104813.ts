@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
@@ -53,7 +53,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_pages_v_blocks_agenda_items_parent_id_idx" ON "_pages_v_blocks_agenda_items" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_agenda_order_idx" ON "_pages_v_blocks_agenda" USING btree ("_order");
   CREATE INDEX "_pages_v_blocks_agenda_parent_id_idx" ON "_pages_v_blocks_agenda" USING btree ("_parent_id");
-  CREATE INDEX "_pages_v_blocks_agenda_path_idx" ON "_pages_v_blocks_agenda" USING btree ("_path");`)
+  CREATE INDEX "_pages_v_blocks_agenda_path_idx" ON "_pages_v_blocks_agenda" USING btree ("_path");`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
@@ -63,5 +63,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_pages_v_blocks_agenda_items" CASCADE;
   DROP TABLE "_pages_v_blocks_agenda" CASCADE;
   ALTER TABLE "pages" DROP COLUMN "cta_text";
-  ALTER TABLE "_pages_v" DROP COLUMN "version_cta_text";`)
+  ALTER TABLE "_pages_v" DROP COLUMN "version_cta_text";`);
 }

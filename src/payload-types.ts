@@ -195,7 +195,14 @@ export interface Page {
    * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
    */
   heroImg?: (string | null) | Media;
-  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props | StatisticsProps | AgendaProps)[];
+  blocks: (
+    | FaqLeftRightBlockProps
+    | Gallery7Props
+    | Testimonial25Props
+    | StatisticsProps
+    | AgendaProps
+    | LecturersProps
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -367,6 +374,24 @@ export interface AgendaProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'agenda';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LecturersProps".
+ */
+export interface LecturersProps {
+  title: string;
+  subheading?: string | null;
+  lecturers: {
+    name: string;
+    role: string;
+    bio: string;
+    image: string | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'lecturers';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1103,6 +1128,7 @@ export interface PagesSelect<T extends boolean = true> {
         testimonial25Block?: T | Testimonial25PropsSelect<T>;
         statistics?: T | StatisticsPropsSelect<T>;
         agenda?: T | AgendaPropsSelect<T>;
+        lecturers?: T | LecturersPropsSelect<T>;
       };
   meta?:
     | T
@@ -1221,6 +1247,25 @@ export interface AgendaPropsSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LecturersProps_select".
+ */
+export interface LecturersPropsSelect<T extends boolean = true> {
+  title?: T;
+  subheading?: T;
+  lecturers?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        bio?: T;
+        image?: T;
         id?: T;
       };
   id?: T;

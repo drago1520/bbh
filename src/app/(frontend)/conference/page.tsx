@@ -38,7 +38,6 @@ export default async function HomePage() {
     console.error('Provide heroImg, subheading and ctaText on conf page');
     return;
   }
-  const agendaProps = blocks.find(block => block.blockType === 'agenda');
   const navItems: NavProps[] = [
     {
       href: '/',
@@ -65,7 +64,8 @@ export default async function HomePage() {
       title: 'Локация',
     },
   ];
-
+  const agendaProps = blocks.find(block => block.blockType === 'agenda');
+  const lecturersProps = blocks.find(block => block.blockType === 'lecturers');
   return (
     <div className="min-h-screen">
       <Header
@@ -79,7 +79,7 @@ export default async function HomePage() {
       <main className="mb-16">
         <Hero heroImg={heroImg} ctaText={ctaText} subheading={subheading} title={title} />
         {agendaProps && <Agenda agendaProps={agendaProps} />}
-        <LecturersGrid />
+        {lecturersProps && <LecturersGrid lecturersProps={lecturersProps} />}
         {/* Програма */}
         <Timeline />
         <Partners />
