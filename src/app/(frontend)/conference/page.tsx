@@ -9,7 +9,7 @@ import Agenda from './components/agenda';
 import LecturersGrid from './components/lecturers-grid';
 import Timeline from './components/timeline-06';
 import Partners from './components/logos-07/partners';
-import PricingWithCountdown from './components/seasonal';
+import PricingWithCountdown from './components/pricing';
 import Testimonials from './components/testimonials';
 import MapWithContactInfo from './components/map-with-contact-info';
 import Link from 'next/link';
@@ -68,6 +68,7 @@ export default async function HomePage() {
   const lecturersProps = blocks.find(block => block.blockType === 'lecturers');
   const confTimelineProps = blocks.find(block => block.blockType === 'timeline');
   const whoIsTheConfForProps = blocks.find(block => block.blockType === 'whoIsTheConfFor');
+  const pricingProps = blocks.find(block => block.blockType === 'PricingWithCountdown');
   const { docs: marketingSections } = await payload.find({
     collection: 'marketing-sections',
     depth: 400,
@@ -91,7 +92,7 @@ export default async function HomePage() {
         {confTimelineProps && <Timeline confTimelineProps={confTimelineProps} />}
         {partners2Props && <Partners partnersProps={partners2Props} />}
         {whoIsTheConfForProps && <WhoIsTheConfFor data={whoIsTheConfForProps} />}
-        <PricingWithCountdown />
+        {pricingProps && <PricingWithCountdown pricingProps={pricingProps} />}
         <Testimonials />
         <MapWithContactInfo />
       </main>

@@ -454,6 +454,75 @@ export const pages_blocks_who_is_the_conf_for = pgTable(
   }),
 );
 
+export const pages_blocks_pricing_with_countdown_plans_features = pgTable(
+  'pages_blocks_pricing_with_countdown_plans_features',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    feature: varchar('feature'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_pricing_with_countdown_plans_features_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_pricing_with_countdown_plans_features_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages_blocks_pricing_with_countdown_plans.id],
+      name: 'pages_blocks_pricing_with_countdown_plans_features_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const pages_blocks_pricing_with_countdown_plans = pgTable(
+  'pages_blocks_pricing_with_countdown_plans',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+    originalPrice: varchar('original_price'),
+    discountedPrice: varchar('discounted_price'),
+    discount: varchar('discount'),
+    description: varchar('description'),
+    active: boolean('active').default(false),
+    bonus: varchar('bonus'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_pricing_with_countdown_plans_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_pricing_with_countdown_plans_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages_blocks_pricing_with_countdown.id],
+      name: 'pages_blocks_pricing_with_countdown_plans_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const pages_blocks_pricing_with_countdown = pgTable(
+  'pages_blocks_pricing_with_countdown',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    label: varchar('label'),
+    title: varchar('title'),
+    subheading: varchar('subheading'),
+    saleEnd: timestamp('sale_end', { mode: 'string', withTimezone: true, precision: 3 }),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_pricing_with_countdown_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_pricing_with_countdown_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('pages_blocks_pricing_with_countdown_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_pricing_with_countdown_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const pages = pgTable(
   'pages',
   {
@@ -880,6 +949,78 @@ export const _pages_v_blocks_who_is_the_conf_for = pgTable(
       columns: [columns['_parentID']],
       foreignColumns: [_pages_v.id],
       name: '_pages_v_blocks_who_is_the_conf_for_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_pricing_with_countdown_plans_features = pgTable(
+  '_pages_v_blocks_pricing_with_countdown_plans_features',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    feature: varchar('feature'),
+    _uuid: varchar('_uuid'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_pricing_with_countdown_plans_features_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_pricing_with_countdown_plans_features_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v_blocks_pricing_with_countdown_plans.id],
+      name: '_pages_v_blocks_pricing_with_countdown_plans_features_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_pricing_with_countdown_plans = pgTable(
+  '_pages_v_blocks_pricing_with_countdown_plans',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    title: varchar('title'),
+    originalPrice: varchar('original_price'),
+    discountedPrice: varchar('discounted_price'),
+    discount: varchar('discount'),
+    description: varchar('description'),
+    active: boolean('active').default(false),
+    bonus: varchar('bonus'),
+    _uuid: varchar('_uuid'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_pricing_with_countdown_plans_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_pricing_with_countdown_plans_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v_blocks_pricing_with_countdown.id],
+      name: '_pages_v_blocks_pricing_with_countdown_plans_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_pricing_with_countdown = pgTable(
+  '_pages_v_blocks_pricing_with_countdown',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    label: varchar('label'),
+    title: varchar('title'),
+    subheading: varchar('subheading'),
+    saleEnd: timestamp('sale_end', { mode: 'string', withTimezone: true, precision: 3 }),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_pricing_with_countdown_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_pricing_with_countdown_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_pages_v_blocks_pricing_with_countdown_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_pricing_with_countdown_parent_id_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -2412,6 +2553,33 @@ export const relations_pages_blocks_who_is_the_conf_for = relations(pages_blocks
     relationName: 'items',
   }),
 }));
+export const relations_pages_blocks_pricing_with_countdown_plans_features = relations(pages_blocks_pricing_with_countdown_plans_features, ({ one }) => ({
+  _parentID: one(pages_blocks_pricing_with_countdown_plans, {
+    fields: [pages_blocks_pricing_with_countdown_plans_features._parentID],
+    references: [pages_blocks_pricing_with_countdown_plans.id],
+    relationName: 'features',
+  }),
+}));
+export const relations_pages_blocks_pricing_with_countdown_plans = relations(pages_blocks_pricing_with_countdown_plans, ({ one, many }) => ({
+  _parentID: one(pages_blocks_pricing_with_countdown, {
+    fields: [pages_blocks_pricing_with_countdown_plans._parentID],
+    references: [pages_blocks_pricing_with_countdown.id],
+    relationName: 'plans',
+  }),
+  features: many(pages_blocks_pricing_with_countdown_plans_features, {
+    relationName: 'features',
+  }),
+}));
+export const relations_pages_blocks_pricing_with_countdown = relations(pages_blocks_pricing_with_countdown, ({ one, many }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_pricing_with_countdown._parentID],
+    references: [pages.id],
+    relationName: '_blocks_PricingWithCountdown',
+  }),
+  plans: many(pages_blocks_pricing_with_countdown_plans, {
+    relationName: 'plans',
+  }),
+}));
 export const relations_pages_rels = relations(pages_rels, ({ one }) => ({
   parent: one(pages, {
     fields: [pages_rels.parent],
@@ -2462,6 +2630,9 @@ export const relations_pages = relations(pages, ({ one, many }) => ({
   }),
   _blocks_whoIsTheConfFor: many(pages_blocks_who_is_the_conf_for, {
     relationName: '_blocks_whoIsTheConfFor',
+  }),
+  _blocks_PricingWithCountdown: many(pages_blocks_pricing_with_countdown, {
+    relationName: '_blocks_PricingWithCountdown',
   }),
   meta_image: one(media, {
     fields: [pages.meta_image],
@@ -2609,6 +2780,33 @@ export const relations__pages_v_blocks_who_is_the_conf_for = relations(_pages_v_
     relationName: 'items',
   }),
 }));
+export const relations__pages_v_blocks_pricing_with_countdown_plans_features = relations(_pages_v_blocks_pricing_with_countdown_plans_features, ({ one }) => ({
+  _parentID: one(_pages_v_blocks_pricing_with_countdown_plans, {
+    fields: [_pages_v_blocks_pricing_with_countdown_plans_features._parentID],
+    references: [_pages_v_blocks_pricing_with_countdown_plans.id],
+    relationName: 'features',
+  }),
+}));
+export const relations__pages_v_blocks_pricing_with_countdown_plans = relations(_pages_v_blocks_pricing_with_countdown_plans, ({ one, many }) => ({
+  _parentID: one(_pages_v_blocks_pricing_with_countdown, {
+    fields: [_pages_v_blocks_pricing_with_countdown_plans._parentID],
+    references: [_pages_v_blocks_pricing_with_countdown.id],
+    relationName: 'plans',
+  }),
+  features: many(_pages_v_blocks_pricing_with_countdown_plans_features, {
+    relationName: 'features',
+  }),
+}));
+export const relations__pages_v_blocks_pricing_with_countdown = relations(_pages_v_blocks_pricing_with_countdown, ({ one, many }) => ({
+  _parentID: one(_pages_v, {
+    fields: [_pages_v_blocks_pricing_with_countdown._parentID],
+    references: [_pages_v.id],
+    relationName: '_blocks_PricingWithCountdown',
+  }),
+  plans: many(_pages_v_blocks_pricing_with_countdown_plans, {
+    relationName: 'plans',
+  }),
+}));
 export const relations__pages_v_rels = relations(_pages_v_rels, ({ one }) => ({
   parent: one(_pages_v, {
     fields: [_pages_v_rels.parent],
@@ -2664,6 +2862,9 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   }),
   _blocks_whoIsTheConfFor: many(_pages_v_blocks_who_is_the_conf_for, {
     relationName: '_blocks_whoIsTheConfFor',
+  }),
+  _blocks_PricingWithCountdown: many(_pages_v_blocks_pricing_with_countdown, {
+    relationName: '_blocks_PricingWithCountdown',
   }),
   version_meta_image: one(media, {
     fields: [_pages_v.version_meta_image],
@@ -3319,6 +3520,9 @@ type DatabaseSchema = {
   pages_blocks_timeline: typeof pages_blocks_timeline;
   pages_blocks_who_is_the_conf_for_items: typeof pages_blocks_who_is_the_conf_for_items;
   pages_blocks_who_is_the_conf_for: typeof pages_blocks_who_is_the_conf_for;
+  pages_blocks_pricing_with_countdown_plans_features: typeof pages_blocks_pricing_with_countdown_plans_features;
+  pages_blocks_pricing_with_countdown_plans: typeof pages_blocks_pricing_with_countdown_plans;
+  pages_blocks_pricing_with_countdown: typeof pages_blocks_pricing_with_countdown;
   pages: typeof pages;
   pages_rels: typeof pages_rels;
   _pages_v_blocks_q_a_block: typeof _pages_v_blocks_q_a_block;
@@ -3336,6 +3540,9 @@ type DatabaseSchema = {
   _pages_v_blocks_timeline: typeof _pages_v_blocks_timeline;
   _pages_v_blocks_who_is_the_conf_for_items: typeof _pages_v_blocks_who_is_the_conf_for_items;
   _pages_v_blocks_who_is_the_conf_for: typeof _pages_v_blocks_who_is_the_conf_for;
+  _pages_v_blocks_pricing_with_countdown_plans_features: typeof _pages_v_blocks_pricing_with_countdown_plans_features;
+  _pages_v_blocks_pricing_with_countdown_plans: typeof _pages_v_blocks_pricing_with_countdown_plans;
+  _pages_v_blocks_pricing_with_countdown: typeof _pages_v_blocks_pricing_with_countdown;
   _pages_v: typeof _pages_v;
   _pages_v_rels: typeof _pages_v_rels;
   posts_populated_authors: typeof posts_populated_authors;
@@ -3405,6 +3612,9 @@ type DatabaseSchema = {
   relations_pages_blocks_timeline: typeof relations_pages_blocks_timeline;
   relations_pages_blocks_who_is_the_conf_for_items: typeof relations_pages_blocks_who_is_the_conf_for_items;
   relations_pages_blocks_who_is_the_conf_for: typeof relations_pages_blocks_who_is_the_conf_for;
+  relations_pages_blocks_pricing_with_countdown_plans_features: typeof relations_pages_blocks_pricing_with_countdown_plans_features;
+  relations_pages_blocks_pricing_with_countdown_plans: typeof relations_pages_blocks_pricing_with_countdown_plans;
+  relations_pages_blocks_pricing_with_countdown: typeof relations_pages_blocks_pricing_with_countdown;
   relations_pages_rels: typeof relations_pages_rels;
   relations_pages: typeof relations_pages;
   relations__pages_v_blocks_q_a_block: typeof relations__pages_v_blocks_q_a_block;
@@ -3422,6 +3632,9 @@ type DatabaseSchema = {
   relations__pages_v_blocks_timeline: typeof relations__pages_v_blocks_timeline;
   relations__pages_v_blocks_who_is_the_conf_for_items: typeof relations__pages_v_blocks_who_is_the_conf_for_items;
   relations__pages_v_blocks_who_is_the_conf_for: typeof relations__pages_v_blocks_who_is_the_conf_for;
+  relations__pages_v_blocks_pricing_with_countdown_plans_features: typeof relations__pages_v_blocks_pricing_with_countdown_plans_features;
+  relations__pages_v_blocks_pricing_with_countdown_plans: typeof relations__pages_v_blocks_pricing_with_countdown_plans;
+  relations__pages_v_blocks_pricing_with_countdown: typeof relations__pages_v_blocks_pricing_with_countdown;
   relations__pages_v_rels: typeof relations__pages_v_rels;
   relations__pages_v: typeof relations__pages_v;
   relations_posts_populated_authors: typeof relations_posts_populated_authors;

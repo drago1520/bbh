@@ -205,6 +205,7 @@ export interface Page {
     | LecturersProps
     | ConfTimelineProps
     | WhoIsTheConfForProps
+    | PricingProps
   )[];
   meta?: {
     title?: string | null;
@@ -427,6 +428,33 @@ export interface WhoIsTheConfForProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'whoIsTheConfFor';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingProps".
+ */
+export interface PricingProps {
+  label?: string | null;
+  title: string;
+  subheading?: string | null;
+  saleEnd: string;
+  plans: {
+    title: string;
+    features: {
+      feature: string;
+      id?: string | null;
+    }[];
+    originalPrice: string;
+    discountedPrice: string;
+    discount: string;
+    description?: string | null;
+    active: boolean;
+    bonus?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'PricingWithCountdown';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1181,6 +1209,7 @@ export interface PagesSelect<T extends boolean = true> {
         lecturers?: T | LecturersPropsSelect<T>;
         timeline?: T | ConfTimelinePropsSelect<T>;
         whoIsTheConfFor?: T | WhoIsTheConfForPropsSelect<T>;
+        PricingWithCountdown?: T | PricingPropsSelect<T>;
       };
   meta?:
     | T
@@ -1352,6 +1381,36 @@ export interface WhoIsTheConfForPropsSelect<T extends boolean = true> {
         icon?: T;
         title?: T;
         description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingProps_select".
+ */
+export interface PricingPropsSelect<T extends boolean = true> {
+  label?: T;
+  title?: T;
+  subheading?: T;
+  saleEnd?: T;
+  plans?:
+    | T
+    | {
+        title?: T;
+        features?:
+          | T
+          | {
+              feature?: T;
+              id?: T;
+            };
+        originalPrice?: T;
+        discountedPrice?: T;
+        discount?: T;
+        description?: T;
+        active?: T;
+        bonus?: T;
         id?: T;
       };
   id?: T;

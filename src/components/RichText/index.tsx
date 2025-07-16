@@ -74,3 +74,26 @@ export default function RichText(props: Props) {
     />
   );
 }
+
+export function extractFeaturesFromList(richTextContent): string[] {
+  const features: string[] = [];
+
+  richTextContent.forEach(node => {
+    if (node.type === 'list' && node.tag === 'ul') {
+      node.children.forEach(listItem => {
+        if (listItem.type === 'listitem') {
+          const text = listItem.children
+            .map(paragraph => paragraph.children.map(textNode => textNode.text).join(''))
+            .join('')
+            .trim();
+
+          if (text) {
+            features.push(text);
+          }
+        }
+      });
+    }
+  });
+
+  return features;
+}
