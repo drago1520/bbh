@@ -206,6 +206,7 @@ export interface Page {
     | ConfTimelineProps
     | WhoIsTheConfForProps
     | PricingProps
+    | Testimonials2Props
   )[];
   meta?: {
     title?: string | null;
@@ -455,6 +456,33 @@ export interface PricingProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'PricingWithCountdown';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonials2Props".
+ */
+export interface Testimonials2Props {
+  title: string;
+  subheading?: string | null;
+  testimonials: {
+    quote: string;
+    clientName: string;
+    /**
+     * Портретна снимка на клиента
+     */
+    clientImg: string | Media;
+    workTitle?: string | null;
+    title?: string | null;
+    badge?: string | null;
+    /**
+     * Лого на компанията на клиента
+     */
+    companyImg: string | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials2';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1210,6 +1238,7 @@ export interface PagesSelect<T extends boolean = true> {
         timeline?: T | ConfTimelinePropsSelect<T>;
         whoIsTheConfFor?: T | WhoIsTheConfForPropsSelect<T>;
         PricingWithCountdown?: T | PricingPropsSelect<T>;
+        testimonials2?: T | Testimonials2PropsSelect<T>;
       };
   meta?:
     | T
@@ -1411,6 +1440,28 @@ export interface PricingPropsSelect<T extends boolean = true> {
         description?: T;
         active?: T;
         bonus?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonials2Props_select".
+ */
+export interface Testimonials2PropsSelect<T extends boolean = true> {
+  title?: T;
+  subheading?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        clientName?: T;
+        clientImg?: T;
+        workTitle?: T;
+        title?: T;
+        badge?: T;
+        companyImg?: T;
         id?: T;
       };
   id?: T;

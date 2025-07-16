@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
@@ -88,7 +88,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_pages_v_blocks_pricing_with_countdown_plans_parent_id_idx" ON "_pages_v_blocks_pricing_with_countdown_plans" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_pricing_with_countdown_order_idx" ON "_pages_v_blocks_pricing_with_countdown" USING btree ("_order");
   CREATE INDEX "_pages_v_blocks_pricing_with_countdown_parent_id_idx" ON "_pages_v_blocks_pricing_with_countdown" USING btree ("_parent_id");
-  CREATE INDEX "_pages_v_blocks_pricing_with_countdown_path_idx" ON "_pages_v_blocks_pricing_with_countdown" USING btree ("_path");`)
+  CREATE INDEX "_pages_v_blocks_pricing_with_countdown_path_idx" ON "_pages_v_blocks_pricing_with_countdown" USING btree ("_path");`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
@@ -98,5 +98,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "pages_blocks_pricing_with_countdown" CASCADE;
   DROP TABLE "_pages_v_blocks_pricing_with_countdown_plans_features" CASCADE;
   DROP TABLE "_pages_v_blocks_pricing_with_countdown_plans" CASCADE;
-  DROP TABLE "_pages_v_blocks_pricing_with_countdown" CASCADE;`)
+  DROP TABLE "_pages_v_blocks_pricing_with_countdown" CASCADE;`);
 }

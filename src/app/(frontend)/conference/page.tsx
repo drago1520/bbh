@@ -69,6 +69,7 @@ export default async function HomePage() {
   const confTimelineProps = blocks.find(block => block.blockType === 'timeline');
   const whoIsTheConfForProps = blocks.find(block => block.blockType === 'whoIsTheConfFor');
   const pricingProps = blocks.find(block => block.blockType === 'PricingWithCountdown');
+  const testimonials2Props = blocks.find(block => block.blockType === 'testimonials2');
   const { docs: marketingSections } = await payload.find({
     collection: 'marketing-sections',
     depth: 400,
@@ -93,7 +94,7 @@ export default async function HomePage() {
         {partners2Props && <Partners partnersProps={partners2Props} />}
         {whoIsTheConfForProps && <WhoIsTheConfFor data={whoIsTheConfForProps} />}
         {pricingProps && <PricingWithCountdown pricingProps={pricingProps} />}
-        <Testimonials />
+        {testimonials2Props && <Testimonials testimonilas2Props={testimonials2Props} />}
         <MapWithContactInfo />
       </main>
       <Footer />
