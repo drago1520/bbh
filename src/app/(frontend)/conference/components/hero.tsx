@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -18,10 +19,12 @@ export default function Hero() {
           <p className="mt-6 text-xl text-white/90">Showcasing a collection of thoughtfully crafted designs and artistic expressions that blend creativity with functionality.</p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg">View Portfolio</Button>
+            <Button asChild size="lg">
+              <Link href="#цени">View Portfolio</Link>
+            </Button>
 
-            <Button variant="secondary" size="lg">
-              Contact Me
+            <Button asChild variant="outline" size="lg">
+              <Link href="#локация">Contact Me</Link>
             </Button>
           </div>
         </div>

@@ -12,6 +12,7 @@ import Partners from './components/logos-07/partners';
 import PricingWithCountdown from './components/seasonal';
 import Testimonials from './components/testimonials';
 import MapWithContactInfo from './components/map-with-contact-info';
+import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
@@ -52,7 +53,14 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Header navItems={navItems} cta={<Button>Вземи Билет</Button>} />
+      <Header
+        navItems={navItems}
+        cta={
+          <Button asChild>
+            <Link href="#цени">Вземи Билет</Link>
+          </Button>
+        }
+      />
       <main className="mb-16">
         <Hero />
         <Agenda />
