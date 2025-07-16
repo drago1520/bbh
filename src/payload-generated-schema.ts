@@ -1844,6 +1844,28 @@ export const marketing_sections_blocks_partners = pgTable(
   }),
 );
 
+export const marketing_sections_blocks_partners2 = pgTable(
+  'marketing_sections_blocks_partners2',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    subtitle: varchar('subtitle'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('marketing_sections_blocks_partners2_order_idx').on(columns._order),
+    _parentIDIdx: index('marketing_sections_blocks_partners2_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('marketing_sections_blocks_partners2_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [marketing_sections.id],
+      name: 'marketing_sections_blocks_partners2_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const marketing_sections = pgTable(
   'marketing_sections',
   {
@@ -2950,6 +2972,13 @@ export const relations_marketing_sections_blocks_partners = relations(marketing_
     relationName: '_blocks_partners',
   }),
 }));
+export const relations_marketing_sections_blocks_partners2 = relations(marketing_sections_blocks_partners2, ({ one }) => ({
+  _parentID: one(marketing_sections, {
+    fields: [marketing_sections_blocks_partners2._parentID],
+    references: [marketing_sections.id],
+    relationName: '_blocks_partners2',
+  }),
+}));
 export const relations_marketing_sections_rels = relations(marketing_sections_rels, ({ one }) => ({
   parent: one(marketing_sections, {
     fields: [marketing_sections_rels.parent],
@@ -2965,6 +2994,9 @@ export const relations_marketing_sections_rels = relations(marketing_sections_re
 export const relations_marketing_sections = relations(marketing_sections, ({ many }) => ({
   _blocks_partners: many(marketing_sections_blocks_partners, {
     relationName: '_blocks_partners',
+  }),
+  _blocks_partners2: many(marketing_sections_blocks_partners2, {
+    relationName: '_blocks_partners2',
   }),
   _rels: many(marketing_sections_rels, {
     relationName: '_rels',
@@ -3192,6 +3224,7 @@ type DatabaseSchema = {
   attendees: typeof attendees;
   events: typeof events;
   marketing_sections_blocks_partners: typeof marketing_sections_blocks_partners;
+  marketing_sections_blocks_partners2: typeof marketing_sections_blocks_partners2;
   marketing_sections: typeof marketing_sections;
   marketing_sections_rels: typeof marketing_sections_rels;
   redirects: typeof redirects;
@@ -3273,6 +3306,7 @@ type DatabaseSchema = {
   relations_attendees: typeof relations_attendees;
   relations_events: typeof relations_events;
   relations_marketing_sections_blocks_partners: typeof relations_marketing_sections_blocks_partners;
+  relations_marketing_sections_blocks_partners2: typeof relations_marketing_sections_blocks_partners2;
   relations_marketing_sections_rels: typeof relations_marketing_sections_rels;
   relations_marketing_sections: typeof relations_marketing_sections;
   relations_redirects_rels: typeof relations_redirects_rels;
