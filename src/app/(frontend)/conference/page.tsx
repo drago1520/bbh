@@ -30,6 +30,10 @@ export default async function HomePage() {
   // if (docs.length < 1) console.error('No data found for the homepage. Check the slug.'); тест деплой
   const navItems: NavProps[] = [
     {
+      href: '/',
+      title: 'Начало',
+    },
+    {
       href: '#теми',
       title: 'Теми',
     },
@@ -57,7 +61,7 @@ export default async function HomePage() {
         navItems={navItems}
         cta={
           <Button asChild>
-            <Link href="#цени">Вземи Билет</Link>
+            <Link href="#цени">Запиши се</Link>
           </Button>
         }
       />
