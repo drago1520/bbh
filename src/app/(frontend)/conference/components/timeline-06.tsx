@@ -41,7 +41,7 @@ type ConfTimelineProps = {
 export default function Timeline({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }) {
   const { title = 'Заглавие', steps = stepsDefault } = confTimelineProps;
   return (
-    <div className="mx-auto max-w-screen-sm px-6 py-12 md:py-20">
+    <div className="mx-auto max-w-screen-md px-6 py-12 md:py-20">
       <div className="mb-12">
         <h3 className="text-h3-size text-center">{title}</h3>
       </div>

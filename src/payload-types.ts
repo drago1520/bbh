@@ -204,6 +204,7 @@ export interface Page {
     | AgendaProps
     | LecturersProps
     | ConfTimelineProps
+    | WhoIsTheConfForProps
   )[];
   meta?: {
     title?: string | null;
@@ -386,8 +387,8 @@ export interface LecturersProps {
   subheading?: string | null;
   lecturers: {
     name: string;
-    role: string;
-    bio: string;
+    role?: string | null;
+    bio?: string | null;
     image: string | Media;
     id?: string | null;
   }[];
@@ -409,6 +410,23 @@ export interface ConfTimelineProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'timeline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhoIsTheConfForProps".
+ */
+export interface WhoIsTheConfForProps {
+  title: string;
+  subheading?: string | null;
+  items: {
+    icon: string | Media;
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whoIsTheConfFor';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1162,6 +1180,7 @@ export interface PagesSelect<T extends boolean = true> {
         agenda?: T | AgendaPropsSelect<T>;
         lecturers?: T | LecturersPropsSelect<T>;
         timeline?: T | ConfTimelinePropsSelect<T>;
+        whoIsTheConfFor?: T | WhoIsTheConfForPropsSelect<T>;
       };
   meta?:
     | T
@@ -1313,6 +1332,24 @@ export interface ConfTimelinePropsSelect<T extends boolean = true> {
   steps?:
     | T
     | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhoIsTheConfForProps_select".
+ */
+export interface WhoIsTheConfForPropsSelect<T extends boolean = true> {
+  title?: T;
+  subheading?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
         title?: T;
         description?: T;
         id?: T;

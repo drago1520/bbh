@@ -15,6 +15,7 @@ import { StatisticsBlock } from '@/payload/blocks/Statistics/statistics-block';
 import { AgendaBlock } from '@/payload/blocks/Info/agenda';
 import { LecturersBlock } from '@/payload/blocks/Info/lecturers';
 import { TimelineBlock } from '@/payload/blocks/Info/conference-timeline';
+import { WhoIsTheConfForBlock } from '@/payload/blocks/Info/whoIsTheConferenceFor';
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -101,7 +102,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 plural: 'blocks',
               },
               // blocks: [HighImpactHero, MediumImpactHero, LowImpactHero, CallToAction, Content, MediaBlock, Archive],
-              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock, AgendaBlock, LecturersBlock, TimelineBlock],
+              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock, AgendaBlock, LecturersBlock, TimelineBlock, WhoIsTheConfForBlock],
               required: true,
               admin: {
                 initCollapsed: true,

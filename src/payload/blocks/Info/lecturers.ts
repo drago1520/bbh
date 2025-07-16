@@ -41,7 +41,6 @@ export const LecturersBlock: Block = {
           name: 'role',
           type: 'text',
           label: 'Роля',
-          required: true,
           admin: {
             placeholder: 'Основател / Изпълнителен директор',
           },
@@ -50,7 +49,6 @@ export const LecturersBlock: Block = {
           name: 'bio',
           type: 'text',
           label: 'Биография',
-          required: true,
           admin: {
             placeholder: 'Аз съм амбициозен работоголик, но освен това доста обикновен човек.',
           },

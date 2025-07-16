@@ -8,7 +8,7 @@ export default function Agenda({ agendaProps }: { agendaProps: AgendaProps }) {
         <div>
           <div className="mb-8">
             <h3 id="теми" className="text-h3-size text-center">
-              Guiding Values
+              {agendaProps.title}
             </h3>
           </div>
 

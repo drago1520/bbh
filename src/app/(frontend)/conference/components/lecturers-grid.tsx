@@ -36,8 +36,8 @@ type LecturersProps = {
   subheading?: string | null;
   lecturers: {
     name: string;
-    role: string;
-    bio: string;
+    role?: string | null;
+    bio?: string | null;
     image: Media | string;
   }[];
 };

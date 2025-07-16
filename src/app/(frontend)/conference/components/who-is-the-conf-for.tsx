@@ -1,43 +1,35 @@
-import { ShieldCheck, Lightbulb, Users } from 'lucide-react';
+import { Media } from '@/payload-types';
+import Image from 'next/image';
 
-export default function WhoIsTheConfFor() {
+type WhoIsTheConfForProps = {
+  title: string;
+  subheading?: string | null;
+  items: {
+    icon: string | Media;
+    title: string;
+    description: string;
+  }[];
+};
+
+export default function WhoIsTheConfFor({ data }: { data: WhoIsTheConfForProps }) {
   return (
     <section className="py-16 md:pt-24">
       <div className="container mx-auto">
         {/* Mission Statement Header */}
         <div className="mb-16 text-center">
-          <h2 className="text-h3-size mb-2 text-center">Our Mission</h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl">We strive to create meaningful digital experiences that transform businesses and enrich lives through innovative design and technology solutions.</p>
+          <h2 className="text-h3-size mb-2 text-center">{data.title}</h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl">{data.subheading}</p>
         </div>
 
         {/* Three Pillars */}
         <div className="grid gap-8 md:grid-cols-3">
-          {/* Pillar 1 */}
-          <div className="bg-card flex flex-col items-center rounded-lg border p-8 text-center shadow-sm transition-all hover:shadow-md">
-            <div className="bg-primary/10 text-primary flex h-14 w-14 items-center justify-center rounded-full">
-              <ShieldCheck className="h-7 w-7" />
+          {data.items.map(({ title, icon, description }, i) => (
+            <div key={title + i} className="bg-card flex flex-col items-center rounded-lg border p-8 text-center shadow-sm transition-all hover:shadow-md">
+              {typeof icon !== 'string' && <Image className="h-7 w-7" width={icon.width || 28} height={icon.height || 28} src={icon.url || ''} alt={icon.alt} />}
+              <h3 className="mt-6 text-xl font-semibold">{title}</h3>
+              <p className="text-muted-foreground mt-3">{description}</p>
             </div>
-            <h3 className="mt-6 text-xl font-semibold">Integrity</h3>
-            <p className="text-muted-foreground mt-3">We hold ourselves to the highest ethical standards in all interactions. Honesty and transparency guide our relationships with clients and teammates.</p>
-          </div>
-
-          {/* Pillar 2 */}
-          <div className="bg-card flex flex-col items-center rounded-lg border p-8 text-center shadow-sm transition-all hover:shadow-md">
-            <div className="bg-primary/10 text-primary flex h-14 w-14 items-center justify-center rounded-full">
-              <Lightbulb className="h-7 w-7" />
-            </div>
-            <h3 className="mt-6 text-xl font-semibold">Innovation</h3>
-            <p className="text-muted-foreground mt-3">We continuously explore new possibilities and challenge conventional thinking to create solutions that are ahead of their time.</p>
-          </div>
-
-          {/* Pillar 3 */}
-          <div className="bg-card flex flex-col items-center rounded-lg border p-8 text-center shadow-sm transition-all hover:shadow-md">
-            <div className="bg-primary/10 text-primary flex h-14 w-14 items-center justify-center rounded-full">
-              <Users className="h-7 w-7" />
-            </div>
-            <h3 className="mt-6 text-xl font-semibold">Collaboration</h3>
-            <p className="text-muted-foreground mt-3">We believe in the power of diverse perspectives and foster an environment where teamwork and open communication drive our success.</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
