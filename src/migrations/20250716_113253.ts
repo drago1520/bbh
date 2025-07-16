@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
@@ -51,7 +51,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_pages_v_blocks_timeline_steps_parent_id_idx" ON "_pages_v_blocks_timeline_steps" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_timeline_order_idx" ON "_pages_v_blocks_timeline" USING btree ("_order");
   CREATE INDEX "_pages_v_blocks_timeline_parent_id_idx" ON "_pages_v_blocks_timeline" USING btree ("_parent_id");
-  CREATE INDEX "_pages_v_blocks_timeline_path_idx" ON "_pages_v_blocks_timeline" USING btree ("_path");`)
+  CREATE INDEX "_pages_v_blocks_timeline_path_idx" ON "_pages_v_blocks_timeline" USING btree ("_path");`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
@@ -59,5 +59,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
    DROP TABLE "pages_blocks_timeline_steps" CASCADE;
   DROP TABLE "pages_blocks_timeline" CASCADE;
   DROP TABLE "_pages_v_blocks_timeline_steps" CASCADE;
-  DROP TABLE "_pages_v_blocks_timeline" CASCADE;`)
+  DROP TABLE "_pages_v_blocks_timeline" CASCADE;`);
 }
