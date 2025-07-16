@@ -189,12 +189,13 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
+  ctaText?: string | null;
   subheading?: string | null;
   /**
    * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
    */
   heroImg?: (string | null) | Media;
-  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props | StatisticsProps)[];
+  blocks: (FaqLeftRightBlockProps | Gallery7Props | Testimonial25Props | StatisticsProps | AgendaProps)[];
   meta?: {
     title?: string | null;
     /**
@@ -348,6 +349,24 @@ export interface StatisticsProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'statistics';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AgendaProps".
+ */
+export interface AgendaProps {
+  title?: string | null;
+  /**
+   * Добавете елементи от програмата с заглавие и описание
+   */
+  items: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'agenda';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1073,6 +1092,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  ctaText?: T;
   subheading?: T;
   heroImg?: T;
   blocks?:
@@ -1082,6 +1102,7 @@ export interface PagesSelect<T extends boolean = true> {
         gallery7?: T | Gallery7PropsSelect<T>;
         testimonial25Block?: T | Testimonial25PropsSelect<T>;
         statistics?: T | StatisticsPropsSelect<T>;
+        agenda?: T | AgendaPropsSelect<T>;
       };
   meta?:
     | T
@@ -1185,6 +1206,22 @@ export interface StatisticsPropsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AgendaProps_select".
+ */
+export interface AgendaPropsSelect<T extends boolean = true> {
+  title?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;

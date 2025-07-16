@@ -27,7 +27,18 @@ export default async function HomePage() {
     },
     limit: 1,
   });
-  // if (docs.length < 1) console.error('No data found for the homepage. Check the slug.'); тест деплой
+  if (docs.length < 1) {
+    console.error('No data found for the homepage. Check the slug.');
+    return;
+  }
+
+  const [confPage] = docs;
+  const { blocks, title, heroImg, subheading, ctaText } = confPage;
+  if (!heroImg || !subheading || !ctaText) {
+    console.error('Provide heroImg, subheading and ctaText on conf page');
+    return;
+  }
+  const agendaProps = blocks.find(block => block.blockType === 'agenda');
   const navItems: NavProps[] = [
     {
       href: '/',
@@ -66,8 +77,8 @@ export default async function HomePage() {
         }
       />
       <main className="mb-16">
-        <Hero />
-        <Agenda />
+        <Hero heroImg={heroImg} ctaText={ctaText} subheading={subheading} title={title} />
+        {agendaProps && <Agenda agendaProps={agendaProps} />}
         <LecturersGrid />
         {/* Програма */}
         <Timeline />

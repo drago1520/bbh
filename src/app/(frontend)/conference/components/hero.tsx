@@ -1,20 +1,24 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { errorMsgs } from '@/utils/error';
+import { Media } from '@/payload-types';
 
 type HeroProps = {
-  title?: string;
-  description?: string;
-  ctaText?: string;
-  secondaryText?: string;
-  backgroundImage?: string;
+  title: string;
+  subheading: string;
+  ctaText: string;
+  heroImg: Media | string;
 };
 
-export default function Hero({ title = 'Creative Design Solutions That Stand Out', description = 'Showcasing a collection of thoughtfully crafted designs and artistic expressions that blend creativity with functionality.', ctaText = 'Запиши се', secondaryText = 'Contact Me', backgroundImage = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' }: HeroProps) {
+export default function Hero({ title = 'Creative Design Solutions That Stand Out', subheading = 'Showcasing a collection of thoughtfully crafted designs and artistic expressions that blend creativity with functionality.', ctaText = 'Запиши се', heroImg }: HeroProps) {
+  if (typeof heroImg === 'string') throw new Error(errorMsgs.imgIsString);
+  const heroImgFallBack = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3';
+
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Full screen background image */}
-      <Image src={backgroundImage} alt="Design portfolio showcase" fill className="object-cover object-center" priority />
+      <Image src={heroImg.url || heroImgFallBack} alt={heroImg.alt} fill className="object-cover object-center" priority />
 
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-black/50" />
@@ -24,7 +28,7 @@ export default function Hero({ title = 'Creative Design Solutions That Stand Out
         <div className="max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">{title}</h1>
 
-          <p className="mt-6 text-xl text-white/90">{description}</p>
+          <p className="mt-6 text-xl text-white/90">{subheading}</p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg">
