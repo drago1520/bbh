@@ -73,6 +73,11 @@ export const Pages: CollectionConfig<'pages'> = {
       type: 'text',
     },
     {
+      name: 'emailTemplateId',
+      label: 'Email Template ID от MailerSend',
+      type: 'text',
+    },
+    {
       type: 'tabs',
       tabs: [
         {

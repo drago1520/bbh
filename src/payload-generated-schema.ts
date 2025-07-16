@@ -414,6 +414,7 @@ export const pages = pgTable(
     title: varchar('title'),
     ctaText: varchar('cta_text'),
     subheading: varchar('subheading'),
+    emailTemplateId: varchar('email_template_id'),
     heroImg: uuid('hero_img_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -797,6 +798,7 @@ export const _pages_v = pgTable(
     version_title: varchar('version_title'),
     version_ctaText: varchar('version_cta_text'),
     version_subheading: varchar('version_subheading'),
+    version_emailTemplateId: varchar('version_email_template_id'),
     version_heroImg: uuid('version_hero_img_id').references(() => media.id, {
       onDelete: 'set null',
     }),

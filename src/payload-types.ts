@@ -191,6 +191,7 @@ export interface Page {
   title: string;
   ctaText?: string | null;
   subheading?: string | null;
+  emailTemplateId?: string | null;
   /**
    * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
    */
@@ -1149,6 +1150,7 @@ export interface PagesSelect<T extends boolean = true> {
   title?: T;
   ctaText?: T;
   subheading?: T;
+  emailTemplateId?: T;
   heroImg?: T;
   blocks?:
     | T
