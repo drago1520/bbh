@@ -365,6 +365,48 @@ export const pages_blocks_lecturers = pgTable(
   }),
 );
 
+export const pages_blocks_timeline_steps = pgTable(
+  'pages_blocks_timeline_steps',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+    description: varchar('description'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_timeline_steps_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_timeline_steps_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages_blocks_timeline.id],
+      name: 'pages_blocks_timeline_steps_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const pages_blocks_timeline = pgTable(
+  'pages_blocks_timeline',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('pages_blocks_timeline_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_timeline_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('pages_blocks_timeline_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_timeline_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const pages = pgTable(
   'pages',
   {
@@ -697,6 +739,50 @@ export const _pages_v_blocks_lecturers = pgTable(
       columns: [columns['_parentID']],
       foreignColumns: [_pages_v.id],
       name: '_pages_v_blocks_lecturers_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_timeline_steps = pgTable(
+  '_pages_v_blocks_timeline_steps',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    title: varchar('title'),
+    description: varchar('description'),
+    _uuid: varchar('_uuid'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_timeline_steps_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_timeline_steps_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v_blocks_timeline.id],
+      name: '_pages_v_blocks_timeline_steps_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _pages_v_blocks_timeline = pgTable(
+  '_pages_v_blocks_timeline',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: uuid('id').defaultRandom().primaryKey(),
+    title: varchar('title'),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('_pages_v_blocks_timeline_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_timeline_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_pages_v_blocks_timeline_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_timeline_parent_id_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -2167,6 +2253,23 @@ export const relations_pages_blocks_lecturers = relations(pages_blocks_lecturers
     relationName: 'lecturers',
   }),
 }));
+export const relations_pages_blocks_timeline_steps = relations(pages_blocks_timeline_steps, ({ one }) => ({
+  _parentID: one(pages_blocks_timeline, {
+    fields: [pages_blocks_timeline_steps._parentID],
+    references: [pages_blocks_timeline.id],
+    relationName: 'steps',
+  }),
+}));
+export const relations_pages_blocks_timeline = relations(pages_blocks_timeline, ({ one, many }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_timeline._parentID],
+    references: [pages.id],
+    relationName: '_blocks_timeline',
+  }),
+  steps: many(pages_blocks_timeline_steps, {
+    relationName: 'steps',
+  }),
+}));
 export const relations_pages_rels = relations(pages_rels, ({ one }) => ({
   parent: one(pages, {
     fields: [pages_rels.parent],
@@ -2211,6 +2314,9 @@ export const relations_pages = relations(pages, ({ one, many }) => ({
   }),
   _blocks_lecturers: many(pages_blocks_lecturers, {
     relationName: '_blocks_lecturers',
+  }),
+  _blocks_timeline: many(pages_blocks_timeline, {
+    relationName: '_blocks_timeline',
   }),
   meta_image: one(media, {
     fields: [pages.meta_image],
@@ -2319,6 +2425,23 @@ export const relations__pages_v_blocks_lecturers = relations(_pages_v_blocks_lec
     relationName: 'lecturers',
   }),
 }));
+export const relations__pages_v_blocks_timeline_steps = relations(_pages_v_blocks_timeline_steps, ({ one }) => ({
+  _parentID: one(_pages_v_blocks_timeline, {
+    fields: [_pages_v_blocks_timeline_steps._parentID],
+    references: [_pages_v_blocks_timeline.id],
+    relationName: 'steps',
+  }),
+}));
+export const relations__pages_v_blocks_timeline = relations(_pages_v_blocks_timeline, ({ one, many }) => ({
+  _parentID: one(_pages_v, {
+    fields: [_pages_v_blocks_timeline._parentID],
+    references: [_pages_v.id],
+    relationName: '_blocks_timeline',
+  }),
+  steps: many(_pages_v_blocks_timeline_steps, {
+    relationName: 'steps',
+  }),
+}));
 export const relations__pages_v_rels = relations(_pages_v_rels, ({ one }) => ({
   parent: one(_pages_v, {
     fields: [_pages_v_rels.parent],
@@ -2368,6 +2491,9 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   }),
   _blocks_lecturers: many(_pages_v_blocks_lecturers, {
     relationName: '_blocks_lecturers',
+  }),
+  _blocks_timeline: many(_pages_v_blocks_timeline, {
+    relationName: '_blocks_timeline',
   }),
   version_meta_image: one(media, {
     fields: [_pages_v.version_meta_image],
@@ -3009,6 +3135,8 @@ type DatabaseSchema = {
   pages_blocks_agenda: typeof pages_blocks_agenda;
   pages_blocks_lecturers_lecturers: typeof pages_blocks_lecturers_lecturers;
   pages_blocks_lecturers: typeof pages_blocks_lecturers;
+  pages_blocks_timeline_steps: typeof pages_blocks_timeline_steps;
+  pages_blocks_timeline: typeof pages_blocks_timeline;
   pages: typeof pages;
   pages_rels: typeof pages_rels;
   _pages_v_blocks_q_a_block: typeof _pages_v_blocks_q_a_block;
@@ -3022,6 +3150,8 @@ type DatabaseSchema = {
   _pages_v_blocks_agenda: typeof _pages_v_blocks_agenda;
   _pages_v_blocks_lecturers_lecturers: typeof _pages_v_blocks_lecturers_lecturers;
   _pages_v_blocks_lecturers: typeof _pages_v_blocks_lecturers;
+  _pages_v_blocks_timeline_steps: typeof _pages_v_blocks_timeline_steps;
+  _pages_v_blocks_timeline: typeof _pages_v_blocks_timeline;
   _pages_v: typeof _pages_v;
   _pages_v_rels: typeof _pages_v_rels;
   posts_populated_authors: typeof posts_populated_authors;
@@ -3086,6 +3216,8 @@ type DatabaseSchema = {
   relations_pages_blocks_agenda: typeof relations_pages_blocks_agenda;
   relations_pages_blocks_lecturers_lecturers: typeof relations_pages_blocks_lecturers_lecturers;
   relations_pages_blocks_lecturers: typeof relations_pages_blocks_lecturers;
+  relations_pages_blocks_timeline_steps: typeof relations_pages_blocks_timeline_steps;
+  relations_pages_blocks_timeline: typeof relations_pages_blocks_timeline;
   relations_pages_rels: typeof relations_pages_rels;
   relations_pages: typeof relations_pages;
   relations__pages_v_blocks_q_a_block: typeof relations__pages_v_blocks_q_a_block;
@@ -3099,6 +3231,8 @@ type DatabaseSchema = {
   relations__pages_v_blocks_agenda: typeof relations__pages_v_blocks_agenda;
   relations__pages_v_blocks_lecturers_lecturers: typeof relations__pages_v_blocks_lecturers_lecturers;
   relations__pages_v_blocks_lecturers: typeof relations__pages_v_blocks_lecturers;
+  relations__pages_v_blocks_timeline_steps: typeof relations__pages_v_blocks_timeline_steps;
+  relations__pages_v_blocks_timeline: typeof relations__pages_v_blocks_timeline;
   relations__pages_v_rels: typeof relations__pages_v_rels;
   relations__pages_v: typeof relations__pages_v;
   relations_posts_populated_authors: typeof relations_posts_populated_authors;

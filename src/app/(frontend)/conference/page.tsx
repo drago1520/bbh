@@ -66,6 +66,7 @@ export default async function HomePage() {
   ];
   const agendaProps = blocks.find(block => block.blockType === 'agenda');
   const lecturersProps = blocks.find(block => block.blockType === 'lecturers');
+  const confTimelineProps = blocks.find(block => block.blockType === 'timeline');
   return (
     <div className="min-h-screen">
       <Header
@@ -81,7 +82,7 @@ export default async function HomePage() {
         {agendaProps && <Agenda agendaProps={agendaProps} />}
         {lecturersProps && <LecturersGrid lecturersProps={lecturersProps} />}
         {/* Програма */}
-        <Timeline />
+        {confTimelineProps && <Timeline confTimelineProps={confTimelineProps} />}
         <Partners />
         <WhoIsTheConfFor />
         <PricingWithCountdown />

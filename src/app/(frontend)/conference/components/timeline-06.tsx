@@ -1,21 +1,17 @@
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
 
-const steps = [
+const stepsDefault = [
   {
     title: 'Research',
     description: 'Gather information and analyze requirements to understand the problem and define objectives.',
-    completed: true,
   },
   {
     title: 'Planning',
     description: 'Create a roadmap, define the scope, and outline the necessary steps to achieve the goal.',
-    completed: true,
   },
   {
     title: 'Design',
     description: 'Develop wireframes, mockups, and prototypes to visualize the structure and user experience.',
-    completed: true,
   },
   {
     title: 'Development',
@@ -35,25 +31,29 @@ const steps = [
   },
 ];
 
-export default function Timeline() {
+type ConfTimelineProps = {
+  title: string;
+  steps: {
+    title: string;
+    description: string;
+  }[];
+};
+export default function Timeline({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }) {
+  const { title = 'Заглавие', steps = stepsDefault } = confTimelineProps;
   return (
     <div className="mx-auto max-w-screen-sm px-6 py-12 md:py-20">
       <div className="mb-12">
-        <h3 className="text-h3-size text-center">Заглавие</h3>
+        <h3 className="text-h3-size text-center">{title}</h3>
       </div>
       <div className="relative ml-6">
         {/* Timeline line */}
         <div className="absolute inset-y-0 left-0 border-l-2" />
 
-        {steps.map(({ title, description, completed }, index) => (
+        {steps.map(({ title, description }, index) => (
           <div key={index} className="relative pb-10 pl-10 last:pb-0">
             {/* Timeline Icon */}
-            <div
-              className={cn('border-muted-foreground bg-accent ring-background absolute left-px flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border-2 ring-8', {
-                'bg-primary border-primary text-primary-foreground': completed,
-              })}
-            >
-              <span className="text-lg font-semibold">{completed ? <Check className="h-5 w-5" /> : index + 1}</span>
+            <div className={cn('border-muted-foreground bg-accent ring-background absolute left-px flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border-2 ring-8')}>
+              <span className="text-lg font-semibold">{index + 1}</span>
             </div>
 
             {/* Content */}
