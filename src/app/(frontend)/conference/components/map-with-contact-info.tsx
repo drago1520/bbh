@@ -10,7 +10,9 @@ export default function MapWithContactInfo() {
   return (
     <section className="container py-16">
       <div className="mb-8 text-center">
-        <h2 className="text-h3-size mb-2">Find Me</h2>
+        <h3 id="локация" className="text-h3-size mb-2">
+          Find Me
+        </h3>
         <p className="text-muted-foreground mx-auto max-w-2xl">Located in the heart of San Francisco. Feel free to visit or get in touch through any channel.</p>
       </div>
 
@@ -24,13 +26,13 @@ export default function MapWithContactInfo() {
         <div className="lg:col-span-2">
           <Card className="h-full">
             <CardContent>
-              <h3 className="my-6 text-xl font-semibold">Contact Information</h3>
+              <h4 className="my-6 text-xl font-semibold">Contact Information</h4>
 
               <div className="mb-8 space-y-4">
                 <div className="flex items-start">
                   <MapPin className="text-primary mt-1 size-5 flex-shrink-0" />
                   <div className="ml-3">
-                    <h4 className="font-medium">Address</h4>
+                    <h5 className="font-medium">Address</h5>
                     <p className="text-muted-foreground text-sm">
                       123 Market Street
                       <br />
@@ -54,7 +56,7 @@ export default function MapWithContactInfo() {
                 <div className="flex items-start">
                   <Mail className="text-primary mt-1 size-5 flex-shrink-0" />
                   <div className="ml-3">
-                    <h4 className="font-medium">Email</h4>
+                    <h5 className="font-medium">Email</h5>
                     <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                       hello@example.com
                     </a>
@@ -64,7 +66,7 @@ export default function MapWithContactInfo() {
 
               {/* Mini Contact Form */}
               <div className="border-t pt-6">
-                <h4 className="mb-4 font-medium">Send a quick message</h4>
+                <h5 className="mb-4 font-medium">Send a quick message</h5>
                 <form className="space-y-4">
                   <div>
                     <Label htmlFor="quick-email" className="sr-only">

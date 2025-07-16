@@ -35,7 +35,9 @@ export default function LecturersGrid() {
     <div className="container py-16">
       {/* Title */}
       <div className="mx-auto mb-8 max-w-2xl text-center lg:mb-14">
-        <h3 className="text-h3-size mb-2 text-center">Meet our team</h3>
+        <h3 id="лектори" className="text-h3-size mb-2 text-center">
+          Meet our team
+        </h3>
         <p className="text-muted-foreground text-lg">The amazing people behind the scenes</p>
       </div>
       {/* End Title */}

@@ -58,7 +58,9 @@ export default function Timeline() {
 
             {/* Content */}
             <div className="space-y-2 pt-1">
-              <h3 className="text-xl font-semibold">{title}</h3>
+              <h3 id="програма" className="scroll-m-40 text-xl font-semibold">
+                {title}
+              </h3>
               <p className="text-muted-foreground">{description}</p>
             </div>
           </div>

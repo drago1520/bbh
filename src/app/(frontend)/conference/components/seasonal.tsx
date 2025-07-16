@@ -93,7 +93,9 @@ export default function PricingWithCountdown() {
             Limited Time Offer
           </Badge>
           <div className="space-y-2">
-            <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Summer Sale: 20% Off All Plans</h3>
+            <h3 id="цени" className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Summer Sale: 20% Off All Plans
+            </h3>
             <p className="text-muted-foreground mx-auto max-w-2xl md:text-xl/relaxed">Upgrade now and save big on all our plans. Offer ends soon!</p>
           </div>
 

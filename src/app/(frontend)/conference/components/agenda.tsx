@@ -32,7 +32,9 @@ export default function Agenda() {
         {/* Values Section */}
         <div>
           <div className="mb-8">
-            <h3 className="text-h3-size text-center">Guiding Values</h3>
+            <h3 id="теми" className="text-h3-size text-center">
+              Guiding Values
+            </h3>
           </div>
 
           <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">

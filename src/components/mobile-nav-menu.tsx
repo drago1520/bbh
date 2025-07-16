@@ -28,12 +28,12 @@ export default function MobileNavMenu({ navigationItems }: { navigationItems: Na
           <SheetDescription>Бизнес общонстта на Бургас</SheetDescription>
         </SheetHeader>
         <div className="flex flex-col gap-4">
-          {navigationItems.map(item => (
-            <nav key={item.title}>
-              <Button className="w-full justify-start" asChild variant="link">
-                <Link href={item.href}>{item.title}</Link>
+          {navigationItems.map(({ title, description, href, className }) => (
+            <nav key={title}>
+              <Button onClick={() => setIsMobileMenuOpen(false)} className="w-full justify-start" asChild variant="link">
+                <Link href={href}>{title}</Link>
               </Button>
-              <p className={cn('text-muted-foreground mx-4 border-l px-4', item.className)}>{item.description}</p>
+              <p className={cn('text-muted-foreground mx-4 border-l px-4', className)}>{description}</p>
             </nav>
           ))}
         </div>

@@ -7,8 +7,8 @@ import MobileNavMenu from './mobile-nav-menu';
 import { Button } from './ui/button';
 import { ReactNode } from 'react';
 
-export type NavProps = { title: string; href: string; description: string; className?: string };
-const navigationItems: NavProps[] = [
+export type NavProps = { title: string; href: string; description?: string; className?: string };
+const navItemsDefault: NavProps[] = [
   {
     title: 'БИЗНЕС ЗАКУСКА',
     href: '#',
@@ -35,7 +35,8 @@ const navigationItems: NavProps[] = [
   },
 ];
 
-export default function Header({ cta }: { cta?: ReactNode }) {
+export default function Header({ cta, navItems }: { cta?: ReactNode; navItems?: NavProps[] }) {
+  navItems = navItems ? navItems : navItemsDefault;
   return (
     <header className="bg-background relative border-b shadow-sm">
       <div className="container py-3 sm:py-4">
@@ -45,7 +46,7 @@ export default function Header({ cta }: { cta?: ReactNode }) {
           </Link>
           {/* Desktop Navigation */}
           <nav className="hidden items-center xl:flex" aria-label="Main navigation">
-            {navigationItems.map(({ title, href }) => (
+            {navItems.map(({ title, href }) => (
               <Button variant="link" key={title}>
                 <Link href={href}>{title}</Link>
               </Button>
@@ -55,7 +56,7 @@ export default function Header({ cta }: { cta?: ReactNode }) {
 
           <div className="flex items-center gap-4">
             {cta}
-            <MobileNavMenu navigationItems={navigationItems} />
+            <MobileNavMenu navigationItems={navItems} />
           </div>
         </div>
       </div>

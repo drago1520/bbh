@@ -1,4 +1,4 @@
-import Header from '@/components/header';
+import Header, { NavProps } from '@/components/header';
 import Footer from '@/components/footer';
 import payloadConfig from '@payload-config';
 import { getPayload } from 'payload';
@@ -27,14 +27,37 @@ export default async function HomePage() {
     limit: 1,
   });
   // if (docs.length < 1) console.error('No data found for the homepage. Check the slug.'); тест деплой
+  const navItems: NavProps[] = [
+    {
+      href: '#теми',
+      title: 'Теми',
+    },
+    {
+      href: '#лектори',
+      title: 'Лектори',
+    },
+    {
+      href: '#програма',
+      title: 'Програма',
+    },
+    {
+      href: '#цени',
+      title: 'Цени',
+    },
+    {
+      href: '#локация',
+      title: 'Локация',
+    },
+  ];
 
   return (
     <div className="min-h-screen">
-      <Header cta={<Button>Вземи Билет</Button>} />
-      <main>
+      <Header navItems={navItems} cta={<Button>Вземи Билет</Button>} />
+      <main className="mb-16">
         <Hero />
         <Agenda />
         <LecturersGrid />
+        {/* Програма */}
         <Timeline />
         <Partners />
         <WhoIsTheConfFor />

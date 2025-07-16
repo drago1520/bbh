@@ -85,6 +85,17 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+
+  @layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply scroll-m-20;
+    }
+  }
 }
 
 @layer base {
