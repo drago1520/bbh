@@ -57,8 +57,8 @@ export default function LecturersGrid({ lecturersProps }: { lecturersProps: Lect
 
       {/* Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {lecturers.map(({ name, image, bio, role }) => (
-          <Card key={name} className="group relative overflow-hidden p-0 transition-shadow hover:shadow-lg">
+        {lecturers.map(({ name, image, bio, role }, index) => (
+          <Card key={name + index} className="group relative overflow-hidden p-0 transition-shadow hover:shadow-lg">
             <CardContent className="!p-0">
               <div className="relative">
                 <Image className="aspect-[3/4] w-full object-cover" src={typeof image === 'string' ? image : image.url ? image.url : ''} alt={name} width={320} height={420} />
