@@ -859,6 +859,9 @@ export interface MarketingSection {
   Partners?: {
     partners?: PartnersProps[] | null;
   };
+  Partners2?: {
+    partners2?: Partners2Props[] | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -871,6 +874,17 @@ export interface PartnersProps {
   id?: string | null;
   blockName?: string | null;
   blockType: 'partners';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Partners2Props".
+ */
+export interface Partners2Props {
+  subtitle?: string | null;
+  images: (string | Media)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partners2';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1550,6 +1564,15 @@ export interface MarketingSectionsSelect<T extends boolean = true> {
               partners?: T | PartnersPropsSelect<T>;
             };
       };
+  Partners2?:
+    | T
+    | {
+        partners2?:
+          | T
+          | {
+              partners2?: T | Partners2PropsSelect<T>;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1558,6 +1581,16 @@ export interface MarketingSectionsSelect<T extends boolean = true> {
  * via the `definition` "PartnersProps_select".
  */
 export interface PartnersPropsSelect<T extends boolean = true> {
+  images?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Partners2Props_select".
+ */
+export interface Partners2PropsSelect<T extends boolean = true> {
+  subtitle?: T;
   images?: T;
   id?: T;
   blockName?: T;

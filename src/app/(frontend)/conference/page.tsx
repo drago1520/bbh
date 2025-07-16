@@ -67,6 +67,11 @@ export default async function HomePage() {
   const agendaProps = blocks.find(block => block.blockType === 'agenda');
   const lecturersProps = blocks.find(block => block.blockType === 'lecturers');
   const confTimelineProps = blocks.find(block => block.blockType === 'timeline');
+  const { docs: marketingSections } = await payload.find({
+    collection: 'marketing-sections',
+    depth: 400,
+  });
+  const partners2Props = marketingSections.map(section => section.Partners2?.partners2?.find(blocks => blocks.blockType === 'partners2'))?.[0];
   return (
     <div className="min-h-screen">
       <Header
@@ -83,7 +88,7 @@ export default async function HomePage() {
         {lecturersProps && <LecturersGrid lecturersProps={lecturersProps} />}
         {/* Програма */}
         {confTimelineProps && <Timeline confTimelineProps={confTimelineProps} />}
-        <Partners />
+        {partners2Props && <Partners partnersProps={partners2Props} />}
         <WhoIsTheConfFor />
         <PricingWithCountdown />
         <Testimonials />
