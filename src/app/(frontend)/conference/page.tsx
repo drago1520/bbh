@@ -33,11 +33,11 @@ export default async function HomePage() {
       <Header cta={<Button>Вземи Билет</Button>} />
       <main>
         <Hero />
-        <WhoIsTheConfFor />
         <Agenda />
         <LecturersGrid />
         <Timeline />
         <Partners />
+        <WhoIsTheConfFor />
         <PricingWithCountdown />
         <Testimonials />
         <MapWithContactInfo />
