@@ -4,8 +4,8 @@ export const Gallery7Block: Block = {
   slug: 'gallery7',
   interfaceName: 'Gallery7Props',
   labels: {
-    singular: 'Вътряща Галерия минали събития',
-    plural: 'Въртящи Галерии с минали събития',
+    singular: 'Вътряща Галерия минали събития - Главна стр.',
+    plural: 'Въртящи Галерии с минали събития - Главна стр.',
   },
   fields: [
     {

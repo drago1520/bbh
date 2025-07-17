@@ -5,6 +5,10 @@ import { QABlock } from './q-a-block';
 export const FaqLeftRightBlock: Block = {
   slug: 'faqChessMate',
   interfaceName: 'FaqLeftRightBlockProps',
+  labels: {
+    singular: 'FAQ главна стр.',
+    plural: 'FAQs главна стр.',
+  },
   fields: [
     {
       type: 'row',

@@ -372,9 +372,6 @@ export interface StatisticsProps {
  */
 export interface AgendaProps {
   title?: string | null;
-  /**
-   * Добавете елементи от програмата с заглавие и описание
-   */
   items: {
     title: string;
     description?: string | null;

@@ -4,8 +4,8 @@ export const Testimonials2Block: Block = {
   slug: 'testimonials2',
   interfaceName: 'Testimonials2Props',
   labels: {
-    singular: 'Препоръки Конференция',
-    plural: 'Препоръки Конференция',
+    singular: 'Ревю Конференция',
+    plural: 'Ревюта Конференция',
   },
   fields: [
     {

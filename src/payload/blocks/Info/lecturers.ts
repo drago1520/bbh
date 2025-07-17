@@ -3,8 +3,8 @@ import { Block } from 'payload';
 export const LecturersBlock: Block = {
   slug: 'lecturers',
   labels: {
-    singular: 'Лектори',
-    plural: 'Лектори',
+    singular: 'Лектори - Конференция',
+    plural: 'Лектори - Конференция',
   },
   interfaceName: 'LecturersProps',
   fields: [

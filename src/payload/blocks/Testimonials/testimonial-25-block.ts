@@ -4,6 +4,10 @@ import { Testimonial25CardBlock } from './testimonial-25--card-block';
 export const Testimonial25Block: Block = {
   slug: 'testimonial25Block',
   interfaceName: 'Testimonial25Props',
+  labels: {
+    singular: 'Ревю - Главна стр.',
+    plural: 'Ревюта - Главна стр.',
+  },
   fields: [
     {
       name: 'title',

@@ -5,8 +5,8 @@ export const StatisticsBlock: Block = {
   slug: 'statistics',
   interfaceName: 'StatisticsProps',
   labels: {
-    singular: 'Statistics Block',
-    plural: 'Statistics Block',
+    singular: '3 Статистики Block - About page',
+    plural: '3 Статики Block - About page',
   },
   fields: [
     {

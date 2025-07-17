@@ -3,8 +3,8 @@ import { Block } from 'payload';
 export const AgendaBlock: Block = {
   slug: 'agenda',
   labels: {
-    singular: 'Програма',
-    plural: 'Програма',
+    singular: 'Agenda 6 cards - Конференция',
+    plural: 'Agenda 6 cards - Конференция',
   },
   interfaceName: 'AgendaProps',
   fields: [
@@ -18,7 +18,6 @@ export const AgendaBlock: Block = {
       label: 'Елементи от програмата',
       type: 'array',
       admin: {
-        description: 'Добавете елементи от програмата с заглавие и описание',
         initCollapsed: true,
       },
       fields: [
