@@ -5,23 +5,9 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { SocialIconsOnly } from '@/components/SocialLinks';
+import { ContactsProps } from '@/payload-types';
 
-interface ContactsData {
-  title?: string | null;
-  subheading?: string | null;
-  gmaps?: string | null;
-  cta?: string | null;
-  address?: string | null;
-  phones?: Array<{ phone?: string | null; id?: string | null }> | null;
-  emails?: Array<{ email?: string | null; id?: string | null }> | null;
-  socials?: Array<{ platform?: string | null; url?: string | null; id?: string | null }> | null;
-}
-
-interface MapWithContactInfoProps {
-  contactsData: ContactsData;
-}
-
-export default function MapWithContactInfo({ contactsData }: MapWithContactInfoProps) {
+export default function MapWithContactInfo({ contactsData }: { contactsData: ContactsProps }) {
   return (
     <section className="container py-16">
       <div className="mb-8 text-center">
@@ -34,7 +20,7 @@ export default function MapWithContactInfo({ contactsData }: MapWithContactInfoP
       <div className="grid gap-8 lg:grid-cols-5">
         {/* Map Section - 3/5 width on large screens */}
         <div className="bg-muted h-[400px] overflow-hidden rounded-lg lg:col-span-3 lg:h-full">
-          <iframe src={contactsData.gmaps || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100939.98555098464!2d-122.50764017948552!3d37.75781499651705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1619806204562!5m2!1sen!2sus'} className="h-full w-full border-0" loading="lazy" title="Location map" allowFullScreen></iframe>
+          <iframe src={contactsData.gmaps || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100939.98555098464!2d-122.50764017948552!3d37.75781499651705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1619806204562!5m2!1sen!2sus'} className="h-full w-full border-0" loading="lazy" title="Карта" allowFullScreen></iframe>
         </div>
 
         {/* Contact Information - 2/5 width on large screens */}
@@ -48,7 +34,7 @@ export default function MapWithContactInfo({ contactsData }: MapWithContactInfoP
                   <div className="flex items-start">
                     <MapPin className="text-primary mt-1 size-5 flex-shrink-0" />
                     <div className="ml-3">
-                      <h5 className="font-medium">Address</h5>
+                      <h5 className="font-medium">Адрес</h5>
                       <p className="text-muted-foreground text-sm whitespace-pre-line">{contactsData.address}</p>
                     </div>
                   </div>
@@ -58,7 +44,7 @@ export default function MapWithContactInfo({ contactsData }: MapWithContactInfoP
                   <div className="flex items-start">
                     <Phone className="text-primary mt-1 size-5 flex-shrink-0" />
                     <div className="ml-3">
-                      <h4 className="font-medium">Phone</h4>
+                      <h4 className="font-medium">Телефон</h4>
                       {contactsData.phones
                         .filter(phone => phone.phone)
                         .map((phone, index) => (
@@ -74,7 +60,7 @@ export default function MapWithContactInfo({ contactsData }: MapWithContactInfoP
                   <div className="flex items-start">
                     <Mail className="text-primary mt-1 size-5 flex-shrink-0" />
                     <div className="ml-3">
-                      <h5 className="font-medium">Email</h5>
+                      <h5 className="font-medium">Имейл</h5>
                       {contactsData.emails
                         .filter(email => email.email)
                         .map((email, index) => (
@@ -93,18 +79,18 @@ export default function MapWithContactInfo({ contactsData }: MapWithContactInfoP
                 <form className="space-y-4">
                   <div>
                     <Label htmlFor="quick-email" className="sr-only">
-                      Email
+                      Имейл
                     </Label>
                     <Input id="quick-email" type="email" placeholder="Вашия имейл" required />
                   </div>
                   <div>
                     <Label htmlFor="quick-message" className="sr-only">
-                      Message
+                      Съобщение
                     </Label>
                     <Textarea id="quick-message" placeholder="Вашето съобщение" rows={3} className="resize-none" required />
                   </div>
                   <Button type="submit" className="w-full">
-                    Send
+                    {contactsData.cta || 'Изпрати'}
                   </Button>
                 </form>
               </div>

@@ -46,8 +46,8 @@ export default async function Conference() {
 
   const [confPage] = docs;
   const { blocks, title, heroImg, subheading, ctaText } = confPage;
-  if (!heroImg || !subheading || !ctaText) {
-    console.error('Provide heroImg, subheading and ctaText on conf page');
+  if (!heroImg) {
+    console.error('Provide heroImg on conf page');
     return;
   }
   const navItems: NavProps[] = [

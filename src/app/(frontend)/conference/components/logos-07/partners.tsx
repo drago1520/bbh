@@ -19,14 +19,14 @@ const Partners = ({ partnersProps }: { partnersProps: PartnersProps }) => {
           <Marquee pauseOnHover className="[--duration:30s]">
             {images.map((url, i) => (
               <div key={i} className="mr-10 h-10 w-auto">
-                <Image src={typeof url === 'string' ? url : url.url ? url.url : ''} alt="logo" height={48} width={120} className="size-full object-contain" />
+                <Image src={typeof url === 'string' ? url : url.url ? url.url : ''} alt="лого" height={48} width={120} className="size-full object-contain" />
               </div>
             ))}
           </Marquee>
           <Marquee pauseOnHover reverse className="[--duration:30s]">
             {images.map((url, i) => (
               <div key={i} className="mr-10 h-10 w-auto">
-                <Image src={typeof url === 'string' ? url : url.url ? url.url : ''} alt="logo" height={48} width={120} className="size-full object-contain" />
+                <Image src={typeof url === 'string' ? url : url.url ? url.url : ''} alt="лого" height={48} width={120} className="size-full object-contain" />
               </div>
             ))}
           </Marquee>
