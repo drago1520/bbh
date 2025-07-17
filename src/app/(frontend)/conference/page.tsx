@@ -15,7 +15,7 @@ import MapWithContactInfo from './components/map-with-contact-info';
 import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 
-export default async function HomePage() {
+export default async function Conference() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });
   const { docs } = await payload.find({
@@ -27,8 +27,20 @@ export default async function HomePage() {
     },
     limit: 1,
   });
+  const { docs: marketingSections } = await payload.find({
+    collection: 'marketing-sections',
+    depth: 400,
+  });
+
+  // Query contacts global
+  const contactsData = await payload.findGlobal({
+    slug: 'contacts',
+  });
+
+  const partners2Props = marketingSections.map(section => section.Partners2?.partners2?.find(blocks => blocks.blockType === 'partners2'))?.[0];
+
   if (docs.length < 1) {
-    console.error('No data found for the homepage. Check the slug.');
+    console.error('No data found for the conference. Check the slug.');
     return;
   }
 
@@ -70,11 +82,7 @@ export default async function HomePage() {
   const whoIsTheConfForProps = blocks.find(block => block.blockType === 'whoIsTheConfFor');
   const pricingProps = blocks.find(block => block.blockType === 'PricingWithCountdown');
   const testimonials2Props = blocks.find(block => block.blockType === 'testimonials2');
-  const { docs: marketingSections } = await payload.find({
-    collection: 'marketing-sections',
-    depth: 400,
-  });
-  const partners2Props = marketingSections.map(section => section.Partners2?.partners2?.find(blocks => blocks.blockType === 'partners2'))?.[0];
+
   return (
     <div className="min-h-screen">
       <Header
@@ -95,7 +103,7 @@ export default async function HomePage() {
         {whoIsTheConfForProps && <WhoIsTheConfFor data={whoIsTheConfForProps} />}
         {pricingProps && <PricingWithCountdown pricingProps={pricingProps} />}
         {testimonials2Props && <Testimonials testimonilas2Props={testimonials2Props} />}
-        <MapWithContactInfo />
+        <MapWithContactInfo contactsData={contactsData} />
       </main>
       <Footer />
     </div>

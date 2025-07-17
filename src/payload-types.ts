@@ -100,8 +100,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    contacts: ContactsProps;
+  };
+  globalsSelect: {
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -1822,6 +1826,100 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface ContactsProps {
+  id: string;
+  /**
+   * Показва се над Формуляра за контакти
+   */
+  title?: string | null;
+  subheading?: string | null;
+  /**
+   * google.com/maps > намери място > "Share" > Embed a map > копирайте само url-a в кавичките. 15 сек  tutorial: https://vento.so/view/9e099913-bb15-4990-af47-5b62dc41b98e?utm_medium=share
+   */
+  gmaps?: string | null;
+  cta: string;
+  address?: string | null;
+  phones?:
+    | {
+        phone?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  emails?:
+    | {
+        email?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Социалки. Важно е да има youtube за SEO.
+   */
+  socials?:
+    | {
+        platform:
+          | 'facebook'
+          | 'instagram'
+          | 'twitter'
+          | 'linkedin'
+          | 'youtube'
+          | 'tiktok'
+          | 'whatsapp'
+          | 'telegram'
+          | 'viber'
+          | 'discord'
+          | 'snapchat'
+          | 'pinterest'
+          | 'reddit'
+          | 'twitch'
+          | 'medium'
+          | 'slack'
+          | 'skype'
+          | 'threads'
+          | 'yelp';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  title?: T;
+  subheading?: T;
+  gmaps?: T;
+  cta?: T;
+  address?: T;
+  phones?:
+    | T
+    | {
+        phone?: T;
+        id?: T;
+      };
+  emails?:
+    | T
+    | {
+        email?: T;
+        id?: T;
+      };
+  socials?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

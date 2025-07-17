@@ -45,6 +45,7 @@ export const enum_redirects_to_type = pgEnum('enum_redirects_to_type', ['referen
 export const enum_payload_jobs_log_task_slug = pgEnum('enum_payload_jobs_log_task_slug', ['inline', 'schedulePublish']);
 export const enum_payload_jobs_log_state = pgEnum('enum_payload_jobs_log_state', ['failed', 'succeeded']);
 export const enum_payload_jobs_task_slug = pgEnum('enum_payload_jobs_task_slug', ['inline', 'schedulePublish']);
+export const enum_contacts_socials_platform = pgEnum('enum_contacts_socials_platform', ['facebook', 'instagram', 'twitter', 'linkedin', 'youtube', 'tiktok', 'whatsapp', 'telegram', 'viber', 'discord', 'snapchat', 'pinterest', 'reddit', 'twitch', 'medium', 'slack', 'skype', 'threads', 'yelp']);
 
 export const users = pgTable(
   'users',
@@ -2524,6 +2525,75 @@ export const payload_migrations = pgTable(
   }),
 );
 
+export const contacts_phones = pgTable(
+  'contacts_phones',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    phone: varchar('phone'),
+  },
+  columns => ({
+    _orderIdx: index('contacts_phones_order_idx').on(columns._order),
+    _parentIDIdx: index('contacts_phones_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [contacts.id],
+      name: 'contacts_phones_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const contacts_emails = pgTable(
+  'contacts_emails',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    email: varchar('email'),
+  },
+  columns => ({
+    _orderIdx: index('contacts_emails_order_idx').on(columns._order),
+    _parentIDIdx: index('contacts_emails_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [contacts.id],
+      name: 'contacts_emails_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const contacts_socials = pgTable(
+  'contacts_socials',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    platform: enum_contacts_socials_platform('platform').notNull(),
+    url: varchar('url').notNull(),
+  },
+  columns => ({
+    _orderIdx: index('contacts_socials_order_idx').on(columns._order),
+    _parentIDIdx: index('contacts_socials_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [contacts.id],
+      name: 'contacts_socials_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const contacts = pgTable('contacts', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  title: varchar('title'),
+  subheading: varchar('subheading'),
+  gmaps: varchar('gmaps').default('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100939.98555098464!2d-122.50764017948552!3d37.75781499651705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1619806204562!5m2!1sen!2sus'),
+  cta: varchar('cta').notNull(),
+  address: varchar('address'),
+  updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }),
+  createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }),
+});
+
 export const relations_users = relations(users, () => ({}));
 export const relations_media = relations(media, () => ({}));
 export const relations_pages_blocks_q_a_block = relations(pages_blocks_q_a_block, ({ one }) => ({
@@ -3635,6 +3705,38 @@ export const relations_payload_preferences = relations(payload_preferences, ({ m
   }),
 }));
 export const relations_payload_migrations = relations(payload_migrations, () => ({}));
+export const relations_contacts_phones = relations(contacts_phones, ({ one }) => ({
+  _parentID: one(contacts, {
+    fields: [contacts_phones._parentID],
+    references: [contacts.id],
+    relationName: 'phones',
+  }),
+}));
+export const relations_contacts_emails = relations(contacts_emails, ({ one }) => ({
+  _parentID: one(contacts, {
+    fields: [contacts_emails._parentID],
+    references: [contacts.id],
+    relationName: 'emails',
+  }),
+}));
+export const relations_contacts_socials = relations(contacts_socials, ({ one }) => ({
+  _parentID: one(contacts, {
+    fields: [contacts_socials._parentID],
+    references: [contacts.id],
+    relationName: 'socials',
+  }),
+}));
+export const relations_contacts = relations(contacts, ({ many }) => ({
+  phones: many(contacts_phones, {
+    relationName: 'phones',
+  }),
+  emails: many(contacts_emails, {
+    relationName: 'emails',
+  }),
+  socials: many(contacts_socials, {
+    relationName: 'socials',
+  }),
+}));
 
 type DatabaseSchema = {
   enum_pages_status: typeof enum_pages_status;
@@ -3673,6 +3775,7 @@ type DatabaseSchema = {
   enum_payload_jobs_log_task_slug: typeof enum_payload_jobs_log_task_slug;
   enum_payload_jobs_log_state: typeof enum_payload_jobs_log_state;
   enum_payload_jobs_task_slug: typeof enum_payload_jobs_task_slug;
+  enum_contacts_socials_platform: typeof enum_contacts_socials_platform;
   users: typeof users;
   media: typeof media;
   pages_blocks_q_a_block: typeof pages_blocks_q_a_block;
@@ -3769,6 +3872,10 @@ type DatabaseSchema = {
   payload_preferences: typeof payload_preferences;
   payload_preferences_rels: typeof payload_preferences_rels;
   payload_migrations: typeof payload_migrations;
+  contacts_phones: typeof contacts_phones;
+  contacts_emails: typeof contacts_emails;
+  contacts_socials: typeof contacts_socials;
+  contacts: typeof contacts;
   relations_users: typeof relations_users;
   relations_media: typeof relations_media;
   relations_pages_blocks_q_a_block: typeof relations_pages_blocks_q_a_block;
@@ -3865,6 +3972,10 @@ type DatabaseSchema = {
   relations_payload_preferences_rels: typeof relations_payload_preferences_rels;
   relations_payload_preferences: typeof relations_payload_preferences;
   relations_payload_migrations: typeof relations_payload_migrations;
+  relations_contacts_phones: typeof relations_contacts_phones;
+  relations_contacts_emails: typeof relations_contacts_emails;
+  relations_contacts_socials: typeof relations_contacts_socials;
+  relations_contacts: typeof relations_contacts;
 };
 
 declare module '@payloadcms/db-postgres' {

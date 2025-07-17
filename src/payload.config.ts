@@ -16,6 +16,7 @@ import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { Attendees } from './payload/collections/Attendees/attendees-collection';
 import { Events } from './payload/collections/Events/events-collection';
 import { MarketingSectionsCollection } from './payload/collections/Marketing-sections/partners';
+import { Contacts } from './payload/globals/contacts';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -62,6 +63,7 @@ export default buildConfig({
       ],
     },
   },
+  globals: [Contacts],
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: postgresAdapter({
