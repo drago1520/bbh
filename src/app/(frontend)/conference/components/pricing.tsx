@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckIcon, SparklesIcon } from 'lucide-react';
@@ -78,19 +77,23 @@ export default function PricingWithCountdown({ pricingProps = dataDefault }: { p
 
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
           {plans.map(({ active, title, discount, discountedPrice, features, originalPrice, bonus, description }, i) => (
-            <Card key={title + i} className={cn('relative flex flex-col overflow-hidden', active && 'border-primary shadow-md', !active && 'text-muted-foreground! cursor-not-allowed')}>
+            <Card key={i} className={cn('relative flex flex-col overflow-hidden', active && 'border-primary shadow-md', !active && 'text-muted-foreground! cursor-not-allowed')}>
               {active && <div className="bg-primary text-primary-foreground absolute top-0 right-0 rounded-bl-lg px-3 py-1 text-xs font-medium">Активен</div>}
               <CardHeader>
                 <CardTitle>{title}</CardTitle>
                 <div className="mt-4 flex items-baseline">
-                  <span className="text-4xl font-bold">{discountedPrice}</span>
+                  <span className="text-4xl font-bold">{discountedPrice || originalPrice}</span>
                 </div>
-                <div className="mt-1 flex items-center gap-2">
-                  <span className="text-muted-foreground text-sm line-through">{originalPrice}</span>
-                  <Badge variant="secondary" className={cn('text-xs', !active && 'text-muted-foreground')}>
-                    {discount}
-                  </Badge>
-                </div>
+                {discountedPrice && (
+                  <div className="mt-1 flex items-center gap-2">
+                    <span className="text-muted-foreground text-sm line-through">{originalPrice}</span>
+                    {discount && (
+                      <Badge variant="secondary" className={cn('text-xs', !active && 'text-muted-foreground')}>
+                        {discount}
+                      </Badge>
+                    )}
+                  </div>
+                )}
                 <p className="text-muted-foreground mt-2 text-sm">{description}</p>
               </CardHeader>
               <CardContent className="flex-1">
@@ -102,14 +105,16 @@ export default function PricingWithCountdown({ pricingProps = dataDefault }: { p
                     </div>
                   </div>
                 )}
-                <ul className="space-y-2 text-sm">
-                  {features.map(({ feature }) => (
-                    <li key={feature} className="flex items-center">
-                      <CheckIcon className="text-primary mr-2 h-4 w-4" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                {features && (
+                  <ul className="space-y-2 text-sm">
+                    {features.map(({ feature }) => (
+                      <li key={feature} className="flex items-center">
+                        <CheckIcon className="text-primary mr-2 h-4 w-4" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </CardContent>
               <CardFooter>
                 <Button className="w-full" disabled={!active && true} variant={active ? 'default' : 'outline'}>

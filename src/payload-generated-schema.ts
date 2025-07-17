@@ -538,7 +538,7 @@ export const pages_blocks_testimonials2_testimonials = pgTable(
     workTitle: varchar('work_title'),
     title: varchar('title'),
     badge: varchar('badge'),
-    companyImg: uuid('company_img_id').references(() => media.id, {
+    cardImg: uuid('card_img_id').references(() => media.id, {
       onDelete: 'set null',
     }),
   },
@@ -546,7 +546,7 @@ export const pages_blocks_testimonials2_testimonials = pgTable(
     _orderIdx: index('pages_blocks_testimonials2_testimonials_order_idx').on(columns._order),
     _parentIDIdx: index('pages_blocks_testimonials2_testimonials_parent_id_idx').on(columns._parentID),
     pages_blocks_testimonials2_testimonials_client_img_idx: index('pages_blocks_testimonials2_testimonials_client_img_idx').on(columns.clientImg),
-    pages_blocks_testimonials2_testimonials_company_img_idx: index('pages_blocks_testimonials2_testimonials_company_img_idx').on(columns.companyImg),
+    pages_blocks_testimonials2_testimonials_card_img_idx: index('pages_blocks_testimonials2_testimonials_card_img_idx').on(columns.cardImg),
     _parentIDFk: foreignKey({
       columns: [columns['_parentID']],
       foreignColumns: [pages_blocks_testimonials2.id],
@@ -1094,7 +1094,7 @@ export const _pages_v_blocks_testimonials2_testimonials = pgTable(
     workTitle: varchar('work_title'),
     title: varchar('title'),
     badge: varchar('badge'),
-    companyImg: uuid('company_img_id').references(() => media.id, {
+    cardImg: uuid('card_img_id').references(() => media.id, {
       onDelete: 'set null',
     }),
     _uuid: varchar('_uuid'),
@@ -1103,7 +1103,7 @@ export const _pages_v_blocks_testimonials2_testimonials = pgTable(
     _orderIdx: index('_pages_v_blocks_testimonials2_testimonials_order_idx').on(columns._order),
     _parentIDIdx: index('_pages_v_blocks_testimonials2_testimonials_parent_id_idx').on(columns._parentID),
     _pages_v_blocks_testimonials2_testimonials_client_img_idx: index('_pages_v_blocks_testimonials2_testimonials_client_img_idx').on(columns.clientImg),
-    _pages_v_blocks_testimonials2_testimonials_company_img_idx: index('_pages_v_blocks_testimonials2_testimonials_company_img_idx').on(columns.companyImg),
+    _pages_v_blocks_testimonials2_testimonials_card_img_idx: index('_pages_v_blocks_testimonials2_testimonials_card_img_idx').on(columns.cardImg),
     _parentIDFk: foreignKey({
       columns: [columns['_parentID']],
       foreignColumns: [_pages_v_blocks_testimonials2.id],
@@ -2771,10 +2771,10 @@ export const relations_pages_blocks_testimonials2_testimonials = relations(pages
     references: [media.id],
     relationName: 'clientImg',
   }),
-  companyImg: one(media, {
-    fields: [pages_blocks_testimonials2_testimonials.companyImg],
+  cardImg: one(media, {
+    fields: [pages_blocks_testimonials2_testimonials.cardImg],
     references: [media.id],
-    relationName: 'companyImg',
+    relationName: 'cardImg',
   }),
 }));
 export const relations_pages_blocks_testimonials2 = relations(pages_blocks_testimonials2, ({ one, many }) => ({
@@ -3028,10 +3028,10 @@ export const relations__pages_v_blocks_testimonials2_testimonials = relations(_p
     references: [media.id],
     relationName: 'clientImg',
   }),
-  companyImg: one(media, {
-    fields: [_pages_v_blocks_testimonials2_testimonials.companyImg],
+  cardImg: one(media, {
+    fields: [_pages_v_blocks_testimonials2_testimonials.cardImg],
     references: [media.id],
-    relationName: 'companyImg',
+    relationName: 'cardImg',
   }),
 }));
 export const relations__pages_v_blocks_testimonials2 = relations(_pages_v_blocks_testimonials2, ({ one, many }) => ({

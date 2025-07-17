@@ -32,7 +32,6 @@ export const LecturersBlock: Block = {
           name: 'name',
           type: 'text',
           label: 'Име',
-          required: true,
           admin: {
             placeholder: 'Давид Форен',
           },

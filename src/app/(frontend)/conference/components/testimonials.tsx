@@ -13,7 +13,7 @@ type Testimonials2Props = {
     workTitle?: string | null;
     title?: string | null;
     badge?: string | null;
-    companyImg: string | Media;
+    cardImg: string | Media;
   }[];
 };
 
@@ -24,7 +24,7 @@ const testimonials = [
     clientName: 'Jessica Rivera',
     title: 'GreenTech Brand Transformation',
     badge: 'Brand Identity',
-    companyImg: 'https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=1000&auto=format&fit=crop',
+    cardImg: 'https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=1000&auto=format&fit=crop',
     clientImg: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1000&auto=format&fit=crop',
   },
   {
@@ -33,7 +33,7 @@ const testimonials = [
     workTitle: 'CEO, Elevate Finance',
     title: 'Elevate Finance Platform',
     badge: 'Web Design & Development',
-    companyImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
+    cardImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
     clientImg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
   },
 ];
@@ -53,7 +53,7 @@ export default function Testimonials2({ testimonilas2Props = dataDefault }: { te
         </div>
 
         <div className="mt-16 space-y-20">
-          {testimonials.map(({ clientImg, companyImg, title, ...testimonial }, index) => (
+          {testimonials.map(({ clientImg, cardImg, title, ...testimonial }, index) => (
             <div key={index} className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
               <div className={`order-2 ${index % 2 !== 0 ? 'lg:order-1' : 'lg:order-2'}`}>
                 <blockquote className="border-primary relative border-l-4 py-2 pl-6">
@@ -71,7 +71,7 @@ export default function Testimonials2({ testimonilas2Props = dataDefault }: { te
               <div className={`order-1 ${index % 2 !== 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                 <Link href="#" className="group block overflow-hidden rounded-xl shadow-lg transition-all hover:shadow-xl">
                   <div className="relative aspect-video w-full overflow-hidden">
-                    {typeof companyImg !== 'string' && <Image src={companyImg.url || ''} alt={companyImg.alt || ''} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />}
+                    {typeof cardImg !== 'string' && <Image src={cardImg.url || ''} alt={cardImg.alt || ''} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90"></div>
                     <div className="absolute bottom-0 left-0 z-10 p-6 text-white">
                       <Badge variant="secondary" className="mb-2">

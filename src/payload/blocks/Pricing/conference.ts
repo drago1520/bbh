@@ -64,7 +64,6 @@ export const PricingWithCountdownBlock: Block = {
           name: 'title',
           type: 'text',
           label: 'Заглавие на плана',
-          required: true,
           admin: {
             placeholder: 'Основен план',
           },
@@ -73,7 +72,6 @@ export const PricingWithCountdownBlock: Block = {
           name: 'features',
           type: 'array',
           label: 'Feature-и към билета',
-          required: true,
           labels: {
             singular: 'feature към билета',
             plural: 'features към билета',
@@ -103,7 +101,6 @@ export const PricingWithCountdownBlock: Block = {
           name: 'discountedPrice',
           type: 'text',
           label: 'Намалена цена',
-          required: true,
           admin: {
             placeholder: '79 лв.',
           },
@@ -112,7 +109,6 @@ export const PricingWithCountdownBlock: Block = {
           name: 'discount',
           type: 'text',
           label: 'Отстъпка',
-          required: true,
           admin: {
             placeholder: '20%',
           },

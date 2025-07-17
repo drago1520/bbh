@@ -39,7 +39,6 @@ export const TimelineBlock: Block = {
           name: 'description',
           type: 'text',
           label: 'Описание',
-          required: true,
           admin: {
             placeholder: 'Събиране на информация и анализиране на изискванията...',
           },

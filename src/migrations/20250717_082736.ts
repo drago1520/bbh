@@ -1,4 +1,4 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres';
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
@@ -44,7 +44,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "contacts_emails_order_idx" ON "contacts_emails" USING btree ("_order");
   CREATE INDEX "contacts_emails_parent_id_idx" ON "contacts_emails" USING btree ("_parent_id");
   CREATE INDEX "contacts_socials_order_idx" ON "contacts_socials" USING btree ("_order");
-  CREATE INDEX "contacts_socials_parent_id_idx" ON "contacts_socials" USING btree ("_parent_id");`)
+  CREATE INDEX "contacts_socials_parent_id_idx" ON "contacts_socials" USING btree ("_parent_id");`);
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
@@ -53,5 +53,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "contacts_emails" CASCADE;
   DROP TABLE "contacts_socials" CASCADE;
   DROP TABLE "contacts" CASCADE;
-  DROP TYPE "public"."enum_contacts_socials_platform";`)
+  DROP TYPE "public"."enum_contacts_socials_platform";`);
 }

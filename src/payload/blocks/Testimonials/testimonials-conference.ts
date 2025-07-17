@@ -21,7 +21,6 @@ export const Testimonials2Block: Block = {
       name: 'subheading',
       type: 'text',
       label: 'Подзаглавие',
-      required: false,
       admin: {
         placeholder: 'Реални истории от доволни клиенти',
       },
@@ -90,13 +89,13 @@ export const Testimonials2Block: Block = {
           },
         },
         {
-          name: 'companyImg',
+          name: 'cardImg',
           type: 'upload',
-          label: 'Лого на компанията',
+          label: 'Голяма снимка на секцията',
           relationTo: 'media',
           required: true,
           admin: {
-            description: 'Лого на компанията на клиента',
+            description: 'Най-голямата снимка, която стои от другата страна на цитата',
           },
         },
       ],

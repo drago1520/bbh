@@ -35,7 +35,6 @@ export const WhoIsTheConfForBlock: Block = {
           type: 'upload',
           relationTo: 'media',
           label: 'Икона',
-          required: true,
         },
         {
           name: 'title',
@@ -47,7 +46,6 @@ export const WhoIsTheConfForBlock: Block = {
           name: 'description',
           type: 'textarea',
           label: 'Описание',
-          required: true,
         },
       ],
     },

@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
+import { ConfTimelineProps } from '@/payload-types';
 
-const stepsDefault = [
+const stepsDefault: ConfTimelineProps['steps'] = [
   {
     title: 'Research',
     description: 'Gather information and analyze requirements to understand the problem and define objectives.',
@@ -31,13 +32,6 @@ const stepsDefault = [
   },
 ];
 
-type ConfTimelineProps = {
-  title: string;
-  steps: {
-    title: string;
-    description: string;
-  }[];
-};
 export default function Timeline({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }) {
   const { title = 'Заглавие', steps = stepsDefault } = confTimelineProps;
   return (

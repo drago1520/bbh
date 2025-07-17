@@ -1,10 +1,8 @@
-import { Twitter, Github, Linkedin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { LecturersProps } from '@/payload-types';
 import Image from 'next/image';
-import { Media } from '@/payload-types';
 
-const team = [
+const team: LecturersProps['lecturers'] = [
   {
     name: 'David Forren',
     role: 'Founder / CEO',
@@ -31,17 +29,6 @@ const team = [
   },
 ];
 
-type LecturersProps = {
-  title: string;
-  subheading?: string | null;
-  lecturers: {
-    name: string;
-    role?: string | null;
-    bio?: string | null;
-    image: Media | string;
-  }[];
-};
-
 export default function LecturersGrid({ lecturersProps }: { lecturersProps: LecturersProps }) {
   const { title = 'Meet our team', subheading = 'The amazing people behind the scenes', lecturers = team } = lecturersProps;
   return (
@@ -58,14 +45,15 @@ export default function LecturersGrid({ lecturersProps }: { lecturersProps: Lect
       {/* Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {lecturers.map(({ name, image, bio, role }, index) => (
-          <Card key={name + index} className="group relative overflow-hidden p-0 transition-shadow hover:shadow-lg">
+          <Card key={index} className="group relative overflow-hidden p-0 transition-shadow hover:shadow-lg">
             <CardContent className="!p-0">
               <div className="relative">
-                <Image className="aspect-[3/4] w-full object-cover" src={typeof image === 'string' ? image : image.url ? image.url : ''} alt={name} width={320} height={420} />
+                <Image className="aspect-[3/4] w-full object-cover" src={typeof image === 'string' ? image : image.url ? image.url : ''} alt={name || 'няма име'} width={320} height={420} />
                 <div className="from-background/80 to-background/0 absolute inset-0 bg-gradient-to-t opacity-0 transition-opacity group-hover:opacity-100" />
-                <div className="absolute right-0 bottom-0 left-0 translate-y-4 p-4 opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">
-                  <p className="text-sm">{bio}</p>
-                  {/* <div className="mt-3 flex gap-1">
+                {bio && (
+                  <div className="absolute right-0 bottom-0 left-0 translate-y-4 p-4 opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">
+                    <p className="text-sm">{bio}</p>
+                    {/* <div className="mt-3 flex gap-1">
                     <Button size="icon" variant="secondary">
                       <Twitter className="size-4" />
                     </Button>
@@ -76,10 +64,11 @@ export default function LecturersGrid({ lecturersProps }: { lecturersProps: Lect
                       <Linkedin className="size-4" />
                     </Button>
                   </div> */}
-                </div>
+                  </div>
+                )}
               </div>
               <div className="p-4">
-                <h3 className="font-medium">{name}</h3>
+                <h4 className="font-medium">{name}</h4>
                 <p className="text-muted-foreground mt-1 text-sm">{role}</p>
               </div>
             </CardContent>

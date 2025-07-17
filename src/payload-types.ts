@@ -377,7 +377,7 @@ export interface AgendaProps {
    */
   items: {
     title: string;
-    description: string;
+    description?: string | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -392,7 +392,7 @@ export interface LecturersProps {
   title: string;
   subheading?: string | null;
   lecturers: {
-    name: string;
+    name?: string | null;
     role?: string | null;
     bio?: string | null;
     image: string | Media;
@@ -410,7 +410,7 @@ export interface ConfTimelineProps {
   title: string;
   steps: {
     title: string;
-    description: string;
+    description?: string | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -425,9 +425,9 @@ export interface WhoIsTheConfForProps {
   title: string;
   subheading?: string | null;
   items: {
-    icon: string | Media;
+    icon?: (string | null) | Media;
     title: string;
-    description: string;
+    description?: string | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -444,14 +444,16 @@ export interface PricingProps {
   subheading?: string | null;
   saleEnd: string;
   plans: {
-    title: string;
-    features: {
-      feature: string;
-      id?: string | null;
-    }[];
+    title?: string | null;
+    features?:
+      | {
+          feature: string;
+          id?: string | null;
+        }[]
+      | null;
     originalPrice: string;
-    discountedPrice: string;
-    discount: string;
+    discountedPrice?: string | null;
+    discount?: string | null;
     description?: string | null;
     active: boolean;
     bonus?: string | null;
@@ -479,9 +481,9 @@ export interface Testimonials2Props {
     title?: string | null;
     badge?: string | null;
     /**
-     * Лого на компанията на клиента
+     * Най-голямата снимка, която стои от другата страна на цитата
      */
-    companyImg: string | Media;
+    cardImg: string | Media;
     id?: string | null;
   }[];
   id?: string | null;
@@ -1465,7 +1467,7 @@ export interface Testimonials2PropsSelect<T extends boolean = true> {
         workTitle?: T;
         title?: T;
         badge?: T;
-        companyImg?: T;
+        cardImg?: T;
         id?: T;
       };
   id?: T;
