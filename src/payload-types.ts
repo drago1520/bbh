@@ -857,7 +857,7 @@ export interface Attendee {
   id: string;
   email: string;
   name?: string | null;
-  event: string | Event;
+  event?: (string | null) | Event;
   updatedAt: string;
   createdAt: string;
 }

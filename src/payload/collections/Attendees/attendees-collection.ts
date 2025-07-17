@@ -15,7 +15,6 @@ export const Attendees: CollectionConfig = {
       name: 'email',
       type: 'email',
       required: true,
-      index: true,
     },
     {
       name: 'name',
@@ -26,7 +25,6 @@ export const Attendees: CollectionConfig = {
       name: 'event',
       type: 'relationship',
       relationTo: 'events',
-      required: true,
     },
   ],
   timestamps: true,

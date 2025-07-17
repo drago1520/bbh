@@ -2116,16 +2116,13 @@ export const attendees = pgTable(
     id: uuid('id').defaultRandom().primaryKey(),
     email: varchar('email').notNull(),
     name: varchar('name'),
-    event: uuid('event_id')
-      .notNull()
-      .references(() => events.id, {
-        onDelete: 'set null',
-      }),
+    event: uuid('event_id').references(() => events.id, {
+      onDelete: 'set null',
+    }),
     updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
   columns => ({
-    attendees_email_idx: index('attendees_email_idx').on(columns.email),
     attendees_name_idx: index('attendees_name_idx').on(columns.name),
     attendees_event_idx: index('attendees_event_idx').on(columns.event),
     attendees_updated_at_idx: index('attendees_updated_at_idx').on(columns.updatedAt),
