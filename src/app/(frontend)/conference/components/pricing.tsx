@@ -67,7 +67,7 @@ export default function PricingWithCountdown({ pricingProps = dataDefault }: { p
 
           <div className="mt-4 w-full max-w-md">
             <div className="mb-2 flex items-center justify-between text-sm">
-              <span className="font-medium">Промоцията приключва след:</span>
+              <span className="font-medium">тази цена е актуална още:</span>
               <span className="text-muted-foreground">Местата са ограничени</span>
             </div>
             <Progress value={70} className="h-2" />
