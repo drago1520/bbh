@@ -11,7 +11,7 @@ type HeroProps = {
   heroImg: Media | string;
 };
 
-export default function Hero({ title = 'Creative Design Solutions That Stand Out', subheading, ctaText, heroImg }: HeroProps) {
+export default function Hero({ title, subheading, ctaText, heroImg }: HeroProps) {
   if (typeof heroImg === 'string') throw new Error(errorMsgs.imgIsString);
   const heroImgFallBack = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3';
 
@@ -26,7 +26,7 @@ export default function Hero({ title = 'Creative Design Solutions That Stand Out
       {/* Content container */}
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 text-center">
         <div className="max-w-3xl">
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">{title}</h1>
+          {/* <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">{title}</h1> */}
 
           <p className="mt-6 text-xl text-white/90">{subheading}</p>
 
