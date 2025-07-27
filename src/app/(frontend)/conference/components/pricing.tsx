@@ -108,8 +108,8 @@ export default function PricingWithCountdown({ pricingProps = dataDefault, strip
                 )}
                 {features && (
                   <ul className="space-y-2 text-sm">
-                    {features.map(({ feature }) => (
-                      <li key={feature} className="flex items-center">
+                    {features.map(({ feature }, i) => (
+                      <li key={feature + i} className="flex items-center">
                         <CheckIcon className="text-primary mr-2 h-4 w-4" />
                         <span>{feature}</span>
                       </li>

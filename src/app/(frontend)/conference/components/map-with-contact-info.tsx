@@ -1,13 +1,29 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { LoaderCircle, Mail, MapPin, Phone } from 'lucide-react';
 import { SocialIconsOnly } from '@/components/SocialLinks';
 import { ContactsProps } from '@/payload-types';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { contactSchema } from './types';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { sendInquiry } from '../../contact/actions/send-inquiry';
+import { useState } from 'react';
 
 export default function MapWithContactInfo({ contactsData }: { contactsData: ContactsProps }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState('');
+  const form = useForm<z.infer<typeof contactSchema>>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      email: '',
+      message: '',
+    },
+  });
   return (
     <section className="container py-16">
       <div className="mb-8 text-center">
@@ -76,23 +92,60 @@ export default function MapWithContactInfo({ contactsData }: { contactsData: Con
               {/* Mini Contact Form */}
               <div className="border-t pt-6">
                 <h5 className="mb-4 font-medium">{contactsData.cta || 'Изпратете съобщение'}</h5>
-                <form className="space-y-4">
-                  <div>
-                    <Label htmlFor="quick-email" className="sr-only">
-                      Имейл
-                    </Label>
-                    <Input id="quick-email" type="email" placeholder="Вашия имейл" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="quick-message" className="sr-only">
-                      Съобщение
-                    </Label>
-                    <Textarea id="quick-message" placeholder="Вашето съобщение" rows={3} className="resize-none" required />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    {contactsData.cta || 'Изпрати'}
-                  </Button>
-                </form>
+                <Form {...form}>
+                  <form
+                    className="space-y-4"
+                    onSubmit={form.handleSubmit(async (formData: z.infer<typeof contactSchema>) => {
+                      //don't forget error handling
+                      setIsLoading(true);
+                      const result = await sendInquiry(formData);
+                      console.log('result :', result);
+                      if (!result.success) {
+                        const { error } = result;
+                        form.setError('message', { message: error });
+                        console.error(error);
+                        setIsLoading(false);
+                        return;
+                      }
+                      setSuccessMsg(result.message);
+                      setIsLoading(false);
+                    })}
+                  >
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="sr-only" htmlFor="email">
+                            Имейл
+                          </FormLabel>
+                          <FormControl>
+                            <Input type="email" required id="email" placeholder="Вашия имейл" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="sr-only" htmlFor="message">
+                            Съобщение
+                          </FormLabel>
+                          <FormControl>
+                            <Textarea id="message" placeholder="Вашето съобщение" rows={3} className="resize-none" required {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button disabled={isLoading || !!successMsg} type="submit" className="w-full">
+                      {isLoading ? <LoaderCircle className="animate-spin" /> : successMsg || contactsData.cta || 'Изпрати'}
+                    </Button>
+                  </form>
+                </Form>
               </div>
 
               {/* Social Links */}
