@@ -6,6 +6,7 @@ import Logo from '@/components/Icons';
 import MobileNavMenu from './mobile-nav-menu';
 import { Button } from './ui/button';
 import { ReactNode } from 'react';
+import Image from 'next/image';
 
 export type NavProps = { title: string; href: string; description?: string; className?: string };
 const navItemsDefault: NavProps[] = [
@@ -38,11 +39,11 @@ const navItemsDefault: NavProps[] = [
 export default function Header({ cta, navItems }: { cta?: ReactNode; navItems?: NavProps[] }) {
   navItems = navItems ? navItems : navItemsDefault;
   return (
-    <header className="bg-background relative border-b shadow-sm">
+    <header className="bg-background supports-[backdrop-filter]:bg-background/92 sticky top-0 left-0 z-50 border-b shadow-sm backdrop-blur">
       <div className="container py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="group flex items-center">
-            <Logo />
+          <Link href="/" className="relative h-9 w-[72px]">
+            <Image fill src="/bbh-logo.svg" alt="Burgas Business hub logo" />
           </Link>
           {/* Desktop Navigation */}
           <nav className="hidden items-center xl:flex" aria-label="Main navigation">
