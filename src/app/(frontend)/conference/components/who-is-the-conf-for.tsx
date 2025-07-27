@@ -15,11 +15,7 @@ export default function WhoIsTheConfFor({ data }: { data: WhoIsTheConfForProps }
         <div className="grid gap-8 md:grid-cols-3">
           {data.items.map(({ title, icon, description }, i) => (
             <div key={title + i} className="bg-card flex flex-col items-center rounded-lg border p-8 text-center shadow-sm transition-all hover:shadow-md">
-              {icon && typeof icon !== 'string' && (
-                <div className="bg-primary/10 text-primary flex h-14 w-14 items-center justify-center rounded-full">
-                  <Image className="size-7" width={28} height={28} src={icon.url || ''} alt={icon.alt} />
-                </div>
-              )}
+              {icon && typeof icon !== 'string' && <Image className="size-14" width={56} height={56} src={icon.url || ''} alt={icon.alt} />}
               <h3 className="mt-6 text-xl font-semibold">{title}</h3>
               <p className="text-muted-foreground mt-3">{description}</p>
             </div>

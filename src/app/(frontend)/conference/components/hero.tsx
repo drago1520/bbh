@@ -20,9 +20,6 @@ export default function Hero({ title, subheading, ctaText, heroImg }: HeroProps)
       {/* Full screen background image */}
       <Image src={heroImg.url || heroImgFallBack} alt={heroImg.alt} fill className="object-cover object-center" priority />
 
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-black/50" />
-
       {/* Content container */}
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 text-center">
         <div className="max-w-3xl">
