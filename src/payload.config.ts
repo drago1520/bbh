@@ -25,7 +25,7 @@ export default buildConfig({
     defaultFromName: process.env.NODE_ENV == 'production' ? 'Драгомир BBH' : 'Драго Тест BBH',
     transportOptions: {
       host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
+      port: Number(process.env.SMTP_PORT),
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
