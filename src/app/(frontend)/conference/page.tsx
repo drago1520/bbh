@@ -31,6 +31,29 @@ export default async function Conference() {
     collection: 'marketing-sections',
     depth: 400,
   });
+  const events = await payload.find({
+    collection: 'events',
+    where: {
+      and: [
+        {
+          type: {
+            equals: 'conference',
+          },
+        },
+        {
+          active: {
+            equals: 'true',
+          },
+        },
+      ],
+    },
+    depth: 10,
+    limit: 1,
+  });
+  const latestConf = events.docs[0];
+  if (!latestConf) {
+    throw new Error('Did not find latest conference');
+  }
 
   // Query contacts global
   const contactsData = await payload.findGlobal({
@@ -82,6 +105,20 @@ export default async function Conference() {
   const whoIsTheConfForProps = blocks.find(block => block.blockType === 'whoIsTheConfFor');
   const pricingProps = blocks.find(block => block.blockType === 'PricingWithCountdown');
   const testimonials2Props = blocks.find(block => block.blockType === 'testimonials2');
+  const { stripeUrl } = latestConf;
+  if (!stripeUrl) {
+    console.error('Няма Url за stripe checkout. Сложете от Admin > Events > конференцията > Stripe Checkout Url');
+    return (
+      <h1 className="text-destructive mt-8 text-center text-xl">
+        Няма Url за stripe checkout. Сложете от
+        <Link className="underline" target="_blank" href={`${process.env.NEXT_PUBLIC_SERVER_URL}/admin/collections/events`}>
+          {' '}
+          Admin {'>'} Events {'>'}{' '}
+        </Link>{' '}
+        конференцията {'>'} Stripe Checkout Url
+      </h1>
+    );
+  }
 
   return (
     <div className="min-h-screen">
@@ -89,19 +126,19 @@ export default async function Conference() {
         navItems={navItems}
         cta={
           <Button asChild>
-            <Link href="#цени">Запиши се</Link>
+            <Link href={stripeUrl}>Запиши се</Link>
           </Button>
         }
       />
       <main className="mb-16">
-        <Hero heroImg={heroImg} ctaText={ctaText} subheading={subheading} title={title} />
+        <Hero stripeUrl={stripeUrl} heroImg={heroImg} ctaText={ctaText} subheading={subheading} title={title} />
         {agendaProps && <Agenda agendaProps={agendaProps} />}
         {lecturersProps && <LecturersGrid lecturersProps={lecturersProps} />}
         {/* Програма */}
         {confTimelineProps && <Timeline confTimelineProps={confTimelineProps} />}
         {partners2Props && <Partners partnersProps={partners2Props} />}
         {whoIsTheConfForProps && <WhoIsTheConfFor data={whoIsTheConfForProps} />}
-        {pricingProps && <PricingWithCountdown pricingProps={pricingProps} />}
+        {pricingProps && <PricingWithCountdown stripeUrl={stripeUrl} pricingProps={pricingProps} />}
         {testimonials2Props && <Testimonials testimonilas2Props={testimonials2Props} />}
         <MapWithContactInfo contactsData={contactsData} />
       </main>

@@ -9,9 +9,10 @@ type HeroProps = {
   subheading?: string | null;
   ctaText?: string | null;
   heroImg: Media | string;
+  stripeUrl: string;
 };
 
-export default function Hero({ title, subheading, ctaText, heroImg }: HeroProps) {
+export default function Hero({ title, subheading, ctaText, heroImg, stripeUrl }: HeroProps) {
   if (typeof heroImg === 'string') throw new Error(errorMsgs.imgIsString);
   const heroImgFallBack = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3';
 
@@ -30,7 +31,7 @@ export default function Hero({ title, subheading, ctaText, heroImg }: HeroProps)
           {ctaText && (
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg">
-                <Link href="#цени">{ctaText}</Link>
+                <Link href={stripeUrl}>{ctaText}</Link>
               </Button>
             </div>
           )}

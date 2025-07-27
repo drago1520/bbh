@@ -30,6 +30,14 @@ export const Events: CollectionConfig = {
       },
     },
     {
+      name: 'stripeUrl',
+      label: 'Stripe Checkout Url',
+      type: 'text',
+      admin: {
+        description: 'Stripe Dashboard > Search (top center) > Payment Links > + New; Сложете redirect към сайта. Може с имейл, телефон или комбинация.',
+      },
+    },
+    {
       name: 'type',
       label: 'Тип',
       type: 'radio',

@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import CountdownTimer from '../../networking/components/countdown';
 import { PricingProps } from '@/payload-types';
+import Link from 'next/link';
 
 const plansDefault: PricingProps['plans'] = [
   {
@@ -48,7 +49,7 @@ const dataDefault: PricingProps = {
   blockType: 'PricingWithCountdown',
 };
 
-export default function PricingWithCountdown({ pricingProps = dataDefault }: { pricingProps: PricingProps }) {
+export default function PricingWithCountdown({ pricingProps = dataDefault, stripeUrl }: { pricingProps: PricingProps; stripeUrl: string }) {
   const { plans, saleEnd, title, label, subheading } = pricingProps;
 
   return (
@@ -117,9 +118,15 @@ export default function PricingWithCountdown({ pricingProps = dataDefault }: { p
                 )}
               </CardContent>
               <CardFooter>
-                <Button className="w-full" disabled={!active && true} variant={active ? 'default' : 'outline'}>
-                  Запиши се
-                </Button>
+                {active ? (
+                  <Button asChild className="w-full">
+                    <Link href={stripeUrl}>Запиши се</Link>
+                  </Button>
+                ) : (
+                  <Button className="w-full" disabled={true} variant={'outline'}>
+                    Запиши се
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           ))}

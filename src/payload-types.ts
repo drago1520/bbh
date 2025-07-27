@@ -907,6 +907,10 @@ export interface Event {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Stripe Dashboard > Search (top center) > Payment Links > + New; Сложете redirect към сайта. Може с имейл, телефон или комбинация.
+   */
+  stripeUrl?: string | null;
   type: 'networking' | 'businessBreakfast' | 'conference' | 'courses';
   date: string;
   active: 'false' | 'true';
@@ -1726,6 +1730,7 @@ export interface EventsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   shortDescription?: T;
+  stripeUrl?: T;
   type?: T;
   date?: T;
   active?: T;
