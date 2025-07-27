@@ -14,23 +14,24 @@ export const Attendees: CollectionConfig = {
     {
       name: 'email',
       type: 'email',
-      required: true,
+      unique: true,
     },
     {
       name: 'name',
       type: 'text',
+      unique: true,
       index: true,
     },
     {
-      name: 'event',
-      type: 'relationship',
-      relationTo: 'events',
+      name: 'phone',
+      type: 'text',
+      unique: true,
     },
   ],
   timestamps: true,
   admin: {
-    defaultColumns: ['name', 'email'],
+    defaultColumns: ['name', 'email', 'phone'],
     useAsTitle: 'email',
-    listSearchableFields: ['email', 'name'],
+    listSearchableFields: ['email', 'name', 'phone'],
   },
 };

@@ -75,6 +75,7 @@ export interface Config {
     attendees: Attendee;
     events: Event;
     'marketing-sections': MarketingSection;
+    tickets: Ticket;
     redirects: Redirect;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -91,6 +92,7 @@ export interface Config {
     attendees: AttendeesSelect<false> | AttendeesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     'marketing-sections': MarketingSectionsSelect<false> | MarketingSectionsSelect<true>;
+    tickets: TicketsSelect<false> | TicketsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -859,9 +861,9 @@ export interface ArchiveBlock {
  */
 export interface Attendee {
   id: string;
-  email: string;
+  email?: string | null;
   name?: string | null;
-  event?: (string | null) | Event;
+  phone?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -970,6 +972,22 @@ export interface Partners2Props {
   id?: string | null;
   blockName?: string | null;
   blockType: 'partners2';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tickets".
+ */
+export interface Ticket {
+  id: string;
+  attendee: string | Attendee;
+  /**
+   * Трябва да има създадено събитие. /admin > Events > "add new"
+   */
+  event: string | Event;
+  source: 'stripe' | 'manually';
+  paymentIntentId?: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1127,6 +1145,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'marketing-sections';
         value: string | MarketingSection;
+      } | null)
+    | ({
+        relationTo: 'tickets';
+        value: string | Ticket;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1692,7 +1714,7 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface AttendeesSelect<T extends boolean = true> {
   email?: T;
   name?: T;
-  event?: T;
+  phone?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1760,6 +1782,18 @@ export interface Partners2PropsSelect<T extends boolean = true> {
   images?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tickets_select".
+ */
+export interface TicketsSelect<T extends boolean = true> {
+  attendee?: T;
+  event?: T;
+  source?: T;
+  paymentIntentId?: T;
+  createdAt?: T;
+  updatedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

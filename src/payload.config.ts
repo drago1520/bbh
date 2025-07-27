@@ -17,6 +17,7 @@ import { Attendees } from './payload/collections/Attendees/attendees-collection'
 import { Events } from './payload/collections/Events/events-collection';
 import { MarketingSectionsCollection } from './payload/collections/Marketing-sections/partners';
 import { Contacts } from './payload/globals/contacts';
+import { Tickets } from './payload/collections/tickets';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -72,7 +73,7 @@ export default buildConfig({
     },
     idType: 'uuid',
   }),
-  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection], //onChange => npm run db:schema
+  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection, Tickets], //onChange => npm run db:schema
   cors: [getServerSideURL()].filter(Boolean),
   secret: process.env.PAYLOAD_SECRET,
   sharp,
