@@ -65,7 +65,7 @@ export default async function HomePage() {
       <Header />
       <main>
         <Hero subheading={homePage.subheading} heroImg={homePage.heroImg} />
-        <UpcomingEvents events={events} />
+        {events.length > 0 && <UpcomingEvents events={events} />}
         <NetworkingEvents className="bg-muted/70" />
         {statisticsProps && <Statistics data={statisticsProps} />}
         <Courses className="bg-muted/70" />

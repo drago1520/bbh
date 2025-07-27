@@ -7,7 +7,7 @@
  */
 
 import type {} from '@payloadcms/db-postgres';
-import { pgTable, index, uniqueIndex, foreignKey, uuid, varchar, timestamp, numeric, integer, text, jsonb, boolean, serial, pgEnum } from '@payloadcms/db-postgres/drizzle/pg-core';
+import { pgTable, index, uniqueIndex, foreignKey, integer, uuid, varchar, timestamp, numeric, text, jsonb, boolean, serial, pgEnum } from '@payloadcms/db-postgres/drizzle/pg-core';
 import { sql, relations } from '@payloadcms/db-postgres/drizzle';
 export const enum_pages_status = pgEnum('enum_pages_status', ['draft', 'published']);
 export const enum__pages_v_version_status = pgEnum('enum__pages_v_version_status', ['draft', 'published']);
@@ -46,6 +46,26 @@ export const enum_payload_jobs_log_task_slug = pgEnum('enum_payload_jobs_log_tas
 export const enum_payload_jobs_log_state = pgEnum('enum_payload_jobs_log_state', ['failed', 'succeeded']);
 export const enum_payload_jobs_task_slug = pgEnum('enum_payload_jobs_task_slug', ['inline', 'schedulePublish']);
 export const enum_contacts_socials_platform = pgEnum('enum_contacts_socials_platform', ['facebook', 'instagram', 'twitter', 'linkedin', 'youtube', 'tiktok', 'whatsapp', 'telegram', 'viber', 'discord', 'snapchat', 'pinterest', 'reddit', 'twitch', 'medium', 'slack', 'skype', 'threads', 'yelp']);
+
+export const users_sessions = pgTable(
+  'users_sessions',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }),
+    expiresAt: timestamp('expires_at', { mode: 'string', withTimezone: true, precision: 3 }).notNull(),
+  },
+  columns => ({
+    _orderIdx: index('users_sessions_order_idx').on(columns._order),
+    _parentIDIdx: index('users_sessions_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [users.id],
+      name: 'users_sessions_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
 
 export const users = pgTable(
   'users',
@@ -2264,7 +2284,7 @@ export const redirects = pgTable(
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
   columns => ({
-    redirects_from_idx: index('redirects_from_idx').on(columns.from),
+    redirects_from_idx: uniqueIndex('redirects_from_idx').on(columns.from),
     redirects_updated_at_idx: index('redirects_updated_at_idx').on(columns.updatedAt),
     redirects_created_at_idx: index('redirects_created_at_idx').on(columns.createdAt),
   }),
@@ -2591,7 +2611,18 @@ export const contacts = pgTable('contacts', {
   createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }),
 });
 
-export const relations_users = relations(users, () => ({}));
+export const relations_users_sessions = relations(users_sessions, ({ one }) => ({
+  _parentID: one(users, {
+    fields: [users_sessions._parentID],
+    references: [users.id],
+    relationName: 'sessions',
+  }),
+}));
+export const relations_users = relations(users, ({ many }) => ({
+  sessions: many(users_sessions, {
+    relationName: 'sessions',
+  }),
+}));
 export const relations_media = relations(media, () => ({}));
 export const relations_pages_blocks_q_a_block = relations(pages_blocks_q_a_block, ({ one }) => ({
   _parentID: one(pages, {
@@ -3773,6 +3804,7 @@ type DatabaseSchema = {
   enum_payload_jobs_log_state: typeof enum_payload_jobs_log_state;
   enum_payload_jobs_task_slug: typeof enum_payload_jobs_task_slug;
   enum_contacts_socials_platform: typeof enum_contacts_socials_platform;
+  users_sessions: typeof users_sessions;
   users: typeof users;
   media: typeof media;
   pages_blocks_q_a_block: typeof pages_blocks_q_a_block;
@@ -3873,6 +3905,7 @@ type DatabaseSchema = {
   contacts_emails: typeof contacts_emails;
   contacts_socials: typeof contacts_socials;
   contacts: typeof contacts;
+  relations_users_sessions: typeof relations_users_sessions;
   relations_users: typeof relations_users;
   relations_media: typeof relations_media;
   relations_pages_blocks_q_a_block: typeof relations_pages_blocks_q_a_block;
