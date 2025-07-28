@@ -6,7 +6,7 @@ import { sendEmailSMTP } from '@/lib/nodemailer';
 
 export async function sendInquiry({ email, message }: ContactFormData): Promise<{ success: true; message: string } | ErrorLogger> {
   try {
-    const result = await sendEmailSMTP({ html: `Благодаря, че направихте запитване към Burgas Business Hub. Вашето съобщение "${message}" е прието и ще отговорим в най-скоро време!`, subject: 'Запитване от сайт - BBH', to: ['dragomir1520@gmail.com', email, 'info@burgasbh.com', 'office@webtact.bg'] });
+    const result = await sendEmailSMTP({ html: `<b>${email}</b> изпрати следното съобщение от сайта <b>"${message}"</b>`, subject: 'Запитване от сайт - BBH', to: ['dragomir1520@gmail.com', 'info@burgasbh.com', 'office@webtact.bg'] });
     return { success: true, message: 'Съобщението е изпратено. Благодарим!' };
   } catch (e) {
     return errorLogger(e);
