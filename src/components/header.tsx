@@ -43,7 +43,7 @@ export default function Header({ cta, navItems }: { cta?: ReactNode; navItems?: 
       <div className="container py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="relative h-9 w-[72px]">
-            <Image fill src="/bbh-logo.svg" alt="Burgas Business hub logo" />
+            <Logo width={72} height={36} />
           </Link>
           {/* Desktop Navigation */}
           <nav className="hidden items-center xl:flex" aria-label="Main navigation">
