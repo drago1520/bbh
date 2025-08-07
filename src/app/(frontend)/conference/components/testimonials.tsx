@@ -56,7 +56,7 @@ export default function Testimonials2({ testimonilas2Props = dataDefault }: { te
           {testimonials.map(({ clientImg, cardImg, title, ...testimonial }, index) => (
             <div key={index} className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
               <div className={`order-2 ${index % 2 !== 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-                <blockquote className="border-primary relative border-l-4 py-2 pl-6">
+                <blockquote className="border-primary-conference relative border-l-4 py-2 pl-6">
                   <p className="mb-6 text-xl leading-relaxed italic">&ldquo;{testimonial.quote}&rdquo;</p>
                   <div className="flex items-center gap-4">
                     <div className="relative h-12 w-12 overflow-hidden rounded-full">{typeof clientImg !== 'string' && <Image src={clientImg.url || ''} alt={clientImg.alt} fill className="object-cover" />}</div>

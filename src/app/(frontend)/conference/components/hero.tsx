@@ -26,7 +26,6 @@ export default function Hero({ title, subheading, ctaText, heroImg, stripeUrl }:
       {/* Content container */}
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-start px-4 text-center">
         <div className="font-rubik max-w-3xl">
-          {/* <Image src={'/logo.svg'} alt='logo BBH' width={144*0.8} height={72*0.8} className='fill-primary stroke-primary' /> */}
           <div>
             <Logo width={120} height={60} className="mx-auto mb-2 fill-white" />
             <span className="text-4xl font-extrabold text-[#66BE8D] text-shadow-black text-shadow-md sm:text-7xl md:text-7xl">CONFERENCE</span>

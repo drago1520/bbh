@@ -1,12 +1,10 @@
 import Link from 'next/link';
-
 import { ThemeSelector } from '@/components/ThemeProvider/Theme/ThemeSelector';
 import Logo from '@/components/Icons';
 // import NoWebpageYetAlertDialogWrapper from '../app/(frontend)/coming-soon/components/no-webpage-yet-modal';
 import MobileNavMenu from './mobile-nav-menu';
 import { Button } from './ui/button';
 import { ReactNode } from 'react';
-import Image from 'next/image';
 
 export type NavProps = { title: string; href: string; description?: string; className?: string };
 const navItemsDefault: NavProps[] = [

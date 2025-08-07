@@ -125,7 +125,7 @@ export default async function Conference() {
       <Header
         navItems={navItems}
         cta={
-          <Button asChild>
+          <Button variant="conference" asChild>
             <Link href={stripeUrl}>Запиши се</Link>
           </Button>
         }

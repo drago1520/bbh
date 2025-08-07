@@ -71,15 +71,15 @@ export default function PricingWithCountdown({ pricingProps = dataDefault, strip
               <span className="font-medium">Тази цена е актуална още:</span>
               <span className="text-muted-foreground">Местата са ограничени</span>
             </div>
-            <Progress value={70} className="h-2" />
+            <Progress value={70} className="h-2" indicatorProps={{ className: 'bg-primary-conference' }} />
             <CountdownTimer endDate={saleEnd} variant="conferencePricing" />
           </div>
         </div>
 
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
           {plans.map(({ active, title, discount, discountedPrice, features, originalPrice, bonus, description }, i) => (
-            <Card key={i} className={cn('relative flex flex-col overflow-hidden', active && 'border-primary shadow-md', !active && 'text-muted-foreground! cursor-not-allowed')}>
-              {active && <div className="bg-primary text-primary-foreground absolute top-0 right-0 rounded-bl-lg px-3 py-1 text-xs font-medium">Активен</div>}
+            <Card key={i} className={cn('relative flex flex-col overflow-hidden', active && 'border-primary-conference shadow-md', !active && 'text-muted-foreground! cursor-not-allowed')}>
+              {active && <div className="bg-primary-conference text-primary-foreground-conference absolute top-0 right-0 rounded-bl-lg px-3 py-1 text-xs font-medium">Активен</div>}
               <CardHeader>
                 <CardTitle>{title}</CardTitle>
                 <div className="mt-4 flex items-baseline">
@@ -99,9 +99,9 @@ export default function PricingWithCountdown({ pricingProps = dataDefault, strip
               </CardHeader>
               <CardContent className="flex-1">
                 {bonus && (
-                  <div className="bg-primary/10 mb-4 rounded-lg p-3">
+                  <div className="bg-primary-conference/10 mb-4 rounded-lg p-3">
                     <div className="flex items-center gap-2">
-                      <SparklesIcon className="text-primary h-4 w-4" />
+                      <SparklesIcon className="text-primary-conference h-4 w-4" />
                       <span className="text-sm font-medium">Бонус: {bonus}</span>
                     </div>
                   </div>
@@ -110,7 +110,7 @@ export default function PricingWithCountdown({ pricingProps = dataDefault, strip
                   <ul className="space-y-2 text-sm">
                     {features.map(({ feature }, i) => (
                       <li key={feature + i} className="flex items-center">
-                        <CheckIcon className="text-primary mr-2 h-4 w-4" />
+                        <CheckIcon className="text-primary-conference mr-2 h-4 w-4" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -119,7 +119,7 @@ export default function PricingWithCountdown({ pricingProps = dataDefault, strip
               </CardContent>
               <CardFooter>
                 {active ? (
-                  <Button asChild className="w-full">
+                  <Button variant={'conference'} asChild className="w-full">
                     <Link href={stripeUrl}>Запиши се</Link>
                   </Button>
                 ) : (

@@ -48,7 +48,7 @@ export default function MapWithContactInfo({ contactsData }: { contactsData: Con
               <div className="mb-8 space-y-4">
                 {contactsData.address && (
                   <div className="flex items-start">
-                    <MapPin className="text-primary mt-1 size-5 flex-shrink-0" />
+                    <MapPin className="text-primary-conference mt-1 size-5 flex-shrink-0" />
                     <div className="ml-3">
                       <h5 className="font-medium">Адрес</h5>
                       <p className="text-muted-foreground text-sm whitespace-pre-line">{contactsData.address}</p>
@@ -58,13 +58,13 @@ export default function MapWithContactInfo({ contactsData }: { contactsData: Con
 
                 {contactsData.phones && contactsData.phones.length > 0 && (
                   <div className="flex items-start">
-                    <Phone className="text-primary mt-1 size-5 flex-shrink-0" />
+                    <Phone className="text-primary-conference mt-1 size-5 flex-shrink-0" />
                     <div className="ml-3">
                       <h4 className="font-medium">Телефон</h4>
                       {contactsData.phones
                         .filter(phone => phone.phone)
                         .map((phone, index) => (
-                          <a key={index} href={`tel:${phone.phone}`} className="text-muted-foreground hover:text-primary block text-sm transition-colors">
+                          <a key={index} href={`tel:${phone.phone}`} className="text-muted-foreground hover:text-primary-conference block text-sm transition-colors">
                             {phone.phone}
                           </a>
                         ))}
@@ -74,13 +74,13 @@ export default function MapWithContactInfo({ contactsData }: { contactsData: Con
 
                 {contactsData.emails && contactsData.emails.length > 0 && (
                   <div className="flex items-start">
-                    <Mail className="text-primary mt-1 size-5 flex-shrink-0" />
+                    <Mail className="text-primary-conference mt-1 size-5 flex-shrink-0" />
                     <div className="ml-3">
                       <h5 className="font-medium">Имейл</h5>
                       {contactsData.emails
                         .filter(email => email.email)
                         .map((email, index) => (
-                          <a key={index} href={`mailto:${email.email}`} className="text-muted-foreground hover:text-primary block text-sm transition-colors">
+                          <a key={index} href={`mailto:${email.email}`} className="text-muted-foreground hover:text-primary-conference block text-sm transition-colors">
                             {email.email}
                           </a>
                         ))}
@@ -141,7 +141,7 @@ export default function MapWithContactInfo({ contactsData }: { contactsData: Con
                         </FormItem>
                       )}
                     />
-                    <Button disabled={isLoading || !!successMsg} type="submit" className="w-full">
+                    <Button variant={'conference'} disabled={isLoading || !!successMsg} type="submit" className="w-full">
                       {isLoading ? <LoaderCircle className="animate-spin" /> : successMsg || contactsData.cta || 'Изпрати'}
                     </Button>
                   </form>
