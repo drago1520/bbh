@@ -63,3 +63,5 @@ export default function Timeline({ confTimelineProps }: { confTimelineProps: Con
     </div>
   );
 }
+
+export function Timeline2() {}

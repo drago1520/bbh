@@ -413,9 +413,13 @@ export interface LecturersProps {
  * via the `definition` "ConfTimelineProps".
  */
 export interface ConfTimelineProps {
-  title: string;
+  title?: string | null;
   steps: {
-    title: string;
+    /**
+     * https://lucide.dev/icons/ > копирайте името (kebap case)
+     */
+    icon?: string | null;
+    title?: string | null;
     description?: string | null;
     id?: string | null;
   }[];
@@ -1433,6 +1437,7 @@ export interface ConfTimelinePropsSelect<T extends boolean = true> {
   steps?:
     | T
     | {
+        icon?: T;
         title?: T;
         description?: T;
         id?: T;

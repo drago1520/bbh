@@ -13,6 +13,7 @@ import PricingWithCountdown from './components/pricing';
 import Testimonials from './components/testimonials';
 import MapWithContactInfo from './components/map-with-contact-info';
 import Link from 'next/link';
+import { List1 } from './components/list1';
 export const dynamic = 'force-dynamic';
 
 export default async function Conference() {
@@ -135,7 +136,8 @@ export default async function Conference() {
         {agendaProps && <Agenda agendaProps={agendaProps} />}
         {lecturersProps && <LecturersGrid lecturersProps={lecturersProps} />}
         {/* Програма */}
-        {confTimelineProps && <Timeline confTimelineProps={confTimelineProps} />}
+        {/* {confTimelineProps && <Timeline confTimelineProps={confTimelineProps} />} */}
+        {confTimelineProps && <List1 confTimelineProps={confTimelineProps} />}
         {partners2Props && <Partners partnersProps={partners2Props} />}
         {whoIsTheConfForProps && <WhoIsTheConfFor data={whoIsTheConfForProps} />}
         {pricingProps && <PricingWithCountdown stripeUrl={stripeUrl} pricingProps={pricingProps} />}

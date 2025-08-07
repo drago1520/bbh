@@ -11,8 +11,7 @@ export const TimelineBlock: Block = {
     {
       name: 'title',
       type: 'text',
-      label: 'Заглавие',
-      required: true,
+      label: 'Заглавие на секция',
       admin: {
         placeholder: 'Програма на конференцията',
       },
@@ -27,10 +26,17 @@ export const TimelineBlock: Block = {
       },
       fields: [
         {
+          name: 'icon',
+          type: 'text',
+          label: 'Име на иконка от Lucide React',
+          admin: {
+            description: 'https://lucide.dev/icons/ > копирайте името (kebap case)',
+          },
+        },
+        {
           name: 'title',
           type: 'text',
-          label: 'Заглавие на стъпка',
-          required: true,
+          label: 'Заглавие на панел',
           admin: {
             placeholder: 'Изследване',
           },
