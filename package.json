@@ -66,6 +66,7 @@
 		"nodemailer": "^7.0.5",
 		"npm-check-updates": "^18.0.1",
 		"payload": "^3.49.0",
+		"payload-oapi": "^0.2.4",
 		"posthog-js": "^1.253.4",
 		"posthog-node": "^5.1.1",
 		"prism-react-renderer": "^2.4.1",

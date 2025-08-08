@@ -1,3 +1,4 @@
+import { openapi, scalar, swaggerUI, rapidoc, redoc } from 'payload-oapi';
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import { seoPlugin } from '@payloadcms/plugin-seo';
@@ -59,4 +60,6 @@ export const plugins: Plugin[] = [
       endpoint: process.env.R2_ENDPOINT!,
     },
   }),
+  openapi({ metadata: { title: 'OpenAPI docs BBH', version: '0.0.1' }, enabled: true }),
+  scalar({ enabled: true }),
 ];
