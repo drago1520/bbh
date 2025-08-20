@@ -76,9 +76,10 @@ export default function PricingWithCountdown({ pricingProps = dataDefault, strip
           </div>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
+        {/* <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3"> */}
+        <div className="mt-12 flex justify-center gap-6">
           {plans.map(({ active, title, discount, discountedPrice, features, originalPrice, bonus, description }, i) => (
-            <Card key={i} className={cn('relative flex flex-col overflow-hidden', active && 'border-primary-conference shadow-md', !active && 'text-muted-foreground! hidden cursor-not-allowed')}>
+            <Card key={i} className={cn('relative flex w-full max-w-96 flex-col overflow-hidden', active && 'border-primary-conference shadow-md', !active && 'text-muted-foreground! hidden cursor-not-allowed')}>
               {active && <div className="bg-primary-conference text-primary-foreground-conference absolute top-0 right-0 rounded-bl-lg px-3 py-1 text-xs font-medium">Активен</div>}
               <CardHeader>
                 <CardTitle>{title}</CardTitle>
