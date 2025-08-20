@@ -7,13 +7,12 @@ import Hero from './components/hero';
 import WhoIsTheConfFor from './components/who-is-the-conf-for';
 import Agenda from './components/agenda';
 import LecturersGrid from './components/lecturers-grid';
-import Timeline from './components/timeline-06';
 import Partners from './components/logos-07/partners';
 import PricingWithCountdown from './components/pricing';
 import Testimonials from './components/testimonials';
 import MapWithContactInfo from './components/map-with-contact-info';
 import Link from 'next/link';
-import { List1 } from './components/list1';
+import { Program } from './components/program';
 export const dynamic = 'force-dynamic';
 
 export default async function Conference() {
@@ -137,7 +136,7 @@ export default async function Conference() {
         {lecturersProps && <LecturersGrid lecturersProps={lecturersProps} />}
         {/* Програма */}
         {/* {confTimelineProps && <Timeline confTimelineProps={confTimelineProps} />} */}
-        {confTimelineProps && <List1 confTimelineProps={confTimelineProps} />}
+        {confTimelineProps && <Program confTimelineProps={confTimelineProps} />}
         {partners2Props && <Partners partnersProps={partners2Props} />}
         {whoIsTheConfForProps && <WhoIsTheConfFor data={whoIsTheConfForProps} />}
         {pricingProps && <PricingWithCountdown stripeUrl={stripeUrl} pricingProps={pricingProps} />}

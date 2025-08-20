@@ -3,11 +3,11 @@ import { ConfTimelineProps } from '@/payload-types';
 
 // NOTE: Removed unused demo data + table imports. Component now focuses purely on provided props.
 
-const List1 = ({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }) => {
+const Program = ({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }) => {
   const headingId = `conf-timeline-${confTimelineProps?.id || 'heading'}`;
   return (
     <section className="py-16" aria-labelledby={headingId}>
-      <div className="container px-0">
+      <div className="container">
         <header className="mb-12">
           <h3 id={headingId} className="text-h3-size text-center">
             {confTimelineProps.title}
@@ -15,7 +15,7 @@ const List1 = ({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }) 
         </header>
         <ol className="list-none p-0">
           {confTimelineProps.steps.map(({ title, description, id, icon }, index) => (
-            <li key={id} className="flex items-start gap-6 border-b py-8" aria-posinset={index + 1} aria-setsize={confTimelineProps.steps.length}>
+            <li key={id} className="flex flex-col items-start gap-6 border-b py-8 sm:flex-row" aria-posinset={index + 1} aria-setsize={confTimelineProps.steps.length}>
               {icon && (
                 <span className="bg-card inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border" aria-hidden="true">
                   <DynamicIcon name={icon as any} />
@@ -33,4 +33,4 @@ const List1 = ({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }) 
   );
 };
 
-export { List1 };
+export { Program };
