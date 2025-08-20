@@ -75,7 +75,7 @@ export default async function Conference() {
   }
   const navItems: NavProps[] = [
     {
-      href: '/',
+      href: '/conference',
       title: 'Начало',
     },
     {
