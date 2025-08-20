@@ -71,15 +71,14 @@ export default function PricingWithCountdown({ pricingProps = dataDefault, strip
               <span className="font-medium">Тази цена е актуална още:</span>
               <span className="text-muted-foreground">Местата са ограничени</span>
             </div>
-            {/* <Progress value={70} className="h-2" indicatorProps={{ className: 'bg-primary-conference' }} /> */}
-            <CountdownTimer className="mt-4" endDate={saleEnd} variant="conferencePricing" />
+            <Progress value={70} className="h-2" indicatorProps={{ className: 'bg-primary-conference' }} />
+            <CountdownTimer endDate={saleEnd} variant="conferencePricing" />
           </div>
         </div>
 
-        {/* <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3"> */}
-        <div className="mt-12 flex justify-center gap-6">
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
           {plans.map(({ active, title, discount, discountedPrice, features, originalPrice, bonus, description }, i) => (
-            <Card key={i} className={cn('relative flex w-full max-w-96 flex-col overflow-hidden', active && 'border-primary-conference shadow-md', !active && 'text-muted-foreground! hidden cursor-not-allowed')}>
+            <Card key={i} className={cn('relative flex flex-col overflow-hidden', active && 'border-primary-conference shadow-md', !active && 'text-muted-foreground! cursor-not-allowed')}>
               {active && <div className="bg-primary-conference text-primary-foreground-conference absolute top-0 right-0 rounded-bl-lg px-3 py-1 text-xs font-medium">Активен</div>}
               <CardHeader>
                 <CardTitle>{title}</CardTitle>
