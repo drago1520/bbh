@@ -141,7 +141,7 @@ export default function MapWithContactInfo({ contactsData }: { contactsData: Con
                         </FormItem>
                       )}
                     />
-                    <Button variant={'conference'} disabled={isLoading || !!successMsg} type="submit" className="w-full">
+                    <Button disabled={isLoading || !!successMsg} type="submit" className="w-full">
                       {isLoading ? <LoaderCircle className="animate-spin" /> : successMsg || contactsData.cta || 'Изпрати'}
                     </Button>
                   </form>
