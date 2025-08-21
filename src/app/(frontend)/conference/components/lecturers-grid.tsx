@@ -48,7 +48,7 @@ export default function LecturersGrid({ lecturersProps }: { lecturersProps: Lect
           <Card key={index} className="group relative overflow-hidden p-0 transition-shadow hover:shadow-lg">
             <CardContent className="!p-0">
               <div className="relative">
-                <Image className="aspect-[3/4] w-full object-cover" src={typeof image === 'string' ? image : image.url ? image.url : ''} alt={name || 'няма име'} width={320} height={420} />
+                {typeof image !== 'string' && <Image className="aspect-[3/4] w-full object-cover" src={image.url ? image.url : ''} alt={name || 'няма име'} width={image.width || 320} height={image.height || 420} />}
                 <div className="from-background/80 to-background/0 absolute inset-0 bg-gradient-to-t opacity-0 transition-opacity group-hover:opacity-100" />
                 {bio && (
                   <div className="absolute right-0 bottom-0 left-0 translate-y-4 p-4 opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">

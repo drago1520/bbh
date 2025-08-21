@@ -32,7 +32,7 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
           <MediaSection isImageRight={isImageRight}>
             <Badges className="xl:hidden" />
             <div className="relative size-fit rounded-full xl:mx-auto">
-              <Image src={thumbnail.url || ''} alt={thumbnail.alt || 'Снимка на лектора'} width={288} height={288} className="bg-muted border-background dark:border-accent size-60 rounded-full border-8 object-cover shadow-xl xl:size-72" />
+              <Image src={thumbnail.url || ''} alt={thumbnail.alt || 'Снимка на лектора'} width={thumbnail.width || 288} height={thumbnail.height || 288} className="bg-muted border-background dark:border-accent size-60 rounded-full border-8 object-cover shadow-xl xl:size-72" />
               <div className="absolute -bottom-4 left-0 flex w-full items-end justify-between">
                 <span className="dark:bg-muted/20 z-10 grow [transform:perspective(500px)_rotateY(15deg)] rounded border border-neutral-600/10 bg-neutral-50/20 px-4 py-2 text-sm font-semibold text-nowrap shadow-lg backdrop-blur-sm transition-all duration-500 hover:[transform:perspective(500px)_rotateY(0deg)] dark:border-neutral-100/10">
                   {speakerName.split(' ')[0]} <br />
