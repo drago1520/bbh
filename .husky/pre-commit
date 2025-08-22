@@ -1,0 +1,7 @@
+# Format the code before each commit
+npm run format
+# WARNING: when multiple prompts are present, the hook will execute max 1, and move on to the next command
+#npm run db:create
+#npm run db:types
+#npm run db:schema
+git add .
