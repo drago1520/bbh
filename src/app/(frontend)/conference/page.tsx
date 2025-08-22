@@ -124,6 +124,7 @@ export default async function Conference() {
     <div className="min-h-screen">
       <Header
         navItems={navItems}
+        homeUrl="/conference"
         cta={
           <Button variant="conference" asChild>
             <Link href={stripeUrl}>Запиши се</Link>

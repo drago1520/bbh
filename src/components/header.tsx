@@ -34,13 +34,13 @@ const navItemsDefault: NavProps[] = [
   },
 ];
 
-export default function Header({ cta, navItems }: { cta?: ReactNode; navItems?: NavProps[] }) {
+export default function Header({ cta, navItems, homeUrl }: { cta?: ReactNode; navItems?: NavProps[]; homeUrl?: string }) {
   navItems = navItems ? navItems : navItemsDefault;
   return (
     <header className="bg-background supports-[backdrop-filter]:bg-background/92 sticky top-0 left-0 z-50 border-b shadow-sm backdrop-blur">
       <div className="container py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="relative h-9 w-[72px]">
+          <Link href={homeUrl || '/'} className="relative h-9 w-[72px]">
             <Logo width={72} height={36} />
           </Link>
           {/* Desktop Navigation */}
