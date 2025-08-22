@@ -22,7 +22,7 @@ const Program = ({ confTimelineProps }: { confTimelineProps: ConfTimelineProps }
                 </span>
               )}
               <div className="flex flex-col gap-1 xl:flex-row xl:gap-6">
-                <h4 className="leading-snug font-semibold text-nowrap">{title}</h4>
+                <h4 className="leading-snug font-semibold">{title}</h4>
                 {description && <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>}
               </div>
             </li>
