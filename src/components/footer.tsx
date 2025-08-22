@@ -3,6 +3,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/Icons';
 import { Label } from '@/components/ui/label';
+import payloadConfig from '@payload-config';
+import { getPayload } from 'payload';
+import { SocialIconsOnly } from './SocialLinks';
 
 const menuLinks = [
   // { label: 'Бизнес закуска', href: '#' },
@@ -13,15 +16,35 @@ const menuLinks = [
   { label: 'Политика за бисквитките', href: '#' },
 ];
 
-export default function Footer() {
+export default async function Footer() {
+  const config = await payloadConfig;
+  const payload = await getPayload({ config: config });
+
+  // Query contacts global
+  const contactsData = await payload.findGlobal({
+    slug: 'contacts',
+  });
   return (
     <footer className="text-foreground/80 bg-muted/80 pt-16 pb-8">
       <div className="container">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:gap-8 xl:grid-cols-4">
           <div className="sm:col-span-2 xl:col-span-1">
             <Link href="/" className="group mb-4 flex items-center">
               <Logo className="fill-foreground/80" />
             </Link>
+            {contactsData.socials && contactsData.socials.length > 0 && (
+              <div className="mt-6 border-t pt-6">
+                <SocialIconsOnly
+                  socials={contactsData.socials
+                    .filter(social => social.platform && social.url)
+                    .map(social => ({
+                      platform: social.platform!,
+                      url: social.url!,
+                    }))}
+                  className="justify-center"
+                />
+              </div>
+            )}
           </div>
 
           <nav aria-label="Footer navigation">
