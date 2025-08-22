@@ -33,4 +33,4 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 };
 
-export default withPayload(nextConfig);
+export default withPayload(nextConfig, { devBundleServerPackages: false});

@@ -41,7 +41,7 @@ export default async function Footer() {
                       platform: social.platform!,
                       url: social.url!,
                     }))}
-                  className="justify-center"
+                  className="justify-start"
                 />
               </div>
             )}
