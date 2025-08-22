@@ -17,7 +17,7 @@ export default function NetworkingEvents({ isImageRight = true, className, ...pr
       </MediaSection>
       <div>
         <ContentSection>
-          <Badge variant="brand">ПРЕДСТОЯЩИ</Badge>
+          {/* <Badge variant="brand">ПРЕДСТОЯЩИ</Badge> */}
           <h3 id="networking-heading" className="text-h3-size mt-4">
             Нетуъркинг събития
           </h3>

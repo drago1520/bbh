@@ -16,7 +16,7 @@ export default function BusinessBreakfast({ isImageRight = true, className, ...p
       </MediaSection>
       <div>
         <ContentSection>
-          <Badge variant="brand">Конференции</Badge>
+          {/* <Badge variant="brand">Конференции</Badge> */}
           <h3 id="business-breakfast-heading" className="text-h3-size mt-4">
             Бизнес на друго ниво
           </h3>

@@ -20,7 +20,7 @@ export default function Section2Paragraphs({ isImageRight = false, className, ..
       </MediaSection>
       <div>
         <ContentSection>
-          <Badge variant="brand">Нетуъркинг</Badge>
+          {/* <Badge variant="brand">Нетуъркинг</Badge> */}
           <h3 id="networking-heading" className="mt-4 text-xl font-bold lg:text-3xl">
             Защото новите контакти са важни
           </h3>

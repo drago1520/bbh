@@ -17,7 +17,7 @@ export default function Courses({ isImageRight = true, className, ...props }: { 
       </MediaSection>
       <div>
         <ContentSection>
-          <Badge variant="brandPurle">Обучения</Badge>
+          {/* <Badge variant="brandPurle">Обучения</Badge> */}
           <h3 id="networking-heading" className="text-h3-size mt-4">
             Всеки ден израстваме заедно
           </h3>

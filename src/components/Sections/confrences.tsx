@@ -16,7 +16,7 @@ export default function Confrences({ isImageRight = true, className, ...props }:
       </MediaSection>
       <div>
         <ContentSection>
-          <Badge variant="brandOrange">Конференции</Badge>
+          {/* <Badge variant="brandOrange">Конференции</Badge> */}
           <h3 id="confrences-heading" className="text-h3-size mt-4">
             Развитие и нови възможности
           </h3>

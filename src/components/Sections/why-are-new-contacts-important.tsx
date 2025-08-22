@@ -17,7 +17,7 @@ export default function WhyAreNewcontactImportant({ isImageRight = true, classNa
       </MediaSection>
       <div>
         <ContentSection>
-          <Badge variant="brand">Нетуъркинг</Badge>
+          {/* <Badge variant="brand">Нетуъркинг</Badge> */}
           <h3 id="networking-heading" className="text-h3-size mt-4">
             Защото новите контакти са важни
           </h3>

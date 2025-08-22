@@ -17,7 +17,7 @@ export default function Conference({ isImageRight = true, className, ...props }:
       </MediaSection>
       <div>
         <ContentSection>
-          <Badge variant="brandOrange">ДИГИТАЛНИ КОНФЕРЕНЦИИ</Badge>
+          {/* <Badge variant="brandOrange">ДИГИТАЛНИ КОНФЕРЕНЦИИ</Badge> */}
           <h3 id="conference-heading" className="text-h3-size mt-4">
             Развитие и нови възможности
           </h3>
