@@ -15,7 +15,7 @@
     "db:importmap": "payload generate:importmap",
     "db:create": "dotenv -e .env.production -- payload migrate:create --skip-empty",
     "db:migrate": "dotenv -e .env.production -- payload migrate",
-    "db": "npm run db:types && npm run db:schema && npm run db:importmap && npm run db:create && npm run db:migrate",
+    "db": "npm run db:create && npm run db:migrate && npm run db:types && npm run db:schema && npm run db:importmap",
     "lint": "next lint",
     "ci": "db:migrate && npm run build",
     "payload": "payload",

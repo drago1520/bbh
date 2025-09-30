@@ -72,6 +72,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
     idType: 'uuid',
+    push: false,
   }),
   collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection, Tickets], //onChange => npm run db:schema
   cors: [getServerSideURL()].filter(Boolean),
