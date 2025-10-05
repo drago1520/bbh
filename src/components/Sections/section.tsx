@@ -15,7 +15,7 @@ export default function Section2Paragraphs({ isImageRight = false, className, ..
     <SectionWrapper className={cn('bg-teal-500/20 py-16', className)} {...props}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
-          <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" width={800} height={600} className="object-contain" />
+          <Image src="/section-1.avif" alt="Networking illustration showing people collaborating" width={800} height={600} className="object-contain" />
         </div>
       </MediaSection>
       <div>

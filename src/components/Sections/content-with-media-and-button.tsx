@@ -14,7 +14,7 @@ export default function ContentWithMediaAndButtonExample({ isImageRight = true, 
     <SectionWrapper className={cn(className)} {...props}>
       <MediaSection isImageRight={isImageRight}>
         <div className="relative aspect-[4/3]">
-          <Image src="/section-1.avif?height=300&width=400" alt="Networking illustration showing people collaborating" width={800} height={600} className="object-contain" />
+          <Image src="/section-1.avif" alt="Networking illustration showing people collaborating" width={800} height={600} className="object-contain" />
         </div>
       </MediaSection>
       <div>
