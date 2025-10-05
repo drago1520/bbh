@@ -50,7 +50,7 @@ export function SectionWrapper({ className, children, containerProps, ...props }
 ////Image is the right (dekstop) & up (mobile) by default.
 export function MediaSection({ isImageRight = false, children, className, ...props }: { isImageRight: boolean } & ComponentProps<'div'>) {
   return (
-    <div className={cn('w-full', isImageRight && 'xl:order-2', className)} {...props}>
+    <div className={cn('h-fit w-full', isImageRight && 'xl:order-last', className)} {...props}>
       {children}
     </div>
   );

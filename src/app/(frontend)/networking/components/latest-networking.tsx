@@ -31,9 +31,9 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
           <Image src={thumbnail.url || ''} alt={thumbnail.alt} fill priority className="size-full rounded-md object-cover shadow-xl" />
         </div>
         <div className="grid justify-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
-          <MediaSection isImageRight={isImageRight} className="hidden space-y-16 rounded-md xl:block xl:bg-gray-50 xl:p-8">
+          <MediaSection isImageRight={isImageRight} className="xl:bg-muted/20 order-last space-y-16 rounded-md xl:order-first xl:p-8">
             {showLocation && (
-              <div className="grid h-60 grid-cols-2 justify-between gap-16">
+              <div className="flex h-60 justify-between gap-8">
                 <Link target="_blank" href={locationUrl || '#'} className="relative w-full rounded-md text-gray-50 shadow-md">
                   <Image src={locationImg?.url || '/gravity-bar.jpg'} className="absolute top-0 left-0 h-full rounded-md object-cover" width={1920} height={160} alt={locationImg?.alt || 'Локация следващо бизнес събитие за нетуъркинг'} />
                   <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
@@ -44,7 +44,7 @@ export default function LatestNetworking({ isImageRight = false, event, classNam
                   </div>
                 </Link>
                 {/* Unauthorized bug fix: #https://www.perplexity.ai/search/i-am-running-localhost-with-go-4._UjgRMQTKQ4SlfyA2pXg */}
-                <div className="overflow-hidden rounded-md shadow-md grayscale-75">
+                <div className="hidden overflow-hidden rounded-md shadow-md grayscale-75 sm:block">
                   <GoogleMapsEmbed apiKey={'AIzaSyBqcwYbGqE3Uc6xg7scMXeWoeKzItrlWmw'} mode="place" width="100%" height={384} zoom="14" q={location} />
                 </div>
               </div>
