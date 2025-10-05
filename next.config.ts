@@ -7,6 +7,15 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `http
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  webpack: (webpackConfig: any) => {
+    webpackConfig.resolve.extensionAlias = {
+      '.cjs': ['.cts', '.cjs'],
+      '.js': ['.ts', '.tsx', '.js', '.jsx'],
+      '.mjs': ['.mts', '.mjs'],
+    };
+
+    return webpackConfig;
+  },
   images: {
     remotePatterns: [
       ...[NEXT_PUBLIC_SERVER_URL].map(item => {
@@ -23,8 +32,8 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com'
-      }
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
   reactStrictMode: true,
@@ -33,4 +42,4 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 };
 
-export default withPayload(nextConfig, { devBundleServerPackages: false});
+export default withPayload(nextConfig, { devBundleServerPackages: false });
