@@ -6,7 +6,7 @@ import Stripe from 'stripe';
 import { createTicket } from './create-ticket';
 import { Ticket } from '@/payload-types';
 console.log('process.env.STRIPE_SECRET_KEY! :', process.env.STRIPE_SECRET_KEY!);
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2025-06-30.basil' });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2025-08-27.basil' });
 export async function GET() {
   return NextResponse.json({ message: 'API working' });
 }
