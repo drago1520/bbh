@@ -75,7 +75,14 @@ export interface Config {
     attendees: Attendee;
     events: Event;
     'marketing-sections': MarketingSection;
+    partners: Partner;
+    partners2: Partners2;
     tickets: Ticket;
+    homepage: Homepage;
+    homepageGallery: HomepageGallery;
+    homepageTestimonial25: HomepageTestimonial25;
+    homepageStatistics: HomepageStatistic;
+    faqLeftRight: FaqLeftRight;
     redirects: Redirect;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -92,7 +99,14 @@ export interface Config {
     attendees: AttendeesSelect<false> | AttendeesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     'marketing-sections': MarketingSectionsSelect<false> | MarketingSectionsSelect<true>;
+    partners: PartnersSelect<false> | PartnersSelect<true>;
+    partners2: Partners2Select<false> | Partners2Select<true>;
     tickets: TicketsSelect<false> | TicketsSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+    homepageGallery: HomepageGallerySelect<false> | HomepageGallerySelect<true>;
+    homepageTestimonial25: HomepageTestimonial25Select<false> | HomepageTestimonial25Select<true>;
+    homepageStatistics: HomepageStatisticsSelect<false> | HomepageStatisticsSelect<true>;
+    faqLeftRight: FaqLeftRightSelect<false> | FaqLeftRightSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -951,11 +965,11 @@ export interface Event {
  */
 export interface MarketingSection {
   id: string;
-  Partners?: {
-    partners?: PartnersProps[] | null;
+  Partners: {
+    partners: PartnersProps[];
   };
-  Partners2?: {
-    partners2?: Partners2Props[] | null;
+  Partners2: {
+    partners2: Partners2Props[];
   };
   updatedAt: string;
   createdAt: string;
@@ -983,6 +997,31 @@ export interface Partners2Props {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
+export interface Partner {
+  id: string;
+  partners: PartnersProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners2".
+ */
+export interface Partners2 {
+  id: string;
+  /**
+   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
+   */
+  label: string;
+  subtitle?: string | null;
+  images: (string | Media)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tickets".
  */
 export interface Ticket {
@@ -996,6 +1035,160 @@ export interface Ticket {
   paymentIntentId?: string | null;
   createdAt: string;
   updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: string;
+  title?: string | null;
+  subheading?: string | null;
+  /**
+   * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
+   */
+  heroImg?: (string | null) | Media;
+  sections?:
+    | (
+        | {
+            relationTo: 'faqLeftRight';
+            value: string | FaqLeftRight;
+          }
+        | {
+            relationTo: 'homepageGallery';
+            value: string | HomepageGallery;
+          }
+        | {
+            relationTo: 'homepageTestimonial25';
+            value: string | HomepageTestimonial25;
+          }
+        | {
+            relationTo: 'homepageStatistics';
+            value: string | HomepageStatistic;
+          }
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqLeftRight".
+ */
+export interface FaqLeftRight {
+  id: string;
+  /**
+   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
+   */
+  label: string;
+  title: string;
+  helperText: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  QABlock: QABlockProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageGallery".
+ */
+export interface HomepageGallery {
+  id: string;
+  label: string;
+  heading: string;
+  images: (string | Media)[];
+  descr?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  rotateSpeed?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageTestimonial25".
+ */
+export interface HomepageTestimonial25 {
+  id: string;
+  label: string;
+  title: string;
+  helperText?: string | null;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  /**
+   * Добавете отделните карти за препоръки. При нужда копирайте вече съществуващи записи.
+   */
+  cards: Testimonial25CardProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageStatistics".
+ */
+export interface HomepageStatistic {
+  id: string;
+  label: string;
+  /**
+   * Показва се над трите статистики
+   */
+  title?: string | null;
+  statisticsData: {
+    /**
+     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
+     */
+    icon?: (string | null) | Media;
+    value: number;
+    /**
+     * Показва се точно до числото, а НЕ на нов ред като описанието.
+     */
+    suffix?: string | null;
+    description: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'statistic';
+  }[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1155,8 +1348,36 @@ export interface PayloadLockedDocument {
         value: string | MarketingSection;
       } | null)
     | ({
+        relationTo: 'partners';
+        value: string | Partner;
+      } | null)
+    | ({
+        relationTo: 'partners2';
+        value: string | Partners2;
+      } | null)
+    | ({
         relationTo: 'tickets';
         value: string | Ticket;
+      } | null)
+    | ({
+        relationTo: 'homepage';
+        value: string | Homepage;
+      } | null)
+    | ({
+        relationTo: 'homepageGallery';
+        value: string | HomepageGallery;
+      } | null)
+    | ({
+        relationTo: 'homepageTestimonial25';
+        value: string | HomepageTestimonial25;
+      } | null)
+    | ({
+        relationTo: 'homepageStatistics';
+        value: string | HomepageStatistic;
+      } | null)
+    | ({
+        relationTo: 'faqLeftRight';
+        value: string | FaqLeftRight;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1795,6 +2016,30 @@ export interface Partners2PropsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners_select".
+ */
+export interface PartnersSelect<T extends boolean = true> {
+  partners?:
+    | T
+    | {
+        partners?: T | PartnersPropsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners2_select".
+ */
+export interface Partners2Select<T extends boolean = true> {
+  label?: T;
+  subtitle?: T;
+  images?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tickets_select".
  */
 export interface TicketsSelect<T extends boolean = true> {
@@ -1804,6 +2049,102 @@ export interface TicketsSelect<T extends boolean = true> {
   paymentIntentId?: T;
   createdAt?: T;
   updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  title?: T;
+  subheading?: T;
+  heroImg?: T;
+  sections?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageGallery_select".
+ */
+export interface HomepageGallerySelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  images?: T;
+  descr?: T;
+  ctaText?: T;
+  ctaHref?: T;
+  rotateSpeed?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageTestimonial25_select".
+ */
+export interface HomepageTestimonial25Select<T extends boolean = true> {
+  label?: T;
+  title?: T;
+  helperText?: T;
+  ctaText?: T;
+  ctaHref?: T;
+  cards?:
+    | T
+    | {
+        testimonial25CardBlock?: T | Testimonial25CardPropsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepageStatistics_select".
+ */
+export interface HomepageStatisticsSelect<T extends boolean = true> {
+  label?: T;
+  title?: T;
+  statisticsData?:
+    | T
+    | {
+        statistic?:
+          | T
+          | {
+              icon?: T;
+              value?: T;
+              suffix?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqLeftRight_select".
+ */
+export interface FaqLeftRightSelect<T extends boolean = true> {
+  label?: T;
+  title?: T;
+  helperText?: T;
+  QABlock?:
+    | T
+    | {
+        qABlock?: T | QABlockPropsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1994,6 +2335,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: string | Post;
+        } | null)
+      | ({
+          relationTo: 'homepage';
+          value: string | Homepage;
         } | null);
     global?: string | null;
     user?: (string | null) | User;

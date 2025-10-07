@@ -15,9 +15,16 @@ import { plugins } from './payload/plugins';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { Attendees } from './payload/collections/Attendees/attendees-collection';
 import { Events } from './payload/collections/Events/events-collection';
-import { MarketingSectionsCollection } from './payload/collections/Marketing-sections/partners';
+import { MarketingSectionsCollection } from './payload/collections/Marketing-sections/marketing-sections_old';
+import { PartnersCollection } from './payload/collections/Marketing-sections/partners_old';
+import { Partners2Collection } from './payload/collections/Marketing-sections/partners2';
 import { Contacts } from './payload/globals/contacts';
 import { Tickets } from './payload/collections/tickets';
+import { Homepage } from './payload/collections/Pages/homepage-collection';
+import { FaqLeftRightCollection } from './payload/collections/Marketing-sections/faq-left-right';
+import { Gallery7Collection } from './payload/collections/Marketing-sections/gallery-7';
+import { Testimonial25Collection } from './payload/collections/Marketing-sections/testimonial-25';
+import { StatisticsCollection } from './payload/collections/Marketing-sections/statistics';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -74,7 +81,7 @@ export default buildConfig({
     idType: 'uuid',
     push: false,
   }),
-  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection, Tickets], //onChange => npm run db:schema
+  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection, PartnersCollection, Partners2Collection, Tickets, Homepage, Gallery7Collection, Testimonial25Collection, StatisticsCollection, FaqLeftRightCollection], //onChange => npm run db:schema
   cors: [getServerSideURL()].filter(Boolean),
   secret: process.env.PAYLOAD_SECRET,
   sharp,

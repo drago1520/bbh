@@ -42,6 +42,8 @@ export const enum__posts_v_version_status = pgEnum('enum__posts_v_version_status
 export const enum_events_type = pgEnum('enum_events_type', ['networking', 'businessBreakfast', 'conference', 'courses']);
 export const enum_events_active = pgEnum('enum_events_active', ['false', 'true']);
 export const enum_tickets_source = pgEnum('enum_tickets_source', ['stripe', 'manually']);
+export const enum_homepage_status = pgEnum('enum_homepage_status', ['draft', 'published']);
+export const enum__homepage_v_version_status = pgEnum('enum__homepage_v_version_status', ['draft', 'published']);
 export const enum_redirects_to_type = pgEnum('enum_redirects_to_type', ['reference', 'custom']);
 export const enum_payload_jobs_log_task_slug = pgEnum('enum_payload_jobs_log_task_slug', ['inline', 'schedulePublish']);
 export const enum_payload_jobs_log_state = pgEnum('enum_payload_jobs_log_state', ['failed', 'succeeded']);
@@ -2276,6 +2278,109 @@ export const marketing_sections_rels = pgTable(
   }),
 );
 
+export const partners_blocks_partners = pgTable(
+  'partners_blocks_partners',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('partners_blocks_partners_order_idx').on(columns._order),
+    _parentIDIdx: index('partners_blocks_partners_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('partners_blocks_partners_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [partners.id],
+      name: 'partners_blocks_partners_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const partners = pgTable(
+  'partners',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  columns => ({
+    partners_updated_at_idx: index('partners_updated_at_idx').on(columns.updatedAt),
+    partners_created_at_idx: index('partners_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const partners_rels = pgTable(
+  'partners_rels',
+  {
+    id: serial('id').primaryKey(),
+    order: integer('order'),
+    parent: uuid('parent_id').notNull(),
+    path: varchar('path').notNull(),
+    mediaID: uuid('media_id'),
+  },
+  columns => ({
+    order: index('partners_rels_order_idx').on(columns.order),
+    parentIdx: index('partners_rels_parent_idx').on(columns.parent),
+    pathIdx: index('partners_rels_path_idx').on(columns.path),
+    partners_rels_media_id_idx: index('partners_rels_media_id_idx').on(columns.mediaID),
+    parentFk: foreignKey({
+      columns: [columns['parent']],
+      foreignColumns: [partners.id],
+      name: 'partners_rels_parent_fk',
+    }).onDelete('cascade'),
+    mediaIdFk: foreignKey({
+      columns: [columns['mediaID']],
+      foreignColumns: [media.id],
+      name: 'partners_rels_media_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const partners2 = pgTable(
+  'partners2',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    label: varchar('label').notNull().default('Партньори2'),
+    subtitle: varchar('subtitle'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  columns => ({
+    partners2_updated_at_idx: index('partners2_updated_at_idx').on(columns.updatedAt),
+    partners2_created_at_idx: index('partners2_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const partners2_rels = pgTable(
+  'partners2_rels',
+  {
+    id: serial('id').primaryKey(),
+    order: integer('order'),
+    parent: uuid('parent_id').notNull(),
+    path: varchar('path').notNull(),
+    mediaID: uuid('media_id'),
+  },
+  columns => ({
+    order: index('partners2_rels_order_idx').on(columns.order),
+    parentIdx: index('partners2_rels_parent_idx').on(columns.parent),
+    pathIdx: index('partners2_rels_path_idx').on(columns.path),
+    partners2_rels_media_id_idx: index('partners2_rels_media_id_idx').on(columns.mediaID),
+    parentFk: foreignKey({
+      columns: [columns['parent']],
+      foreignColumns: [partners2.id],
+      name: 'partners2_rels_parent_fk',
+    }).onDelete('cascade'),
+    mediaIdFk: foreignKey({
+      columns: [columns['mediaID']],
+      foreignColumns: [media.id],
+      name: 'partners2_rels_media_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
 export const tickets = pgTable(
   'tickets',
   {
@@ -2300,6 +2405,355 @@ export const tickets = pgTable(
     tickets_event_idx: index('tickets_event_idx').on(columns.event),
     tickets_updated_at_idx: index('tickets_updated_at_idx').on(columns.updatedAt),
     tickets_created_at_idx: index('tickets_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const homepage = pgTable(
+  'homepage',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    title: varchar('title'),
+    subheading: varchar('subheading'),
+    heroImg: uuid('hero_img_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    meta_title: varchar('meta_title'),
+    meta_image: uuid('meta_image_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    meta_description: varchar('meta_description'),
+    publishedAt: timestamp('published_at', { mode: 'string', withTimezone: true, precision: 3 }),
+    slug: varchar('slug'),
+    slugLock: boolean('slug_lock').default(true),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    _status: enum_homepage_status('_status').default('draft'),
+  },
+  columns => ({
+    homepage_hero_img_idx: index('homepage_hero_img_idx').on(columns.heroImg),
+    homepage_meta_meta_image_idx: index('homepage_meta_meta_image_idx').on(columns.meta_image),
+    homepage_slug_idx: index('homepage_slug_idx').on(columns.slug),
+    homepage_updated_at_idx: index('homepage_updated_at_idx').on(columns.updatedAt),
+    homepage_created_at_idx: index('homepage_created_at_idx').on(columns.createdAt),
+    homepage__status_idx: index('homepage__status_idx').on(columns._status),
+  }),
+);
+
+export const homepage_rels = pgTable(
+  'homepage_rels',
+  {
+    id: serial('id').primaryKey(),
+    order: integer('order'),
+    parent: uuid('parent_id').notNull(),
+    path: varchar('path').notNull(),
+    faqLeftRightID: uuid('faq_left_right_id'),
+    homepageGalleryID: uuid('homepage_gallery_id'),
+    homepageTestimonial25ID: uuid('homepage_testimonial25_id'),
+    homepageStatisticsID: uuid('homepage_statistics_id'),
+  },
+  columns => ({
+    order: index('homepage_rels_order_idx').on(columns.order),
+    parentIdx: index('homepage_rels_parent_idx').on(columns.parent),
+    pathIdx: index('homepage_rels_path_idx').on(columns.path),
+    homepage_rels_faq_left_right_id_idx: index('homepage_rels_faq_left_right_id_idx').on(columns.faqLeftRightID),
+    homepage_rels_homepage_gallery_id_idx: index('homepage_rels_homepage_gallery_id_idx').on(columns.homepageGalleryID),
+    homepage_rels_homepage_testimonial25_id_idx: index('homepage_rels_homepage_testimonial25_id_idx').on(columns.homepageTestimonial25ID),
+    homepage_rels_homepage_statistics_id_idx: index('homepage_rels_homepage_statistics_id_idx').on(columns.homepageStatisticsID),
+    parentFk: foreignKey({
+      columns: [columns['parent']],
+      foreignColumns: [homepage.id],
+      name: 'homepage_rels_parent_fk',
+    }).onDelete('cascade'),
+    faqLeftRightIdFk: foreignKey({
+      columns: [columns['faqLeftRightID']],
+      foreignColumns: [faq_left_right.id],
+      name: 'homepage_rels_faq_left_right_fk',
+    }).onDelete('cascade'),
+    homepageGalleryIdFk: foreignKey({
+      columns: [columns['homepageGalleryID']],
+      foreignColumns: [homepage_gallery.id],
+      name: 'homepage_rels_homepage_gallery_fk',
+    }).onDelete('cascade'),
+    homepageTestimonial25IdFk: foreignKey({
+      columns: [columns['homepageTestimonial25ID']],
+      foreignColumns: [homepage_testimonial25.id],
+      name: 'homepage_rels_homepage_testimonial25_fk',
+    }).onDelete('cascade'),
+    homepageStatisticsIdFk: foreignKey({
+      columns: [columns['homepageStatisticsID']],
+      foreignColumns: [homepage_statistics.id],
+      name: 'homepage_rels_homepage_statistics_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _homepage_v = pgTable(
+  '_homepage_v',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    parent: uuid('parent_id').references(() => homepage.id, {
+      onDelete: 'set null',
+    }),
+    version_title: varchar('version_title'),
+    version_subheading: varchar('version_subheading'),
+    version_heroImg: uuid('version_hero_img_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    version_meta_title: varchar('version_meta_title'),
+    version_meta_image: uuid('version_meta_image_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    version_meta_description: varchar('version_meta_description'),
+    version_publishedAt: timestamp('version_published_at', { mode: 'string', withTimezone: true, precision: 3 }),
+    version_slug: varchar('version_slug'),
+    version_slugLock: boolean('version_slug_lock').default(true),
+    version_updatedAt: timestamp('version_updated_at', { mode: 'string', withTimezone: true, precision: 3 }),
+    version_createdAt: timestamp('version_created_at', { mode: 'string', withTimezone: true, precision: 3 }),
+    version__status: enum__homepage_v_version_status('version__status').default('draft'),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    latest: boolean('latest'),
+    autosave: boolean('autosave'),
+  },
+  columns => ({
+    _homepage_v_parent_idx: index('_homepage_v_parent_idx').on(columns.parent),
+    _homepage_v_version_version_hero_img_idx: index('_homepage_v_version_version_hero_img_idx').on(columns.version_heroImg),
+    _homepage_v_version_meta_version_meta_image_idx: index('_homepage_v_version_meta_version_meta_image_idx').on(columns.version_meta_image),
+    _homepage_v_version_version_slug_idx: index('_homepage_v_version_version_slug_idx').on(columns.version_slug),
+    _homepage_v_version_version_updated_at_idx: index('_homepage_v_version_version_updated_at_idx').on(columns.version_updatedAt),
+    _homepage_v_version_version_created_at_idx: index('_homepage_v_version_version_created_at_idx').on(columns.version_createdAt),
+    _homepage_v_version_version__status_idx: index('_homepage_v_version_version__status_idx').on(columns.version__status),
+    _homepage_v_created_at_idx: index('_homepage_v_created_at_idx').on(columns.createdAt),
+    _homepage_v_updated_at_idx: index('_homepage_v_updated_at_idx').on(columns.updatedAt),
+    _homepage_v_latest_idx: index('_homepage_v_latest_idx').on(columns.latest),
+    _homepage_v_autosave_idx: index('_homepage_v_autosave_idx').on(columns.autosave),
+  }),
+);
+
+export const _homepage_v_rels = pgTable(
+  '_homepage_v_rels',
+  {
+    id: serial('id').primaryKey(),
+    order: integer('order'),
+    parent: uuid('parent_id').notNull(),
+    path: varchar('path').notNull(),
+    faqLeftRightID: uuid('faq_left_right_id'),
+    homepageGalleryID: uuid('homepage_gallery_id'),
+    homepageTestimonial25ID: uuid('homepage_testimonial25_id'),
+    homepageStatisticsID: uuid('homepage_statistics_id'),
+  },
+  columns => ({
+    order: index('_homepage_v_rels_order_idx').on(columns.order),
+    parentIdx: index('_homepage_v_rels_parent_idx').on(columns.parent),
+    pathIdx: index('_homepage_v_rels_path_idx').on(columns.path),
+    _homepage_v_rels_faq_left_right_id_idx: index('_homepage_v_rels_faq_left_right_id_idx').on(columns.faqLeftRightID),
+    _homepage_v_rels_homepage_gallery_id_idx: index('_homepage_v_rels_homepage_gallery_id_idx').on(columns.homepageGalleryID),
+    _homepage_v_rels_homepage_testimonial25_id_idx: index('_homepage_v_rels_homepage_testimonial25_id_idx').on(columns.homepageTestimonial25ID),
+    _homepage_v_rels_homepage_statistics_id_idx: index('_homepage_v_rels_homepage_statistics_id_idx').on(columns.homepageStatisticsID),
+    parentFk: foreignKey({
+      columns: [columns['parent']],
+      foreignColumns: [_homepage_v.id],
+      name: '_homepage_v_rels_parent_fk',
+    }).onDelete('cascade'),
+    faqLeftRightIdFk: foreignKey({
+      columns: [columns['faqLeftRightID']],
+      foreignColumns: [faq_left_right.id],
+      name: '_homepage_v_rels_faq_left_right_fk',
+    }).onDelete('cascade'),
+    homepageGalleryIdFk: foreignKey({
+      columns: [columns['homepageGalleryID']],
+      foreignColumns: [homepage_gallery.id],
+      name: '_homepage_v_rels_homepage_gallery_fk',
+    }).onDelete('cascade'),
+    homepageTestimonial25IdFk: foreignKey({
+      columns: [columns['homepageTestimonial25ID']],
+      foreignColumns: [homepage_testimonial25.id],
+      name: '_homepage_v_rels_homepage_testimonial25_fk',
+    }).onDelete('cascade'),
+    homepageStatisticsIdFk: foreignKey({
+      columns: [columns['homepageStatisticsID']],
+      foreignColumns: [homepage_statistics.id],
+      name: '_homepage_v_rels_homepage_statistics_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const homepage_gallery = pgTable(
+  'homepage_gallery',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    label: varchar('label').notNull().default('Секция галерия'),
+    heading: varchar('heading').notNull(),
+    descr: jsonb('descr'),
+    ctaText: varchar('cta_text'),
+    ctaHref: varchar('cta_href'),
+    rotateSpeed: numeric('rotate_speed'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  columns => ({
+    homepage_gallery_updated_at_idx: index('homepage_gallery_updated_at_idx').on(columns.updatedAt),
+    homepage_gallery_created_at_idx: index('homepage_gallery_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const homepage_gallery_rels = pgTable(
+  'homepage_gallery_rels',
+  {
+    id: serial('id').primaryKey(),
+    order: integer('order'),
+    parent: uuid('parent_id').notNull(),
+    path: varchar('path').notNull(),
+    mediaID: uuid('media_id'),
+  },
+  columns => ({
+    order: index('homepage_gallery_rels_order_idx').on(columns.order),
+    parentIdx: index('homepage_gallery_rels_parent_idx').on(columns.parent),
+    pathIdx: index('homepage_gallery_rels_path_idx').on(columns.path),
+    homepage_gallery_rels_media_id_idx: index('homepage_gallery_rels_media_id_idx').on(columns.mediaID),
+    parentFk: foreignKey({
+      columns: [columns['parent']],
+      foreignColumns: [homepage_gallery.id],
+      name: 'homepage_gallery_rels_parent_fk',
+    }).onDelete('cascade'),
+    mediaIdFk: foreignKey({
+      columns: [columns['mediaID']],
+      foreignColumns: [media.id],
+      name: 'homepage_gallery_rels_media_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const homepage_testimonial25_blocks_testimonial25_card_block = pgTable(
+  'homepage_testimonial25_blocks_testimonial25_card_block',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    image: uuid('image_id')
+      .notNull()
+      .references(() => media.id, {
+        onDelete: 'set null',
+      }),
+    quote: varchar('quote').notNull(),
+    author: varchar('author').notNull(),
+    role: varchar('role').notNull(),
+    company: varchar('company').notNull(),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('homepage_testimonial25_blocks_testimonial25_card_block_order_idx').on(columns._order),
+    _parentIDIdx: index('homepage_testimonial25_blocks_testimonial25_card_block_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('homepage_testimonial25_blocks_testimonial25_card_block_path_idx').on(columns._path),
+    homepage_testimonial25_blocks_testimonial25_card_block_i_idx: index('homepage_testimonial25_blocks_testimonial25_card_block_i_idx').on(columns.image),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [homepage_testimonial25.id],
+      name: 'homepage_testimonial25_blocks_testimonial25_card_block_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const homepage_testimonial25 = pgTable(
+  'homepage_testimonial25',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    label: varchar('label').notNull().default('Секция препоръки'),
+    title: varchar('title').notNull(),
+    helperText: varchar('helper_text'),
+    ctaText: varchar('cta_text'),
+    ctaHref: varchar('cta_href'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  columns => ({
+    homepage_testimonial25_updated_at_idx: index('homepage_testimonial25_updated_at_idx').on(columns.updatedAt),
+    homepage_testimonial25_created_at_idx: index('homepage_testimonial25_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const homepage_statistics_blocks_statistic = pgTable(
+  'homepage_statistics_blocks_statistic',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    icon: uuid('icon_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    value: numeric('value').notNull(),
+    suffix: varchar('suffix'),
+    description: varchar('description').notNull(),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('homepage_statistics_blocks_statistic_order_idx').on(columns._order),
+    _parentIDIdx: index('homepage_statistics_blocks_statistic_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('homepage_statistics_blocks_statistic_path_idx').on(columns._path),
+    homepage_statistics_blocks_statistic_icon_idx: index('homepage_statistics_blocks_statistic_icon_idx').on(columns.icon),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [homepage_statistics.id],
+      name: 'homepage_statistics_blocks_statistic_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const homepage_statistics = pgTable(
+  'homepage_statistics',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    label: varchar('label').notNull().default('Секция статистика'),
+    title: varchar('title'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  columns => ({
+    homepage_statistics_updated_at_idx: index('homepage_statistics_updated_at_idx').on(columns.updatedAt),
+    homepage_statistics_created_at_idx: index('homepage_statistics_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const faq_left_right_blocks_q_a_block = pgTable(
+  'faq_left_right_blocks_q_a_block',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: uuid('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    question: varchar('question').notNull(),
+    answer: jsonb('answer').notNull(),
+    blockName: varchar('block_name'),
+  },
+  columns => ({
+    _orderIdx: index('faq_left_right_blocks_q_a_block_order_idx').on(columns._order),
+    _parentIDIdx: index('faq_left_right_blocks_q_a_block_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('faq_left_right_blocks_q_a_block_path_idx').on(columns._path),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [faq_left_right.id],
+      name: 'faq_left_right_blocks_q_a_block_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const faq_left_right = pgTable(
+  'faq_left_right',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    label: varchar('label').notNull().default('FAQ-шахмат'),
+    title: varchar('title').notNull().default('Често Задавани Въпроси'),
+    helperText: jsonb('helper_text')
+      .notNull()
+      .default(sql`'{"root":{"children":[{"type":"paragraph","children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Не откри твоя въпрос? ","type":"text","version":1},{"type":"link","url":"https://your-link-url.com","children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Свържи се с нас","type":"text","version":1}],"version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":" и ще го добавим!","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'::jsonb`),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  columns => ({
+    faq_left_right_updated_at_idx: index('faq_left_right_updated_at_idx').on(columns.updatedAt),
+    faq_left_right_created_at_idx: index('faq_left_right_created_at_idx').on(columns.createdAt),
   }),
 );
 
@@ -2439,7 +2893,14 @@ export const payload_locked_documents_rels = pgTable(
     attendeesID: uuid('attendees_id'),
     eventsID: uuid('events_id'),
     'marketing-sectionsID': uuid('marketing_sections_id'),
+    partnersID: uuid('partners_id'),
+    partners2ID: uuid('partners2_id'),
     ticketsID: uuid('tickets_id'),
+    homepageID: uuid('homepage_id'),
+    homepageGalleryID: uuid('homepage_gallery_id'),
+    homepageTestimonial25ID: uuid('homepage_testimonial25_id'),
+    homepageStatisticsID: uuid('homepage_statistics_id'),
+    faqLeftRightID: uuid('faq_left_right_id'),
     redirectsID: uuid('redirects_id'),
     'payload-jobsID': uuid('payload_jobs_id'),
   },
@@ -2455,7 +2916,14 @@ export const payload_locked_documents_rels = pgTable(
     payload_locked_documents_rels_attendees_id_idx: index('payload_locked_documents_rels_attendees_id_idx').on(columns.attendeesID),
     payload_locked_documents_rels_events_id_idx: index('payload_locked_documents_rels_events_id_idx').on(columns.eventsID),
     payload_locked_documents_rels_marketing_sections_id_idx: index('payload_locked_documents_rels_marketing_sections_id_idx').on(columns['marketing-sectionsID']),
+    payload_locked_documents_rels_partners_id_idx: index('payload_locked_documents_rels_partners_id_idx').on(columns.partnersID),
+    payload_locked_documents_rels_partners2_id_idx: index('payload_locked_documents_rels_partners2_id_idx').on(columns.partners2ID),
     payload_locked_documents_rels_tickets_id_idx: index('payload_locked_documents_rels_tickets_id_idx').on(columns.ticketsID),
+    payload_locked_documents_rels_homepage_id_idx: index('payload_locked_documents_rels_homepage_id_idx').on(columns.homepageID),
+    payload_locked_documents_rels_homepage_gallery_id_idx: index('payload_locked_documents_rels_homepage_gallery_id_idx').on(columns.homepageGalleryID),
+    payload_locked_documents_rels_homepage_testimonial25_id_idx: index('payload_locked_documents_rels_homepage_testimonial25_id_idx').on(columns.homepageTestimonial25ID),
+    payload_locked_documents_rels_homepage_statistics_id_idx: index('payload_locked_documents_rels_homepage_statistics_id_idx').on(columns.homepageStatisticsID),
+    payload_locked_documents_rels_faq_left_right_id_idx: index('payload_locked_documents_rels_faq_left_right_id_idx').on(columns.faqLeftRightID),
     payload_locked_documents_rels_redirects_id_idx: index('payload_locked_documents_rels_redirects_id_idx').on(columns.redirectsID),
     payload_locked_documents_rels_payload_jobs_id_idx: index('payload_locked_documents_rels_payload_jobs_id_idx').on(columns['payload-jobsID']),
     parentFk: foreignKey({
@@ -2503,10 +2971,45 @@ export const payload_locked_documents_rels = pgTable(
       foreignColumns: [marketing_sections.id],
       name: 'payload_locked_documents_rels_marketing_sections_fk',
     }).onDelete('cascade'),
+    partnersIdFk: foreignKey({
+      columns: [columns['partnersID']],
+      foreignColumns: [partners.id],
+      name: 'payload_locked_documents_rels_partners_fk',
+    }).onDelete('cascade'),
+    partners2IdFk: foreignKey({
+      columns: [columns['partners2ID']],
+      foreignColumns: [partners2.id],
+      name: 'payload_locked_documents_rels_partners2_fk',
+    }).onDelete('cascade'),
     ticketsIdFk: foreignKey({
       columns: [columns['ticketsID']],
       foreignColumns: [tickets.id],
       name: 'payload_locked_documents_rels_tickets_fk',
+    }).onDelete('cascade'),
+    homepageIdFk: foreignKey({
+      columns: [columns['homepageID']],
+      foreignColumns: [homepage.id],
+      name: 'payload_locked_documents_rels_homepage_fk',
+    }).onDelete('cascade'),
+    homepageGalleryIdFk: foreignKey({
+      columns: [columns['homepageGalleryID']],
+      foreignColumns: [homepage_gallery.id],
+      name: 'payload_locked_documents_rels_homepage_gallery_fk',
+    }).onDelete('cascade'),
+    homepageTestimonial25IdFk: foreignKey({
+      columns: [columns['homepageTestimonial25ID']],
+      foreignColumns: [homepage_testimonial25.id],
+      name: 'payload_locked_documents_rels_homepage_testimonial25_fk',
+    }).onDelete('cascade'),
+    homepageStatisticsIdFk: foreignKey({
+      columns: [columns['homepageStatisticsID']],
+      foreignColumns: [homepage_statistics.id],
+      name: 'payload_locked_documents_rels_homepage_statistics_fk',
+    }).onDelete('cascade'),
+    faqLeftRightIdFk: foreignKey({
+      columns: [columns['faqLeftRightID']],
+      foreignColumns: [faq_left_right.id],
+      name: 'payload_locked_documents_rels_faq_left_right_fk',
     }).onDelete('cascade'),
     redirectsIdFk: foreignKey({
       columns: [columns['redirectsID']],
@@ -3650,6 +4153,50 @@ export const relations_marketing_sections = relations(marketing_sections, ({ man
     relationName: '_rels',
   }),
 }));
+export const relations_partners_blocks_partners = relations(partners_blocks_partners, ({ one }) => ({
+  _parentID: one(partners, {
+    fields: [partners_blocks_partners._parentID],
+    references: [partners.id],
+    relationName: '_blocks_partners',
+  }),
+}));
+export const relations_partners_rels = relations(partners_rels, ({ one }) => ({
+  parent: one(partners, {
+    fields: [partners_rels.parent],
+    references: [partners.id],
+    relationName: '_rels',
+  }),
+  mediaID: one(media, {
+    fields: [partners_rels.mediaID],
+    references: [media.id],
+    relationName: 'media',
+  }),
+}));
+export const relations_partners = relations(partners, ({ many }) => ({
+  _blocks_partners: many(partners_blocks_partners, {
+    relationName: '_blocks_partners',
+  }),
+  _rels: many(partners_rels, {
+    relationName: '_rels',
+  }),
+}));
+export const relations_partners2_rels = relations(partners2_rels, ({ one }) => ({
+  parent: one(partners2, {
+    fields: [partners2_rels.parent],
+    references: [partners2.id],
+    relationName: '_rels',
+  }),
+  mediaID: one(media, {
+    fields: [partners2_rels.mediaID],
+    references: [media.id],
+    relationName: 'media',
+  }),
+}));
+export const relations_partners2 = relations(partners2, ({ many }) => ({
+  _rels: many(partners2_rels, {
+    relationName: '_rels',
+  }),
+}));
 export const relations_tickets = relations(tickets, ({ one }) => ({
   attendee: one(attendees, {
     fields: [tickets.attendee],
@@ -3660,6 +4207,158 @@ export const relations_tickets = relations(tickets, ({ one }) => ({
     fields: [tickets.event],
     references: [events.id],
     relationName: 'event',
+  }),
+}));
+export const relations_homepage_rels = relations(homepage_rels, ({ one }) => ({
+  parent: one(homepage, {
+    fields: [homepage_rels.parent],
+    references: [homepage.id],
+    relationName: '_rels',
+  }),
+  faqLeftRightID: one(faq_left_right, {
+    fields: [homepage_rels.faqLeftRightID],
+    references: [faq_left_right.id],
+    relationName: 'faqLeftRight',
+  }),
+  homepageGalleryID: one(homepage_gallery, {
+    fields: [homepage_rels.homepageGalleryID],
+    references: [homepage_gallery.id],
+    relationName: 'homepageGallery',
+  }),
+  homepageTestimonial25ID: one(homepage_testimonial25, {
+    fields: [homepage_rels.homepageTestimonial25ID],
+    references: [homepage_testimonial25.id],
+    relationName: 'homepageTestimonial25',
+  }),
+  homepageStatisticsID: one(homepage_statistics, {
+    fields: [homepage_rels.homepageStatisticsID],
+    references: [homepage_statistics.id],
+    relationName: 'homepageStatistics',
+  }),
+}));
+export const relations_homepage = relations(homepage, ({ one, many }) => ({
+  heroImg: one(media, {
+    fields: [homepage.heroImg],
+    references: [media.id],
+    relationName: 'heroImg',
+  }),
+  meta_image: one(media, {
+    fields: [homepage.meta_image],
+    references: [media.id],
+    relationName: 'meta_image',
+  }),
+  _rels: many(homepage_rels, {
+    relationName: '_rels',
+  }),
+}));
+export const relations__homepage_v_rels = relations(_homepage_v_rels, ({ one }) => ({
+  parent: one(_homepage_v, {
+    fields: [_homepage_v_rels.parent],
+    references: [_homepage_v.id],
+    relationName: '_rels',
+  }),
+  faqLeftRightID: one(faq_left_right, {
+    fields: [_homepage_v_rels.faqLeftRightID],
+    references: [faq_left_right.id],
+    relationName: 'faqLeftRight',
+  }),
+  homepageGalleryID: one(homepage_gallery, {
+    fields: [_homepage_v_rels.homepageGalleryID],
+    references: [homepage_gallery.id],
+    relationName: 'homepageGallery',
+  }),
+  homepageTestimonial25ID: one(homepage_testimonial25, {
+    fields: [_homepage_v_rels.homepageTestimonial25ID],
+    references: [homepage_testimonial25.id],
+    relationName: 'homepageTestimonial25',
+  }),
+  homepageStatisticsID: one(homepage_statistics, {
+    fields: [_homepage_v_rels.homepageStatisticsID],
+    references: [homepage_statistics.id],
+    relationName: 'homepageStatistics',
+  }),
+}));
+export const relations__homepage_v = relations(_homepage_v, ({ one, many }) => ({
+  parent: one(homepage, {
+    fields: [_homepage_v.parent],
+    references: [homepage.id],
+    relationName: 'parent',
+  }),
+  version_heroImg: one(media, {
+    fields: [_homepage_v.version_heroImg],
+    references: [media.id],
+    relationName: 'version_heroImg',
+  }),
+  version_meta_image: one(media, {
+    fields: [_homepage_v.version_meta_image],
+    references: [media.id],
+    relationName: 'version_meta_image',
+  }),
+  _rels: many(_homepage_v_rels, {
+    relationName: '_rels',
+  }),
+}));
+export const relations_homepage_gallery_rels = relations(homepage_gallery_rels, ({ one }) => ({
+  parent: one(homepage_gallery, {
+    fields: [homepage_gallery_rels.parent],
+    references: [homepage_gallery.id],
+    relationName: '_rels',
+  }),
+  mediaID: one(media, {
+    fields: [homepage_gallery_rels.mediaID],
+    references: [media.id],
+    relationName: 'media',
+  }),
+}));
+export const relations_homepage_gallery = relations(homepage_gallery, ({ many }) => ({
+  _rels: many(homepage_gallery_rels, {
+    relationName: '_rels',
+  }),
+}));
+export const relations_homepage_testimonial25_blocks_testimonial25_card_block = relations(homepage_testimonial25_blocks_testimonial25_card_block, ({ one }) => ({
+  _parentID: one(homepage_testimonial25, {
+    fields: [homepage_testimonial25_blocks_testimonial25_card_block._parentID],
+    references: [homepage_testimonial25.id],
+    relationName: '_blocks_testimonial25CardBlock',
+  }),
+  image: one(media, {
+    fields: [homepage_testimonial25_blocks_testimonial25_card_block.image],
+    references: [media.id],
+    relationName: 'image',
+  }),
+}));
+export const relations_homepage_testimonial25 = relations(homepage_testimonial25, ({ many }) => ({
+  _blocks_testimonial25CardBlock: many(homepage_testimonial25_blocks_testimonial25_card_block, {
+    relationName: '_blocks_testimonial25CardBlock',
+  }),
+}));
+export const relations_homepage_statistics_blocks_statistic = relations(homepage_statistics_blocks_statistic, ({ one }) => ({
+  _parentID: one(homepage_statistics, {
+    fields: [homepage_statistics_blocks_statistic._parentID],
+    references: [homepage_statistics.id],
+    relationName: '_blocks_statistic',
+  }),
+  icon: one(media, {
+    fields: [homepage_statistics_blocks_statistic.icon],
+    references: [media.id],
+    relationName: 'icon',
+  }),
+}));
+export const relations_homepage_statistics = relations(homepage_statistics, ({ many }) => ({
+  _blocks_statistic: many(homepage_statistics_blocks_statistic, {
+    relationName: '_blocks_statistic',
+  }),
+}));
+export const relations_faq_left_right_blocks_q_a_block = relations(faq_left_right_blocks_q_a_block, ({ one }) => ({
+  _parentID: one(faq_left_right, {
+    fields: [faq_left_right_blocks_q_a_block._parentID],
+    references: [faq_left_right.id],
+    relationName: '_blocks_qABlock',
+  }),
+}));
+export const relations_faq_left_right = relations(faq_left_right, ({ many }) => ({
+  _blocks_qABlock: many(faq_left_right_blocks_q_a_block, {
+    relationName: '_blocks_qABlock',
   }),
 }));
 export const relations_redirects_rels = relations(redirects_rels, ({ one }) => ({
@@ -3742,10 +4441,45 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
     references: [marketing_sections.id],
     relationName: 'marketing-sections',
   }),
+  partnersID: one(partners, {
+    fields: [payload_locked_documents_rels.partnersID],
+    references: [partners.id],
+    relationName: 'partners',
+  }),
+  partners2ID: one(partners2, {
+    fields: [payload_locked_documents_rels.partners2ID],
+    references: [partners2.id],
+    relationName: 'partners2',
+  }),
   ticketsID: one(tickets, {
     fields: [payload_locked_documents_rels.ticketsID],
     references: [tickets.id],
     relationName: 'tickets',
+  }),
+  homepageID: one(homepage, {
+    fields: [payload_locked_documents_rels.homepageID],
+    references: [homepage.id],
+    relationName: 'homepage',
+  }),
+  homepageGalleryID: one(homepage_gallery, {
+    fields: [payload_locked_documents_rels.homepageGalleryID],
+    references: [homepage_gallery.id],
+    relationName: 'homepageGallery',
+  }),
+  homepageTestimonial25ID: one(homepage_testimonial25, {
+    fields: [payload_locked_documents_rels.homepageTestimonial25ID],
+    references: [homepage_testimonial25.id],
+    relationName: 'homepageTestimonial25',
+  }),
+  homepageStatisticsID: one(homepage_statistics, {
+    fields: [payload_locked_documents_rels.homepageStatisticsID],
+    references: [homepage_statistics.id],
+    relationName: 'homepageStatistics',
+  }),
+  faqLeftRightID: one(faq_left_right, {
+    fields: [payload_locked_documents_rels.faqLeftRightID],
+    references: [faq_left_right.id],
+    relationName: 'faqLeftRight',
   }),
   redirectsID: one(redirects, {
     fields: [payload_locked_documents_rels.redirectsID],
@@ -3848,6 +4582,8 @@ type DatabaseSchema = {
   enum_events_type: typeof enum_events_type;
   enum_events_active: typeof enum_events_active;
   enum_tickets_source: typeof enum_tickets_source;
+  enum_homepage_status: typeof enum_homepage_status;
+  enum__homepage_v_version_status: typeof enum__homepage_v_version_status;
   enum_redirects_to_type: typeof enum_redirects_to_type;
   enum_payload_jobs_log_task_slug: typeof enum_payload_jobs_log_task_slug;
   enum_payload_jobs_log_state: typeof enum_payload_jobs_log_state;
@@ -3941,7 +4677,24 @@ type DatabaseSchema = {
   marketing_sections_blocks_partners2: typeof marketing_sections_blocks_partners2;
   marketing_sections: typeof marketing_sections;
   marketing_sections_rels: typeof marketing_sections_rels;
+  partners_blocks_partners: typeof partners_blocks_partners;
+  partners: typeof partners;
+  partners_rels: typeof partners_rels;
+  partners2: typeof partners2;
+  partners2_rels: typeof partners2_rels;
   tickets: typeof tickets;
+  homepage: typeof homepage;
+  homepage_rels: typeof homepage_rels;
+  _homepage_v: typeof _homepage_v;
+  _homepage_v_rels: typeof _homepage_v_rels;
+  homepage_gallery: typeof homepage_gallery;
+  homepage_gallery_rels: typeof homepage_gallery_rels;
+  homepage_testimonial25_blocks_testimonial25_card_block: typeof homepage_testimonial25_blocks_testimonial25_card_block;
+  homepage_testimonial25: typeof homepage_testimonial25;
+  homepage_statistics_blocks_statistic: typeof homepage_statistics_blocks_statistic;
+  homepage_statistics: typeof homepage_statistics;
+  faq_left_right_blocks_q_a_block: typeof faq_left_right_blocks_q_a_block;
+  faq_left_right: typeof faq_left_right;
   redirects: typeof redirects;
   redirects_rels: typeof redirects_rels;
   payload_jobs_log: typeof payload_jobs_log;
@@ -4043,7 +4796,24 @@ type DatabaseSchema = {
   relations_marketing_sections_blocks_partners2: typeof relations_marketing_sections_blocks_partners2;
   relations_marketing_sections_rels: typeof relations_marketing_sections_rels;
   relations_marketing_sections: typeof relations_marketing_sections;
+  relations_partners_blocks_partners: typeof relations_partners_blocks_partners;
+  relations_partners_rels: typeof relations_partners_rels;
+  relations_partners: typeof relations_partners;
+  relations_partners2_rels: typeof relations_partners2_rels;
+  relations_partners2: typeof relations_partners2;
   relations_tickets: typeof relations_tickets;
+  relations_homepage_rels: typeof relations_homepage_rels;
+  relations_homepage: typeof relations_homepage;
+  relations__homepage_v_rels: typeof relations__homepage_v_rels;
+  relations__homepage_v: typeof relations__homepage_v;
+  relations_homepage_gallery_rels: typeof relations_homepage_gallery_rels;
+  relations_homepage_gallery: typeof relations_homepage_gallery;
+  relations_homepage_testimonial25_blocks_testimonial25_card_block: typeof relations_homepage_testimonial25_blocks_testimonial25_card_block;
+  relations_homepage_testimonial25: typeof relations_homepage_testimonial25;
+  relations_homepage_statistics_blocks_statistic: typeof relations_homepage_statistics_blocks_statistic;
+  relations_homepage_statistics: typeof relations_homepage_statistics;
+  relations_faq_left_right_blocks_q_a_block: typeof relations_faq_left_right_blocks_q_a_block;
+  relations_faq_left_right: typeof relations_faq_left_right;
   relations_redirects_rels: typeof relations_redirects_rels;
   relations_redirects: typeof relations_redirects;
   relations_payload_jobs_log: typeof relations_payload_jobs_log;

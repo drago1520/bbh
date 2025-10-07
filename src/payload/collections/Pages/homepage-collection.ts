@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload';
+﻿import type { CollectionConfig } from 'payload';
 
 import { authenticated } from '@/payload/auth/authenticated';
 import { authenticatedOrPublished } from '@/payload/auth/authenticatedOrPublished';
@@ -6,33 +6,19 @@ import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
-
 import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
-import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right';
-import { Gallery7Block } from '@/payload/blocks/Gallery/gallery-7';
-import { Testimonial25Block } from '@/payload/blocks/Testimonials/testimonial-25-block_old';
-import { StatisticsBlock } from '@/payload/blocks/Statistics/statistics-block_old';
-import { AgendaBlock } from '@/payload/blocks/Info/agenda';
-import { LecturersBlock } from '@/payload/blocks/Info/lecturers';
-import { TimelineBlock } from '@/payload/blocks/Info/conference-timeline';
-import { WhoIsTheConfForBlock } from '@/payload/blocks/Info/whoIsTheConferenceFor';
-import { PricingWithCountdownBlock } from '@/payload/blocks/Pricing/conference';
-import { Testimonials2Block } from '@/payload/blocks/Testimonials/testimonials-conference';
 
-export const Pages: CollectionConfig<'pages'> = {
-  slug: 'pages',
+export const Homepage: CollectionConfig = {
+  slug: 'homepage',
+  labels: {
+    singular: 'Homepage',
+    plural: "Homepage"
+  },
   access: {
     create: authenticated,
     delete: authenticated,
     read: authenticatedOrPublished,
     update: authenticated,
-  },
-  // This config controls what's populated by default when a page is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
-  defaultPopulate: {
-    title: true,
-    slug: true,
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
@@ -40,7 +26,7 @@ export const Pages: CollectionConfig<'pages'> = {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'pages',
+          collection: 'homepage',
           req,
         });
 
@@ -50,7 +36,7 @@ export const Pages: CollectionConfig<'pages'> = {
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'pages',
+        collection: 'homepage',
         req,
       }),
     useAsTitle: 'title',
@@ -62,23 +48,12 @@ export const Pages: CollectionConfig<'pages'> = {
         {
           name: 'title',
           type: 'text',
-          required: true,
         },
         {
-          name: 'ctaText',
-          label: 'Cta текст',
-          type: 'text',
-        },
+          name: 'subheading',
+          type: 'text'
+        }
       ],
-    },
-    {
-      name: 'subheading',
-      type: 'text',
-    },
-    {
-      name: 'emailTemplateId',
-      label: 'Email Template ID от MailerSend',
-      type: 'text',
     },
     {
       type: 'tabs',
@@ -96,21 +71,12 @@ export const Pages: CollectionConfig<'pages'> = {
               },
             },
             {
-              type: 'blocks',
-              name: 'blocks',
-              label: false,
-              labels: {
-                singular: 'block',
-                plural: 'blocks',
-              },
-              // blocks: [HighImpactHero, MediumImpactHero, LowImpactHero, CallToAction, Content, MediaBlock, Archive],
-              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock, AgendaBlock, LecturersBlock, TimelineBlock, WhoIsTheConfForBlock, PricingWithCountdownBlock, Testimonials2Block],
-              required: true,
-              admin: {
-                initCollapsed: true,
-              },
-            },
-          ],
+              type: 'relationship',
+              relationTo: ['faqLeftRight', 'homepageGallery', 'homepageTestimonial25', 'homepageStatistics'],
+              hasMany: true,
+              name: 'sections',
+              label: 'Секции',
+            }],
         },
         {
           label: 'SEO',
@@ -163,3 +129,4 @@ export const Pages: CollectionConfig<'pages'> = {
     maxPerDoc: 50,
   },
 };
+
