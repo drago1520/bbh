@@ -80,10 +80,13 @@ export interface Config {
     tickets: Ticket;
     homepage: Homepage;
     about: About;
+    conf: Conf;
     gallery7: Gallery7;
     testimonial25: Testimonial25;
     statisticsN: StatisticsN;
     faqLeftRight: FaqLeftRight;
+    lecturersN: LecturersN;
+    agendaN: AgendaN;
     redirects: Redirect;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -105,10 +108,13 @@ export interface Config {
     tickets: TicketsSelect<false> | TicketsSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
+    conf: ConfSelect<false> | ConfSelect<true>;
     gallery7: Gallery7Select<false> | Gallery7Select<true>;
     testimonial25: Testimonial25Select<false> | Testimonial25Select<true>;
     statisticsN: StatisticsNSelect<false> | StatisticsNSelect<true>;
     faqLeftRight: FaqLeftRightSelect<false> | FaqLeftRightSelect<true>;
+    lecturersN: LecturersNSelect<false> | LecturersNSelect<true>;
+    agendaN: AgendaNSelect<false> | AgendaNSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -1091,11 +1097,8 @@ export interface Homepage {
  */
 export interface FaqLeftRight {
   id: string;
-  /**
-   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
-   */
-  label: string;
   title: string;
+  label: string;
   helperText: {
     root: {
       type: string;
@@ -1122,7 +1125,7 @@ export interface FaqLeftRight {
 export interface Gallery7 {
   id: string;
   label: string;
-  heading: string;
+  title: string;
   images: (string | Media)[];
   descr?: {
     root: {
@@ -1233,6 +1236,75 @@ export interface About {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "conf".
+ */
+export interface Conf {
+  id: string;
+  title?: string | null;
+  sections?:
+    | (
+        | {
+            relationTo: 'lecturersN';
+            value: string | LecturersN;
+          }
+        | {
+            relationTo: 'agendaN';
+            value: string | AgendaN;
+          }
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lecturersN".
+ */
+export interface LecturersN {
+  id: string;
+  title: string;
+  label: string;
+  subheading?: string | null;
+  lecturers: {
+    name?: string | null;
+    role?: string | null;
+    bio?: string | null;
+    image: string | Media;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agendaN".
+ */
+export interface AgendaN {
+  id: string;
+  title?: string | null;
+  label: string;
+  items: {
+    title: string;
+    description?: string | null;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1412,6 +1484,10 @@ export interface PayloadLockedDocument {
         value: string | About;
       } | null)
     | ({
+        relationTo: 'conf';
+        value: string | Conf;
+      } | null)
+    | ({
         relationTo: 'gallery7';
         value: string | Gallery7;
       } | null)
@@ -1426,6 +1502,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'faqLeftRight';
         value: string | FaqLeftRight;
+      } | null)
+    | ({
+        relationTo: 'lecturersN';
+        value: string | LecturersN;
+      } | null)
+    | ({
+        relationTo: 'agendaN';
+        value: string | AgendaN;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -2144,11 +2228,32 @@ export interface AboutSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "conf_select".
+ */
+export interface ConfSelect<T extends boolean = true> {
+  title?: T;
+  sections?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery7_select".
  */
 export interface Gallery7Select<T extends boolean = true> {
   label?: T;
-  heading?: T;
+  title?: T;
   images?: T;
   descr?: T;
   ctaText?: T;
@@ -2204,13 +2309,50 @@ export interface StatisticsNSelect<T extends boolean = true> {
  * via the `definition` "faqLeftRight_select".
  */
 export interface FaqLeftRightSelect<T extends boolean = true> {
-  label?: T;
   title?: T;
+  label?: T;
   helperText?: T;
   QABlock?:
     | T
     | {
         qABlock?: T | QABlockPropsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lecturersN_select".
+ */
+export interface LecturersNSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  subheading?: T;
+  lecturers?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        bio?: T;
+        image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agendaN_select".
+ */
+export interface AgendaNSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -2412,6 +2554,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'about';
           value: string | About;
+        } | null)
+      | ({
+          relationTo: 'conf';
+          value: string | Conf;
         } | null);
     global?: string | null;
     user?: (string | null) | User;

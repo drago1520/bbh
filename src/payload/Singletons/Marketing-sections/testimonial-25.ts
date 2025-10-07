@@ -16,7 +16,7 @@ export const Testimonial25Collection: CollectionConfig = {
       type: 'text',
       name: 'label',
       label: 'Вътрешен етикет',
-      defaultValue: 'Секция препоръки',
+      defaultValue: 'Препоръки 25',
       required: true,
     },
     {

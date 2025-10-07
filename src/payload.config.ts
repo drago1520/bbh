@@ -26,6 +26,9 @@ import { Gallery7Collection } from './payload/Singletons/Marketing-sections/gall
 import { Testimonial25Collection } from './payload/Singletons/Marketing-sections/testimonial-25';
 import { StatisticsCollection } from './payload/Singletons/Marketing-sections/statistics';
 import { AboutPage } from './payload/Singletons/Pages/about-collection';
+import { LecturersCollection } from './payload/Singletons/Marketing-sections/lecturers';
+import { ConfPage } from './payload/Singletons/Pages/conference-collection';
+import { AgendaCollection } from './payload/Singletons/Marketing-sections/agenda';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -81,7 +84,7 @@ export default buildConfig({
     },
     idType: 'uuid',
   }),
-  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection, PartnersCollection, Partners2Collection, Tickets, Homepage, AboutPage, Gallery7Collection, Testimonial25Collection, StatisticsCollection, FaqLeftRightCollection], //onChange => npm run db:schema
+  collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection, PartnersCollection, Partners2Collection, Tickets, Homepage, AboutPage, ConfPage, Gallery7Collection, Testimonial25Collection, StatisticsCollection, FaqLeftRightCollection, LecturersCollection, AgendaCollection], //onChange => npm run db:schema
   cors: [getServerSideURL()].filter(Boolean),
   secret: process.env.PAYLOAD_SECRET,
   sharp,

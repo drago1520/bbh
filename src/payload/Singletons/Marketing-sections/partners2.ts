@@ -15,7 +15,7 @@ export const Partners2Collection: CollectionConfig = {
       type: 'text',
       name: 'label',
       label: 'Internal Label',
-      defaultValue: 'Партньори2',
+      defaultValue: 'Партньори 2',
       required: true,
       admin: {
         description: "Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа."

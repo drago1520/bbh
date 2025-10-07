@@ -11,19 +11,9 @@ export const FaqLeftRightCollection: CollectionConfig = {
   },
   admin: {
     hidden: true, //so it don't appear in the main admin UI to clutter
-    useAsTitle: 'label', //how it appears when in relationship's select
+    useAsTitle: 'title', //how it appears when in relationship's select
   },
   fields: [ //directly add fields, not blocks to shorten up boilerplate
-    {
-      type: 'text',
-      name: 'label',
-      label: 'Internal Label',
-      defaultValue: 'FAQ-шахмат',
-      required: true,
-      admin: {
-        description: "Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа."
-      },
-    },
     {
       type: 'row',
       fields: [
@@ -32,6 +22,13 @@ export const FaqLeftRightCollection: CollectionConfig = {
           name: 'title',
           label: 'Заглавие',
           defaultValue: 'Често Задавани Въпроси',
+          required: true,
+        },
+        {
+          type: 'text',
+          name: 'label',
+          label: 'Вътрешен етикет',
+          defaultValue: 'FAQ',
           required: true,
         },
         {

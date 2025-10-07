@@ -8,11 +8,11 @@ import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
 
-export const AboutPage: CollectionConfig = {
-  slug: 'about',
+export const ConfPage: CollectionConfig = {
+  slug: 'conf',
   labels: {
-    singular: 'За Нас',
-    plural: "За Нас"
+    singular: 'Конференция',
+    plural: "Конференция"
   },
   access: {
     create: authenticated,
@@ -26,7 +26,7 @@ export const AboutPage: CollectionConfig = {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'about',
+          collection: 'conf',
           req,
         });
 
@@ -36,7 +36,7 @@ export const AboutPage: CollectionConfig = {
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'about',
+        collection: 'conf',
         req,
       }),
     useAsTitle: 'title',
@@ -59,7 +59,7 @@ export const AboutPage: CollectionConfig = {
           fields: [
             {
               type: 'relationship',
-              relationTo: ['faqLeftRight', 'gallery7', 'testimonial25', 'statisticsN'], //statistics, partners
+              relationTo: ['lecturersN', 'agendaN'], //
               hasMany: true,
               name: 'sections',
               label: 'Секции 1',

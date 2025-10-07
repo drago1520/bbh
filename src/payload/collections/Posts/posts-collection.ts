@@ -13,7 +13,7 @@ import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
 import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
 import { slugField } from '@/payload/fields/slug';
-import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right';
+import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right_old';
 import { Archive } from '@/payload/blocks/ArchiveBlock/config';
 import { CallToAction } from '@/payload/blocks/CallToAction/config';
 import { Content } from '@/payload/blocks/Content/config';

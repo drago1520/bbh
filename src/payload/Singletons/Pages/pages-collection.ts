@@ -8,12 +8,12 @@ import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
 import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
-import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right';
-import { Gallery7Block } from '@/payload/blocks/Gallery/gallery-7';
+import { FaqLeftRightBlock } from '@/payload/blocks/FAQs/blocks/block-faq-left-right_old';
+import { Gallery7Block } from '@/payload/blocks/Gallery/gallery-7_old';
 import { Testimonial25Block } from '@/payload/blocks/Testimonials/testimonial-25-block_old';
 import { StatisticsBlock } from '@/payload/blocks/Statistics/statistics-block_old';
-import { AgendaBlock } from '@/payload/blocks/Info/agenda';
-import { LecturersBlock } from '@/payload/blocks/Info/lecturers';
+import { AgendaBlock } from '@/payload/blocks/Info/agenda_old';
+import { LecturersBlock } from '@/payload/blocks/Info/lecturers_old';
 import { TimelineBlock } from '@/payload/blocks/Info/conference-timeline';
 import { WhoIsTheConfForBlock } from '@/payload/blocks/Info/whoIsTheConferenceFor';
 import { PricingWithCountdownBlock } from '@/payload/blocks/Pricing/conference';

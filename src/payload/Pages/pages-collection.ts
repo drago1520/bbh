@@ -3,11 +3,11 @@ import { OverviewField, MetaTitleField, MetaImageField, MetaDescriptionField, Pr
 import type { CollectionConfig } from 'payload';
 import { authenticated } from '../auth/authenticated';
 import { authenticatedOrPublished } from '../auth/authenticatedOrPublished';
-import { FaqLeftRightBlock } from '../blocks/FAQs/blocks/block-faq-left-right';
-import { Gallery7Block } from '../blocks/Gallery/gallery-7';
-import { AgendaBlock } from '../blocks/Info/agenda';
+import { FaqLeftRightBlock } from '../blocks/FAQs/blocks/block-faq-left-right_old';
+import { Gallery7Block } from '../blocks/Gallery/gallery-7_old';
+import { AgendaBlock } from '../blocks/Info/agenda_old';
 import { TimelineBlock } from '../blocks/Info/conference-timeline';
-import { LecturersBlock } from '../blocks/Info/lecturers';
+import { LecturersBlock } from '../blocks/Info/lecturers_old';
 import { WhoIsTheConfForBlock } from '../blocks/Info/whoIsTheConferenceFor';
 import { PricingWithCountdownBlock } from '../blocks/Pricing/conference';
 import { StatisticsBlock } from '../blocks/Statistics/statistics-block_old';
