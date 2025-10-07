@@ -81,7 +81,7 @@ export interface Config {
     homepage: Homepage;
     homepageGallery: HomepageGallery;
     homepageTestimonial25: HomepageTestimonial25;
-    homepageStatistics: HomepageStatistic;
+    statisticsN: StatisticsN;
     faqLeftRight: FaqLeftRight;
     redirects: Redirect;
     'payload-jobs': PayloadJob;
@@ -105,7 +105,7 @@ export interface Config {
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     homepageGallery: HomepageGallerySelect<false> | HomepageGallerySelect<true>;
     homepageTestimonial25: HomepageTestimonial25Select<false> | HomepageTestimonial25Select<true>;
-    homepageStatistics: HomepageStatisticsSelect<false> | HomepageStatisticsSelect<true>;
+    statisticsN: StatisticsNSelect<false> | StatisticsNSelect<true>;
     faqLeftRight: FaqLeftRightSelect<false> | FaqLeftRightSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
@@ -1063,8 +1063,8 @@ export interface Homepage {
             value: string | HomepageTestimonial25;
           }
         | {
-            relationTo: 'homepageStatistics';
-            value: string | HomepageStatistic;
+            relationTo: 'statisticsN';
+            value: string | StatisticsN;
           }
       )[]
     | null;
@@ -1163,9 +1163,9 @@ export interface HomepageTestimonial25 {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepageStatistics".
+ * via the `definition` "statisticsN".
  */
-export interface HomepageStatistic {
+export interface StatisticsN {
   id: string;
   label: string;
   /**
@@ -1372,8 +1372,8 @@ export interface PayloadLockedDocument {
         value: string | HomepageTestimonial25;
       } | null)
     | ({
-        relationTo: 'homepageStatistics';
-        value: string | HomepageStatistic;
+        relationTo: 'statisticsN';
+        value: string | StatisticsN;
       } | null)
     | ({
         relationTo: 'faqLeftRight';
@@ -2108,9 +2108,9 @@ export interface HomepageTestimonial25Select<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepageStatistics_select".
+ * via the `definition` "statisticsN_select".
  */
-export interface HomepageStatisticsSelect<T extends boolean = true> {
+export interface StatisticsNSelect<T extends boolean = true> {
   label?: T;
   title?: T;
   statisticsData?:

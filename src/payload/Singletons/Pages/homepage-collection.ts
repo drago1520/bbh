@@ -1,13 +1,12 @@
-﻿import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
+﻿import type { CollectionConfig } from 'payload';
+
 import { authenticated } from '@/payload/auth/authenticated';
 import { authenticatedOrPublished } from '@/payload/auth/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { revalidatePage } from '@/payload/Singletons/Pages/hooks/revalidatePage';
-import { OverviewField, MetaTitleField, MetaImageField, MetaDescriptionField, PreviewField } from '@payloadcms/plugin-seo/fields';
-import type { CollectionConfig } from 'payload';
-import { revalidateDelete } from '../Posts/hooks/revalidatePost';
-
+import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
+import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
+import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
 
 export const Homepage: CollectionConfig = {
   slug: 'homepage',
@@ -76,7 +75,7 @@ export const Homepage: CollectionConfig = {
               relationTo: ['faqLeftRight', 'homepageGallery', 'homepageTestimonial25', 'statisticsN'],
               hasMany: true,
               name: 'sections',
-              label: 'Секции',
+              label: 'Секции 2',
             }],
         },
         {

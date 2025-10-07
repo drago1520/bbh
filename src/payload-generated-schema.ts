@@ -2449,7 +2449,7 @@ export const homepage_rels = pgTable(
     faqLeftRightID: uuid('faq_left_right_id'),
     homepageGalleryID: uuid('homepage_gallery_id'),
     homepageTestimonial25ID: uuid('homepage_testimonial25_id'),
-    homepageStatisticsID: uuid('homepage_statistics_id'),
+    statisticsNID: uuid('statistics_n_id'),
   },
   columns => ({
     order: index('homepage_rels_order_idx').on(columns.order),
@@ -2458,7 +2458,7 @@ export const homepage_rels = pgTable(
     homepage_rels_faq_left_right_id_idx: index('homepage_rels_faq_left_right_id_idx').on(columns.faqLeftRightID),
     homepage_rels_homepage_gallery_id_idx: index('homepage_rels_homepage_gallery_id_idx').on(columns.homepageGalleryID),
     homepage_rels_homepage_testimonial25_id_idx: index('homepage_rels_homepage_testimonial25_id_idx').on(columns.homepageTestimonial25ID),
-    homepage_rels_homepage_statistics_id_idx: index('homepage_rels_homepage_statistics_id_idx').on(columns.homepageStatisticsID),
+    homepage_rels_statistics_n_id_idx: index('homepage_rels_statistics_n_id_idx').on(columns.statisticsNID),
     parentFk: foreignKey({
       columns: [columns['parent']],
       foreignColumns: [homepage.id],
@@ -2479,10 +2479,10 @@ export const homepage_rels = pgTable(
       foreignColumns: [homepage_testimonial25.id],
       name: 'homepage_rels_homepage_testimonial25_fk',
     }).onDelete('cascade'),
-    homepageStatisticsIdFk: foreignKey({
-      columns: [columns['homepageStatisticsID']],
-      foreignColumns: [homepage_statistics.id],
-      name: 'homepage_rels_homepage_statistics_fk',
+    statisticsNIdFk: foreignKey({
+      columns: [columns['statisticsNID']],
+      foreignColumns: [statistics_n.id],
+      name: 'homepage_rels_statistics_n_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -2540,7 +2540,7 @@ export const _homepage_v_rels = pgTable(
     faqLeftRightID: uuid('faq_left_right_id'),
     homepageGalleryID: uuid('homepage_gallery_id'),
     homepageTestimonial25ID: uuid('homepage_testimonial25_id'),
-    homepageStatisticsID: uuid('homepage_statistics_id'),
+    statisticsNID: uuid('statistics_n_id'),
   },
   columns => ({
     order: index('_homepage_v_rels_order_idx').on(columns.order),
@@ -2549,7 +2549,7 @@ export const _homepage_v_rels = pgTable(
     _homepage_v_rels_faq_left_right_id_idx: index('_homepage_v_rels_faq_left_right_id_idx').on(columns.faqLeftRightID),
     _homepage_v_rels_homepage_gallery_id_idx: index('_homepage_v_rels_homepage_gallery_id_idx').on(columns.homepageGalleryID),
     _homepage_v_rels_homepage_testimonial25_id_idx: index('_homepage_v_rels_homepage_testimonial25_id_idx').on(columns.homepageTestimonial25ID),
-    _homepage_v_rels_homepage_statistics_id_idx: index('_homepage_v_rels_homepage_statistics_id_idx').on(columns.homepageStatisticsID),
+    _homepage_v_rels_statistics_n_id_idx: index('_homepage_v_rels_statistics_n_id_idx').on(columns.statisticsNID),
     parentFk: foreignKey({
       columns: [columns['parent']],
       foreignColumns: [_homepage_v.id],
@@ -2570,10 +2570,10 @@ export const _homepage_v_rels = pgTable(
       foreignColumns: [homepage_testimonial25.id],
       name: '_homepage_v_rels_homepage_testimonial25_fk',
     }).onDelete('cascade'),
-    homepageStatisticsIdFk: foreignKey({
-      columns: [columns['homepageStatisticsID']],
-      foreignColumns: [homepage_statistics.id],
-      name: '_homepage_v_rels_homepage_statistics_fk',
+    statisticsNIdFk: foreignKey({
+      columns: [columns['statisticsNID']],
+      foreignColumns: [statistics_n.id],
+      name: '_homepage_v_rels_statistics_n_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -2673,8 +2673,8 @@ export const homepage_testimonial25 = pgTable(
   }),
 );
 
-export const homepage_statistics_blocks_statistic = pgTable(
-  'homepage_statistics_blocks_statistic',
+export const statistics_n_blocks_statistic = pgTable(
+  'statistics_n_blocks_statistic',
   {
     _order: integer('_order').notNull(),
     _parentID: uuid('_parent_id').notNull(),
@@ -2689,20 +2689,20 @@ export const homepage_statistics_blocks_statistic = pgTable(
     blockName: varchar('block_name'),
   },
   columns => ({
-    _orderIdx: index('homepage_statistics_blocks_statistic_order_idx').on(columns._order),
-    _parentIDIdx: index('homepage_statistics_blocks_statistic_parent_id_idx').on(columns._parentID),
-    _pathIdx: index('homepage_statistics_blocks_statistic_path_idx').on(columns._path),
-    homepage_statistics_blocks_statistic_icon_idx: index('homepage_statistics_blocks_statistic_icon_idx').on(columns.icon),
+    _orderIdx: index('statistics_n_blocks_statistic_order_idx').on(columns._order),
+    _parentIDIdx: index('statistics_n_blocks_statistic_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('statistics_n_blocks_statistic_path_idx').on(columns._path),
+    statistics_n_blocks_statistic_icon_idx: index('statistics_n_blocks_statistic_icon_idx').on(columns.icon),
     _parentIdFk: foreignKey({
       columns: [columns['_parentID']],
-      foreignColumns: [homepage_statistics.id],
-      name: 'homepage_statistics_blocks_statistic_parent_id_fk',
+      foreignColumns: [statistics_n.id],
+      name: 'statistics_n_blocks_statistic_parent_id_fk',
     }).onDelete('cascade'),
   }),
 );
 
-export const homepage_statistics = pgTable(
-  'homepage_statistics',
+export const statistics_n = pgTable(
+  'statistics_n',
   {
     id: uuid('id').defaultRandom().primaryKey(),
     label: varchar('label').notNull().default('Секция статистика'),
@@ -2711,8 +2711,8 @@ export const homepage_statistics = pgTable(
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
   columns => ({
-    homepage_statistics_updated_at_idx: index('homepage_statistics_updated_at_idx').on(columns.updatedAt),
-    homepage_statistics_created_at_idx: index('homepage_statistics_created_at_idx').on(columns.createdAt),
+    statistics_n_updated_at_idx: index('statistics_n_updated_at_idx').on(columns.updatedAt),
+    statistics_n_created_at_idx: index('statistics_n_created_at_idx').on(columns.createdAt),
   }),
 );
 
@@ -2899,7 +2899,7 @@ export const payload_locked_documents_rels = pgTable(
     homepageID: uuid('homepage_id'),
     homepageGalleryID: uuid('homepage_gallery_id'),
     homepageTestimonial25ID: uuid('homepage_testimonial25_id'),
-    homepageStatisticsID: uuid('homepage_statistics_id'),
+    statisticsNID: uuid('statistics_n_id'),
     faqLeftRightID: uuid('faq_left_right_id'),
     redirectsID: uuid('redirects_id'),
     'payload-jobsID': uuid('payload_jobs_id'),
@@ -2922,7 +2922,7 @@ export const payload_locked_documents_rels = pgTable(
     payload_locked_documents_rels_homepage_id_idx: index('payload_locked_documents_rels_homepage_id_idx').on(columns.homepageID),
     payload_locked_documents_rels_homepage_gallery_id_idx: index('payload_locked_documents_rels_homepage_gallery_id_idx').on(columns.homepageGalleryID),
     payload_locked_documents_rels_homepage_testimonial25_id_idx: index('payload_locked_documents_rels_homepage_testimonial25_id_idx').on(columns.homepageTestimonial25ID),
-    payload_locked_documents_rels_homepage_statistics_id_idx: index('payload_locked_documents_rels_homepage_statistics_id_idx').on(columns.homepageStatisticsID),
+    payload_locked_documents_rels_statistics_n_id_idx: index('payload_locked_documents_rels_statistics_n_id_idx').on(columns.statisticsNID),
     payload_locked_documents_rels_faq_left_right_id_idx: index('payload_locked_documents_rels_faq_left_right_id_idx').on(columns.faqLeftRightID),
     payload_locked_documents_rels_redirects_id_idx: index('payload_locked_documents_rels_redirects_id_idx').on(columns.redirectsID),
     payload_locked_documents_rels_payload_jobs_id_idx: index('payload_locked_documents_rels_payload_jobs_id_idx').on(columns['payload-jobsID']),
@@ -3001,10 +3001,10 @@ export const payload_locked_documents_rels = pgTable(
       foreignColumns: [homepage_testimonial25.id],
       name: 'payload_locked_documents_rels_homepage_testimonial25_fk',
     }).onDelete('cascade'),
-    homepageStatisticsIdFk: foreignKey({
-      columns: [columns['homepageStatisticsID']],
-      foreignColumns: [homepage_statistics.id],
-      name: 'payload_locked_documents_rels_homepage_statistics_fk',
+    statisticsNIdFk: foreignKey({
+      columns: [columns['statisticsNID']],
+      foreignColumns: [statistics_n.id],
+      name: 'payload_locked_documents_rels_statistics_n_fk',
     }).onDelete('cascade'),
     faqLeftRightIdFk: foreignKey({
       columns: [columns['faqLeftRightID']],
@@ -4230,10 +4230,10 @@ export const relations_homepage_rels = relations(homepage_rels, ({ one }) => ({
     references: [homepage_testimonial25.id],
     relationName: 'homepageTestimonial25',
   }),
-  homepageStatisticsID: one(homepage_statistics, {
-    fields: [homepage_rels.homepageStatisticsID],
-    references: [homepage_statistics.id],
-    relationName: 'homepageStatistics',
+  statisticsNID: one(statistics_n, {
+    fields: [homepage_rels.statisticsNID],
+    references: [statistics_n.id],
+    relationName: 'statisticsN',
   }),
 }));
 export const relations_homepage = relations(homepage, ({ one, many }) => ({
@@ -4272,10 +4272,10 @@ export const relations__homepage_v_rels = relations(_homepage_v_rels, ({ one }) 
     references: [homepage_testimonial25.id],
     relationName: 'homepageTestimonial25',
   }),
-  homepageStatisticsID: one(homepage_statistics, {
-    fields: [_homepage_v_rels.homepageStatisticsID],
-    references: [homepage_statistics.id],
-    relationName: 'homepageStatistics',
+  statisticsNID: one(statistics_n, {
+    fields: [_homepage_v_rels.statisticsNID],
+    references: [statistics_n.id],
+    relationName: 'statisticsN',
   }),
 }));
 export const relations__homepage_v = relations(_homepage_v, ({ one, many }) => ({
@@ -4332,20 +4332,20 @@ export const relations_homepage_testimonial25 = relations(homepage_testimonial25
     relationName: '_blocks_testimonial25CardBlock',
   }),
 }));
-export const relations_homepage_statistics_blocks_statistic = relations(homepage_statistics_blocks_statistic, ({ one }) => ({
-  _parentID: one(homepage_statistics, {
-    fields: [homepage_statistics_blocks_statistic._parentID],
-    references: [homepage_statistics.id],
+export const relations_statistics_n_blocks_statistic = relations(statistics_n_blocks_statistic, ({ one }) => ({
+  _parentID: one(statistics_n, {
+    fields: [statistics_n_blocks_statistic._parentID],
+    references: [statistics_n.id],
     relationName: '_blocks_statistic',
   }),
   icon: one(media, {
-    fields: [homepage_statistics_blocks_statistic.icon],
+    fields: [statistics_n_blocks_statistic.icon],
     references: [media.id],
     relationName: 'icon',
   }),
 }));
-export const relations_homepage_statistics = relations(homepage_statistics, ({ many }) => ({
-  _blocks_statistic: many(homepage_statistics_blocks_statistic, {
+export const relations_statistics_n = relations(statistics_n, ({ many }) => ({
+  _blocks_statistic: many(statistics_n_blocks_statistic, {
     relationName: '_blocks_statistic',
   }),
 }));
@@ -4471,10 +4471,10 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
     references: [homepage_testimonial25.id],
     relationName: 'homepageTestimonial25',
   }),
-  homepageStatisticsID: one(homepage_statistics, {
-    fields: [payload_locked_documents_rels.homepageStatisticsID],
-    references: [homepage_statistics.id],
-    relationName: 'homepageStatistics',
+  statisticsNID: one(statistics_n, {
+    fields: [payload_locked_documents_rels.statisticsNID],
+    references: [statistics_n.id],
+    relationName: 'statisticsN',
   }),
   faqLeftRightID: one(faq_left_right, {
     fields: [payload_locked_documents_rels.faqLeftRightID],
@@ -4691,8 +4691,8 @@ type DatabaseSchema = {
   homepage_gallery_rels: typeof homepage_gallery_rels;
   homepage_testimonial25_blocks_testimonial25_card_block: typeof homepage_testimonial25_blocks_testimonial25_card_block;
   homepage_testimonial25: typeof homepage_testimonial25;
-  homepage_statistics_blocks_statistic: typeof homepage_statistics_blocks_statistic;
-  homepage_statistics: typeof homepage_statistics;
+  statistics_n_blocks_statistic: typeof statistics_n_blocks_statistic;
+  statistics_n: typeof statistics_n;
   faq_left_right_blocks_q_a_block: typeof faq_left_right_blocks_q_a_block;
   faq_left_right: typeof faq_left_right;
   redirects: typeof redirects;
@@ -4810,8 +4810,8 @@ type DatabaseSchema = {
   relations_homepage_gallery: typeof relations_homepage_gallery;
   relations_homepage_testimonial25_blocks_testimonial25_card_block: typeof relations_homepage_testimonial25_blocks_testimonial25_card_block;
   relations_homepage_testimonial25: typeof relations_homepage_testimonial25;
-  relations_homepage_statistics_blocks_statistic: typeof relations_homepage_statistics_blocks_statistic;
-  relations_homepage_statistics: typeof relations_homepage_statistics;
+  relations_statistics_n_blocks_statistic: typeof relations_statistics_n_blocks_statistic;
+  relations_statistics_n: typeof relations_statistics_n;
   relations_faq_left_right_blocks_q_a_block: typeof relations_faq_left_right_blocks_q_a_block;
   relations_faq_left_right: typeof relations_faq_left_right;
   relations_redirects_rels: typeof relations_redirects_rels;

@@ -5,7 +5,7 @@ import sharp from 'sharp';
 
 import { Categories } from '@/payload/collections/Categories';
 import { Media } from '@/payload/collections/Media';
-import { Pages } from '@/payload/collections/Pages/pages-collection';
+import { Pages } from '@/payload/Singletons/Pages/pages-collection';
 import { Posts } from '@/payload/collections/Posts/posts-collection';
 import { Users } from '@/payload/collections/Users/users-collection';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
@@ -15,16 +15,16 @@ import { plugins } from './payload/plugins';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { Attendees } from './payload/collections/Attendees/attendees-collection';
 import { Events } from './payload/collections/Events/events-collection';
-import { MarketingSectionsCollection } from './payload/collections/Marketing-sections/marketing-sections_old';
-import { PartnersCollection } from './payload/collections/Marketing-sections/partners_old';
-import { Partners2Collection } from './payload/collections/Marketing-sections/partners2';
+import { MarketingSectionsCollection } from './payload/Singletons/Marketing-sections/marketing-sections_old';
+import { PartnersCollection } from './payload/Singletons/Marketing-sections/partners_old';
+import { Partners2Collection } from './payload/Singletons/Marketing-sections/partners2';
 import { Contacts } from './payload/globals/contacts';
 import { Tickets } from './payload/collections/tickets';
-import { Homepage } from './payload/collections/Pages/homepage-collection';
-import { FaqLeftRightCollection } from './payload/collections/Marketing-sections/faq-left-right';
-import { Gallery7Collection } from './payload/collections/Marketing-sections/gallery-7';
-import { Testimonial25Collection } from './payload/collections/Marketing-sections/testimonial-25';
-import { StatisticsCollection } from './payload/collections/Marketing-sections/statistics';
+import { Homepage } from './payload/Singletons/Pages/homepage-collection';
+import { FaqLeftRightCollection } from './payload/Singletons/Marketing-sections/faq-left-right';
+import { Gallery7Collection } from './payload/Singletons/Marketing-sections/gallery-7';
+import { Testimonial25Collection } from './payload/Singletons/Marketing-sections/testimonial-25';
+import { StatisticsCollection } from './payload/Singletons/Marketing-sections/statistics';
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -79,7 +79,6 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
     idType: 'uuid',
-    push: false,
   }),
   collections: [Users, Media, Pages, Posts, Categories, Attendees, Events, MarketingSectionsCollection, PartnersCollection, Partners2Collection, Tickets, Homepage, Gallery7Collection, Testimonial25Collection, StatisticsCollection, FaqLeftRightCollection], //onChange => npm run db:schema
   cors: [getServerSideURL()].filter(Boolean),

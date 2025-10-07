@@ -2,7 +2,7 @@
 import { CollectionConfig } from 'payload';
 
 export const StatisticsCollection: CollectionConfig = {
-  slug: 'homepageStatistics',
+  slug: 'statisticsN',
   labels: {
     singular: 'Статистика',
     plural: 'Статистики',

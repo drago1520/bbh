@@ -1,25 +1,37 @@
-﻿import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
-import { authenticated } from '@/payload/auth/authenticated';
-import { authenticatedOrPublished } from '@/payload/auth/authenticatedOrPublished';
-import { slugField } from '@/payload/fields/slug';
-import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { revalidatePage } from '@/payload/Singletons/Pages/hooks/revalidatePage';
+import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
 import { OverviewField, MetaTitleField, MetaImageField, MetaDescriptionField, PreviewField } from '@payloadcms/plugin-seo/fields';
 import type { CollectionConfig } from 'payload';
-import { revalidateDelete } from '../Posts/hooks/revalidatePost';
+import { authenticated } from '../auth/authenticated';
+import { authenticatedOrPublished } from '../auth/authenticatedOrPublished';
+import { FaqLeftRightBlock } from '../blocks/FAQs/blocks/block-faq-left-right';
+import { Gallery7Block } from '../blocks/Gallery/gallery-7';
+import { AgendaBlock } from '../blocks/Info/agenda';
+import { TimelineBlock } from '../blocks/Info/conference-timeline';
+import { LecturersBlock } from '../blocks/Info/lecturers';
+import { WhoIsTheConfForBlock } from '../blocks/Info/whoIsTheConferenceFor';
+import { PricingWithCountdownBlock } from '../blocks/Pricing/conference';
+import { StatisticsBlock } from '../blocks/Statistics/statistics-block_old';
+import { Testimonial25Block } from '../blocks/Testimonials/testimonial-25-block_old';
+import { Testimonials2Block } from '../blocks/Testimonials/testimonials-conference';
+import { slugField } from '../fields/slug';
+import { populatePublishedAt } from '../hooks/populatePublishedAt';
+import { revalidatePage, revalidateDelete } from '../Singletons/Pages/hooks/revalidatePage';
 
 
-export const Homepage: CollectionConfig = {
-  slug: 'homepage',
-  labels: {
-    singular: 'Homepage',
-    plural: "Homepage"
-  },
+export const Pages: CollectionConfig<'pages'> = {
+  slug: 'pages',
   access: {
     create: authenticated,
     delete: authenticated,
     read: authenticatedOrPublished,
     update: authenticated,
+  },
+  // This config controls what's populated by default when a page is referenced
+  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
+  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
+  defaultPopulate: {
+    title: true,
+    slug: true,
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
@@ -27,7 +39,7 @@ export const Homepage: CollectionConfig = {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'homepage',
+          collection: 'pages',
           req,
         });
 
@@ -37,7 +49,7 @@ export const Homepage: CollectionConfig = {
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'homepage',
+        collection: 'pages',
         req,
       }),
     useAsTitle: 'title',
@@ -49,12 +61,23 @@ export const Homepage: CollectionConfig = {
         {
           name: 'title',
           type: 'text',
+          required: true,
         },
         {
-          name: 'subheading',
-          type: 'text'
-        }
+          name: 'ctaText',
+          label: 'Cta текст',
+          type: 'text',
+        },
       ],
+    },
+    {
+      name: 'subheading',
+      type: 'text',
+    },
+    {
+      name: 'emailTemplateId',
+      label: 'Email Template ID от MailerSend',
+      type: 'text',
     },
     {
       type: 'tabs',
@@ -72,12 +95,21 @@ export const Homepage: CollectionConfig = {
               },
             },
             {
-              type: 'relationship',
-              relationTo: ['faqLeftRight', 'homepageGallery', 'homepageTestimonial25', 'statisticsN'],
-              hasMany: true,
-              name: 'sections',
-              label: 'Секции',
-            }],
+              type: 'blocks',
+              name: 'blocks',
+              label: false,
+              labels: {
+                singular: 'block',
+                plural: 'blocks',
+              },
+              // blocks: [HighImpactHero, MediumImpactHero, LowImpactHero, CallToAction, Content, MediaBlock, Archive],
+              blocks: [FaqLeftRightBlock, Gallery7Block, Testimonial25Block, StatisticsBlock, AgendaBlock, LecturersBlock, TimelineBlock, WhoIsTheConfForBlock, PricingWithCountdownBlock, Testimonials2Block],
+              required: true,
+              admin: {
+                initCollapsed: true,
+              },
+            },
+          ],
         },
         {
           label: 'SEO',
@@ -130,4 +162,3 @@ export const Homepage: CollectionConfig = {
     maxPerDoc: 50,
   },
 };
-
