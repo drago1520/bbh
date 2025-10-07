@@ -26,7 +26,7 @@ export const AboutPage: CollectionConfig = {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'homepage',
+          collection: 'about',
           req,
         });
 
@@ -36,7 +36,7 @@ export const AboutPage: CollectionConfig = {
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
-        collection: 'homepage',
+        collection: 'about',
         req,
       }),
     useAsTitle: 'title',

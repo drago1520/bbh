@@ -2,7 +2,7 @@
 import { CollectionConfig } from 'payload';
 
 export const Testimonial25Collection: CollectionConfig = {
-  slug: 'homepageTestimonial25',
+  slug: 'testimonial25',
   labels: {
     singular: 'Препоръка',
     plural: 'Препоръки',

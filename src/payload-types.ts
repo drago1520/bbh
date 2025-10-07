@@ -79,8 +79,9 @@ export interface Config {
     partners2: Partners2;
     tickets: Ticket;
     homepage: Homepage;
-    homepageGallery: HomepageGallery;
-    homepageTestimonial25: HomepageTestimonial25;
+    about: About;
+    gallery7: Gallery7;
+    testimonial25: Testimonial25;
     statisticsN: StatisticsN;
     faqLeftRight: FaqLeftRight;
     redirects: Redirect;
@@ -103,8 +104,9 @@ export interface Config {
     partners2: Partners2Select<false> | Partners2Select<true>;
     tickets: TicketsSelect<false> | TicketsSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
-    homepageGallery: HomepageGallerySelect<false> | HomepageGallerySelect<true>;
-    homepageTestimonial25: HomepageTestimonial25Select<false> | HomepageTestimonial25Select<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
+    gallery7: Gallery7Select<false> | Gallery7Select<true>;
+    testimonial25: Testimonial25Select<false> | Testimonial25Select<true>;
     statisticsN: StatisticsNSelect<false> | StatisticsNSelect<true>;
     faqLeftRight: FaqLeftRightSelect<false> | FaqLeftRightSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
@@ -1055,12 +1057,12 @@ export interface Homepage {
             value: string | FaqLeftRight;
           }
         | {
-            relationTo: 'homepageGallery';
-            value: string | HomepageGallery;
+            relationTo: 'gallery7';
+            value: string | Gallery7;
           }
         | {
-            relationTo: 'homepageTestimonial25';
-            value: string | HomepageTestimonial25;
+            relationTo: 'testimonial25';
+            value: string | Testimonial25;
           }
         | {
             relationTo: 'statisticsN';
@@ -1115,9 +1117,9 @@ export interface FaqLeftRight {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepageGallery".
+ * via the `definition` "gallery7".
  */
-export interface HomepageGallery {
+export interface Gallery7 {
   id: string;
   label: string;
   heading: string;
@@ -1145,9 +1147,9 @@ export interface HomepageGallery {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepageTestimonial25".
+ * via the `definition` "testimonial25".
  */
-export interface HomepageTestimonial25 {
+export interface Testimonial25 {
   id: string;
   label: string;
   title: string;
@@ -1189,6 +1191,48 @@ export interface StatisticsN {
   }[];
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: string;
+  title?: string | null;
+  sections?:
+    | (
+        | {
+            relationTo: 'faqLeftRight';
+            value: string | FaqLeftRight;
+          }
+        | {
+            relationTo: 'gallery7';
+            value: string | Gallery7;
+          }
+        | {
+            relationTo: 'testimonial25';
+            value: string | Testimonial25;
+          }
+        | {
+            relationTo: 'statisticsN';
+            value: string | StatisticsN;
+          }
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1364,12 +1408,16 @@ export interface PayloadLockedDocument {
         value: string | Homepage;
       } | null)
     | ({
-        relationTo: 'homepageGallery';
-        value: string | HomepageGallery;
+        relationTo: 'about';
+        value: string | About;
       } | null)
     | ({
-        relationTo: 'homepageTestimonial25';
-        value: string | HomepageTestimonial25;
+        relationTo: 'gallery7';
+        value: string | Gallery7;
+      } | null)
+    | ({
+        relationTo: 'testimonial25';
+        value: string | Testimonial25;
       } | null)
     | ({
         relationTo: 'statisticsN';
@@ -2075,9 +2123,30 @@ export interface HomepageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepageGallery_select".
+ * via the `definition` "about_select".
  */
-export interface HomepageGallerySelect<T extends boolean = true> {
+export interface AboutSelect<T extends boolean = true> {
+  title?: T;
+  sections?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery7_select".
+ */
+export interface Gallery7Select<T extends boolean = true> {
   label?: T;
   heading?: T;
   images?: T;
@@ -2090,9 +2159,9 @@ export interface HomepageGallerySelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepageTestimonial25_select".
+ * via the `definition` "testimonial25_select".
  */
-export interface HomepageTestimonial25Select<T extends boolean = true> {
+export interface Testimonial25Select<T extends boolean = true> {
   label?: T;
   title?: T;
   helperText?: T;
@@ -2339,6 +2408,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'homepage';
           value: string | Homepage;
+        } | null)
+      | ({
+          relationTo: 'about';
+          value: string | About;
         } | null);
     global?: string | null;
     user?: (string | null) | User;

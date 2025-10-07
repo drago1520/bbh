@@ -73,7 +73,7 @@ export const Homepage: CollectionConfig = {
             },
             {
               type: 'relationship',
-              relationTo: ['faqLeftRight', 'homepageGallery', 'homepageTestimonial25', 'statisticsN'],
+              relationTo: ['faqLeftRight', 'gallery7', 'testimonial25', 'statisticsN'],
               hasMany: true,
               name: 'sections',
               label: 'Секции',

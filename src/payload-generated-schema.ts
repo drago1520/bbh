@@ -4223,7 +4223,7 @@ export const relations_homepage_rels = relations(homepage_rels, ({ one }) => ({
   homepageGalleryID: one(homepage_gallery, {
     fields: [homepage_rels.homepageGalleryID],
     references: [homepage_gallery.id],
-    relationName: 'homepageGallery',
+    relationName: 'gallery7',
   }),
   homepageTestimonial25ID: one(homepage_testimonial25, {
     fields: [homepage_rels.homepageTestimonial25ID],
@@ -4265,7 +4265,7 @@ export const relations__homepage_v_rels = relations(_homepage_v_rels, ({ one }) 
   homepageGalleryID: one(homepage_gallery, {
     fields: [_homepage_v_rels.homepageGalleryID],
     references: [homepage_gallery.id],
-    relationName: 'homepageGallery',
+    relationName: 'gallery7',
   }),
   homepageTestimonial25ID: one(homepage_testimonial25, {
     fields: [_homepage_v_rels.homepageTestimonial25ID],
@@ -4464,7 +4464,7 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
   homepageGalleryID: one(homepage_gallery, {
     fields: [payload_locked_documents_rels.homepageGalleryID],
     references: [homepage_gallery.id],
-    relationName: 'homepageGallery',
+    relationName: 'gallery7',
   }),
   homepageTestimonial25ID: one(homepage_testimonial25, {
     fields: [payload_locked_documents_rels.homepageTestimonial25ID],

@@ -1,7 +1,7 @@
 ﻿import { CollectionConfig } from 'payload';
 
 export const Gallery7Collection: CollectionConfig = {
-  slug: 'homepageGallery',
+  slug: 'gallery7',
   labels: {
     singular: 'Галерия',
     plural: 'Галерии',
