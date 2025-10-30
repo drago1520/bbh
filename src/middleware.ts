@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export function proxy(request) {
+export function middleware(request) {
   const url = request.nextUrl.clone();
   const hostname = url.pathname.startsWith('/relay-unEN/static/') ? 'eu-assets.i.posthog.com' : 'eu.i.posthog.com';
   const requestHeaders = new Headers(request.headers);

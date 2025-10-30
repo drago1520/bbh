@@ -7,11 +7,6 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `http
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
-  reactCompiler: true,
-  experimental: {
-    turbopackFileSystemCacheForDev: true,
-    turbopackFileSystemCacheForBuild: true,
-  },
   turbopack: {
     resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
     rules: {
@@ -21,7 +16,7 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  webpack: webpackConfig => {
+  webpack: (webpackConfig: any) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
@@ -51,7 +46,7 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
-  ...redirects,
+  redirects,
   // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
