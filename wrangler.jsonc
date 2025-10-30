@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "payload-cloudflare-deploy",
+  "name": "bbh",
   "compatibility_date": "2025-08-15",
   "compatibility_flags": [
     // Enable Node.js API
