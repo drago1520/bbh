@@ -34,7 +34,7 @@ export default async function HomePage() {
     depth: 400,
   });
   const partnersProps = marketingSections.map(section => section.Partners?.partners?.find(blocks => blocks.blockType === 'partners'))?.[0];
-  if (docs.length < 1) throw new Error('No data found for the homepage. Check the slug.');
+  if (docs.length < 1) throw new Error('No data found for the homepage. Check the slug. There needs to be at least 1 page with slug ""');
   const [homePage] = docs;
   const faqBlockProps = homePage.blocks.find(block => block.blockType === 'faqChessMate');
   const gallery7Props = homePage.blocks.find(block => block.blockType === 'gallery7');
