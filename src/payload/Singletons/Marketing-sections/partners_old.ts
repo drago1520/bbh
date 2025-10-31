@@ -1,4 +1,4 @@
-import { PartnersBlock } from '@/payload/blocks/Partners/partners-block_old';
+import { PartnersBlock } from '@/payload/blocks/partners-block_old';
 import { CollectionConfig } from 'payload';
 
 export const PartnersCollection: CollectionConfig = {

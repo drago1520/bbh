@@ -1,4 +1,4 @@
-import { MediaBlock } from '@/payload/blocks/MediaBlock/Component';
+import { MediaBlock } from '@/payload/blocks/Media/Component';
 import { DefaultNodeTypes, SerializedBlockNode, SerializedLinkNode } from '@payloadcms/richtext-lexical';
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import { JSXConvertersFunction, LinkJSXConverter, RichText as RichTextWithoutBlocks } from '@payloadcms/richtext-lexical/react';

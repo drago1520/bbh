@@ -1,5 +1,5 @@
-import { QABlock } from "@/payload/blocks/FAQs/blocks/q-a-block";
 import { defaultValueHelperText } from "@/payload/blocks/FAQs/default-helper-text";
+import { QABlock } from "@/payload/blocks/FAQs/q-a-block";
 import { CollectionConfig } from "payload";
 
 

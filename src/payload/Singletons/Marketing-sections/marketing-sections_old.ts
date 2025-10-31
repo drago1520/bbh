@@ -1,5 +1,5 @@
-import { Partners2Block } from '@/payload/blocks/Partners/partners-2_old';
-import { PartnersBlock } from '@/payload/blocks/Partners/partners-block_old';
+import { Partners2Block } from '@/payload/blocks/partners-2_old';
+import { PartnersBlock } from '@/payload/blocks/partners-block_old';
 import { CollectionConfig } from 'payload';
 
 export const MarketingSectionsCollection: CollectionConfig = {

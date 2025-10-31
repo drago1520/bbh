@@ -7,7 +7,7 @@ import { s3Storage } from '@payloadcms/storage-s3';
 
 import { getServerSideURL } from '@/lib/utils/getURL';
 import { Page, Post } from '@/payload-types';
-import { revalidateRedirects } from '../hooks/revalidateRedirects';
+import { revalidateRedirects } from '../../utils/revalidateRedirects';
 
 export const plugins: Plugin[] = [
   // storage-adapter-placeholder,

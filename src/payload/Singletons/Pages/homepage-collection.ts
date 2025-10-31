@@ -3,7 +3,7 @@
 import { authenticated } from '@/payload/auth/authenticated';
 import { authenticatedOrPublished } from '@/payload/auth/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
-import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
+import { populatePublishedAt } from '@/utils/populatePublishedAt';
 import { generatePreviewPath } from '@/lib/utils/generatePreviewPath';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from '@payloadcms/plugin-seo/fields';
