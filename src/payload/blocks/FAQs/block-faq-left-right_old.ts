@@ -1,6 +1,6 @@
 import { Block } from 'payload';
-import { defaultValueHelperText } from '../default-helper-text';
 import { QABlock } from './q-a-block';
+import { defaultValueHelperText } from './default-helper-text';
 
 export const FaqLeftRightBlock: Block = {
   slug: 'faqChessMate',

@@ -1,5 +1,4 @@
 import { withPayload } from '@payloadcms/next/withPayload'
-import { withSentryConfig } from '@sentry/nextjs'
 
 import redirects from './redirects.js'
 import { NextConfig } from 'next'
@@ -10,6 +9,7 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `http
 const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
+    typedEnv: true,
   },
   turbopack: {
     resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
