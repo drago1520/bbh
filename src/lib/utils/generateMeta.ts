@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata } from 'next'
 
-import type { Media, Page, Post, Config } from '@/payload-types';
+import type { Media, Page, Config } from '@/payload-types'
 
-import { mergeOpenGraph } from './mergeOpenGraph';
-import { getServerSideURL } from './getURL';
+import { mergeOpenGraph } from './mergeOpenGraph'
+import { getServerSideURL } from './getURL'
 
 /**
  * Helper function to get the appropriate image URL for OpenGraph metadata.
@@ -14,18 +14,18 @@ import { getServerSideURL } from './getURL';
  * @returns {string} The full URL to the image
  */
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
-  const serverUrl = getServerSideURL();
+  const serverUrl = getServerSideURL()
 
-  let url = serverUrl + '/website-template-OG.webp';
+  let url = serverUrl + '/website-template-OG.webp'
 
   if (image && typeof image === 'object' && 'url' in image) {
-    const ogUrl = image.sizes?.og?.url;
+    const ogUrl = image.sizes?.og?.url
 
-    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url;
+    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url
   }
 
-  return url;
-};
+  return url
+}
 
 /**
  * Generates standardized metadata for Next.js pages based on Payload CMS document data.
@@ -76,12 +76,12 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
  * }
  * ```
  */
-export const generateMeta = async (args: { doc: Partial<Page> | Partial<Post> }): Promise<Metadata> => {
-  const { doc } = args || {};
+export const generateMeta = async (args: { doc: Partial<Page> }): Promise<Metadata> => {
+  const { doc } = args || {}
 
-  const ogImage = getImageURL(doc?.meta?.image);
+  const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title ? doc?.meta?.title + ' | Payload Website Template' : 'Payload Website Template';
+  const title = doc?.meta?.title ? doc?.meta?.title + ' | Payload Website Template' : 'Payload Website Template'
 
   return {
     description: doc?.meta?.description,
@@ -98,5 +98,5 @@ export const generateMeta = async (args: { doc: Partial<Page> | Partial<Post> })
       url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
     }),
     title,
-  };
-};
+  }
+}

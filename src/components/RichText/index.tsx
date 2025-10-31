@@ -1,11 +1,9 @@
-import { MediaBlock } from '@/payload/blocks/Media/Component'
 import { DefaultNodeTypes, SerializedBlockNode, SerializedLinkNode } from '@payloadcms/richtext-lexical'
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { JSXConvertersFunction, LinkJSXConverter, RichText as RichTextWithoutBlocks } from '@payloadcms/richtext-lexical/react'
 import { CodeBlock, CodeBlockProps } from '@/payload/blocks/Code/Component'
 
 import type {} from '@/payload-types'
-import { BannerBlock } from '@/payload/blocks/Banner/Component'
 import { cn } from '@/lib/utils'
 
 type NodeTypes = DefaultNodeTypes | SerializedBlockNode<CodeBlockProps>
@@ -23,17 +21,6 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
   ...defaultConverters,
   ...LinkJSXConverter({ internalDocToHref }),
   blocks: {
-    banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
-    mediaBlock: ({ node }) => (
-      <MediaBlock
-        className="col-span-3 col-start-1"
-        imgClassName="m-0"
-        {...node.fields}
-        captionClassName="mx-auto max-w-3xl"
-        enableGutter={false}
-        // disableInnerContainer={true}
-      />
-    ),
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
     // cta: ({ node }) => <CallToActionBlock {...node.fields} />,
   },

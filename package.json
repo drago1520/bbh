@@ -13,7 +13,7 @@
     "db:types": "dotenv -e .env -- payload generate:types",
     "db:schema": "dotenv -e .env -- payload generate:db-schema",
     "db:importmap": "dotenv -e .env -- payload generate:importmap",
-    "db": "npm run db:create && npm run db:migrate && npm run db:types && npm run db:schema && npm run db:importmap",
+    "db": "npm run db:types && npm run db:importmap",
     "db:create": "dotenv -e .env.production -- payload migrate:create --skip-empty",
     "db:migrate": "dotenv -e .env.production -- payload migrate",
     "lint": "next lint",
