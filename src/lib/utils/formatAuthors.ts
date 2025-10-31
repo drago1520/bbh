@@ -1,5 +1,3 @@
-import { Post } from '@/payload-types';
-
 /**
  * Formats an array of populatedAuthors from Posts into a prettified string.
  *
@@ -44,16 +42,16 @@ import { Post } from '@/payload-types';
  * };
  * ```
  */
-export const formatAuthors = (authors: NonNullable<NonNullable<Post['populatedAuthors']>[number]>[]) => {
-  // Ensure we don't have any authors without a name
-  const filteredAuthors = authors.filter(author => Boolean(author.name));
+// export const formatAuthors = (authors: NonNullable<NonNullable<Post['populatedAuthors']>[number]>[]) => {
+//   // Ensure we don't have any authors without a name
+//   const filteredAuthors = authors.filter(author => Boolean(author.name));
 
-  if (filteredAuthors.length === 0) return '';
-  if (filteredAuthors.length === 1) return filteredAuthors[0].name;
-  if (filteredAuthors.length === 2) return `${filteredAuthors[0].name} and ${filteredAuthors[1].name}`;
+//   if (filteredAuthors.length === 0) return '';
+//   if (filteredAuthors.length === 1) return filteredAuthors[0].name;
+//   if (filteredAuthors.length === 2) return `${filteredAuthors[0].name} and ${filteredAuthors[1].name}`;
 
-  return `${filteredAuthors
-    .slice(0, -1)
-    .map(author => author?.name)
-    .join(', ')} and ${filteredAuthors[authors.length - 1].name}`;
-};
+//   return `${filteredAuthors
+//     .slice(0, -1)
+//     .map(author => author?.name)
+//     .join(', ')} and ${filteredAuthors[authors.length - 1].name}`;
+// };
