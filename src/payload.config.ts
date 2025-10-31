@@ -1,33 +1,32 @@
-import { postgresAdapter } from '@payloadcms/db-postgres'; //
+import { buildConfig } from 'payload'
+import sharp from 'sharp'
 
-import { buildConfig } from 'payload';
-import sharp from 'sharp';
+import { Categories } from '@/payload/collections/Categories'
+import { Media } from '@/payload/collections/Media'
+import { Pages } from '@/payload/Singletons/Pages/pages-collection'
+import { Users } from '@/payload/collections/users-collection'
+import { defaultLexical } from '@/payload/fields/defaultLexical'
 
-import { Categories } from '@/payload/collections/Categories';
-import { Media } from '@/payload/collections/Media';
-import { Pages } from '@/payload/Singletons/Pages/pages-collection';
-import { Users } from '@/payload/collections/users-collection';
-import { defaultLexical } from '@/payload/fields/defaultLexical';
-
-import { getServerSideURL } from '@/lib/utils/getURL';
-import { plugins } from './payload/plugins';
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
-import { Attendees } from './payload/collections/attendees-collection';
-import { Events } from './payload/collections/events-collection';
-import { MarketingSectionsCollection } from './payload/Singletons/Marketing-sections/marketing-sections_old';
-import { PartnersCollection } from './payload/Singletons/Marketing-sections/partners_old';
-import { Partners2Collection } from './payload/Singletons/Marketing-sections/partners2';
-import { Contacts } from './payload/globals/contacts';
-import { Homepage } from './payload/Singletons/Pages/homepage-collection';
-import { FaqLeftRightCollection } from './payload/Singletons/Marketing-sections/faq-left-right';
-import { Gallery7Collection } from './payload/Singletons/Marketing-sections/gallery-7';
-import { Testimonial25Collection } from './payload/Singletons/Marketing-sections/testimonial-25';
-import { StatisticsCollection } from './payload/Singletons/Marketing-sections/statistics';
-import { AboutPage } from './payload/Singletons/Pages/about-collection';
-import { LecturersCollection } from './payload/Singletons/Marketing-sections/lecturers';
-import { ConfPage } from './payload/Singletons/Pages/conference-collection';
-import { AgendaCollection } from './payload/Singletons/Marketing-sections/agenda';
-import { Tickets } from './payload/collections/tickets-collection';
+import { getServerSideURL } from '@/lib/utils/getURL'
+import { plugins } from './payload/plugins'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import { Attendees } from './payload/collections/attendees-collection'
+import { Events } from './payload/collections/events-collection'
+import { MarketingSectionsCollection } from './payload/Singletons/Marketing-sections/marketing-sections_old'
+import { PartnersCollection } from './payload/Singletons/Marketing-sections/partners_old'
+import { Partners2Collection } from './payload/Singletons/Marketing-sections/partners2'
+import { Contacts } from './payload/globals/contacts'
+import { Homepage } from './payload/Singletons/Pages/homepage-collection'
+import { FaqLeftRightCollection } from './payload/Singletons/Marketing-sections/faq-left-right'
+import { Gallery7Collection } from './payload/Singletons/Marketing-sections/gallery-7'
+import { Testimonial25Collection } from './payload/Singletons/Marketing-sections/testimonial-25'
+import { StatisticsCollection } from './payload/Singletons/Marketing-sections/statistics'
+import { AboutPage } from './payload/Singletons/Pages/about-collection'
+import { LecturersCollection } from './payload/Singletons/Marketing-sections/lecturers'
+import { ConfPage } from './payload/Singletons/Pages/conference-collection'
+import { AgendaCollection } from './payload/Singletons/Marketing-sections/agenda'
+import { Tickets } from './payload/collections/tickets-collection'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
 export default buildConfig({
   email: nodemailerAdapter({
@@ -77,13 +76,10 @@ export default buildConfig({
   globals: [Contacts],
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
-    },
-    idType: 'uuid',
+  db: mongooseAdapter({
+    url: process.env.DATABASE_URI,
   }),
-  collections: [Users, Media, Pages, Categories, Attendees, Events, MarketingSectionsCollection, PartnersCollection, Partners2Collection, Tickets, Homepage, AboutPage, ConfPage, Gallery7Collection, Testimonial25Collection, StatisticsCollection, FaqLeftRightCollection, LecturersCollection, AgendaCollection], //onChange => npm run db:schema
+  collections: [Users, Media, Pages, Categories, Attendees, Events, MarketingSectionsCollection, PartnersCollection, Partners2Collection, Tickets, Homepage, AboutPage, ConfPage, Gallery7Collection, Testimonial25Collection, StatisticsCollection, FaqLeftRightCollection, LecturersCollection, AgendaCollection],
   cors: [getServerSideURL()].filter(Boolean),
   secret: process.env.PAYLOAD_SECRET,
   sharp,
@@ -91,4 +87,4 @@ export default buildConfig({
     outputFile: 'src/payload-types.ts',
   },
   plugins: [...plugins],
-});
+})

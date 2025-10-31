@@ -6,14 +6,14 @@ import { Plugin } from 'payload';
 import { s3Storage } from '@payloadcms/storage-s3';
 
 import { getServerSideURL } from '@/lib/utils/getURL';
-import { Page, Post } from '@/payload-types';
+import { Page } from '@/payload-types';
 import { revalidateRedirects } from '../../utils/revalidateRedirects';
 
 export const plugins: Plugin[] = [
   // storage-adapter-placeholder,
 
   redirectsPlugin({
-    collections: ['pages', 'posts'],
+    collections: ['pages'],
     overrides: {
       // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
       fields: ({ defaultFields }) => {
@@ -36,10 +36,10 @@ export const plugins: Plugin[] = [
   }),
 
   seoPlugin({
-    generateTitle: ({ doc }: { doc: Post | Page }) => {
+    generateTitle: ({ doc }: { doc: Page }) => {
       return doc?.title ? `${doc.title} | payloadblocks.dev Website Template` : 'payloadblocks.dev Website Template';
     },
-    generateURL: ({ doc }: { doc: Post | Page }) => {
+    generateURL: ({ doc }: { doc: Page }) => {
       const url = getServerSideURL();
       return doc?.slug ? `${url}/${doc.slug}` : url;
     },
