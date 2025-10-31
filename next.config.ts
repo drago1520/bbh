@@ -1,12 +1,16 @@
-import { withPayload } from '@payloadcms/next/withPayload';
+import { withPayload } from '@payloadcms/next/withPayload'
+import { withSentryConfig } from '@sentry/nextjs'
 
-import redirects from './redirects.js';
-import { NextConfig } from 'next';
+import redirects from './redirects.js'
+import { NextConfig } from 'next'
 
-const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  experimental: {
+    reactCompiler: true,
+  },
   turbopack: {
     resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
     rules: {
@@ -21,19 +25,19 @@ const nextConfig: NextConfig = {
       '.cjs': ['.cts', '.cjs'],
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
       '.mjs': ['.mts', '.mjs'],
-    };
+    }
 
-    return webpackConfig;
+    return webpackConfig
   },
   images: {
     remotePatterns: [
       ...[NEXT_PUBLIC_SERVER_URL].map(item => {
-        const url = new URL(item);
+        const url = new URL(item)
 
         return {
           hostname: url.hostname,
           protocol: url.protocol.replace(':', '') as 'http' | 'https',
-        };
+        }
       }),
       {
         protocol: 'https',
@@ -49,6 +53,6 @@ const nextConfig: NextConfig = {
   redirects,
   // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
-};
+}
 
-export default withPayload(nextConfig, { devBundleServerPackages: false });
+export default withPayload(nextConfig, { devBundleServerPackages: false })
