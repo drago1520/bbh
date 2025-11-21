@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createTicket } from "./create-ticket";
 import { Ticket } from "@/payload-types";
-console.log("process.env.STRIPE_SECRET_KEY! :", process.env.STRIPE_SECRET_KEY!);
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-08-27.basil",
 });
@@ -40,7 +39,6 @@ export async function POST(req: NextRequest) {
         ticketData,
         personalInfo: { email, name, phone },
       });
-      console.log("result :", result);
       if (!result.success) throw new Error(result.error);
     }
     return NextResponse.json({ message: "" });
