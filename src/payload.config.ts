@@ -25,6 +25,7 @@ import { Contacts } from "./payload/collections/contacts-collection";
 import { AboutPage } from "./payload/pages/about-page-collection";
 import { NetworkingPage } from "./payload/pages/networking-page-collection";
 import { HomePage } from "./payload/pages/home-page-collection";
+import { s3Storage } from "@payloadcms/storage-s3";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -76,17 +77,31 @@ export default buildConfig({
     Contacts,
   ],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: process.env.PAYLOAD_SECRET!,
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || "",
+    url: process.env.DATABASE_URI!,
   }),
   cors: [getServerSideURL()].filter(Boolean),
   sharp,
   plugins: [
     // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.S3_BUCKET!,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+        },
+        region: "auto",
+        endpoint: process.env.S3_ENDPOINT,
+      },
+    }),
   ],
   defaultDepth: 999, //DO NOT REMOVE, all payload.find() will explode
   // indexSortableFields

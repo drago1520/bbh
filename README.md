@@ -8,7 +8,7 @@ First, run the development server:
 bun dev
 ```
 
-This includes Docker containers for development with S3 buckets, email & MongoDB.
+This includes Docker containers for development with S3 S3_BUCKETs, email & MongoDB.
 On changes to the Database structure run
 
 ```bash
