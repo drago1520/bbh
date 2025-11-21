@@ -1,8 +1,8 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-import type { User } from '@/payload-types';
-import { getClientSideURL } from './getURL';
+import type { User } from "@/payload-types";
+import { getClientSideURL } from "./getURL";
 
 /**
  * Fetches the currently authenticated user and handles redirects based on authentication state.
@@ -72,7 +72,7 @@ export const getMeUser = async (args?: {
 }> => {
   const { nullUserRedirect, validUserRedirect } = args || {};
   const cookieStore = await cookies();
-  const token = cookieStore.get('payload-token')?.value;
+  const token = cookieStore.get("payload-token")?.value;
 
   const meUserReq = await fetch(`${getClientSideURL()}/api/users/me`, {
     headers: {

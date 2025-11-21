@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
-@import 'tailwindcss';
-@plugin "@tailwindcss/typography";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
 @config '../../../tailwind.config.mjs';
-@import 'tw-animate-css';
+@import "tw-animate-css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme inline {
-  --font-rubik: 'Rubik', sans-serif;
+  --font-rubik: "Rubik", sans-serif;
   --color-primary-conference: var(--primary-conference);
   --color-primary-foreground-conference: var(--primary-foreground-conference);
   --color-background: var(--background);
@@ -183,7 +182,7 @@
     --primary-950: oklch(0.32 0.07 158.66);
   }
 
-  [data-theme='dark'] {
+  [data-theme="dark"] {
     --background: oklch(0.141 0.005 285.823);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.21 0.006 285.885);
@@ -261,8 +260,8 @@ html {
   opacity: 0;
 }
 
-html[data-theme='dark'],
-html[data-theme='light'] {
+html[data-theme="dark"],
+html[data-theme="light"] {
   opacity: initial;
 }
 
@@ -277,7 +276,7 @@ html[data-theme='light'] {
 }
 
 /* Also modified in JSXConverter */
-.prose:where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+.prose:where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: inherit !important;
 }
 

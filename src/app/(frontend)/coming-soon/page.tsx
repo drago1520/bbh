@@ -1,6 +1,6 @@
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import ComingSoonHero from './components/coming-soon';
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import ComingSoonHero from "./components/coming-soon";
 
 export default function Page() {
   return (

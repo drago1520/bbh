@@ -13,53 +13,53 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+  | "Pacific/Midway"
+  | "Pacific/Niue"
+  | "Pacific/Honolulu"
+  | "Pacific/Rarotonga"
+  | "America/Anchorage"
+  | "Pacific/Gambier"
+  | "America/Los_Angeles"
+  | "America/Tijuana"
+  | "America/Denver"
+  | "America/Phoenix"
+  | "America/Chicago"
+  | "America/Guatemala"
+  | "America/New_York"
+  | "America/Bogota"
+  | "America/Caracas"
+  | "America/Santiago"
+  | "America/Buenos_Aires"
+  | "America/Sao_Paulo"
+  | "Atlantic/South_Georgia"
+  | "Atlantic/Azores"
+  | "Atlantic/Cape_Verde"
+  | "Europe/London"
+  | "Europe/Berlin"
+  | "Africa/Lagos"
+  | "Europe/Athens"
+  | "Africa/Cairo"
+  | "Europe/Moscow"
+  | "Asia/Riyadh"
+  | "Asia/Dubai"
+  | "Asia/Baku"
+  | "Asia/Karachi"
+  | "Asia/Tashkent"
+  | "Asia/Calcutta"
+  | "Asia/Dhaka"
+  | "Asia/Almaty"
+  | "Asia/Jakarta"
+  | "Asia/Bangkok"
+  | "Asia/Shanghai"
+  | "Asia/Singapore"
+  | "Asia/Tokyo"
+  | "Asia/Seoul"
+  | "Australia/Brisbane"
+  | "Australia/Sydney"
+  | "Pacific/Guam"
+  | "Pacific/Noumea"
+  | "Pacific/Auckland"
+  | "Pacific/Fiji";
 
 export interface Config {
   auth: {
@@ -67,81 +67,71 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    AboutPage: AboutPageProps;
+    HomePage: HomePageProps;
+    NetworkingPage: NetworkingPageProps;
     users: User;
     media: Media;
-    pages: Page;
-    categories: Category;
     attendees: Attendee;
-    events: Event;
-    'marketing-sections': MarketingSection;
-    partners: Partner;
-    partners2: Partners2;
+    events: EventProps;
+    "marketing-sections": MarketingSection;
+    partnersN: PartnersNProps;
     tickets: Ticket;
-    homepage: Homepage;
-    about: About;
-    conf: Conf;
     gallery7: Gallery7;
-    testimonial25: Testimonial25;
-    statisticsN: StatisticsN;
+    testimonial25: Testimonial25Props;
+    statisticsN: StatisticsProps;
     faqLeftRight: FaqLeftRight;
-    lecturersN: LecturersN;
-    agendaN: AgendaN;
-    redirects: Redirect;
-    'payload-kv': PayloadKv;
-    'payload-jobs': PayloadJob;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    lecturersN: LecturersNProps;
+    agendaN: AgendaNProps;
+    contacts: ContactsProps;
+    "payload-kv": PayloadKv;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
+    AboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
+    HomePage: HomePageSelect<false> | HomePageSelect<true>;
+    NetworkingPage: NetworkingPageSelect<false> | NetworkingPageSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    pages: PagesSelect<false> | PagesSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     attendees: AttendeesSelect<false> | AttendeesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
-    'marketing-sections': MarketingSectionsSelect<false> | MarketingSectionsSelect<true>;
-    partners: PartnersSelect<false> | PartnersSelect<true>;
-    partners2: Partners2Select<false> | Partners2Select<true>;
+    "marketing-sections":
+      | MarketingSectionsSelect<false>
+      | MarketingSectionsSelect<true>;
+    partnersN: PartnersNSelect<false> | PartnersNSelect<true>;
     tickets: TicketsSelect<false> | TicketsSelect<true>;
-    homepage: HomepageSelect<false> | HomepageSelect<true>;
-    about: AboutSelect<false> | AboutSelect<true>;
-    conf: ConfSelect<false> | ConfSelect<true>;
     gallery7: Gallery7Select<false> | Gallery7Select<true>;
     testimonial25: Testimonial25Select<false> | Testimonial25Select<true>;
     statisticsN: StatisticsNSelect<false> | StatisticsNSelect<true>;
     faqLeftRight: FaqLeftRightSelect<false> | FaqLeftRightSelect<true>;
     lecturersN: LecturersNSelect<false> | LecturersNSelect<true>;
     agendaN: AgendaNSelect<false> | AgendaNSelect<true>;
-    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
-    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
-    'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
+    "payload-kv": PayloadKvSelect<false> | PayloadKvSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences":
+      | PayloadPreferencesSelect<false>
+      | PayloadPreferencesSelect<true>;
+    "payload-migrations":
+      | PayloadMigrationsSelect<false>
+      | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
   };
-  globals: {
-    contacts: ContactsProps;
-  };
-  globalsSelect: {
-    contacts: ContactsSelect<false> | ContactsSelect<true>;
-  };
+  globals: {};
+  globalsSelect: {};
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
   jobs: {
-    tasks: {
-      schedulePublish: TaskSchedulePublish;
-      inline: {
-        input: unknown;
-        output: unknown;
-      };
-    };
+    tasks: unknown;
     workflows: unknown;
   };
 }
@@ -165,28 +155,44 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "AboutPage".
  */
-export interface User {
+export interface AboutPageProps {
   id: string;
-  name?: string | null;
+  statisticsN?: (string | null) | StatisticsProps;
+  partners?: (string | null) | PartnersNProps;
+  label: string;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statisticsN".
+ */
+export interface StatisticsProps {
+  id: string;
+  label: string;
+  /**
+   * Показва се над трите статистики
+   */
+  title?: string | null;
+  statisticsData: {
+    /**
+     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
+     */
+    icon?: (string | null) | Media;
+    value: number;
+    /**
+     * Показва се точно до числото, а НЕ на нов ред като описанието.
+     */
+    suffix?: string | null;
+    description: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: "statistic";
+  }[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -206,64 +212,51 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-  sizes?: {
-    og?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "partnersN".
  */
-export interface Page {
+export interface PartnersNProps {
   id: string;
-  title: string;
-  ctaText?: string | null;
-  subheading?: string | null;
-  emailTemplateId?: string | null;
   /**
-   * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
+   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
    */
-  heroImg?: (string | null) | Media;
-  blocks: (
-    | FaqLeftRightBlockProps
-    | Gallery7Props
-    | Testimonial25Props
-    | StatisticsProps
-    | AgendaProps
-    | LecturersProps
-    | ConfTimelineProps
-    | WhoIsTheConfForProps
-    | PricingProps
-    | Testimonials2Props
-  )[];
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
+  label: string;
+  subtitle?: string | null;
+  images: (string | Media)[];
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FaqLeftRightBlockProps".
+ * via the `definition` "HomePage".
  */
-export interface FaqLeftRightBlockProps {
+export interface HomePageProps {
+  id: string;
+  subheading?: string | null;
+  heroImg?: (string | null) | Media;
+  faqLeftRight?: (string | null) | FaqLeftRight;
+  gallery7?: (string | null) | Gallery7;
+  testimonials25?: (string | null) | Testimonial25Props;
+  /**
+   * Ако не въведете, ще се показват всички включени актуални събития
+   */
+  events?: (string | EventProps)[] | null;
+  statisticsN?: (string | null) | StatisticsProps;
+  partners?: (string | null) | PartnersNProps;
+  label: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqLeftRight".
+ */
+export interface FaqLeftRight {
+  id: string;
   title: string;
+  label: string;
   helperText: {
     root: {
       type: string;
@@ -272,17 +265,16 @@ export interface FaqLeftRightBlockProps {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
     [k: string]: unknown;
   };
   QABlock: QABlockProps[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'faqChessMate';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -298,8 +290,8 @@ export interface QABlockProps {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -307,14 +299,16 @@ export interface QABlockProps {
   };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'qABlock';
+  blockType: "qABlock";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Gallery7Props".
+ * via the `definition` "gallery7".
  */
-export interface Gallery7Props {
-  heading: string;
+export interface Gallery7 {
+  id: string;
+  label: string;
+  title: string;
   images: (string | Media)[];
   descr?: {
     root: {
@@ -324,8 +318,8 @@ export interface Gallery7Props {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -334,26 +328,26 @@ export interface Gallery7Props {
   ctaText?: string | null;
   ctaHref?: string | null;
   rotateSpeed?: number | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'gallery7';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonial25Props".
+ * via the `definition` "testimonial25".
  */
 export interface Testimonial25Props {
+  id: string;
+  label: string;
   title: string;
   helperText?: string | null;
   ctaText?: string | null;
   ctaHref?: string | null;
   /**
-   * Отделните ревюта на клиенти с цитат от тях и къде работят
+   * Добавете отделните карти за препоръки. При нужда копирайте вече съществуващи записи.
    */
-  blocks: Testimonial25CardProps[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'testimonial25Block';
+  cards: Testimonial25CardProps[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -367,190 +361,13 @@ export interface Testimonial25CardProps {
   company: string;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'testimonial25CardBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StatisticsProps".
- */
-export interface StatisticsProps {
-  /**
-   * само понякога се показва
-   */
-  title?: string | null;
-  statisticsData: {
-    /**
-     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
-     */
-    icon?: (string | null) | Media;
-    value: number;
-    /**
-     * Показва се точно до числото, а НЕ на нов ред като описанието.
-     */
-    suffix?: string | null;
-    description: string;
-    id?: string | null;
-    blockName?: string | null;
-    blockType: 'statistic';
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'statistics';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AgendaProps".
- */
-export interface AgendaProps {
-  title?: string | null;
-  items: {
-    title: string;
-    description?: string | null;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'agenda';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LecturersProps".
- */
-export interface LecturersProps {
-  title: string;
-  subheading?: string | null;
-  lecturers: {
-    name?: string | null;
-    role?: string | null;
-    bio?: string | null;
-    image: string | Media;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'lecturers';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ConfTimelineProps".
- */
-export interface ConfTimelineProps {
-  title?: string | null;
-  steps: {
-    /**
-     * https://lucide.dev/icons/ > копирайте името (kebap case)
-     */
-    icon?: string | null;
-    title?: string | null;
-    description?: string | null;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'timeline';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "WhoIsTheConfForProps".
- */
-export interface WhoIsTheConfForProps {
-  title: string;
-  subheading?: string | null;
-  items: {
-    icon?: (string | null) | Media;
-    title: string;
-    description?: string | null;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'whoIsTheConfFor';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "PricingProps".
- */
-export interface PricingProps {
-  label?: string | null;
-  title: string;
-  subheading?: string | null;
-  saleEnd: string;
-  plans: {
-    title?: string | null;
-    features?:
-      | {
-          feature: string;
-          id?: string | null;
-        }[]
-      | null;
-    originalPrice: string;
-    discountedPrice?: string | null;
-    discount?: string | null;
-    description?: string | null;
-    active: boolean;
-    bonus?: string | null;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'PricingWithCountdown';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonials2Props".
- */
-export interface Testimonials2Props {
-  title: string;
-  subheading?: string | null;
-  testimonials: {
-    quote: string;
-    clientName: string;
-    /**
-     * Портретна снимка на клиента
-     */
-    clientImg: string | Media;
-    workTitle?: string | null;
-    title?: string | null;
-    badge?: string | null;
-    /**
-     * Най-голямата снимка, която стои от другата страна на цитата
-     */
-    cardImg: string | Media;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'testimonials2';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "attendees".
- */
-export interface Attendee {
-  id: string;
-  email?: string | null;
-  name?: string | null;
-  phone?: string | null;
-  updatedAt: string;
-  createdAt: string;
+  blockType: "testimonial25CardBlock";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
-export interface Event {
+export interface EventProps {
   id: string;
   title: string;
   description: {
@@ -561,8 +378,8 @@ export interface Event {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -579,8 +396,8 @@ export interface Event {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -590,9 +407,9 @@ export interface Event {
    * Stripe Dashboard > Search (top center) > Payment Links > + New; Сложете redirect към сайта. Може с имейл, телефон или комбинация.
    */
   stripeUrl?: string | null;
-  type: 'networking' | 'businessBreakfast' | 'conference' | 'courses';
+  type: "networking" | "businessBreakfast" | "conference" | "courses";
   date: string;
-  active: 'false' | 'true';
+  active: "false" | "true";
   /**
    * 2 имена на лектора
    */
@@ -622,6 +439,57 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NetworkingPage".
+ */
+export interface NetworkingPageProps {
+  id: string;
+  /**
+   * Ако не въведете събитие, най-новото ще се покаже.
+   */
+  event?: (string | null) | EventProps;
+  partners?: (string | null) | PartnersNProps;
+  label: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "attendees".
+ */
+export interface Attendee {
+  id: string;
+  email?: string | null;
+  name?: string | null;
+  phone?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "marketing-sections".
  */
 export interface MarketingSection {
@@ -640,10 +508,11 @@ export interface MarketingSection {
  * via the `definition` "PartnersProps".
  */
 export interface PartnersProps {
+  subtitle?: string | null;
   images: (string | Media)[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'partners';
+  blockType: "partners";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -654,32 +523,7 @@ export interface Partners2Props {
   images: (string | Media)[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'partners2';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners".
- */
-export interface Partner {
-  id: string;
-  partners: PartnersProps[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners2".
- */
-export interface Partners2 {
-  id: string;
-  /**
-   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
-   */
-  label: string;
-  subtitle?: string | null;
-  images: (string | Media)[];
-  updatedAt: string;
-  createdAt: string;
+  blockType: "partners2";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -691,244 +535,17 @@ export interface Ticket {
   /**
    * Трябва да има създадено събитие. /admin > Events > "add new"
    */
-  event: string | Event;
-  source: 'stripe' | 'manually';
+  event: string | EventProps;
+  source: "stripe" | "manually";
   paymentIntentId?: string | null;
   createdAt: string;
   updatedAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage".
- */
-export interface Homepage {
-  id: string;
-  title?: string | null;
-  subheading?: string | null;
-  /**
-   * 100% от хората ще видят снимката. 60% от хората НЯМА да скролнат надолу. Трябва да отговаря на heading-а.
-   */
-  heroImg?: (string | null) | Media;
-  sections?:
-    | (
-        | {
-            relationTo: 'faqLeftRight';
-            value: string | FaqLeftRight;
-          }
-        | {
-            relationTo: 'gallery7';
-            value: string | Gallery7;
-          }
-        | {
-            relationTo: 'testimonial25';
-            value: string | Testimonial25;
-          }
-        | {
-            relationTo: 'statisticsN';
-            value: string | StatisticsN;
-          }
-      )[]
-    | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqLeftRight".
- */
-export interface FaqLeftRight {
-  id: string;
-  title: string;
-  label: string;
-  helperText: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  QABlock: QABlockProps[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery7".
- */
-export interface Gallery7 {
-  id: string;
-  label: string;
-  title: string;
-  images: (string | Media)[];
-  descr?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  ctaText?: string | null;
-  ctaHref?: string | null;
-  rotateSpeed?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonial25".
- */
-export interface Testimonial25 {
-  id: string;
-  label: string;
-  title: string;
-  helperText?: string | null;
-  ctaText?: string | null;
-  ctaHref?: string | null;
-  /**
-   * Добавете отделните карти за препоръки. При нужда копирайте вече съществуващи записи.
-   */
-  cards: Testimonial25CardProps[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "statisticsN".
- */
-export interface StatisticsN {
-  id: string;
-  label: string;
-  /**
-   * Показва се над трите статистики
-   */
-  title?: string | null;
-  statisticsData: {
-    /**
-     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
-     */
-    icon?: (string | null) | Media;
-    value: number;
-    /**
-     * Показва се точно до числото, а НЕ на нов ред като описанието.
-     */
-    suffix?: string | null;
-    description: string;
-    id?: string | null;
-    blockName?: string | null;
-    blockType: 'statistic';
-  }[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about".
- */
-export interface About {
-  id: string;
-  title?: string | null;
-  sections?:
-    | (
-        | {
-            relationTo: 'faqLeftRight';
-            value: string | FaqLeftRight;
-          }
-        | {
-            relationTo: 'gallery7';
-            value: string | Gallery7;
-          }
-        | {
-            relationTo: 'testimonial25';
-            value: string | Testimonial25;
-          }
-        | {
-            relationTo: 'statisticsN';
-            value: string | StatisticsN;
-          }
-      )[]
-    | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "conf".
- */
-export interface Conf {
-  id: string;
-  title?: string | null;
-  sections?:
-    | (
-        | {
-            relationTo: 'lecturersN';
-            value: string | LecturersN;
-          }
-        | {
-            relationTo: 'agendaN';
-            value: string | AgendaN;
-          }
-      )[]
-    | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "lecturersN".
  */
-export interface LecturersN {
+export interface LecturersNProps {
   id: string;
   title: string;
   label: string;
@@ -947,7 +564,7 @@ export interface LecturersN {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "agendaN".
  */
-export interface AgendaN {
+export interface AgendaNProps {
   id: string;
   title?: string | null;
   label: string;
@@ -961,22 +578,62 @@ export interface AgendaN {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
+ * via the `definition` "contacts".
  */
-export interface Redirect {
+export interface ContactsProps {
   id: string;
   /**
-   * You will need to rebuild the website when changing this field.
+   * Показва се над Формуляра за контакти
    */
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    url?: string | null;
-  };
+  title?: string | null;
+  subheading?: string | null;
+  /**
+   * google.com/maps > намери място > "Share" > Embed a map > копирайте само url-a в кавичките. 15 сек  tutorial: https://vento.so/view/9e099913-bb15-4990-af47-5b62dc41b98e?utm_medium=share
+   */
+  gmaps?: string | null;
+  cta: string;
+  address?: string | null;
+  phones?:
+    | {
+        phone?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  emails?:
+    | {
+        email?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Социалки. Важно е да има youtube за SEO.
+   */
+  socials?:
+    | {
+        platform:
+          | "facebook"
+          | "instagram"
+          | "twitter"
+          | "linkedin"
+          | "youtube"
+          | "tiktok"
+          | "whatsapp"
+          | "telegram"
+          | "viber"
+          | "discord"
+          | "snapchat"
+          | "pinterest"
+          | "reddit"
+          | "twitch"
+          | "medium"
+          | "slack"
+          | "skype"
+          | "threads"
+          | "yelp";
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -999,194 +656,82 @@ export interface PayloadKv {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-jobs".
- */
-export interface PayloadJob {
-  id: string;
-  /**
-   * Input data provided to the job
-   */
-  input?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  taskStatus?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  completedAt?: string | null;
-  totalTried?: number | null;
-  /**
-   * If hasError is true this job will not be retried
-   */
-  hasError?: boolean | null;
-  /**
-   * If hasError is true, this is the error that caused it
-   */
-  error?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  /**
-   * Task execution log
-   */
-  log?:
-    | {
-        executedAt: string;
-        completedAt: string;
-        taskSlug: 'inline' | 'schedulePublish';
-        taskID: string;
-        input?:
-          | {
-              [k: string]: unknown;
-            }
-          | unknown[]
-          | string
-          | number
-          | boolean
-          | null;
-        output?:
-          | {
-              [k: string]: unknown;
-            }
-          | unknown[]
-          | string
-          | number
-          | boolean
-          | null;
-        state: 'failed' | 'succeeded';
-        error?:
-          | {
-              [k: string]: unknown;
-            }
-          | unknown[]
-          | string
-          | number
-          | boolean
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  taskSlug?: ('inline' | 'schedulePublish') | null;
-  queue?: string | null;
-  waitUntil?: string | null;
-  processing?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
+        relationTo: "AboutPage";
+        value: string | AboutPageProps;
+      } | null)
+    | ({
+        relationTo: "HomePage";
+        value: string | HomePageProps;
+      } | null)
+    | ({
+        relationTo: "NetworkingPage";
+        value: string | NetworkingPageProps;
+      } | null)
+    | ({
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'pages';
-        value: string | Page;
-      } | null)
-    | ({
-        relationTo: 'categories';
-        value: string | Category;
-      } | null)
-    | ({
-        relationTo: 'attendees';
+        relationTo: "attendees";
         value: string | Attendee;
       } | null)
     | ({
-        relationTo: 'events';
-        value: string | Event;
+        relationTo: "events";
+        value: string | EventProps;
       } | null)
     | ({
-        relationTo: 'marketing-sections';
+        relationTo: "marketing-sections";
         value: string | MarketingSection;
       } | null)
     | ({
-        relationTo: 'partners';
-        value: string | Partner;
+        relationTo: "partnersN";
+        value: string | PartnersNProps;
       } | null)
     | ({
-        relationTo: 'partners2';
-        value: string | Partners2;
-      } | null)
-    | ({
-        relationTo: 'tickets';
+        relationTo: "tickets";
         value: string | Ticket;
       } | null)
     | ({
-        relationTo: 'homepage';
-        value: string | Homepage;
-      } | null)
-    | ({
-        relationTo: 'about';
-        value: string | About;
-      } | null)
-    | ({
-        relationTo: 'conf';
-        value: string | Conf;
-      } | null)
-    | ({
-        relationTo: 'gallery7';
+        relationTo: "gallery7";
         value: string | Gallery7;
       } | null)
     | ({
-        relationTo: 'testimonial25';
-        value: string | Testimonial25;
+        relationTo: "testimonial25";
+        value: string | Testimonial25Props;
       } | null)
     | ({
-        relationTo: 'statisticsN';
-        value: string | StatisticsN;
+        relationTo: "statisticsN";
+        value: string | StatisticsProps;
       } | null)
     | ({
-        relationTo: 'faqLeftRight';
+        relationTo: "faqLeftRight";
         value: string | FaqLeftRight;
       } | null)
     | ({
-        relationTo: 'lecturersN';
-        value: string | LecturersN;
+        relationTo: "lecturersN";
+        value: string | LecturersNProps;
       } | null)
     | ({
-        relationTo: 'agendaN';
-        value: string | AgendaN;
+        relationTo: "agendaN";
+        value: string | AgendaNProps;
       } | null)
     | ({
-        relationTo: 'redirects';
-        value: string | Redirect;
-      } | null)
-    | ({
-        relationTo: 'payload-kv';
-        value: string | PayloadKv;
-      } | null)
-    | ({
-        relationTo: 'payload-jobs';
-        value: string | PayloadJob;
+        relationTo: "contacts";
+        value: string | ContactsProps;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -1199,7 +744,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -1228,10 +773,48 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutPage_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  statisticsN?: T;
+  partners?: T;
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomePage_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  subheading?: T;
+  heroImg?: T;
+  faqLeftRight?: T;
+  gallery7?: T;
+  testimonials25?: T;
+  events?: T;
+  statisticsN?: T;
+  partners?: T;
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NetworkingPage_select".
+ */
+export interface NetworkingPageSelect<T extends boolean = true> {
+  event?: T;
+  partners?: T;
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  name?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1266,283 +849,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-  sizes?:
-    | T
-    | {
-        og?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages_select".
- */
-export interface PagesSelect<T extends boolean = true> {
-  title?: T;
-  ctaText?: T;
-  subheading?: T;
-  emailTemplateId?: T;
-  heroImg?: T;
-  blocks?:
-    | T
-    | {
-        faqChessMate?: T | FaqLeftRightBlockPropsSelect<T>;
-        gallery7?: T | Gallery7PropsSelect<T>;
-        testimonial25Block?: T | Testimonial25PropsSelect<T>;
-        statistics?: T | StatisticsPropsSelect<T>;
-        agenda?: T | AgendaPropsSelect<T>;
-        lecturers?: T | LecturersPropsSelect<T>;
-        timeline?: T | ConfTimelinePropsSelect<T>;
-        whoIsTheConfFor?: T | WhoIsTheConfForPropsSelect<T>;
-        PricingWithCountdown?: T | PricingPropsSelect<T>;
-        testimonials2?: T | Testimonials2PropsSelect<T>;
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FaqLeftRightBlockProps_select".
- */
-export interface FaqLeftRightBlockPropsSelect<T extends boolean = true> {
-  title?: T;
-  helperText?: T;
-  QABlock?:
-    | T
-    | {
-        qABlock?: T | QABlockPropsSelect<T>;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "QABlockProps_select".
- */
-export interface QABlockPropsSelect<T extends boolean = true> {
-  question?: T;
-  answer?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Gallery7Props_select".
- */
-export interface Gallery7PropsSelect<T extends boolean = true> {
-  heading?: T;
-  images?: T;
-  descr?: T;
-  ctaText?: T;
-  ctaHref?: T;
-  rotateSpeed?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonial25Props_select".
- */
-export interface Testimonial25PropsSelect<T extends boolean = true> {
-  title?: T;
-  helperText?: T;
-  ctaText?: T;
-  ctaHref?: T;
-  blocks?:
-    | T
-    | {
-        testimonial25CardBlock?: T | Testimonial25CardPropsSelect<T>;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonial25CardProps_select".
- */
-export interface Testimonial25CardPropsSelect<T extends boolean = true> {
-  image?: T;
-  quote?: T;
-  author?: T;
-  role?: T;
-  company?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StatisticsProps_select".
- */
-export interface StatisticsPropsSelect<T extends boolean = true> {
-  title?: T;
-  statisticsData?:
-    | T
-    | {
-        statistic?:
-          | T
-          | {
-              icon?: T;
-              value?: T;
-              suffix?: T;
-              description?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AgendaProps_select".
- */
-export interface AgendaPropsSelect<T extends boolean = true> {
-  title?: T;
-  items?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LecturersProps_select".
- */
-export interface LecturersPropsSelect<T extends boolean = true> {
-  title?: T;
-  subheading?: T;
-  lecturers?:
-    | T
-    | {
-        name?: T;
-        role?: T;
-        bio?: T;
-        image?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ConfTimelineProps_select".
- */
-export interface ConfTimelinePropsSelect<T extends boolean = true> {
-  title?: T;
-  steps?:
-    | T
-    | {
-        icon?: T;
-        title?: T;
-        description?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "WhoIsTheConfForProps_select".
- */
-export interface WhoIsTheConfForPropsSelect<T extends boolean = true> {
-  title?: T;
-  subheading?: T;
-  items?:
-    | T
-    | {
-        icon?: T;
-        title?: T;
-        description?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "PricingProps_select".
- */
-export interface PricingPropsSelect<T extends boolean = true> {
-  label?: T;
-  title?: T;
-  subheading?: T;
-  saleEnd?: T;
-  plans?:
-    | T
-    | {
-        title?: T;
-        features?:
-          | T
-          | {
-              feature?: T;
-              id?: T;
-            };
-        originalPrice?: T;
-        discountedPrice?: T;
-        discount?: T;
-        description?: T;
-        active?: T;
-        bonus?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonials2Props_select".
- */
-export interface Testimonials2PropsSelect<T extends boolean = true> {
-  title?: T;
-  subheading?: T;
-  testimonials?:
-    | T
-    | {
-        quote?: T;
-        clientName?: T;
-        clientImg?: T;
-        workTitle?: T;
-        title?: T;
-        badge?: T;
-        cardImg?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1607,6 +913,7 @@ export interface MarketingSectionsSelect<T extends boolean = true> {
  * via the `definition` "PartnersProps_select".
  */
 export interface PartnersPropsSelect<T extends boolean = true> {
+  subtitle?: T;
   images?: T;
   id?: T;
   blockName?: T;
@@ -1623,22 +930,9 @@ export interface Partners2PropsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners_select".
+ * via the `definition` "partnersN_select".
  */
-export interface PartnersSelect<T extends boolean = true> {
-  partners?:
-    | T
-    | {
-        partners?: T | PartnersPropsSelect<T>;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners2_select".
- */
-export interface Partners2Select<T extends boolean = true> {
+export interface PartnersNSelect<T extends boolean = true> {
   label?: T;
   subtitle?: T;
   images?: T;
@@ -1656,71 +950,6 @@ export interface TicketsSelect<T extends boolean = true> {
   paymentIntentId?: T;
   createdAt?: T;
   updatedAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage_select".
- */
-export interface HomepageSelect<T extends boolean = true> {
-  title?: T;
-  subheading?: T;
-  heroImg?: T;
-  sections?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about_select".
- */
-export interface AboutSelect<T extends boolean = true> {
-  title?: T;
-  sections?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "conf_select".
- */
-export interface ConfSelect<T extends boolean = true> {
-  title?: T;
-  sections?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1754,6 +983,19 @@ export interface Testimonial25Select<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25CardProps_select".
+ */
+export interface Testimonial25CardPropsSelect<T extends boolean = true> {
+  image?: T;
+  quote?: T;
+  author?: T;
+  role?: T;
+  company?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1797,6 +1039,16 @@ export interface FaqLeftRightSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QABlockProps_select".
+ */
+export interface QABlockPropsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "lecturersN_select".
  */
 export interface LecturersNSelect<T extends boolean = true> {
@@ -1834,16 +1086,32 @@ export interface AgendaNSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects_select".
+ * via the `definition` "contacts_select".
  */
-export interface RedirectsSelect<T extends boolean = true> {
-  from?: T;
-  to?:
+export interface ContactsSelect<T extends boolean = true> {
+  title?: T;
+  subheading?: T;
+  gmaps?: T;
+  cta?: T;
+  address?: T;
+  phones?:
     | T
     | {
-        type?: T;
-        reference?: T;
+        phone?: T;
+        id?: T;
+      };
+  emails?:
+    | T
+    | {
+        email?: T;
+        id?: T;
+      };
+  socials?:
+    | T
+    | {
+        platform?: T;
         url?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1855,37 +1123,6 @@ export interface RedirectsSelect<T extends boolean = true> {
 export interface PayloadKvSelect<T extends boolean = true> {
   key?: T;
   data?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-jobs_select".
- */
-export interface PayloadJobsSelect<T extends boolean = true> {
-  input?: T;
-  taskStatus?: T;
-  completedAt?: T;
-  totalTried?: T;
-  hasError?: T;
-  error?: T;
-  log?:
-    | T
-    | {
-        executedAt?: T;
-        completedAt?: T;
-        taskSlug?: T;
-        taskID?: T;
-        input?: T;
-        output?: T;
-        state?: T;
-        error?: T;
-        id?: T;
-      };
-  taskSlug?: T;
-  queue?: T;
-  waitUntil?: T;
-  processing?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1921,137 +1158,12 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contacts".
- */
-export interface ContactsProps {
-  id: string;
-  /**
-   * Показва се над Формуляра за контакти
-   */
-  title?: string | null;
-  subheading?: string | null;
-  /**
-   * google.com/maps > намери място > "Share" > Embed a map > копирайте само url-a в кавичките. 15 сек  tutorial: https://vento.so/view/9e099913-bb15-4990-af47-5b62dc41b98e?utm_medium=share
-   */
-  gmaps?: string | null;
-  cta: string;
-  address?: string | null;
-  phones?:
-    | {
-        phone?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  emails?:
-    | {
-        email?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Социалки. Важно е да има youtube за SEO.
-   */
-  socials?:
-    | {
-        platform:
-          | 'facebook'
-          | 'instagram'
-          | 'twitter'
-          | 'linkedin'
-          | 'youtube'
-          | 'tiktok'
-          | 'whatsapp'
-          | 'telegram'
-          | 'viber'
-          | 'discord'
-          | 'snapchat'
-          | 'pinterest'
-          | 'reddit'
-          | 'twitch'
-          | 'medium'
-          | 'slack'
-          | 'skype'
-          | 'threads'
-          | 'yelp';
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contacts_select".
- */
-export interface ContactsSelect<T extends boolean = true> {
-  title?: T;
-  subheading?: T;
-  gmaps?: T;
-  cta?: T;
-  address?: T;
-  phones?:
-    | T
-    | {
-        phone?: T;
-        id?: T;
-      };
-  emails?:
-    | T
-    | {
-        email?: T;
-        id?: T;
-      };
-  socials?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TaskSchedulePublish".
- */
-export interface TaskSchedulePublish {
-  input: {
-    type?: ('publish' | 'unpublish') | null;
-    locale?: string | null;
-    doc?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'homepage';
-          value: string | Homepage;
-        } | null)
-      | ({
-          relationTo: 'about';
-          value: string | About;
-        } | null)
-      | ({
-          relationTo: 'conf';
-          value: string | Conf;
-        } | null);
-    global?: string | null;
-    user?: (string | null) | User;
-  };
-  output?: unknown;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }

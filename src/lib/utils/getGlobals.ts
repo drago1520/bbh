@@ -1,10 +1,10 @@
-import type { Config } from '@/payload-types';
+import type { Config } from "@/payload-types";
 
-import configPromise from '@payload-config';
-import { getPayload } from 'payload';
-import { unstable_cache } from 'next/cache';
+import configPromise from "@payload-config";
+import { getPayload } from "payload";
+import { unstable_cache } from "next/cache";
 
-type Global = keyof Config['globals'];
+type Global = keyof Config["globals"];
 
 /**
  * Fetches a global document from Payload CMS.

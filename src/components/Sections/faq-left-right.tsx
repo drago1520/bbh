@@ -1,16 +1,24 @@
-'use client';
+"use client";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { FaqLeftRightBlockProps } from '@/payload-types';
-import { DynamicIcon, type IconName } from 'lucide-react/dynamic';
-import RichText from '../RichText';
-import { ComponentProps } from 'react';
-import { cn } from '@/lib/utils';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { ComponentProps } from "react";
+import { cn } from "@/lib/utils";
+import { FaqLeftRight } from "@/payload-types";
+import RichText from "../rich-text";
 
-export default function FAQsThree({ data, className, ...props }: ComponentProps<'section'> & { data: FaqLeftRightBlockProps }) {
+export default function FAQsThree({
+  data,
+  className,
+  ...props
+}: ComponentProps<"section"> & { data: FaqLeftRight }) {
   const { QABlock, helperText, title } = data;
   return (
-    <section className={cn('py-16', className)} {...props}>
+    <section className={cn("py-16", className)} {...props}>
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:gap-16">
           <div className="md:w-1/3">
@@ -22,7 +30,11 @@ export default function FAQsThree({ data, className, ...props }: ComponentProps<
           <div className="md:w-2/3">
             <Accordion type="single" collapsible className="w-full space-y-2">
               {QABlock.map(({ question, answer }) => (
-                <AccordionItem key={question} value={question} className="bg-background rounded-lg border px-4 shadow-xs last:border-b">
+                <AccordionItem
+                  key={question}
+                  value={question}
+                  className="bg-background rounded-lg border px-4 shadow-xs last:border-b"
+                >
                   <AccordionTrigger className="cursor-pointer items-center py-5 hover:no-underline">
                     <div className="flex items-center gap-3">
                       {/* {icon && <div className="flex size-6">

@@ -1,17 +1,23 @@
-'use client';
-import { ArrowLeft, ArrowRight, Calendar, Clock, MapPin } from 'lucide-react';
-import { ComponentProps, useEffect, useState } from 'react';
+"use client";
+import { ArrowLeft, ArrowRight, Calendar, Clock, MapPin } from "lucide-react";
+import { ComponentProps, useEffect, useState } from "react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import type { CarouselApi } from '@/components/ui/carousel';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Image from 'next/image';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { Event } from '@/payload-types';
-import { errorMsgs } from '@/utils/error';
-import { formatToBulgarianDate } from '@/utils/format-bulgarian-datetime';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import type { CarouselApi } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Image from "next/image";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { errorMsgs } from "@/utils/error";
+import { formatToBulgarianDate } from "@/utils/format-bulgarian-datetime";
+import { EventProps } from "@/payload-types";
 
 interface DatItem {
   id: string;
@@ -24,58 +30,81 @@ interface DatItem {
 
 const DATA: DatItem[] = [
   {
-    id: '1',
-    title: 'Бизнес закуска',
-    description: 'Започнете деня с вдъхновяващи разговори и професионални контакти. Всяка бизнес закуска включва презентация на успешни предприемачи и възможност за networking.',
-    image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg',
-    hoverImage: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-5oYbG-sEImY-unsplash.jpg',
-    tag: 'Networking',
+    id: "1",
+    title: "Бизнес закуска",
+    description:
+      "Започнете деня с вдъхновяващи разговори и професионални контакти. Всяка бизнес закуска включва презентация на успешни предприемачи и възможност за networking.",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
+    hoverImage:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-5oYbG-sEImY-unsplash.jpg",
+    tag: "Networking",
   },
   {
-    id: '2',
-    title: 'Нетуъркинг събития',
-    description: 'Срещайте единомишленици, обменяйте идеи и изградете ценни бизнес връзки в непринудена атмосфера. Идеално за разширяване на професионалната мрежа.',
-    image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg',
-    hoverImage: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-duxeKbu9FDE-unsplash.jpg',
-    tag: 'Професионални контакти',
+    id: "2",
+    title: "Нетуъркинг събития",
+    description:
+      "Срещайте единомишленици, обменяйте идеи и изградете ценни бизнес връзки в непринудена атмосфера. Идеално за разширяване на професионалната мрежа.",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg",
+    hoverImage:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-duxeKbu9FDE-unsplash.jpg",
+    tag: "Професионални контакти",
   },
   {
-    id: '3',
-    title: 'Бизнес конференция',
-    description: 'Участвайте в мащабни събития с водещи експерти в индустрията. Получете актуална информация за пазарни тенденции и иновативни бизнес стратегии.',
-    image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-4.svg',
-    hoverImage: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-majMgWtrF48-unsplash.jpg',
-    tag: 'Образование',
+    id: "3",
+    title: "Бизнес конференция",
+    description:
+      "Участвайте в мащабни събития с водещи експерти в индустрията. Получете актуална информация за пазарни тенденции и иновативни бизнес стратегии.",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-4.svg",
+    hoverImage:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-majMgWtrF48-unsplash.jpg",
+    tag: "Образование",
   },
   {
-    id: '4',
-    title: 'Бизнес обучения',
-    description: 'Развийте практически умения с нашите специализирани курсове. От дигитален маркетинг до финансово планиране - всичко за успешния бизнес.',
-    image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-6.svg',
-    hoverImage: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-xYFl3Q9am1E-unsplash.jpg',
-    tag: 'Професионално развитие',
+    id: "4",
+    title: "Бизнес обучения",
+    description:
+      "Развийте практически умения с нашите специализирани курсове. От дигитален маркетинг до финансово планиране - всичко за успешния бизнес.",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-6.svg",
+    hoverImage:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-xYFl3Q9am1E-unsplash.jpg",
+    tag: "Професионално развитие",
   },
   {
-    id: '5',
-    title: 'Предприемачески workshop',
-    description: 'Интерактивни работилници за стартъп ентусиасти и млади предприемачи. Научете как да превърнете идеите си в успешен бизнес.',
-    image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg',
-    hoverImage: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-9__Q24sJqKg-unsplash.jpg',
-    tag: 'Стартъпи',
+    id: "5",
+    title: "Предприемачески workshop",
+    description:
+      "Интерактивни работилници за стартъп ентусиасти и млади предприемачи. Научете как да превърнете идеите си в успешен бизнес.",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg",
+    hoverImage:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-9__Q24sJqKg-unsplash.jpg",
+    tag: "Стартъпи",
   },
   {
-    id: '6',
-    title: 'Инвестиционен форум',
-    description: 'Срещи между инвеститори и предприемачи. Представете своя проект пред потенциални инвеститори или открийте нови възможности за финансиране.',
-    image: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-4.svg',
-    hoverImage: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-5oYbG-sEImY-unsplash.jpg',
-    tag: 'Финансиране',
+    id: "6",
+    title: "Инвестиционен форум",
+    description:
+      "Срещи между инвеститори и предприемачи. Представете своя проект пред потенциални инвеститори или открийте нови възможности за финансиране.",
+    image:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-4.svg",
+    hoverImage:
+      "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/simone-hutsch-5oYbG-sEImY-unsplash.jpg",
+    tag: "Финансиране",
   },
 ];
 
-const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section'> & { events: Event[] }) => {
-  events = events.map(event => {
-    if (typeof event.thumbnail === 'string') throw new Error(errorMsgs.imgIsString);
+const UpcomingEvents = ({
+  className,
+  events,
+  ...props
+}: ComponentProps<"section"> & { events: EventProps[] }) => {
+  events = events.map((event) => {
+    if (typeof event.thumbnail === "string")
+      throw new Error(errorMsgs.imgIsString);
     return event;
   });
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
@@ -95,10 +124,10 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
     };
 
     updateSelection();
-    carouselApi.on('select', updateSelection);
+    carouselApi.on("select", updateSelection);
 
     return () => {
-      carouselApi.off('select', updateSelection);
+      carouselApi.off("select", updateSelection);
     };
   }, [carouselApi]);
 
@@ -108,11 +137,14 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
   const _progressOffset = currentIndex * progressIndicatorWidth;
 
   return (
-    <section className={cn('relative py-16', className)} {...props}>
+    <section className={cn("relative py-16", className)} {...props}>
       <div className="relative container">
         <div className="mb-12 flex max-w-[600px] flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
-            <Link href="#" className="no-underline underline-offset-8 hover:underline">
+            <Link
+              href="#"
+              className="no-underline underline-offset-8 hover:underline"
+            >
               <h3 className="text-h3-size mt-0 mb-0">Предстоящи събития</h3>
             </Link>
           </div>
@@ -140,16 +172,30 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
           <Carousel
             setApi={setCarouselApi}
             opts={{
-              align: 'start',
+              align: "start",
             }}
           >
             <CarouselPrevious className="top-[50%] -left-2 z-10 size-10 md:-left-12" />
             <CarouselNext className="top-[50%] -right-2 z-10 size-10 md:-right-12" />
             <CarouselContent className="-ml-1 pb-10 xl:-ml-15">
-              {events.map(({ id, thumbnail, title, type, date, locationUrl, location }) => (
-                <CarouselItem key={id} className={cn('h-full max-w-[650px] min-w-[350px] flex-1 pl-8 sm:min-w-[416px] xl:min-w-[420px] xl:pl-16')}>
-                  {/* prettier-ignore */}
-                  <div className={
+              {events.map(
+                ({
+                  id,
+                  thumbnail,
+                  title,
+                  type,
+                  date,
+                  locationUrl,
+                  location,
+                }) => (
+                  <CarouselItem
+                    key={id}
+                    className={cn(
+                      "h-full max-w-[650px] min-w-[350px] flex-1 pl-8 sm:min-w-[416px] xl:min-w-[420px] xl:pl-16",
+                    )}
+                  >
+                    {/* prettier-ignore */}
+                    <div className={
                     cn("bg-background/50 flex min-h-[480px] flex-col justify-between rounded-md border border-b-6 border-b-teal-500 p-4 shadow-md backdrop-blur-xs",
                       type == 'businessBreakfast' && 'border-b-brand-accent-light',
                       type == 'conference' && 'border-b-brand-orange',
@@ -192,8 +238,9 @@ const UpcomingEvents = ({ className, events, ...props }: ComponentProps<'section
                       </Button>
                     </div>
                   </div>
-                </CarouselItem>
-              ))}
+                  </CarouselItem>
+                ),
+              )}
             </CarouselContent>
           </Carousel>
 

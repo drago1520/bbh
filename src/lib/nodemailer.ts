@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import Mail from 'nodemailer/lib/mailer';
+import nodemailer from "nodemailer";
+import Mail from "nodemailer/lib/mailer";
 
 export const emailClient = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -11,7 +11,17 @@ export const emailClient = nodemailer.createTransport({
   },
 });
 
-export async function sendEmailSMTP({ from, to, subject, html }: { from?: string; to: string | Mail.Address | (string | Mail.Address)[]; subject: string; html: string }) {
+export async function sendEmailSMTP({
+  from,
+  to,
+  subject,
+  html,
+}: {
+  from?: string;
+  to: string | Mail.Address | (string | Mail.Address)[];
+  subject: string;
+  html: string;
+}) {
   const result = await emailClient.sendMail({
     from: from || process.env.EMAIL_FROM,
     to,

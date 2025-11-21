@@ -1,12 +1,25 @@
-'use server';
+"use server";
 
-import { Attendee, Ticket } from '@/payload-types';
-import { ErrorLogger, errorLogger } from '@/utils/error';
-import payloadConfig from '@payload-config';
-import { getPayload, Where } from 'payload';
-import { createAttendee } from './create-attendee';
+import { Attendee, Ticket } from "@/payload-types";
+import { ErrorLogger, errorLogger } from "@/utils/error";
+import payloadConfig from "@payload-config";
+import { getPayload, Where } from "payload";
+import { createAttendee } from "./create-attendee";
 
-export async function createTicket({ ticketData, personalInfo }: { ticketData: Omit<Ticket, 'attendee' | 'event' | 'id' | 'createdAt' | 'updatedAt'>; personalInfo: { name?: string | null; phone?: string | null; email?: string | null } }): Promise<{ success: true } | ErrorLogger> {
+export async function createTicket({
+  ticketData,
+  personalInfo,
+}: {
+  ticketData: Omit<
+    Ticket,
+    "attendee" | "event" | "id" | "createdAt" | "updatedAt"
+  >;
+  personalInfo: {
+    name?: string | null;
+    phone?: string | null;
+    email?: string | null;
+  };
+}): Promise<{ success: true } | ErrorLogger> {
   try {
     const { email, phone } = personalInfo;
 
@@ -17,7 +30,7 @@ export async function createTicket({ ticketData, personalInfo }: { ticketData: O
     };
     if (phone) filter.or?.push({ phone: { equals: phone } });
     const users = await payload.find({
-      collection: 'attendees',
+      collection: "attendees",
       where: filter,
       limit: 1,
       depth: 10,
@@ -30,17 +43,17 @@ export async function createTicket({ ticketData, personalInfo }: { ticketData: O
     }
     attendee = users.docs[0];
     const events = await payload.find({
-      collection: 'events',
+      collection: "events",
       where: {
         and: [
           {
             type: {
-              equals: 'conference',
+              equals: "conference",
             },
           },
           {
             active: {
-              equals: 'true',
+              equals: "true",
             },
           },
         ],
@@ -52,13 +65,13 @@ export async function createTicket({ ticketData, personalInfo }: { ticketData: O
     if (!latestConf) {
       console.error(`ticketData: `, ticketData);
       console.error(`personalInfo: `, personalInfo);
-      throw new Error('Did not find latest conference when somebody paid');
+      throw new Error("Did not find latest conference when somebody paid");
     }
     const newTicket = await payload.create({
-      collection: 'tickets',
+      collection: "tickets",
       data: { attendee, event: latestConf.id, ...ticketData },
     });
-    if (!newTicket) throw new Error('Could not create a new Ticket');
+    if (!newTicket) throw new Error("Could not create a new Ticket");
     return { success: true };
   } catch (e) {
     return errorLogger(e);

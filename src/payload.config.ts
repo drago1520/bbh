@@ -1,37 +1,42 @@
-import { buildConfig } from 'payload'
-import sharp from 'sharp'
+// storage-adapter-import-placeholder
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import path from "path";
+import { buildConfig } from "payload";
+import { fileURLToPath } from "url";
+import sharp from "sharp";
 
-import { Categories } from '@/payload/collections/Categories'
-import { Media } from '@/payload/collections/Media'
-import { Pages } from '@/payload/Singletons/Pages/pages-collection'
-import { Users } from '@/payload/collections/users-collection'
-import { defaultLexical } from '@/payload/fields/defaultLexical'
+import { Users } from "./payload/collections/Users";
+import { Media } from "./payload/collections/Media";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import { Attendees } from "./payload/collections/Attendees";
+import { Events } from "./payload/collections/Events";
+import { MarketingSectionsCollection } from "./payload/deprecated/Marketing-collection_old";
+import { PartnersNCollection } from "./payload/collections/partnersN";
+import { Tickets } from "./payload/collections/tickets-collection";
+import { Gallery7Collection } from "./payload/collections/gallery-7";
+import { Testimonial25Collection } from "./payload/collections/testimonial25-collection";
+import { StatisticsCollection } from "./payload/collections/statistics";
+import { FaqLeftRightCollection } from "./payload/collections/faq-left-right";
+import { LecturersCollection } from "./payload/collections/lecturers";
+import { AgendaCollection } from "./payload/collections/agenda";
+import { getServerSideURL } from "./lib/utils/getURL";
+import { Contacts } from "./payload/collections/contacts-collection";
+import { AboutPage } from "./payload/pages/about-page-collection";
+import { NetworkingPage } from "./payload/pages/networking-page-collection";
+import { HomePage } from "./payload/pages/home-page-collection";
 
-import { getServerSideURL } from '@/lib/utils/getURL'
-import { plugins } from './payload/plugins'
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
-import { Attendees } from './payload/collections/attendees-collection'
-import { Events } from './payload/collections/events-collection'
-import { MarketingSectionsCollection } from './payload/Singletons/Marketing-sections/marketing-sections_old'
-import { PartnersCollection } from './payload/Singletons/Marketing-sections/partners_old'
-import { Partners2Collection } from './payload/Singletons/Marketing-sections/partners2'
-import { Contacts } from './payload/globals/contacts'
-import { Homepage } from './payload/Singletons/Pages/homepage-collection'
-import { FaqLeftRightCollection } from './payload/Singletons/Marketing-sections/faq-left-right'
-import { Gallery7Collection } from './payload/Singletons/Marketing-sections/gallery-7'
-import { Testimonial25Collection } from './payload/Singletons/Marketing-sections/testimonial-25'
-import { StatisticsCollection } from './payload/Singletons/Marketing-sections/statistics'
-import { AboutPage } from './payload/Singletons/Pages/about-collection'
-import { LecturersCollection } from './payload/Singletons/Marketing-sections/lecturers'
-import { ConfPage } from './payload/Singletons/Pages/conference-collection'
-import { AgendaCollection } from './payload/Singletons/Marketing-sections/agenda'
-import { Tickets } from './payload/collections/tickets-collection'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
   email: nodemailerAdapter({
-    defaultFromAddress: process.env.NODE_ENV == 'production' ? 'office@scufflr.com' : 'team@scufflr.com',
-    defaultFromName: process.env.NODE_ENV == 'production' ? 'Драгомир BBH' : 'Драго Тест BBH',
+    defaultFromAddress:
+      process.env.NODE_ENV == "production"
+        ? "office@scufflr.com"
+        : "team@scufflr.com",
+    defaultFromName:
+      process.env.NODE_ENV == "production" ? "Драгомир BBH" : "Драго Тест BBH",
     transportOptions: {
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -43,48 +48,48 @@ export default buildConfig({
   }),
   admin: {
     timezones: {
-      defaultTimezone: 'Europe/Sofia',
-    },
-    components: {
-      beforeLogin: ['@/components/BeforeLogin'],
-      beforeDashboard: ['@/components/BeforeDashboard'],
+      defaultTimezone: "Europe/Sofia",
     },
     user: Users.slug,
-    livePreview: {
-      breakpoints: [
-        {
-          label: 'Mobile',
-          name: 'mobile',
-          width: 375,
-          height: 667,
-        },
-        {
-          label: 'Tablet',
-          name: 'tablet',
-          width: 768,
-          height: 1024,
-        },
-        {
-          label: 'Desktop',
-          name: 'desktop',
-          width: 1440,
-          height: 900,
-        },
-      ],
+    importMap: {
+      baseDir: path.resolve(dirname),
     },
   },
-  globals: [Contacts],
-  // This config helps us configure global or default features that the other editors can inherit
-  editor: defaultLexical,
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI,
-  }),
-  collections: [Users, Media, Pages, Categories, Attendees, Events, MarketingSectionsCollection, PartnersCollection, Partners2Collection, Tickets, Homepage, AboutPage, ConfPage, Gallery7Collection, Testimonial25Collection, StatisticsCollection, FaqLeftRightCollection, LecturersCollection, AgendaCollection],
-  cors: [getServerSideURL()].filter(Boolean),
-  secret: process.env.PAYLOAD_SECRET,
-  sharp,
+  //Pages, Homepage, AboutPage, ConfPage,
+  collections: [
+    AboutPage,
+    HomePage,
+    NetworkingPage,
+    Users,
+    Media,
+    Attendees,
+    Events,
+    MarketingSectionsCollection,
+    PartnersNCollection,
+    Tickets,
+    Gallery7Collection,
+    Testimonial25Collection,
+    StatisticsCollection,
+    FaqLeftRightCollection,
+    LecturersCollection,
+    AgendaCollection,
+    Contacts,
+  ],
+  editor: lexicalEditor(),
+  secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
-    outputFile: 'src/payload-types.ts',
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  plugins: [...plugins],
-})
+  db: mongooseAdapter({
+    url: process.env.DATABASE_URI || "",
+  }),
+  cors: [getServerSideURL()].filter(Boolean),
+  sharp,
+  plugins: [
+    // storage-adapter-placeholder
+  ],
+  defaultDepth: 999, //DO NOT REMOVE, all payload.find() will explode
+  // indexSortableFields
+  // kv
+  // telemetry: true
+});

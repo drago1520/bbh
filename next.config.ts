@@ -1,58 +1,45 @@
-import { withPayload } from '@payloadcms/next/withPayload'
+import { withPayload } from "@payloadcms/next/withPayload";
+import type { NextConfig } from "next";
+import { withPostHogConfig } from "@posthog/nextjs-config";
 
-import redirects from './redirects.js'
-import { NextConfig } from 'next'
-
-const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-
-/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  /* config options here */
+  reactCompiler: true,
   experimental: {
-    reactCompiler: true,
     typedEnv: true,
-  },
-  turbopack: {
-    resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
-  },
-  webpack: (webpackConfig: any) => {
-    webpackConfig.resolve.extensionAlias = {
-      '.cjs': ['.cts', '.cjs'],
-      '.js': ['.ts', '.tsx', '.js', '.jsx'],
-      '.mjs': ['.mts', '.mjs'],
-    }
-
-    return webpackConfig
-  },
-  images: {
-    remotePatterns: [
-      ...[NEXT_PUBLIC_SERVER_URL].map(item => {
-        const url = new URL(item)
-
-        return {
-          hostname: url.hostname,
-          protocol: url.protocol.replace(':', '') as 'http' | 'https',
-        }
-      }),
-      {
-        protocol: 'https',
-        hostname: 'deifkwefumgah.cloudfront.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+    turbopackFileSystemCacheForDev: true,
+    turbopackFileSystemCacheForBuild: true,
   },
   reactStrictMode: true,
-  redirects,
+  async rewrites() {
+    return [
+      {
+        source: "/magare/static/:path*",
+        destination: "https://eu-assets.i.posthog.com/static/:path*",
+      },
+      {
+        source: "/magare/:path*",
+        destination: "https://eu.i.posthog.com/:path*",
+      },
+    ];
+  },
   // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
-}
-
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+};
+let finalConfig: NextConfig = withPayload(nextConfig, {
+  devBundleServerPackages: false,
+});
+if (process.env.POSTHOG_SOURCEMAPS === "production")
+  finalConfig = withPostHogConfig(finalConfig, {
+    personalApiKey: process.env.POSTHOG_API_KEY!, // Personal API Key
+    envId: process.env.POSTHOG_ENV_ID!, // Environment ID
+    host: process.env.NEXT_PUBLIC_POSTHOG_HOST, // (optional), defaults to https://us.posthog.com
+    sourcemaps: {
+      // (optional)
+      enabled: true, // (optional) Enable sourcemaps generation and upload, default to true on production builds
+      project: "my-application", // (optional) Project name, defaults to repository name
+      version: "1.0.0", // (optional) Release version, defaults to current git commit
+      deleteAfterUpload: true, // (optional) Delete sourcemaps after upload, defaults to true
+    },
+  });
+export default finalConfig;

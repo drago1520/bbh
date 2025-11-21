@@ -43,4 +43,8 @@
  * Note: In Next.js, prefer using the "use client" directive for components that need browser APIs,
  * but this utility is still useful for conditional logic within those components.
  */
-export default !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+export default !!(
+  typeof window !== "undefined" &&
+  window.document &&
+  window.document.createElement
+);

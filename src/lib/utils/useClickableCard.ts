@@ -1,8 +1,8 @@
-'use client';
-import type { RefObject } from 'react';
+"use client";
+import type { RefObject } from "react";
 
-import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useRef } from 'react';
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef } from "react";
 
 type UseClickableCardType<T extends HTMLElement> = {
   card: {
@@ -73,7 +73,11 @@ interface Props {
  * };
  * ```
  */
-function useClickableCard<T extends HTMLElement>({ external = false, newTab = false, scroll = true }: Props): UseClickableCardType<T> {
+function useClickableCard<T extends HTMLElement>({
+  external = false,
+  newTab = false,
+  scroll = true,
+}: Props): UseClickableCardType<T> {
   const router = useRouter();
   const card = useRef<T>(null);
   const link = useRef<HTMLAnchorElement>(null);
@@ -87,7 +91,7 @@ function useClickableCard<T extends HTMLElement>({ external = false, newTab = fa
         const target = e.target as Element;
 
         const timeNow = +new Date();
-        const parent = target?.closest('a');
+        const parent = target?.closest("a");
 
         pressedButton.current = e.button;
 
@@ -110,9 +114,13 @@ function useClickableCard<T extends HTMLElement>({ external = false, newTab = fa
         const difference = timeNow - timeDown.current;
 
         if (link.current?.href && difference <= 250) {
-          if (!hasActiveParent.current && pressedButton.current === 0 && !e.ctrlKey) {
+          if (
+            !hasActiveParent.current &&
+            pressedButton.current === 0 &&
+            !e.ctrlKey
+          ) {
             if (external) {
-              const target = newTab ? '_blank' : '_self';
+              const target = newTab ? "_blank" : "_self";
               window.open(link.current.href, target);
             } else {
               router.push(link.current.href, { scroll });
@@ -129,15 +137,15 @@ function useClickableCard<T extends HTMLElement>({ external = false, newTab = fa
     const cardNode = card.current;
 
     if (cardNode) {
-      cardNode.addEventListener('mousedown', handleMouseDown);
-      cardNode.addEventListener('mouseup', handleMouseUp);
+      cardNode.addEventListener("mousedown", handleMouseDown);
+      cardNode.addEventListener("mouseup", handleMouseUp);
     }
 
     return () => {
       if (cardNode) {
         if (cardNode) {
-          cardNode?.removeEventListener('mousedown', handleMouseDown);
-          cardNode?.removeEventListener('mouseup', handleMouseUp);
+          cardNode?.removeEventListener("mousedown", handleMouseDown);
+          cardNode?.removeEventListener("mouseup", handleMouseUp);
         }
       }
     };
