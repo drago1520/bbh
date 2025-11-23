@@ -58,6 +58,7 @@ export const Testimonial25Collection: CollectionConfig = {
     },
     {
       name: "cards",
+      label: "Ревюта",
       type: "blocks",
       blocks: [Testimonial25CardBlock],
       required: true,
