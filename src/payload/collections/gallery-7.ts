@@ -14,7 +14,7 @@ export const Gallery7Collection: CollectionConfig = {
     {
       type: "text",
       name: "label",
-      label: "Вътрешен етикет",
+      label: "Вътрешен етикет (питай дали се разбира)",
       defaultValue: "Галерия 7",
       required: true,
     },
@@ -57,6 +57,7 @@ export const Gallery7Collection: CollectionConfig = {
           min: 0,
           admin: {
             width: "15%",
+            placeholder: "0.4",
           },
         },
       ],

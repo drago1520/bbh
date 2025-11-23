@@ -24,7 +24,7 @@ export const LecturersCollection: CollectionConfig = {
     {
       type: "text",
       name: "label",
-      label: "Вътрешен етикет",
+      label: "Вътрешен етикет (питай дали се разбира)",
       defaultValue: "Лектори",
       required: true,
     },

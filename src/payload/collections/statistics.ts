@@ -18,7 +18,7 @@ export const StatisticsCollection: CollectionConfig = {
     {
       type: "text",
       name: "label",
-      label: "Вътрешен етикет",
+      label: "Вътрешен етикет (питай дали се разбира)",
       defaultValue: "Статистики",
       required: true,
     },
