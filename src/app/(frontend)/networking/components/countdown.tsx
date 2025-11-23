@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import Countdown, { CountdownRenderProps } from "react-countdown";
 
-function UI({ days, hours, minutes, seconds, props }: CountdownRenderProps) {
+function ui({ days, hours, minutes, seconds, props }: CountdownRenderProps) {
   const { className } = props;
   const format = (time: number) => time.toString().padStart(2, "0");
   return (
@@ -39,7 +39,7 @@ function UI({ days, hours, minutes, seconds, props }: CountdownRenderProps) {
     </time>
   );
 }
-function UIConferencePricing({
+function uiConferencePricing({
   days,
   hours,
   minutes,
@@ -82,7 +82,7 @@ export default function CountdownTimer({
     <Countdown
       date={endDate}
       className={className}
-      renderer={variant === "conferencePricing" ? UIConferencePricing : UI}
+      renderer={variant === "conferencePricing" ? uiConferencePricing : ui}
     />
   );
 }
