@@ -15,27 +15,11 @@ export const defaultValueHelperText = {
             version: 1,
           },
           {
-            type: "link",
-            url: "https://your-link-url.com", // Replace with your URL
-            children: [
-              {
-                detail: 0,
-                format: 0,
-                mode: "normal",
-                style: "",
-                text: "Свържи се с нас",
-                type: "text",
-                version: 1,
-              },
-            ],
-            version: 1,
-          },
-          {
             detail: 0,
             format: 0,
             mode: "normal",
             style: "",
-            text: " и ще го добавим!",
+            text: "Свържи се с нас и ще го добавим!",
             type: "text",
             version: 1,
           },
