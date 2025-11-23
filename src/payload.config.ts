@@ -100,6 +100,7 @@ export default buildConfig({
         },
         region: "auto",
         endpoint: process.env.S3_ENDPOINT,
+        forcePathStyle: process.env.NODE_ENV == "development" ? true : false,
       },
     }),
   ],
