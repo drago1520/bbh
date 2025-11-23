@@ -6,6 +6,21 @@ export const Tickets: CollectionConfig = {
     plural: "Билети",
     singular: "Билет",
   },
+  hooks: {
+    // Runs before creating or updating the document
+    beforeChange: [
+      ({ data, originalDoc }) => {
+        const now = new Date();
+        if (!originalDoc) {
+          // document is new
+          data.createdAt = now;
+        }
+        // always update updatedAt timestamp
+        data.updatedAt = now;
+        return data;
+      },
+    ],
+  },
   fields: [
     {
       name: "attendee",
@@ -78,19 +93,4 @@ export const Tickets: CollectionConfig = {
       ],
     },
   ],
-  hooks: {
-    // Runs before creating or updating the document
-    beforeChange: [
-      ({ data, originalDoc }) => {
-        const now = new Date();
-        if (!originalDoc) {
-          // document is new
-          data.createdAt = now;
-        }
-        // always update updatedAt timestamp
-        data.updatedAt = now;
-        return data;
-      },
-    ],
-  },
 };

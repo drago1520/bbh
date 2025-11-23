@@ -40,7 +40,6 @@ export const Testimonial25CardBlock: Block = {
           name: "role",
           type: "text",
           label: "Роля на клиента в компанията",
-          required: true,
           admin: {
             placeholder: "Lead Engineer",
           },
@@ -49,7 +48,6 @@ export const Testimonial25CardBlock: Block = {
           name: "company",
           type: "text",
           label: "Компания",
-          required: true,
           admin: {
             placeholder: "Mercury Finance",
           },

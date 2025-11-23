@@ -22,7 +22,6 @@ export const Gallery7Collection: CollectionConfig = {
       type: "text",
       name: "title",
       label: "Заглавие",
-      required: true,
     },
     {
       type: "upload",

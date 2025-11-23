@@ -87,7 +87,7 @@ export function Testimonial25Card({
             alt={image.alt}
             height={image.height || 328}
             width={image.width || 384}
-            className="h-[288px] object-cover object-top lg:h-[328px]"
+            className="h-72 object-cover object-top lg:h-[328px]"
           />
           <div className="flex flex-1 flex-col justify-between gap-10 p-6">
             <blockquote className="text-primary quote-teal text-lg leading-none! font-medium md:text-xl">

@@ -1,5 +1,5 @@
 ﻿import { CollectionConfig } from "payload";
-import { Testimonial25CardBlock } from "./TODO-turnIntoCollection-testimonial-25-card-block";
+import { Testimonial25CardBlock } from "../blocks/testimonial-25-card-block";
 
 export const Testimonial25Collection: CollectionConfig = {
   slug: "testimonial25",
@@ -26,7 +26,6 @@ export const Testimonial25Collection: CollectionConfig = {
       name: "title",
       type: "text",
       label: "Заглавие",
-      required: true,
       admin: {
         placeholder: "Trusted by product builders",
       },
@@ -49,7 +48,7 @@ export const Testimonial25Collection: CollectionConfig = {
       },
     },
     {
-      name: "ctaHref",
+      name: "ctaHref", //TODO remove all re
       type: "text",
       label: "CTA линк",
       admin: {

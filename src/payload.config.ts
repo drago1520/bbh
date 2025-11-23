@@ -11,7 +11,6 @@ import { Media } from "./payload/collections/Media";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { Attendees } from "./payload/collections/Attendees";
 import { Events } from "./payload/collections/Events";
-import { MarketingSectionsCollection } from "./payload/deprecated/Marketing-collection_old";
 import { PartnersNCollection } from "./payload/collections/partnersN";
 import { Tickets } from "./payload/collections/tickets-collection";
 import { Gallery7Collection } from "./payload/collections/gallery-7";
@@ -65,7 +64,6 @@ export default buildConfig({
     Media,
     Attendees,
     Events,
-    MarketingSectionsCollection,
     PartnersNCollection,
     Tickets,
     Gallery7Collection,

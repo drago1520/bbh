@@ -205,9 +205,9 @@ const UpcomingEvents = ({
                     <div className="relative flex h-full flex-col items-start justify-start gap-2">
                       <div className="w-full">
                         <div className="group relative z-10 overflow-hidden rounded-2xl">
-                          <Link href={`/services/${id}`}>
-                            <Image width={500} height={260} src={(typeof thumbnail !== 'string' && thumbnail.url) || ''} alt={title} className="group-hover:opacity-0-OLD aspect-[1.91/1] h-full w-full object-cover transition-opacity duration-500" />
-                          </Link>
+                          {thumbnail && typeof thumbnail !== 'string' && <Link href={`/services/${id}`}>
+                            <Image width={500} height={260} src={thumbnail.url || ''} alt={title} className="group-hover:opacity-0-OLD aspect-[1.91/1] h-full w-full object-cover transition-opacity duration-500" />
+                          </Link>}
                           {/* <Image width={800} height={800} src={image} alt={title} className="absolute top-0 left-0 z-10 aspect-square h-full w-full rounded-2xl object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> */}
 
                           <Badge className="bg-background absolute top-4 left-4 px-4 py-1" variant="outline">
@@ -220,7 +220,7 @@ const UpcomingEvents = ({
                         <div className="flex flex-wrap gap-2 space-x-2">
                           <div className="flex items-center gap-2">
                             <Calendar className="text-brand-accent h-4 w-4" />
-                            <span className="text-muted-foreground font-medium">{formatToBulgarianDate(date)}</span>
+                            {date && <span className="text-muted-foreground font-medium">{formatToBulgarianDate(date)}</span>}
                           </div>
                           <Button variant={'link'} asChild className="px-0">
                             <Link href={locationUrl || '#'} className="flex items-center gap-2 px-0">

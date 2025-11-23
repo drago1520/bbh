@@ -53,7 +53,7 @@ export default async function Page() {
   if (1 > events.length) console.error("Няма намерено предстоящо събитие");
   else if (events.find((e) => typeof e === "string"))
     throw new Error("Object passed from collection is string");
-  else if (new Date() > new Date(events[0].date))
+  else if (events?.[0]?.date && new Date() > new Date(events[0].date))
     console.error(`Старо събитие се показва с id: ${events[0].id}`);
 
   return (

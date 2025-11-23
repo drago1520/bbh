@@ -50,15 +50,17 @@ export default function LatestNetworking({
       {...props}
     >
       <div className="container space-y-8 py-16 sm:space-y-16 xl:space-y-20">
-        <div className="relative aspect-square sm:aspect-video">
-          <Image
-            src={thumbnail.url || ""}
-            alt={thumbnail.alt}
-            fill
-            priority
-            className="size-full rounded-md object-cover shadow-xl"
-          />
-        </div>
+        {thumbnail && (
+          <div className="relative aspect-square sm:aspect-video">
+            <Image
+              src={thumbnail.url || ""}
+              alt={thumbnail.alt}
+              fill
+              priority
+              className="size-full rounded-md object-cover shadow-xl"
+            />
+          </div>
+        )}
         <div className="grid justify-center gap-6 sm:gap-8 xl:grid-cols-2 xl:gap-12">
           <MediaSection
             isImageRight={isImageRight}
@@ -103,21 +105,26 @@ export default function LatestNetworking({
                 </div>
               </div>
             )}
-            <CountdownTimer className="hidden xl:flex" endDate={date} />
+            {date && (
+              <CountdownTimer className="hidden xl:flex" endDate={date} />
+            )}
           </MediaSection>
           <article className="xl:col-span-1">
             <h3 id="networking-heading" className="text-h3-size mb-2">
               {title}
             </h3>
             <div className="flex flex-col justify-start gap-4 font-semibold sm:flex-row sm:items-center">
-              <Button variant={"link"} asChild className="pl-0">
-                <Link
-                  href="#"
-                  className="prose dark:prose-invert flex items-center justify-start gap-1"
-                >
-                  <Calendar className="size-4" /> {formatToBulgarianDate(date)}
-                </Link>
-              </Button>
+              {date && (
+                <Button variant={"link"} asChild className="pl-0">
+                  <Link
+                    href="#"
+                    className="prose dark:prose-invert flex items-center justify-start gap-1"
+                  >
+                    <Calendar className="size-4" />{" "}
+                    {formatToBulgarianDate(date)}
+                  </Link>
+                </Button>
+              )}
               <Button variant={"link"} asChild>
                 <Link
                   href="#"
@@ -127,12 +134,16 @@ export default function LatestNetworking({
                 </Link>
               </Button>
             </div>
-            <div className="mt-6">
-              <RichText data={description} />
-            </div>
-            <div className="mt-12 xl:hidden">
-              <CountDownTimer endDate={date} />
-            </div>
+            {description && (
+              <div className="mt-6">
+                <RichText data={description} />
+              </div>
+            )}
+            {date && (
+              <div className="mt-12 xl:hidden">
+                <CountDownTimer endDate={date} />
+              </div>
+            )}
             <div className="mt-8">
               {maxGuests && (
                 <span className="text-destructive block text-sm italic">

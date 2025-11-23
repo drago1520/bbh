@@ -5,6 +5,9 @@ export const Events: CollectionConfig = {
   typescript: {
     interface: "EventProps",
   },
+  admin: {
+    useAsTitle: "title",
+  },
   fields: [
     {
       name: "title",
@@ -21,7 +24,6 @@ export const Events: CollectionConfig = {
       name: "description",
       label: "Описание",
       type: "richText",
-      required: true,
     },
     {
       name: "shortDescription",
@@ -69,7 +71,6 @@ export const Events: CollectionConfig = {
       name: "date",
       label: "Дата",
       type: "date",
-      required: true,
       index: true,
       admin: {
         date: {
@@ -101,7 +102,6 @@ export const Events: CollectionConfig = {
       name: "speakerName",
       label: "Име на лектора",
       type: "text",
-      required: true,
       index: true,
       admin: {
         description: "2 имена на лектора",
@@ -126,7 +126,6 @@ export const Events: CollectionConfig = {
       admin: {
         description: "Препоръчително 1920x1005px (Facebook event banner).",
       },
-      required: true,
     },
     {
       name: "location",
@@ -162,7 +161,4 @@ export const Events: CollectionConfig = {
       },
     },
   ],
-  admin: {
-    useAsTitle: "title",
-  },
 };

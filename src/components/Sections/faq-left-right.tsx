@@ -24,7 +24,9 @@ export default function FAQsThree({
           <div className="md:w-1/3">
             <div className="prose dark:prose-invert sticky top-20">
               <h3 className="text-h3-size mt-0">{title}</h3>
-              <RichText className="text-muted-foreground" data={helperText} />
+              {helperText && (
+                <RichText className="text-muted-foreground" data={helperText} />
+              )}
             </div>
           </div>
           <div className="md:w-2/3">

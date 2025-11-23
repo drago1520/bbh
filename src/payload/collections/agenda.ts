@@ -38,7 +38,6 @@ export const AgendaCollection: CollectionConfig = {
           name: "title",
           type: "text",
           label: "Заглавие",
-          required: true,
           admin: {
             placeholder: "Откриване на конференцията",
           },

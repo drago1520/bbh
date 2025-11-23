@@ -41,7 +41,7 @@ export default async function Page() {
   if (!event) console.error("Няма намерено предстоящо събитие");
   else if (typeof event === "string")
     throw new Error("Object passed from collection is string");
-  else if (new Date() > new Date(event.date))
+  else if (event?.date && new Date() > new Date(event.date))
     console.error(`Старо събитие се показва с id: ${event.id}`);
   return (
     <div className="min-h-screen">

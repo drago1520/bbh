@@ -42,7 +42,6 @@ export const Contacts: CollectionConfig = {
         {
           type: "text",
           name: "cta",
-          required: true,
         },
         {
           type: "textarea",
@@ -82,14 +81,12 @@ export const Contacts: CollectionConfig = {
               type: "select",
               name: "platform",
               label: "Платформа",
-              required: true,
               options: socialOptions,
             },
             {
               type: "text",
               name: "url",
               label: "Линк",
-              required: true,
               admin: {
                 placeholder: "https://facebook.com/your-page",
               },

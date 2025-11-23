@@ -74,7 +74,6 @@ export interface Config {
     media: Media;
     attendees: Attendee;
     events: EventProps;
-    "marketing-sections": MarketingSection;
     partnersN: PartnersNProps;
     tickets: Ticket;
     gallery7: Gallery7;
@@ -98,9 +97,6 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     attendees: AttendeesSelect<false> | AttendeesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
-    "marketing-sections":
-      | MarketingSectionsSelect<false>
-      | MarketingSectionsSelect<true>;
     partnersN: PartnersNSelect<false> | PartnersNSelect<true>;
     tickets: TicketsSelect<false> | TicketsSelect<true>;
     gallery7: Gallery7Select<false> | Gallery7Select<true>;
@@ -257,7 +253,7 @@ export interface FaqLeftRight {
   id: string;
   title: string;
   label: string;
-  helperText: {
+  helperText?: {
     root: {
       type: string;
       children: {
@@ -271,7 +267,7 @@ export interface FaqLeftRight {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   QABlock: QABlockProps[];
   updatedAt: string;
   createdAt: string;
@@ -308,7 +304,7 @@ export interface QABlockProps {
 export interface Gallery7 {
   id: string;
   label: string;
-  title: string;
+  title?: string | null;
   images: (string | Media)[];
   descr?: {
     root: {
@@ -338,7 +334,7 @@ export interface Gallery7 {
 export interface Testimonial25Props {
   id: string;
   label: string;
-  title: string;
+  title?: string | null;
   helperText?: string | null;
   ctaText?: string | null;
   ctaHref?: string | null;
@@ -357,8 +353,8 @@ export interface Testimonial25CardProps {
   image: string | Media;
   quote: string;
   author: string;
-  role: string;
-  company: string;
+  role?: string | null;
+  company?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: "testimonial25CardBlock";
@@ -370,7 +366,7 @@ export interface Testimonial25CardProps {
 export interface EventProps {
   id: string;
   title: string;
-  description: {
+  description?: {
     root: {
       type: string;
       children: {
@@ -384,7 +380,7 @@ export interface EventProps {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Най-много 1-2 параграфа НЕ повече
    */
@@ -408,12 +404,12 @@ export interface EventProps {
    */
   stripeUrl?: string | null;
   type: "networking" | "businessBreakfast" | "conference" | "courses";
-  date: string;
+  date?: string | null;
   active: "false" | "true";
   /**
    * 2 имена на лектора
    */
-  speakerName: string;
+  speakerName?: string | null;
   /**
    * поражда Недостиг у хората.
    */
@@ -421,7 +417,7 @@ export interface EventProps {
   /**
    * Препоръчително 1920x1005px (Facebook event banner).
    */
-  thumbnail: string | Media;
+  thumbnail?: (string | null) | Media;
   /**
    * Важно: Провери дали излиза в Google maps като пръв резултат.
    */
@@ -490,43 +486,6 @@ export interface Attendee {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "marketing-sections".
- */
-export interface MarketingSection {
-  id: string;
-  Partners: {
-    partners: PartnersProps[];
-  };
-  Partners2: {
-    partners2: Partners2Props[];
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "PartnersProps".
- */
-export interface PartnersProps {
-  subtitle?: string | null;
-  images: (string | Media)[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: "partners";
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Partners2Props".
- */
-export interface Partners2Props {
-  subtitle?: string | null;
-  images: (string | Media)[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: "partners2";
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tickets".
  */
 export interface Ticket {
@@ -547,16 +506,18 @@ export interface Ticket {
  */
 export interface LecturersNProps {
   id: string;
-  title: string;
+  title?: string | null;
   label: string;
   subheading?: string | null;
-  lecturers: {
-    name?: string | null;
-    role?: string | null;
-    bio?: string | null;
-    image: string | Media;
-    id?: string | null;
-  }[];
+  lecturers?:
+    | {
+        name?: string | null;
+        role?: string | null;
+        bio?: string | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -569,7 +530,7 @@ export interface AgendaNProps {
   title?: string | null;
   label: string;
   items: {
-    title: string;
+    title?: string | null;
     description?: string | null;
     id?: string | null;
   }[];
@@ -591,7 +552,7 @@ export interface ContactsProps {
    * google.com/maps > намери място > "Share" > Embed a map > копирайте само url-a в кавичките. 15 сек  tutorial: https://vento.so/view/9e099913-bb15-4990-af47-5b62dc41b98e?utm_medium=share
    */
   gmaps?: string | null;
-  cta: string;
+  cta?: string | null;
   address?: string | null;
   phones?:
     | {
@@ -610,27 +571,30 @@ export interface ContactsProps {
    */
   socials?:
     | {
-        platform:
-          | "facebook"
-          | "instagram"
-          | "twitter"
-          | "linkedin"
-          | "youtube"
-          | "tiktok"
-          | "whatsapp"
-          | "telegram"
-          | "viber"
-          | "discord"
-          | "snapchat"
-          | "pinterest"
-          | "reddit"
-          | "twitch"
-          | "medium"
-          | "slack"
-          | "skype"
-          | "threads"
-          | "yelp";
-        url: string;
+        platform?:
+          | (
+              | "facebook"
+              | "instagram"
+              | "twitter"
+              | "linkedin"
+              | "youtube"
+              | "tiktok"
+              | "whatsapp"
+              | "telegram"
+              | "viber"
+              | "discord"
+              | "snapchat"
+              | "pinterest"
+              | "reddit"
+              | "twitch"
+              | "medium"
+              | "slack"
+              | "skype"
+              | "threads"
+              | "yelp"
+            )
+          | null;
+        url?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -688,10 +652,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "events";
         value: string | EventProps;
-      } | null)
-    | ({
-        relationTo: "marketing-sections";
-        value: string | MarketingSection;
       } | null)
     | ({
         relationTo: "partnersN";
@@ -881,52 +841,6 @@ export interface EventsSelect<T extends boolean = true> {
   locationImg?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "marketing-sections_select".
- */
-export interface MarketingSectionsSelect<T extends boolean = true> {
-  Partners?:
-    | T
-    | {
-        partners?:
-          | T
-          | {
-              partners?: T | PartnersPropsSelect<T>;
-            };
-      };
-  Partners2?:
-    | T
-    | {
-        partners2?:
-          | T
-          | {
-              partners2?: T | Partners2PropsSelect<T>;
-            };
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "PartnersProps_select".
- */
-export interface PartnersPropsSelect<T extends boolean = true> {
-  subtitle?: T;
-  images?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Partners2Props_select".
- */
-export interface Partners2PropsSelect<T extends boolean = true> {
-  subtitle?: T;
-  images?: T;
-  id?: T;
-  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

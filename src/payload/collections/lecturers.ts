@@ -19,7 +19,6 @@ export const LecturersCollection: CollectionConfig = {
       type: "text",
       label: "Заглавие",
       defaultValue: "Лектори",
-      required: true,
     },
     {
       type: "text",
@@ -40,7 +39,6 @@ export const LecturersCollection: CollectionConfig = {
       admin: {
         initCollapsed: true,
       },
-      required: true,
       fields: [
         {
           name: "name",
@@ -72,7 +70,6 @@ export const LecturersCollection: CollectionConfig = {
           type: "upload",
           label: "Снимка",
           relationTo: "media",
-          required: true,
         },
       ],
     },

@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload";
 import { defaultValueHelperText } from "./default-helper-text";
-import { QABlock } from "./TODO-turnBlockIntoCollection-q-a-block";
+import { QABlock } from "../blocks/q-a-block";
 
 export const FaqLeftRightCollection: CollectionConfig = {
   slug: "faqLeftRight",
@@ -35,9 +35,8 @@ export const FaqLeftRightCollection: CollectionConfig = {
         {
           type: "richText",
           name: "helperText",
-          label: "Спомагателен Текст",
+          label: "Описание",
           defaultValue: defaultValueHelperText,
-          required: true,
         },
       ],
     },

@@ -1,5 +1,5 @@
 ﻿import { CollectionConfig } from "payload";
-import { StatisticBlock } from "./TODO-turnBlockIntoCollection-statistic-block";
+import { StatisticBlock } from "../blocks/statistic-block";
 
 export const StatisticsCollection: CollectionConfig = {
   slug: "statisticsN",
